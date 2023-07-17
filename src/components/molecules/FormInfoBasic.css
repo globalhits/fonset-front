@@ -1,0 +1,40 @@
+.Container{
+width: 80%;
+height: 700px;
+border: solid 2px #dee2e6;
+border-radius: 1rem;
+display: flex;
+flex-direction: row;
+margin-left:350px;
+margin-top: 200px;
+}
+
+.ContainerFormInfo{
+    width: 20% !important;
+    height: 50%;
+    margin-top: 80px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.ContainerBtnSection{
+    margin-top: 20px;
+}
+
+.Button{
+    margin-top: 80px;
+    margin-left: 50px;
+    width: 180px;
+    height: 60px;
+}
+
+.formInfoProyect{
+    margin-top: 80px;
+    margin-left: 50px;
+    width: 60%;
+    height: 50px;
+}
+
+.inputFloating{
+    margin-top: 20px
+}
