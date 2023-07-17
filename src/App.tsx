@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+
+
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+
 import './App.css';
 
+import InvertionView from './pages/invertion';
+import FonsetView from './pages/fonset';
+import CooperationView from './pages/cooperation';
+
+const router = createBrowserRouter(
+	createRoutesFromElements(
+		<Route>
+			<Route path="/invertion" element={<InvertionView />} />
+			<Route path="/fonset" element={<FonsetView />} />
+			<Route path="/cooperation" element={<CooperationView />} />
+		</Route>
+	)
+);
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<RouterProvider router={router} />
+	)
 }
 
 export default App;
