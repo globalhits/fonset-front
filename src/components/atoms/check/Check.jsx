@@ -1,14 +1,12 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 
-interface CheckBoxProps {
+interface CheckProps {
   label: string;
   type: string;
 }
 
-
-function CheckExample({ label, type }: CheckBoxProps) {
-
+export default function CheckBox({label, type}: CheckProps) {
   return (
     <Form>
         <div className="mb-3">
@@ -17,5 +15,3 @@ function CheckExample({ label, type }: CheckBoxProps) {
     </Form>
   );
 }
-
-export default CheckExample;

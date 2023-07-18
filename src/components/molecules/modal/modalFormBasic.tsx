@@ -30,6 +30,14 @@ function MyVerticallyCenteredModal(props: MyVerticallyCenteredModalProps) {
           <InputFloating label="Entidad /Dependencia responsable *" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" />
           <InputFloating label="Dependencia funcional Responsable *" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" />
         </div>
+        <div>
+          <InputFloating label="Entidad /Dependencia responsable *" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" />
+          <InputFloating label="Dependencia funcional Responsable *" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" />
+        </div>
+        <div>
+          <InputFloating label="Entidad /Dependencia responsable *" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" />
+          <InputFloating label="Dependencia funcional Responsable *" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" />
+        </div>
 
       </Modal.Body>
       <Modal.Footer>

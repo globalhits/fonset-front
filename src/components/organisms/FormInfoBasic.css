@@ -1,29 +1,30 @@
 .Container{
 width: 80%;
-height: 700px;
+height: 800px;
 border: solid 2px #dee2e6;
 border-radius: 1rem;
 display: flex;
 flex-direction: row;
-margin-left:150px;
-margin-top: 200px;
+margin-left:250px;
+margin-top: 120px;
 }
 
 .ContainerFormInfo{
-    width: 20% !important;
+    width: 30% !important;
     height: 50%;
     margin-top: 80px;
-    margin-left: 50px;
+    margin-left: 80px;
     margin-bottom: 20px;
 }
 
 .ContainerBtnSection{
-    margin-top: 20px;
+    margin-top: 100px;
+    margin-left: 120px;
 }
 
 .Button{
     margin-top: 80px;
-    margin-left: 50px;
+    margin-left: 80px;
     width: 120px;
     height: 60px;
 }
@@ -37,4 +38,9 @@ margin-top: 200px;
 
 .inputFloating{
     margin-top: 20px
+}
+
+.text{
+    text-align: center;
+    margin-bottom: 20px;
 }

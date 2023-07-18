@@ -1,0 +1,6 @@
+.ContainerInfo{
+    display: flex;
+    flex-direction: row;
+    margin-left: 120px;
+}
+

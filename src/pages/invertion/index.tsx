@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from "../../components/layout";
-import FormFloatingBasicExample from '../../components/molecules/FormInfoBasic';
+import FormFloatingBasicExample from '../../components/organisms/FormInfoBasic';
 
 import "./invertion.scss";
 
