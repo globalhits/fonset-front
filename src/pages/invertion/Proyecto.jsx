@@ -4,14 +4,13 @@ import FormFloatingBasicExample from '../../components/organisms/FormInfoBasic';
 
 import "./invertion.scss";
 
-const InvertionView = () => {
+export default function InvertionProyectView(){
     return (
-        <>
+        < >
            <Layout>
+            <h1>hola mundo</h1>
                 <FormFloatingBasicExample />
            </Layout>
         </>
     )
 }
-
-export default InvertionView;

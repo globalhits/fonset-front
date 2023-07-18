@@ -1,8 +1,9 @@
 import React from "react";
 import InputFloating from "../../atoms/input/Input";
+import InputSelected from "../../atoms/selected/InputSelected";
 import CheckBox from "../../atoms/check/Check";
 
-import "./style.css"
+import "./FormInfoBasic.css"
 
 export default function FormInfoBasic() {
     return (
@@ -16,7 +17,7 @@ export default function FormInfoBasic() {
                 </div>
                 <div className="Block2">
                     <InputFloating label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" placeholder="Escribe la dependencia responsable" />
-                    <InputFloating label="Dependencia funcional responsable *" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" />
+                    <InputSelected label="Dependencia funcional responsable *" className="mb-3 inputFloating"/>
                 </div>
 
             </div>

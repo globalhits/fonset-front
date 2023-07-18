@@ -1,12 +1,11 @@
 import React from "react";
 import InputFloating from "../../atoms/input/Input";
-import './style.css'
+import './FormInfoProyect.css'
 
 export default function FormInfoProyect() {
 
     return (
         <>
-       
             <div className="ContainerInfo">
                 <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" placeholder="1234" />
                 <InputFloating label="Fecha*" className="mb-3 inputFloating" type="date" placeholder="Fecha" />

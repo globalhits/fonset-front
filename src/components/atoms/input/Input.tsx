@@ -7,7 +7,7 @@ interface InputProps {
     placeholder: string;
     label: string;
     className: string;
-  }
+}
 
 export default function InputFloating({type, placeholder, label, className}: InputProps){
     
