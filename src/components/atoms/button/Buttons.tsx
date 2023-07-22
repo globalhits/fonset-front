@@ -9,7 +9,7 @@ interface BottonsProps{
 export default function Buttons({ variant, label}:BottonsProps) {
   return (
     <>
-        <Button variant={variant} >{label}</Button>
+      <Button variant={variant}> {label} </Button>
     </>
   );
 }
