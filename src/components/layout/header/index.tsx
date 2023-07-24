@@ -1,14 +1,16 @@
 import React from "react";
 /* import { Navbar, Container, Nav } from "react-bootstrap"; */
+import './header.scss'
+
 
 export default function Header() {
   return (
-    <nav className="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav className="main-header navbar navbar-expand navbar-white navbar-light header-position">
       {/* Left navbar links */}
       <ul className="navbar-nav">
         <li className="nav-item">
            <a className="nav-link" data-widget="pushmenu" href="./index.tsx" role="button"> 
-            <i className="fas fa-bars" />
+            <i className="fas fa-bars " />
           </a>
         </li>
         <li className="nav-item d-none d-sm-inline-block">
@@ -17,32 +19,26 @@ export default function Header() {
         <li className="nav-item d-none d-sm-inline-block">
            <a href="./index.tsx" className="nav-link"> Contact </a>
         </li>
+        <li className="nav-item d-none d-sm-inline-block">
+           <a href="./index.tsx" className="nav-link"> Services </a>
+        </li>
       </ul>
       {/* Right navbar links */}
       <ul className="navbar-nav ml-auto">
         {/* Navbar Search */}
         <li className="nav-item">
            <a className="nav-link" data-widget="navbar-search" href="./index.tsx"  role="button">
-            <i className="fas fa-search" />
+            <i className="fas fa-search" style={{marginRight:"10px"}}/>
           </a> 
           <div className="navbar-search-block">
             <form className="form-inline">
-              <div className="input-group input-group-sm">
-                <input
-                  className="form-control form-control-navbar"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <div className="input-group-append">
+              <div className="input-group input-group-sm" style={{width:"300px", marginLeft:"1210px"}}>
+                <input  className="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" style={{width:"100px"}}/>
+                <div className="input-group-append" >
                   <button className="btn btn-navbar" type="submit">
                     <i className="fas fa-search" />
                   </button>
-                  <button
-                    className="btn btn-navbar"
-                    type="button"
-                    data-widget="navbar-search"
-                  >
+                  <button className="btn btn-navbar" type="button" data-widget="navbar-search" >
                     <i className="fas fa-times" />
                   </button>
                 </div>
@@ -135,7 +131,7 @@ export default function Header() {
           </div>
         </li>
         {/* Notifications Dropdown Menu */}
-        <li className="nav-item dropdown">
+        <li className="nav-item dropdown" style={{marginRight:"100px"}}>
           <a className="nav-link" data-toggle="dropdown" href="./index.tsx">
             <i className="far fa-bell" />
             <span className="badge badge-warning navbar-badge">15</span>
@@ -165,16 +161,7 @@ export default function Header() {
             </a>
           </div>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" data-widget="fullscreen" href="./index.tsx" role="button" >
-            <i className="fas fa-expand-arrows-alt" />
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="./index.tsx" role="button" >
-            <i className="fas fa-th-large" />
-          </a>
-        </li>
+       
       </ul>
     </nav>
   );

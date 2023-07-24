@@ -5,7 +5,7 @@ import FormFloatingBasicExample from '../../components/organisms/FormInfoBasic';
 import "./invertion.scss";
 
 const InvertionView = () => {
-    return (
+    return ( 
         <>
            <Layout>
                 <FormFloatingBasicExample />
