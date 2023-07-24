@@ -5,9 +5,9 @@ import Footer from './footer/index'
 import Sidebar from './sidebar/index';
 
 
-interface LayoutInterface {
+/* interface LayoutInterface {
          children?: React.ReactNode;
-     }
+     } */
 
 const Layout: React.FC<any> = ({ children }) => {
   return (

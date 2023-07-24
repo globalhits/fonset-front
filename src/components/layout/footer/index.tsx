@@ -1,17 +1,16 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+/* import { Container, Row, Col } from 'react-bootstrap'; */
 
 export default function Footer() {
   return (
-    <footer className="bg-light mt-4">
-      <Container>
-        <Row>
-          <Col className="text-center py-3">
-            {/* Aquí puedes agregar información de contacto, derechos de autor, etc. */}
-            &copy; {new Date().getFullYear()} Mi Empresa. Todos los derechos reservados.
-          </Col>
-        </Row>
-      </Container>
+    <footer className="main-footer">
+      <strong>
+        Copyright © 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.
+      </strong>
+      All rights reserved.
+      <div className="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.2.0
+      </div>
     </footer>
   );
 };

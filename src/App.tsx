@@ -16,7 +16,6 @@ const router = createBrowserRouter(
 			<Route path="/invertion/proyecto" element={<InvertionProyectView />} />
 			<Route path="/invertion/general" element={<InvertionView />} />
 			<Route path="/invertion/especifico" element={<InvertionView />} />
-
 			<Route path="/fonset" element={<FonsetView />} />
 			<Route path="/cooperation" element={<CooperationView />} />
 		</Route>
