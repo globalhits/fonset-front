@@ -1,36 +1,29 @@
-import Table from 'react-bootstrap/Table';
+import React from 'react';
+import { Table } from 'react-bootstrap';
 
-export default function Table() {
+export default function TablaInvolucradas(props){
+  const {title, actions} = props
   return (
-    <Table responsive>
-      <thead>
-        <tr>
-          <th>#</th>
-          {Array.from({ length: 12 }).map((_, index) => (
-            <th key={index}>Table heading</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          {Array.from({ length: 12 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
-        <tr>
-          <td>2</td>
-          {Array.from({ length: 12 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
-        <tr>
-          <td>3</td>
-          {Array.from({ length: 12 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
-      </tbody>
-    </Table>
+    <div>
+      <div style={{ position: 'sticky', top: 0, background: 'white', zIndex: 1 }}>
+        <h6>Entidades Nacionales Involucradas</h6>
+      </div>
+      <Table responsive hover>
+        <thead>
+          <tr>
+            <th>{title}</th>
+            <th>{actions}</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr >
+              <td></td>
+              <td></td>
+            </tr>
+         
+        </tbody>
+      </Table>
+    </div>
   );
-}
+};

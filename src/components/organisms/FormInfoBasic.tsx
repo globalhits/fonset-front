@@ -6,7 +6,7 @@ import NavForms from "../molecules/navbar/NavbarForms";
 import "./FormInfoBasic.css";
 
 
-export default function FormFloatingBasicExample() {
+export default function FormInvertion() {
   return (
     <>
       <div className="Container">
