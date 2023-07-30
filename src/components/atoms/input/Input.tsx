@@ -9,9 +9,9 @@ interface InputProps {
     className: string;
 }
 
-export default function InputFloating({type, placeholder, label, className}: InputProps){
-    
-    return(
+export default function InputFloating({ type, placeholder, label, className }: InputProps) {
+
+    return (
         <div>
             <FloatingLabel label={label} className={className}>
                 <Form.Control type={type} placeholder={placeholder} />

@@ -1,21 +1,20 @@
 import React from "react";
-import FormInfoProyect from "../forms/infoProyect/FormInfoProyect";
-import FormInfoBasic from "../forms/infoBasic/FormInfoBasic";
-import NavForms from "../molecules/navbar/NavbarForms";
+import FormInfoProyect from "../molecules/infoProyect/FormInfoProyect";
+import FormInfoBasic from "../molecules/infoBasic/FormInfoBasic";
 
-import "./FormInfoBasic.css";
+import "./FormInfoBasic.scss";
 
 
 export default function FormInvertion() {
-  return (
-    <>
-      <div className="Container">
-        <div className="ContainerBtnSection">
-          <h4 className="text">INFORMACION DE PROYECTO</h4>
-          <FormInfoProyect />
-          <FormInfoBasic />
-        </div>
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div className="container">
+				<div className="title-view">
+					<h4 className="text">INFORMACION DE PROYECTO</h4>
+				</div>
+				<FormInfoProyect />
+				<FormInfoBasic />
+			</div>
+		</>
+	);
 }

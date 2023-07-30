@@ -1,4 +1,4 @@
-import Layout from "../../components/layout";
+import Layout from "../../components/templates/adminLte/index";
 
 import "./fonset.scss";
 
@@ -6,9 +6,9 @@ const FonsetView = () => {
 
     return (
         <>
-           <Layout>
-               
-           </Layout>
+            <Layout>
+
+            </Layout>
         </>
     )
 

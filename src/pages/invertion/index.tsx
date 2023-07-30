@@ -1,15 +1,15 @@
 import React from 'react';
-import Layout from "../../components/layout";
+import Layout from "../../components/templates/adminLte/index";
 import FormInvertion from '../../components/organisms/FormInfoBasic';
 
 import "./invertion.scss";
 
 const InvertionView = () => {
-    return ( 
+    return (
         <>
-           <Layout>
+            <Layout>
                 <FormInvertion />
-           </Layout>
+            </Layout>
         </>
     )
 }
