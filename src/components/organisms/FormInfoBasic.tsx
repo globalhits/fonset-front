@@ -10,10 +10,10 @@ export default function FormInvertion() {
 		<>
 			<div className="container">
 				<div className="title-view">
-					<h4 className="text">INFORMACION DE PROYECTO</h4>
+					<h4 className="text">Formulario de inversión</h4>
 				</div>
+				{/* Información del proyecto */}
 				<FormInfoProyect />
-				<FormInfoBasic />
 			</div>
 		</>
 	);

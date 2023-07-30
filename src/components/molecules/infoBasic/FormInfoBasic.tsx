@@ -3,19 +3,14 @@ import InputFloating from "../../atoms/input/Input";
 import InputSelected from "../../atoms/selected/InputSelected";
 import CheckBox from "../../atoms/check/Check";
 import { Table } from 'react-bootstrap';
-import Accordion from 'react-bootstrap/Accordion';
 
 import "./FormInfoBasic.scss"
 
 export default function FormInfoBasic() {
     return (
-        <div>
+        <div className="containerInfo">
 
-<Accordion defaultActiveKey="0">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Accordion Item #1</Accordion.Header>
-        <Accordion.Body>
-        <div className="ContainerForm">
+            <div className="ContainerForm">
                 <h5 className="title">Información basica</h5>
                 <div className="Block1">
                     <CheckBox label="Tecnicas" type="checkbox" />
@@ -53,7 +48,7 @@ export default function FormInfoBasic() {
                     </div>
                 </div>
                 <div className="Block3">
-                <div>
+                    <div>
                         <div style={{ position: 'sticky', top: 0, background: 'white', zIndex: 1 }}>
                             <h6>Dependencias involucradas</h6>
                         </div>
@@ -77,11 +72,11 @@ export default function FormInfoBasic() {
 
                 </div>
                 <div className="Block3">
-                <div>
-                <h6>Entidad(es) Nacional(es) Involucrada(s)</h6>
-                        <div style={{ position: 'sticky', top: 0, background: 'white', zIndex: 1, display:"flex" }}>
-                        <CheckBox label="Nacional" type="checkbox" />
-                        <CheckBox label="Focalizada" type="checkbox" />
+                    <div>
+                        <h6>Entidad(es) Nacional(es) Involucrada(s)</h6>
+                        <div style={{ position: 'sticky', top: 0, background: 'white', zIndex: 1, display: "flex" }}>
+                            <CheckBox label="Nacional" type="checkbox" />
+                            <CheckBox label="Focalizada" type="checkbox" />
                         </div>
                         <Table responsive hover>
                             <thead>
@@ -101,16 +96,10 @@ export default function FormInfoBasic() {
 
                             </tbody>
                         </Table>
-                    </div>  
+                    </div>
 
                 </div>
             </div>
-        </Accordion.Body>
-      </Accordion.Item>
-      </Accordion>
-
-
-            
 
         </div>
 
