@@ -1,4 +1,4 @@
-import Layout from "../../components/layout";
+import Layout from "../../components/templates/adminLte/index";
 
 import "./cooperation.scss";
 
@@ -6,9 +6,9 @@ const CooperationView = () => {
 
     return (
         <>
-           <Layout>
-               
-           </Layout>
+            <Layout>
+
+            </Layout>
         </>
     )
 
