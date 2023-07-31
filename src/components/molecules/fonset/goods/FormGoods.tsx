@@ -8,7 +8,7 @@ import { Table } from 'react-bootstrap';
 import "./FormGoods.scss"
 
 export default function FormGoods() {
-    return (
+    return (   
         <div className="containerInfoGoods">
 
             <div className="containerFormsGoods">
