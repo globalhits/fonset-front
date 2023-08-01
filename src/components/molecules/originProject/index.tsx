@@ -3,6 +3,7 @@ import { Tab, Tabs } from "react-bootstrap";
 // --- Components project ---
 import InputFloating from "../../atoms/input/Input";
 import InfoBasic from "../infoBasic/index";
+import Entities from "./entities";
 
 export default function OriginProject() {
 
@@ -30,6 +31,10 @@ export default function OriginProject() {
 
                 <Tab eventKey="basic" title="INFORMACIÓN BÁSICA">
                     <InfoBasic />
+                </Tab>
+
+                <Tab eventKey="entities" title="ENTIDADES">
+                    <Entities />
                 </Tab>
 
             </Tabs>
