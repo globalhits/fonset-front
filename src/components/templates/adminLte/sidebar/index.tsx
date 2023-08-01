@@ -1,5 +1,6 @@
 import React from "react";
 import './sidebar.scss'
+import { Nav } from "react-bootstrap";
 
 const Sidebar = () => {
 
@@ -29,24 +30,25 @@ const Sidebar = () => {
 					>
 						{/* Add icons to the links using the .nav-icon class
          					with font-awesome or any other icon font library */}
-						<li className="nav-item">
-							<a href="/" className="nav-link active">
+
+						<Nav.Item as="li" className="nav-item">
+							<Nav.Link href="/invertion" className="nav-link active">
 								<i className="far fa-circle nav-icon" />
 								<p>Formulario Inversión</p>
-							</a>
-						</li>
-						<li className="nav-item">
-							<a href="/" className="nav-link">
+							</Nav.Link>
+						</Nav.Item>
+						<Nav.Item as="li" className="nav-item">
+							<Nav.Link href="/fonset" className="nav-link">
 								<i className="far fa-circle nav-icon" />
 								<p>Formulario Fonset</p>
-							</a>
-						</li>
-						<li className="nav-item">
-							<a href="/" className="nav-link">
+							</Nav.Link>
+						</Nav.Item>
+						<Nav.Item as="li" className="nav-item">
+							<Nav.Link href="/cooperation" className="nav-link">
 								<i className="far fa-circle nav-icon" />
-								<p>Cooperación</p>
-							</a>
-						</li>
+								<p>Formulario Cooperación</p>
+							</Nav.Link>
+						</Nav.Item>
 					</ul>
 
 				</nav>
