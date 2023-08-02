@@ -1,6 +1,5 @@
 import React from "react";
 import InputFloating from "../../atoms/input/Input";
-import './FormInfoProyect.scss'
 import { Tab, Tabs } from "react-bootstrap";
 import FormDataGeneral from "../fonset/dataGeneral/FormDataGeneral";
 import FormGoods from "../fonset/goods/FormGoods";

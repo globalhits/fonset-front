@@ -1,7 +1,7 @@
 import React from "react";
-import FormInfoFonset from "../molecules/infoProyect/FormInfoFonset";
+import FormInfoFonset from "../molecules/infoProject/FormInfoFonset";
 
-import "./FormInfoBasic.scss";
+/* import "./FormInfoBasic.scss"; */
 
 
 export default function FormFonset() {

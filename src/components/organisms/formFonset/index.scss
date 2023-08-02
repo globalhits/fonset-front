@@ -1,0 +1,9 @@
+.container {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 2rem !important;
+
+    .title-view {
+        margin-bottom: 1rem !important;
+    }
+}
