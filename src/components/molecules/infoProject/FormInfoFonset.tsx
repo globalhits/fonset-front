@@ -1,9 +1,9 @@
 import React from "react";
-import InputFloating from "../../atoms/input/Input";
 import { Tab, Tabs } from "react-bootstrap";
+import InputFloating from "../../atoms/input/Input";
 import FormDataGeneral from "../fonset/dataGeneral/FormDataGeneral";
-import FormGoods from "../fonset/goods/FormGoods";
 import FormDescription from "../fonset/description/FormDescription";
+import FormGoods from "../fonset/goods/FormGoods";
 
 export default function FormInfoFonset() {
 
