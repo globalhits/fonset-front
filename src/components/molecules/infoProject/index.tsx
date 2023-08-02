@@ -1,7 +1,7 @@
 import React from "react";
 
 import './index.scss'
-import { Tab, Tabs } from "react-bootstrap";
+import { Tab, Table, Tabs } from "react-bootstrap";
 import InputFloating from "./../../atoms/input/Input";
 
 export default function InfoProyect() {
@@ -31,11 +31,16 @@ export default function InfoProyect() {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-3">
-                            <InputFloating label="Linea base" className="mb-3 inputFloating" type="text" placeholder="Digite la descripción" />
+                        <div className="col-lg-12">
+                            <InputFloating label="Caracteristicas demograficas de la población objetivo" className="mb-3 inputFloating" type="text" placeholder="Digite el indicador" />
                         </div>
-                        <div className="col-lg-3">
-                            <InputFloating label="Meta" className="mb-3 inputFloating" type="text" placeholder="Digite la descripción" />
+                    </div>
+                    <hr />
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <Table>
+
+                            </Table>
                         </div>
                     </div>
                 </Tab>
