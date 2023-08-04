@@ -48,7 +48,7 @@ export default function FormObjEspecificoCoop() {
                         <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
                     </Col>
                     <Col sm={4}>
-                       <InputFloating label="Indicador cuantitativo o cualitativo*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
+                        <InputFloating label="Indicador cuantitativo o cualitativo*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
                         <InputFloating label="Fecha esperada final*" type="date" placeholder="" className="mb-3 col-lg-13 "></InputFloating>
                         <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating"></InputSelected>
                         <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted"></InputSelected>

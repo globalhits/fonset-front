@@ -2,7 +2,7 @@ import React from "react";
 
 import './index.scss'
 import { Tab, Table, Tabs } from "react-bootstrap";
-import InputFloating from "./../../atoms/input/Input";
+import InputFloating from "../../../atoms/input/Input";
 
 export default function InfoProyect() {
 
