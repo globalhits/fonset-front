@@ -6,9 +6,9 @@ import "./index.scss";
 import { Table } from 'react-bootstrap';
 
 // --- Components ---
-import CheckBox from "../../atoms/check/Check";
-import InputFloating from "../../atoms/input/Input";
-import InputSelected from "../../atoms/selected/InputSelected";
+import CheckBox from "../../../atoms/check/Check";
+import InputFloating from "../../../atoms/input/Input";
+import InputSelected from "../../../atoms/selected/InputSelected";
 
 export default function InfoBasic() {
 

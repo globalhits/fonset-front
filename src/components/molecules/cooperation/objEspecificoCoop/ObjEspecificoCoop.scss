@@ -4,3 +4,7 @@
     margin-top: 1rem !important;
     justify-content: space-between;
 }
+
+.custom-modal .modal-dialog {
+    max-width: 800px; /* Ajusta el valor según el ancho deseado */
+  }
