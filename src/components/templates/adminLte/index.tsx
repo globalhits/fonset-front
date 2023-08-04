@@ -11,19 +11,16 @@ interface LayoutInterface {
 
 const Layout: React.FC<LayoutInterface> = ({ children }) => {
 	return (
-		<div>
+		<div className='wrapper'>
 			<Header />
-			<Container fluid>
-				<Row>
-					<Col md={2} className="d-none d-md-block">
-						<Sidebar />
-					</Col>
-					<Col md={10}>
-						<main>{children}</main>
-					</Col>
-				</Row>
-			</Container>
+			<Sidebar />
+			<div className="content-wrapper">
+				<div className="content container-fluid">
+					{children}
+				</div>
+			</div>
 			<Footer />
+			<div id="sidebar-overlay"></div>
 		</div>
 	);
 };
