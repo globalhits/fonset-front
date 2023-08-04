@@ -2,7 +2,7 @@
 
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
-import './App.css';
+import './App.scss';
 
 import InvertionView from './pages/invertion';
 import FonsetView from './pages/fonset';

@@ -11,3 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
+label:not(.form-check-label):not(.custom-file-label) {
+  font-weight: normal !important;
+}

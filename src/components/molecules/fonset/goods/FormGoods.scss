@@ -1,0 +1,44 @@
+.containerInfoGoods {
+    
+    display: flex !important;
+    flex-direction: row !important;
+    margin-top: 2rem !important;
+    justify-content: space-between;
+}
+
+.containerFormsGoods{
+    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    margin-top: 2rem !important;
+    justify-content: space-between;
+}
+
+.InputSeleted{
+    width: 10px !important;
+}
+
+.tableGoods{
+    margin-top: 50px;
+}
+
+.campos{
+    width: 100px;
+}
+
+.agregar{
+    margin-top: 30px;
+    margin-left: 800px;
+}
+
+.btn-cerrar{
+    margin-top: 30px;
+}
+.btn-guardar{
+    margin-top: 30px;
+    margin-left: 880px;
+}
+.btn-finalizar{
+    margin-top: 30px;
+    margin-left: 20px;
+}

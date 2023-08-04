@@ -1,5 +1,5 @@
+import FormFonset from "../../components/organisms/formFonset";
 import Layout from "../../components/templates/adminLte/index";
-
 import "./fonset.scss";
 
 const FonsetView = () => {
@@ -7,7 +7,7 @@ const FonsetView = () => {
     return (
         <>
             <Layout>
-
+                <FormFonset />
             </Layout>
         </>
     )
