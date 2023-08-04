@@ -2,16 +2,17 @@ import React from "react";
 import "./index.scss";
 
 // --- Components project ---
-import OriginProject from "../../molecules/originProject/index";
-import InfoProyect from "./../../molecules/infoProject/index";
-
+import FormInfoFonset from "../../molecules/infoProject/FormInfoFonset";
 
 export default function FormFonset() {
 	return (
 		<>
 			<div className="container">
-				<OriginProject />
-				<InfoProyect />
+				<div className="title-view">
+					<h4 className="text">Formulario fonset</h4>
+				</div>
+				{/* Información de fonset */}
+				<FormInfoFonset />
 			</div>
 		</>
 	);

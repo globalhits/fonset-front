@@ -9,19 +9,19 @@ export default function FormInfoFonset() {
 
     return (
         <div className="container">
-        <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
-            <Tab eventKey="home" title="INFORMACION DE PROYECTO">
-                <div className="row mt-3">
-                    <div className="col-lg-4">
-                        <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" placeholder="1234" />
+            <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
+                <Tab eventKey="home" title="INFORMACION DE PROYECTO">
+                    <div className="row mt-3">
+                        <div className="col-lg-4">
+                            <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" placeholder="1234" />
+                        </div>
+                        <div className="col-lg-4">
+                            <InputFloating label="Fecha*" className="mb-3 inputFloating" type="date" placeholder="Fecha" />
+                        </div>
+                        <div className="col-lg-4">
+                            <InputFloating label="Nombre del proyecto*" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" />
+                        </div>
                     </div>
-                    <div className="col-lg-4">
-                        <InputFloating label="Fecha*" className="mb-3 inputFloating" type="date" placeholder="Fecha" />
-                    </div>
-                    <div className="col-lg-4">
-                        <InputFloating label="Nombre del proyecto*" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" />
-                    </div>
-                </div>
                 </Tab>
 
                 <Tab eventKey="general" title="DATOS GENERALES">
