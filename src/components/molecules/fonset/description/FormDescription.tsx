@@ -37,7 +37,7 @@ export default function FormDescription() {
                         </Nav>
                     </Col>
 
-                    <Col sm={9} mt-4>
+                    <Col sm={9}>
                         <Tab.Content>
 
                             <Tab.Pane eventKey="obj_general">

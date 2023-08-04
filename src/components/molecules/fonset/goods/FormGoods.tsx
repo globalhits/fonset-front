@@ -46,7 +46,7 @@ export default function FormGoods() {
                         </Nav>
                     </Col>
 
-                    <Col sm={9} mt-4>
+                    <Col sm={9}>
                         <Tab.Content>
                             <Tab.Pane eventKey="categoria">
                                 <InputSelected label="Categoria general*" className="mb-3 inputFloating"></InputSelected>

@@ -44,9 +44,9 @@ export default function FormObjEspecificoCoop() {
                         </Nav>
                     </Col>
 
-                    <Col sm={9} mt-4>
+                    <Col sm={9}>
                         <Tab.Content>
-                        <Tab.Pane eventKey="indicadores">
+                            <Tab.Pane eventKey="indicadores">
                                 <InputFloating label="Obj. especifico del proyecto*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
                                 <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
                                 <InputFloating label="Indicador cuantitativo o cualitativo*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
@@ -112,7 +112,7 @@ export default function FormObjEspecificoCoop() {
                                 </div>
                             </Tab.Pane>
 
-                            
+
 
                             <Tab.Pane eventKey="objetivos">
                                 <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating"></InputSelected>
@@ -173,7 +173,7 @@ export default function FormObjEspecificoCoop() {
                 </Row>
             </Tab.Container>
 
-            
+
 
 
         </div>

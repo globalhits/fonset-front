@@ -8,12 +8,9 @@ import InfoProyect from "./../../molecules/infoProject/index";
 
 export default function FormInvertion() {
 	return (
-		<>
-			<div className="container">
-				<OriginProject />
-				<InfoProyect />
-			</div>
-		</>
+		<div className="content">
+			<OriginProject />
+			<InfoProyect />
+		</div>
 	);
 }
- 

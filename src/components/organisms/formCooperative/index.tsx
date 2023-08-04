@@ -11,10 +11,9 @@ import FormInfoCooperation from "../../molecules/infoProject/FormInfoCooperation
 export default function FormCooperative() {
 	return (
 		<>
-			<div className="container">
+			<div className="content">
 				{/* <OriginProject /> */}
-				<FormInfoCooperation/>
-				
+				<FormInfoCooperation />
 			</div>
 		</>
 	);

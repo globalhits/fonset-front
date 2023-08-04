@@ -7,10 +7,10 @@ import FormInfoFonset from "../../molecules/infoProject/FormInfoFonset";
 export default function FormFonset() {
 	return (
 		<>
-			<div className="container">
-				<div className="title-view">
-					<h4 className="text">Formulario fonset</h4>
-				</div>
+			<div className="content-header">
+				<h4 className="text">Formulario fonset</h4>
+			</div>
+			<div className="content">
 				{/* Información de fonset */}
 				<FormInfoFonset />
 			</div>
