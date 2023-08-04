@@ -2,39 +2,62 @@ import React from "react";
 import "./index.scss";
 
 // --- Components libraries ---
-import { Tab, Tabs } from "react-bootstrap";
+import { Card, Container, Tab, Tabs } from "react-bootstrap";
 
 // --- Components project ---
 import OriginProject from "../../molecules/originProject/index";
 import InfoBasic from "../../molecules/Invertion/infoBasic";
-import InfoProyect from "../../molecules/Invertion/infoProject/index";
+import InfoBasicProject from "../../molecules/Invertion/infoProject/infoBasicProject/InfoBasicProject";
+import Buttons from "../../atoms/button/Buttons";
+import Objectives from "../../molecules/Invertion/infoProject/objectives/Objectives";
 
 
 export default function FormInvertion() {
 	return (
 		<div className="content container-fluid">
-			<Tabs
-				defaultActiveKey="home"
-				transition={false}
-				id="noanim-tab-example"
-				className="mb-3"
-			>
-				<Tab eventKey="home" title="PROCEDENCIA DEL PROYECTO">
-					<OriginProject />
-				</Tab>
-				<Tab eventKey="general" title="INFORMACIÓN BÁSICA">
-					<InfoBasic />
-				</Tab>
+			<Container>
+				<Card>
+					<Card.Header>
+						<Card.Title as={"h4"}>
+							PROYECTO DE INVERSIÓN
+						</Card.Title>
+					</Card.Header>
+					<Card.Body className="pt-3">
+						<OriginProject />
+						<Tabs
+							defaultActiveKey="infoBasic"
+							transition={false}
+							id="info-project"
+							className="mt-4 mb-3"
+						>
+							<Tab eventKey="infoBasic" title="INFORMACIÓN BÁSICA">
+								<InfoBasic />
+							</Tab>
 
-				<Tab eventKey="description" title="INFORMACIÓN DEL PROYECTO">
-					<InfoProyect />
-				</Tab>
+							<Tab eventKey="infoGeneral" title="INFORMACIÓN GENERAL">
+								<InfoBasicProject />
+							</Tab>
 
-				<Tab eventKey="goods" title="OBJETIVO GENERAL">
-				</Tab>
-			</Tabs>
+							<Tab eventKey="objetiveGeneral" title="OBJETIVOS">
+								<Objectives />
+							</Tab>
 
-			<InfoProyect />
+							<Tab eventKey="documents" title="DOCUMENTOS">
+							</Tab>
+						</Tabs>
+						<hr />
+						<div className="row">
+							<div className="col-lg-6">
+								<Buttons variant="light" label="Cancelar" />
+							</div>
+							<div className="col-lg-6 text-right">
+								<Buttons variant="primary" label="Guardar" classStyle="mr-3" />
+								<Buttons variant="outline-success" label="Finalizar" />
+							</div>
+						</div>
+					</Card.Body>
+				</Card>
+			</Container>
 		</div>
 	);
 }

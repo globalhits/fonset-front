@@ -9,19 +9,19 @@ export default function FormObjGeneralCoop() {
         <div className="container">
             <div className="row mt-4">
                 <div className="col-lg-12">
-                    <InputFloating label="Justificación o antecedentes del proyecto" className="mb-3 inputFloating" type="text" placeholder="Escriba el objetivo general del proyecto" />
+                    <InputFloating label="Justificación o antecedentes del proyecto" className="mb-3 inputFloating" type="text" />
                 </div>
             </div>
 
             <div className="row">
                 <div className="col-lg-3">
-                    <InputFloating label="Fecha espera de inicio" className="mb-3 inputFloating" type="date" placeholder="Digite la descripción" />
+                    <InputFloating label="Fecha espera de inicio" className="mb-3 inputFloating" type="date" />
                 </div>
                 <div className="col-lg-3">
-                    <InputFloating label="Fecha espera terminada" className="mb-3 inputFloating" type="date" placeholder="Digite la descripción" />
+                    <InputFloating label="Fecha espera terminada" className="mb-3 inputFloating" type="date" />
                 </div>
                 <div className="col-lg-3">
-                    <InputFloating label="Duracion estimada en meses" className="mb-3 inputFloating" type="number" placeholder="Digite la descripción" />
+                    <InputFloating label="Duracion estimada en meses" className="mb-3 inputFloating" type="number" />
                 </div>
             </div>
             <div className="row">

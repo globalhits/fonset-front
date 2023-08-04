@@ -1,5 +1,4 @@
 import React from "react";
-import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import CheckBox from "../../../atoms/check/Check";
 import "./FormDataGeneral.scss"
@@ -21,6 +20,5 @@ export default function FormDataGeneral() {
                 <InputSelected label="Dependencia funcional responsable *" className="mb-3 inputFloating" />
             </div>
         </div>
-
     )
 }

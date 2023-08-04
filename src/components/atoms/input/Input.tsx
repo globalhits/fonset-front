@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 
 interface InputProps {
     type: string;
-    placeholder: string;
+    placeholder?: string;
     label: string;
     className: string;
 }
