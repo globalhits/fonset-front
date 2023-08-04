@@ -37,6 +37,10 @@ export default function OriginProject() {
                     <Entities />
                 </Tab>
 
+                <Tab eventKey="financiator" title="PAIS FINANCIADOR E IMPLEMENTADORES ">
+                    <Entities />
+                </Tab>
+
             </Tabs>
         </div>
     )
