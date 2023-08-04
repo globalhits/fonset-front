@@ -1,7 +1,6 @@
 import React from "react";
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
-
 import "./FormDataGeneral.scss"
 
 export default function FormDataGeneral() {

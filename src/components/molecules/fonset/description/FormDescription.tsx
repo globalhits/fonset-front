@@ -1,74 +1,104 @@
 import React from "react";
+import { Col, Nav, Row, Tab, Table } from "react-bootstrap";
 import TextArea from "../../../atoms/area/TextArea";
-import { Tab, Tabs} from "react-bootstrap";
-import {Table} from "react-bootstrap";
 import './FormDescription.scss'
 
 export default function FormDescription() {
     return (
-        <div style={{width:"80%"}}>
+        <div style={{ width: "80%" }}>
+            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                <Row className="mt-3">
+                    <Col sm={3}>
+                        <Nav variant="pills" className="flex-column">
+                            <Nav.Item className="col-lg-16">
+                                <Nav.Link eventKey="obj_general">OBJ. GENERAL</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item className="col-lg-16">
+                                <Nav.Link eventKey="obj_especifico">OBJ. ESPECIFICO</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item className="col-lg-16">
+                                <Nav.Link eventKey="poblacion_obj">POBLACION OBJETIVO</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item className="col-lg-16">
+                                <Nav.Link eventKey="bienes_servicios">DESC. BIENES Y SERVICIOS</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item className="col-lg-16">
+                                <Nav.Link eventKey="justificacion">JUSTIFICACION</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item className="col-lg-16">
+                                <Nav.Link eventKey="problema" className="w-auto text-nowrap">DESC. DEL PROBLEMA Y ANALISIS DE CAUSA Y EFECTO</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item className="col-lg-16">
+                                <Nav.Link eventKey="observaciones">OBSERVACIONES</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item className="col-lg-16">
+                                <Nav.Link eventKey="documentos">DOCUMENTOS ANEXOS</Nav.Link>
+                            </Nav.Item>
+                        </Nav>
+                    </Col>
 
-            <Tabs defaultActiveKey="project" transition={false} id="noanim-tab-example" className="mb-4" style={{marginTop:"50px"}}>
-                <Tab eventKey="obj_general" title="OBJ. GENERAL*">
-                    <TextArea></TextArea>
-                </Tab>
+                    <Col sm={9} mt-4>
+                        <Tab.Content>
 
-                <Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO*">
-                     <TextArea></TextArea>
-                </Tab>
+                            <Tab.Pane eventKey="obj_general">
+                                <TextArea ></TextArea>
+                            </Tab.Pane>
 
-                <Tab eventKey="poblacion_obj" title="POBLACION OBJETIVO*">
-                    <TextArea></TextArea>
-                </Tab>
-                <Tab eventKey="bienes_Servicios" title="DESC. BIENES Y SERVICIOS*">
-                    <TextArea></TextArea>
-                </Tab>
-            </Tabs>
+                            <Tab.Pane eventKey="obj_especifico">
+                                <TextArea></TextArea>
+                            </Tab.Pane>
 
-            <Tabs defaultActiveKey="project" transition={false} id="noanim-tab-example" className="mb-4" style={{marginTop:"50px"}}>
-                <Tab eventKey="justificacion" title="JUSTIFICACION*">
-                    <TextArea></TextArea>
-                </Tab>
+                            <Tab.Pane eventKey="poblacion_obj">
+                                <TextArea></TextArea>
+                            </Tab.Pane>
 
-                <Tab eventKey="problema" title="DESC. DEL PROBLEMA Y ANALISIS DE CAUSA Y EFECTO">
-                    <TextArea></TextArea>
-                </Tab>
+                            <Tab.Pane eventKey="bienes_servicios">
+                                <TextArea></TextArea>
+                            </Tab.Pane>
 
-                <Tab eventKey="observaciones" title="OBSERVACIONES*">
-                    <TextArea></TextArea>
-                </Tab>
-            </Tabs>
+                            <Tab.Pane eventKey="justificacion">
+                                <TextArea></TextArea>
+                            </Tab.Pane>
 
-            <Tabs style={{marginTop:"50px"}}>
-                <Tab eventKey="documentos" title="DOCUMENTOS ANEXOS">
-                <div className="Block3">
-                <div>
-                    <div style={{ position: 'sticky', top: 0, background: 'white', zIndex: 1 }}>
-                        <h6>Adjuntar archivos</h6>
-                    </div>
-                    <Table responsive hover>
-                        <thead>
-                            <tr>
-                                <th>Descripcion</th>
-                                <th>Archivo</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                            <Tab.Pane eventKey="problema">
+                                <TextArea></TextArea>
+                            </Tab.Pane>
 
-                            <tr>
-                                <td>Descripcion</td>
-                                <td>URL</td>
-                                <td>accion</td>
-                            </tr>
+                            <Tab.Pane eventKey="observaciones">
+                                <TextArea></TextArea>
+                            </Tab.Pane>
 
-                        </tbody>
-                    </Table>
-                </div>
+                            <Tab.Pane eventKey="documentos">
+                                <Table className="table table-bordered table-condensed table-stripe" style={{ marginLeft: "200px" }}>
+                                    <thead>
+                                        <tr>
+                                            <th className="text-center">Descripcion</th>
+                                            <th className="text-center">Archivo</th>
+                                            <th className="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </Tab.Pane>
+                        </Tab.Content>
+                    </Col>
+                </Row>
+            </Tab.Container>
 
-            </div>
-                </Tab>
-            </Tabs>
+
         </div>
 
     )
