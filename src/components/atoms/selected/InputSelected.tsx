@@ -5,7 +5,7 @@ import './InputSelected.scss'
 
 interface InputSelectedProps {
     label: string;
-    className: string;
+    className?: string;
     options?: any[]
 }
 

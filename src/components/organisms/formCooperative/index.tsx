@@ -7,7 +7,7 @@ import { Tab, Tabs } from "react-bootstrap";
 // --- Components project ---
 import InputFloating from "../../atoms/input/Input";
 import FormDataGeneralCoop from "../../molecules/cooperation/dataGeneralCoop/FormDataGeneraCoop";
-import Entities from "../../molecules/originProject/entities";
+import Entities from "../../molecules/Invertion/infoEntities";
 import InputSelected from "../../atoms/selected/InputSelected";
 import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
