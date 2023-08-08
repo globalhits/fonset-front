@@ -1,6 +1,6 @@
 import FormFonset from "../../components/organisms/formFonset";
 import Layout from "../../components/templates/adminLte/index";
-import "./fonset.scss";
+import "./index.scss";
 
 const FonsetView = () => {
 
