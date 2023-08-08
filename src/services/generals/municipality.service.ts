@@ -1,4 +1,5 @@
 import config from "../../config/config";
+import { MunicipalityDto } from "../../models/general/MunicipalityDto";
 
 class MunicipalityService {
 
@@ -6,7 +7,7 @@ class MunicipalityService {
 
     private pathMunicipality = config.pathListCities;
 
-    async getAll() {
+    async getAll(): Promise<MunicipalityDto[]> {
         try {
             const response = await fetch(`${this.apiGenerals}/${this.pathMunicipality}`);
             const data = await response.json();

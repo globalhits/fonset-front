@@ -1,4 +1,5 @@
 import config from "../../config/config";
+import { DepartamentDto } from "../../models/general/DepartamentDto";
 
 class DepartamentService {
 
@@ -6,8 +7,7 @@ class DepartamentService {
 
     private pathListDepartament = config.pathListDepartament;
 
-
-    async getAll() {
+    async getAll(): Promise<DepartamentDto[]> {
         try {
             const response = await fetch(`${this.apiGenerals}/${this.pathListDepartament}`);
             const data = await response.json();

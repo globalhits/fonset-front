@@ -7,9 +7,9 @@ import { Card, Container, Tab, Tabs } from "react-bootstrap";
 // --- Components project ---
 import OriginProject from "../../molecules/originProject/index";
 import InfoBasic from "../../molecules/Invertion/infoBasic";
-import InfoBasicProject from "../../molecules/Invertion/infoProject/infoBasicProject/InfoBasicProject";
+import InfoBasicProject from "./../../molecules/Invertion/infoProject/infoBasicProject/InfoBasicProject";
 import Buttons from "../../atoms/button/Buttons";
-import Objectives from "../../molecules/Invertion/infoProject/objectives/Objectives";
+import Objectives from "./../../molecules/Invertion/infoProject/objectives/Objectives";
 
 
 export default function FormInvertion() {

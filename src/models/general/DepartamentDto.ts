@@ -1,7 +1,4 @@
-export interface DepartamentDto {
-    id: number,
-    name: string,
-    description: string,
-    value: number,
-    parentId: number
+import { BaseDto } from "./BaseDto"
+
+export interface DepartamentDto extends BaseDto {
 }
