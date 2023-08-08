@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
-import LoadingReducer from './states/loading.slice';
+import LoadingReducer from './states/generals/loading.slice';
 import DepartamentReducer from './states/generals/departament.slice';
 
 export const store = configureStore({

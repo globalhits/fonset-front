@@ -1,7 +1,7 @@
 import FormCooperative from "../../components/organisms/formCooperative";
 import Layout from "../../components/templates/adminLte/index";
 
-import "./cooperation.scss";
+import "./index.scss";
 
 const CooperationView = () => {
 
