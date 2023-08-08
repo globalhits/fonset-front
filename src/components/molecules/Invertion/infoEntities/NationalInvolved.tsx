@@ -1,5 +1,4 @@
 import { Table } from "react-bootstrap";
-import CheckBox from "../../../atoms/check/Check";
 
 const NationalInvolved = () => {
 

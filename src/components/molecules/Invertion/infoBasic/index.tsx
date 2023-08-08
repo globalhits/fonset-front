@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./index.scss";
 
 // --- Components Libraries ---
-import { Table } from 'react-bootstrap';
+// import { Table } from 'react-bootstrap';
 
 // --- Components ---
 import CheckBox from "../../../atoms/check/Check";
