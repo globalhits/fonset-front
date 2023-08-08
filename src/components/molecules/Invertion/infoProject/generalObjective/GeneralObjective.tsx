@@ -48,7 +48,7 @@ export const GeneralObjective = ({ type }: GeneralObjectiveInterface) => {
                 </div>
             </div>
             {
-                type == "specific" ? (
+                type === "specific" ? (
                     <div className="row mt-5">
                         <div className="col-lg-12">
                             <InputFloating label="Archivo" className="mb-3 inputFloating" type="file" />

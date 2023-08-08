@@ -1,9 +1,6 @@
-import { Tab, Tabs } from "react-bootstrap";
 
 // --- Components project ---
 import InputFloating from "../../atoms/input/Input";
-import InfoBasic from "../Invertion/infoBasic/index";
-import Entities from "../Invertion/infoEntities";
 
 export default function OriginProject() {
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { Tab, Tabs } from "react-bootstrap";
 import InputFloating from "../../../atoms/input/Input";
 import TextArea from "../../../atoms/area/TextArea";
 

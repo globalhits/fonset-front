@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Nav, Row, Tab, Table, Button } from "react-bootstrap";
+import { Col, Row, Tab, Table, Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import Swal from 'sweetalert2';
 import InputFloating from "../../../atoms/input/Input";
