@@ -1,5 +1,4 @@
 import React from "react";
-import { Tab, Tabs } from "react-bootstrap";
 import InputFloating from "../../../atoms/input/Input";
 import TextArea from "../../../atoms/area/TextArea";
 
@@ -14,19 +13,19 @@ export default function FormObjGeneralCoop() {
             </div>
 
             <div className="row">
-                <div className="col-lg-3">
+                <div className="col-lg-4">
                     <InputFloating label="Fecha espera de inicio" className="mb-3 inputFloating" type="date" />
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-4">
                     <InputFloating label="Fecha espera terminada" className="mb-3 inputFloating" type="date" />
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-4">
                     <InputFloating label="Duracion estimada en meses" className="mb-3 inputFloating" type="number" />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-16">
-                    <TextArea />
+                    <TextArea label="Escriba aqui el objetivo general del proyecto"/>
                 </div>
             </div>
         </div>

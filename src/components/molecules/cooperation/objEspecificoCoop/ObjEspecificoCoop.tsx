@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Swal from 'sweetalert2';
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
+import "./ObjEspecificoCoop.scss"
 
 export default function FormObjEspecificoCoop() {
 
@@ -31,75 +32,110 @@ export default function FormObjEspecificoCoop() {
         <div>
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                 <Row className="mt-3">
-                    <Col sm={4}>
-                        <InputFloating label="Obj. especifico del proyecto*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
-                        <InputFloating label="Resultado esperado*" type="text" placeholder="" className="mb-3 inputFloating"></InputFloating>
-                        <InputSelected label="Categoria general*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Programa*" className="mb-3 inputFloating"></InputSelected>
-                        <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
-                    </Col>
+                    <div className="col-lg-12">
+                        <InputFloating label="Justificación o antecedentes del proyecto" className="mb-3 inputFloating" type="text" />
+                    </div>
                     <Col sm={4}>
                         <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
                         <InputFloating label="Fecha esperada inicio*" type="date" placeholder="" className="mb-3 col-lg-13"></InputFloating>
                         <InputSelected label="Categoria especifica*" className="mb-3 inputFloating"></InputSelected>
                         <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating"></InputSelected>
                         <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted"></InputSelected>
-                        <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
+
+
                     </Col>
+
                     <Col sm={4}>
                         <InputFloating label="Indicador cuantitativo o cualitativo*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
                         <InputFloating label="Fecha esperada final*" type="date" placeholder="" className="mb-3 col-lg-13 "></InputFloating>
                         <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating"></InputSelected>
                         <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted"></InputSelected>
-                        <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
+
                     </Col>
+                    <Col sm={4}>
+                        <InputFloating label="Resultado esperado*" type="text" placeholder="" className="mb-3 inputFloating"></InputFloating>
+                        <InputSelected label="Categoria general*" className="mb-3 inputFloating"></InputSelected>
+                        <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating"></InputSelected>
+                        <InputSelected label="Programa*" className="mb-3 inputFloating"></InputSelected>
+
+                    </Col>
+
                 </Row>
+                <Button className=" col-lg-18 agregar" style={{ marginLeft: "965px", marginTop: "-50px" }}>AGREGAR OBJETIVO ESPECIFIVO</Button>
                 <Row className="mt-3">
                     <Col sm={12}>
                         <div className="tableGoods">
                             <div>
                                 <Table responsive hover>
                                     <thead>
-                                        <tr className="campos">
-                                            <th>Estado</th>
-                                            <th>Unidad de medida</th>
-                                            <th>Sub unidad de medida</th>
-                                            <th>Valor unit con iva</th>
-                                            <th>Cantidad</th>
-                                            <th>SubTotal</th>
-                                            <th>Categoria general</th>
-                                            <th>Categoria especifica</th>
-                                            <th>Nombre bien/Servicio</th>
-                                            <th>Obj. estrategico</th>
-                                            <th>Sub tema del Obj. estrategico</th>
-                                            <th>Acciones Objs. estrategicos</th>
-                                            <th>Programa</th>
-                                            <th>Linea de programa</th>
-                                            <th>Acciones</th>
+                                        <tr className="campos" style={{ fontSize: "12px" }}>
+                                            <th> Medidas
+                                                <th>Estado</th>
+                                                <th>Unidad</th>
+                                                <th>Subunidad</th>
+                                            </th>
+
+                                            <th> Valor
+                                                <th>Unit+iva</th>
+                                                <th>Cant.</th>
+                                                <th>SubTotal</th>
+                                            </th>
+
+                                            <th> Categoria
+                                                <th>General</th>
+                                                <th>Especifica</th>
+                                                <th>Bien/Servicio</th>
+                                            </th>
+                                            <th> Objetivo estrategico
+                                                <th>Obj.</th>
+                                                <th>Subtema</th>
+                                                <th>Acciones</th>
+                                            </th>
+                                            <th> Programa
+                                                <th>Programa</th>
+                                                <th>Linea</th>
+                                                <th>Bien/Servicio</th>
+                                            </th>
+                                            <th> Acciones  </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td><Button className="mb-8" variant="primary" onClick={() => setModalShow(true)}>AGREGAR</Button></td>
+                                        <tr style={{ fontSize: "12px" }}>
+                                            <td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </td>
+                                            <td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </td>
+                                            <td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </td>
+                                            <td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </td>
+
+                                            <td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </td>
+                                            <td>
+                                                <td><Button className="mb-8 col-lg-12" size="sm" variant="primary" onClick={() => setModalShow(true)}>AGREGAR</Button></td>
+                                            </td>
+
+
                                         </tr>
                                     </tbody>
                                 </Table>
                             </div>
-
                         </div>
                     </Col>
                 </Row>
@@ -111,18 +147,32 @@ export default function FormObjEspecificoCoop() {
                             <Modal.Title>Actividades y cronograma de los objetivos especificos</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <InputFloating label="Obj. especifico*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
-                            <InputSelected label="Tipo de actividad*" className="mb-3 "></InputSelected>
-                            <InputFloating label="Actividad*" type="number" placeholder="" className="mb-3 inputFloating "></InputFloating>
-                            <InputFloating label="Valor estimado*" type="number" placeholder="" className="mb-3 inputFloating "></InputFloating>
-                            <InputSelected label="Unidad responsable*" className="mb-3 "></InputSelected>
-                            <InputFloating label="Adjuntos*" type="file" placeholder="" className="mb-3 inputFloating"></InputFloating>
-                            <Button className="mb-8" variant="primary">AGREGAR</Button>
+                            <Row className="mt-4">
+                                <div>
+                                    <InputFloating label="Obj. especifico*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
+                                </div>
+                                
+                                <Col sm={6} >
+                                    <InputSelected label="Tipo de actividad*"  className="mb-3 InputSelect"></InputSelected>
+                                    <InputFloating label="Fecha esperada final*" type="date" className="mb-3 InputSelect"></InputFloating>
+                                    <InputSelected label="Unidad responsable*" className="mb-3 InputSelect"></InputSelected>
+                                </Col>
+                                <Col sm={6}>
+                                    <InputFloating label="Actividad*" type="number"  className="mb-3 inputFloatingModal "></InputFloating>
+                                    <InputFloating label="Valor estimado*" type="number"  className="mb-3 inputFloatingModal "></InputFloating>
+                                </Col>
+                                <Col sm={4}>
+                                    
+                                </Col>
+                            </Row>
+
+                            <InputFloating label="Adjuntos*" type="file" placeholder="" className="mb-3 inputFloatingModal"></InputFloating>
+                            <Button className="mb-8" variant="primary" size="sm">AGREGAR</Button>
                             <div className="tableGoods">
                                 <div>
                                     <Table responsive hover>
                                         <thead>
-                                            <tr className="campos">
+                                            <tr className="campos" style={{ fontSize: "13px" }}>
                                                 <th>No.</th>
                                                 <th>Obj. especifico</th>
                                                 <th>Tipo actividad</th>
@@ -140,7 +190,7 @@ export default function FormObjEspecificoCoop() {
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td></td>
+                                                <td><Button className="mb-8 col-lg-12" size="sm" variant="danger">Eliminar</Button></td>
                                             </tr>
                                         </tbody>
                                     </Table>
@@ -148,11 +198,11 @@ export default function FormObjEspecificoCoop() {
                             </div>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button className="mb-8" variant="primary">FINALIZAR</Button>
+                            <Button className="mb-8" variant="primary" size="sm">FINALIZAR REGISTRO DE ACTIVIDAD</Button>
                         </Modal.Footer>
                     </Modal>
                 </div>
             </Tab.Container >
-        </div >
+        </div>
     )
 }
