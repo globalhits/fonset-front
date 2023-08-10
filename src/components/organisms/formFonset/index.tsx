@@ -6,7 +6,6 @@ import { Card, Container, Tab, Tabs } from "react-bootstrap";
 
 // --- Components project ---
 import OriginProject from "../../molecules/originProject";
-import FormDataGeneralCoop from "../../molecules/cooperation/dataGeneralCoop/FormDataGeneraCoop";
 import FormDataGeneral from "../../molecules/fonset/dataGeneral/FormDataGeneral";
 import FormDescription from "../../molecules/fonset/description/FormDescription";
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
@@ -30,7 +29,7 @@ export default function FormFonset() {
 							className="mt-4 mb-3"
 						>
 							<Tab eventKey="general" title="DATOS GENERALES">
-								<FormDataGeneralCoop />
+								<FormDataGeneral />
 							</Tab>
 
 							<Tab eventKey="description" title="DESCRIPCION">
