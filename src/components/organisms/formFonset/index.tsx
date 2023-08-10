@@ -42,6 +42,9 @@ export default function FormFonset() {
 								<FormGoods />
 							</Tab>
 
+							<Tab eventKey="documents" title="DOCUMENTOS">
+							</Tab>
+
 						</Tabs>
 						<hr />
 						<div className="row">

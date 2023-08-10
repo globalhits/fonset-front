@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import "./FormGoods.scss"
+import Buttons from "../../../atoms/button/Buttons";
+import TableListGoods from "./table/TableListGoods";
 
 export default function FormGoods() {
 
@@ -27,98 +29,60 @@ export default function FormGoods() {
 
     return (
         <>
-            <Row className="mt-3">
-                <Col sm={4}>
-                    <InputSelected label="Categoria general*" className="mb-3 inputFloating" value="" options={[]}></InputSelected>
-                    <InputSelected label="Unidad de medida*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
+            <Row>
+                <Col lg="4">
+                    <InputSelected label="Categoria general*" className="mb-3 inputFloating" value="" options={[]} />
+                </Col>
+                <Col lg="4">
+                    <InputSelected label="Categoria especifica*" className="mb-3 inputFloating" value="" options={[]} />
+                </Col>
+                <Col lg="4">
+                    <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating" />
+                </Col>
+            </Row>
+            <Row>
+                <Col lg="2">
+                    <InputSelected label="Unidad de medida*" className="mb-3 inputFloating InputSeleted" value="" options={[]} />
+
+                </Col>
+                <Col lg="2">
+                    <InputSelected label="Sub de medida*" className="mb-3 inputFloating InputSeleted" value="" options={[]} />
+                </Col>
+                <Col lg="4">
+                    <InputSelected label="Presentacion*" className="mb-12 inputFloating InputSeleted" />
+                </Col>
+                <Col lg="2">
                     <InputFloating label="Valor unit con iva*" type="text" placeholder="" className="mb-6 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
-                    <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating" value="" options={[]}></InputSelected>
-                    <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
                 </Col>
-                <Col sm={4}>
-                    <InputSelected label="Categoria especifica*" className="mb-3 inputFloating" value="" options={[]}></InputSelected>
-                    <InputSelected label="Sub unidad de medida*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
+                <Col lg="2">
                     <InputFloating label="Cantidad*" type="text" placeholder="" className="mb-3 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
-                    <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
-                    <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
+                </Col>
+            </Row>
+            <Row>
+                <Col lg="4">
+                    <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating" />
+                </Col>
+                <Col lg="4">
+                    <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating" value="" options={[]} />
+
+                </Col>
+                <Col lg="4">
+                    <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted" value="" options={[]} />
+                </Col>
+            </Row>
+            <Row className="mt-3">
+                <Col sm={4}>
+                    <InputSelected label="Programa*" className="mb-3 inputFloating" />
                 </Col>
                 <Col sm={4}>
-                    <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating"></InputSelected>
-                    <InputSelected label="Presentacion*" className="mb-12 inputFloating InputSeleted"></InputSelected>
-                    <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating"></InputSelected>
-                    <InputSelected label="Programa*" className="mb-3 inputFloating"></InputSelected>
+                    <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" value="" options={[]} />
                 </Col>
+                <div className="col-lg-4 text-center">
+                    <Buttons variant="outline-info" label="Agregar bien/servicio" classStyle="mt-4 " />
+                </div>
             </Row>
-            <Button className=" col-lg-18 agregar">AGREGAR</Button>
-            <Row className="mt-3">
-                <Col sm={12}>
-                    <div className="tableGoods">
-                        <div>
-                            <Table responsive hover>
-                                <thead>
-                                    <tr className="campos" style={{ fontSize: "14px" }}>
-                                        <th> Categoria
-                                            <th>General</th>
-                                            <th>Especifica</th>
-                                            <th>Bien/Servicio</th>
-                                        </th>
-                                        <th> Medidas
-                                            <th>Estado</th>
-                                            <th>Unidad</th>
-                                            <th>Subunidad</th>
-                                        </th>
-
-                                        <th> Valor
-                                            <th>Unit+iva</th>
-                                            <th>Cant.</th>
-                                            <th>SubTotal</th>
-                                        </th>
-
-                                        <th> Objetivo estrategico
-                                            <th>Obj.</th>
-                                            <th>Subtema</th>
-                                        </th>
-                                        <th> Acciones  </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr style={{ fontSize: "12px" }}>
-                                        <td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </td>
-                                        <td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </td>
-                                        <td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </td>
-                                        <td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </td>
-
-                                        <td>
-                                            <td></td>
-                                            <td></td>
-                                        </td>
-                                        <td>
-                                            <td><Button className="mb-8 col-lg-12" size="sm" variant="primary">AGREGAR</Button></td>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                        </div>
-
-                    </div>
-                </Col>
-            </Row>
+            <hr />
+            <TableListGoods />
         </>
     )
 }
