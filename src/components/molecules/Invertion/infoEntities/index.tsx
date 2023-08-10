@@ -1,5 +1,4 @@
-import { Col, Nav, Row, Tab, Table } from "react-bootstrap";
-import CheckBox from "../../../atoms/check/Check";
+import { Col, Nav, Row, Tab } from "react-bootstrap";
 import TypeCoverage from "./TypeCoverage";
 import DependencyInvolved from "./DependencyInvolved";
 import NationalInvolved from "./NationalInvolved";

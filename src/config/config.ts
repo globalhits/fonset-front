@@ -1,4 +1,3 @@
-
 const config = {
     apiUrl: process.env.API_URL,
     apiGeneralHost: process.env.SERVICE_GENERAL_HOST,

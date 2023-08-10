@@ -12,8 +12,6 @@ import Entities from "../../molecules/Invertion/infoEntities";
 import InputSelected from "../../atoms/selected/InputSelected";
 import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
-import Buttons from "../../atoms/button/Buttons";
-
 
 export default function FormCooperative() {
 	return (
@@ -37,6 +35,7 @@ export default function FormCooperative() {
 
 								<Tab eventKey="general" title="DATOS GENERALES">
 									<FormDataGeneralCoop />
+<<<<<<< HEAD
 										<Entities />
 										<div className="row">
 											<div className="col-lg-6">
@@ -46,6 +45,19 @@ export default function FormCooperative() {
 												<InputFloating label="Implementador (es)" className="mb-3 inputFloating" type="text" placeholder="Indique el operador que podria ejecutar el proyecto." setValueChange={(value: string) => { }} value=""/>
 											</div>
 										</div>									
+=======
+
+									<Entities />
+
+									<div className="row">
+										<div className="col-lg-6">
+											<InputSelected label="Pais coperante que podria financiar el proyecto" className="mb-3 inputFloating" />
+										</div>
+										<div className="col-lg-6">
+											<InputFloating label="Implementador (es)" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
+										</div>
+									</div>
+>>>>>>> d29b9b85102dd4c96d36fef38dc60a5bcf1ca16c
 								</Tab>
 
 								<Tab eventKey="obj_general" title="OBJ. GENERAL">
@@ -56,7 +68,7 @@ export default function FormCooperative() {
 									<FormObjEspecificoCoop />
 								</Tab>
 							</Tabs>
-							
+
 						</Card.Body>
 					</Card>
 				</Container>

@@ -4,6 +4,6 @@ interface CoverageDto {
 }
 
 export interface TypeCoverageDto {
-    tipo: string;
+    tipo?: string;
     cobertura: CoverageDto[]
 }

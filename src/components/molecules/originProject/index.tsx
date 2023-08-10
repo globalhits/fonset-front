@@ -1,9 +1,6 @@
-import { Tab, Tabs } from "react-bootstrap";
 
 // --- Components project ---
 import InputFloating from "../../atoms/input/Input";
-import InfoBasic from "../Invertion/infoBasic/index";
-import Entities from "../Invertion/infoEntities";
 
 export default function OriginProject() {
 
@@ -16,6 +13,7 @@ export default function OriginProject() {
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
+<<<<<<< HEAD
                     <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" placeholder="1234" setValueChange={(value: string) => { }} value=""/>
                 </div>
                 <div className="col-lg-4">
@@ -23,6 +21,15 @@ export default function OriginProject() {
                 </div>
                 <div className="col-lg-4">
                     <InputFloating label="Nombre del proyecto*" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" setValueChange={(value: string) => { }} value=""/>
+=======
+                    <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" placeholder="1234" setValueChange={(value: string) => { }} value="" />
+                </div>
+                <div className="col-lg-4">
+                    <InputFloating label="Fecha*" className="mb-3 inputFloating" type="date" placeholder="Fecha" setValueChange={(value: string) => { }} value="" />
+                </div>
+                <div className="col-lg-4">
+                    <InputFloating label="Nombre del proyecto*" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" setValueChange={(value: string) => { }} value="" />
+>>>>>>> d29b9b85102dd4c96d36fef38dc60a5bcf1ca16c
                 </div>
             </div>
         </>

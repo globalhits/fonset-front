@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import Header from './header/index';
 import Footer from './footer/index'
 import Sidebar from './sidebar/index';
