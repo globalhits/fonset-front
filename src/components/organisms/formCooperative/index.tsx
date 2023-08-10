@@ -27,7 +27,7 @@ export default function FormCooperative() {
 						<Card.Body className="pt-3">
 							<OriginProject />
 							<Tabs
-								defaultActiveKey="infoBasic"
+								defaultActiveKey="general"
 								transition={false}
 								id="info-project"
 								className="mt-4 mb-3"
@@ -56,7 +56,6 @@ export default function FormCooperative() {
 									<FormObjEspecificoCoop />
 								</Tab>
 							</Tabs>
-
 						</Card.Body>
 					</Card>
 				</Container>

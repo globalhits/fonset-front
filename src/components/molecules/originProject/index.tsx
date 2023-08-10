@@ -13,7 +13,7 @@ export default function OriginProject() {
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" placeholder="1234" setValueChange={(value: string) => { }} value="" />
+                    <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" placeholder="1234" setValueChange={(value: string) => { }} value="" readOnly={true} />
                 </div>
                 <div className="col-lg-4">
                     <InputFloating label="Fecha*" className="mb-3 inputFloating" type="date" placeholder="Fecha" setValueChange={(value: string) => { }} value="" />
