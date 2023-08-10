@@ -14,7 +14,7 @@ export default function FormObjGeneralCoop() {
 
             <div className="row">
                 <div className="col-lg-4">
-                    <InputFloating label="Fecha espera de inicio" className="mb-3 inputFloating" type="date" setValueChange={(value: any) => { }} value="" />
+                    <InputFloating label="Fecha espera de inicio" className="mb-3 inputFloating" type="date" setValueChange={(value: string) => { }} value="" />
                 </div>
                 <div className="col-lg-4">
                     <InputFloating label="Fecha espera terminada" className="mb-3 inputFloating" type="date" setValueChange={(value: string) => { }} value="" />
