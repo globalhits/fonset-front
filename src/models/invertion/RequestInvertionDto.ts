@@ -7,7 +7,6 @@ import { SpecificObjetiveDto } from "./SpecificObjetiveDto";
 import { Activity } from "./ActivityDto";
 
 export interface RequestInvertionDto {
-
     PROY_CODIGO: string;
     PROY_NOMBRE: string;
     PROY_TIPO: TypeProjectDto[];
@@ -37,5 +36,5 @@ export interface RequestInvertionDto {
 
     // OBJETIVO
     PROY_OBJETIVO_ESPECIFICO: SpecificObjetiveDto[];
-    PROY_ACTIVIDADES: Activity[]
+    PROY_ACTIVIDADES: Activity[];
 }

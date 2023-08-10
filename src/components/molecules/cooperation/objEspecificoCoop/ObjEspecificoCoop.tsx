@@ -32,26 +32,26 @@ export default function FormObjEspecificoCoop() {
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                 <Row className="mt-3">
                     <Col sm={4}>
-                        <InputFloating label="Obj. especifico del proyecto*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
-                        <InputFloating label="Resultado esperado*" type="text" placeholder="" className="mb-3 inputFloating"></InputFloating>
-                        <InputSelected label="Categoria general*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Programa*" className="mb-3 inputFloating"></InputSelected>
+                        <InputFloating label="Obj. especifico del proyecto*" type="text" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value=""></InputFloating>
+                        <InputFloating label="Resultado esperado*" type="text" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value=""></InputFloating>
+                        <InputSelected label="Categoria general*" className="mb-3 InputSeleted" options={[]} value=""></InputSelected>
+                        <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 InputSeleted" options={[]} value=""></InputSelected>
+                        <InputSelected label="Programa*" className="mb-3 InputSeleted" options={[]} value=""></InputSelected>
                         <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
                     </Col>
                     <Col sm={4}>
-                        <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
-                        <InputFloating label="Fecha esperada inicio*" type="date" placeholder="" className="mb-3 col-lg-13"></InputFloating>
-                        <InputSelected label="Categoria especifica*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted"></InputSelected>
+                        <InputFloating label="Descripcion*" type="text" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value=""></InputFloating>
+                        <InputFloating label="Fecha esperada inicio*" type="date" className="mb-3 col-lg-13" setValueChange={(value: string) => { }} value=""></InputFloating>
+                        <InputSelected label="Categoria especifica*" className="mb-3 InputSeleted" options={[]} value=""></InputSelected>
+                        <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 InputSeleted" options={[]} value=""></InputSelected>
+                        <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" options={[]} value=""></InputSelected>
                         <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
                     </Col>
                     <Col sm={4}>
-                        <InputFloating label="Indicador cuantitativo o cualitativo*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
-                        <InputFloating label="Fecha esperada final*" type="date" placeholder="" className="mb-3 col-lg-13 "></InputFloating>
-                        <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted"></InputSelected>
+                        <InputFloating label="Indicador cuantitativo o cualitativo*" type="text" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value=""></InputFloating>
+                        <InputFloating label="Fecha esperada final*" type="date" className="mb-3 col-lg-13" setValueChange={(value: string) => { }} value=""></InputFloating>
+                        <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating" options={[]} value=""></InputSelected>
+                        <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted" options={[]} value=""></InputSelected>
                         <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
                     </Col>
                 </Row>
@@ -103,20 +103,18 @@ export default function FormObjEspecificoCoop() {
                         </div>
                     </Col>
                 </Row>
-
-
                 <div>
                     <Modal show={modalShow} onHide={() => setModalShow(false)} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                         <Modal.Header closeButton>
                             <Modal.Title>Actividades y cronograma de los objetivos especificos</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <InputFloating label="Obj. especifico*" type="text" placeholder="" className="mb-3 inputFloating "></InputFloating>
-                            <InputSelected label="Tipo de actividad*" className="mb-3 "></InputSelected>
-                            <InputFloating label="Actividad*" type="number" placeholder="" className="mb-3 inputFloating "></InputFloating>
-                            <InputFloating label="Valor estimado*" type="number" placeholder="" className="mb-3 inputFloating "></InputFloating>
-                            <InputSelected label="Unidad responsable*" className="mb-3 "></InputSelected>
-                            <InputFloating label="Adjuntos*" type="file" placeholder="" className="mb-3 inputFloating"></InputFloating>
+                            <InputFloating label="Obj. especifico*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value=""></InputFloating>
+                            <InputSelected label="Tipo de actividad*" className="mb-3" options={[]} value=""></InputSelected>
+                            <InputFloating label="Actividad*" type="number" placeholder="" className="mb-3 inputFloating" setValueChange={(value: number) => { }} value=""></InputFloating>
+                            <InputFloating label="Valor estimado*" type="number" placeholder="" className="mb-3 inputFloating" setValueChange={(value: number) => { }} value=""></InputFloating>
+                            <InputSelected label="Unidad responsable*" className="mb-3" options={[]} value=""></InputSelected>
+                            <InputFloating label="Adjuntos*" type="file" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value=""></InputFloating>
                             <Button className="mb-8" variant="primary">AGREGAR</Button>
                             <div className="tableGoods">
                                 <div>

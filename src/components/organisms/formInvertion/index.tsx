@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 
 // --- Components libraries ---
@@ -10,9 +10,24 @@ import InfoBasic from "../../molecules/Invertion/infoBasic";
 import InfoBasicProject from "./../../molecules/Invertion/infoProject/infoBasicProject/InfoBasicProject";
 import Buttons from "../../atoms/button/Buttons";
 import Objectives from "./../../molecules/Invertion/infoProject/objectives/Objectives";
+import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
 
+import Loader from "../../atoms/loader";
+
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { initialState } from "../../../redux/states/invertion/invertion.slice";
+import { loadingSelector } from "../../../redux/states/generals/loading.slice";
 
 export default function FormInvertion() {
+
+	const { isLoading } = useAppSelector(loadingSelector);
+
+	const [dataFormInvertion, setDataFormInvertion] = useState<RequestInvertionDto>(initialState);
+
+	const dispatch = useAppDispatch();
+
+	if (isLoading) return <Loader />;
+
 	return (
 		<div className="content container-fluid">
 			<Container>
@@ -31,7 +46,7 @@ export default function FormInvertion() {
 							className="mt-4 mb-3"
 						>
 							<Tab eventKey="infoBasic" title="INFORMACIÓN BÁSICA">
-								<InfoBasic />
+								<InfoBasic formData={dataFormInvertion} />
 							</Tab>
 
 							<Tab eventKey="infoGeneral" title="INFORMACIÓN GENERAL">
