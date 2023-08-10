@@ -26,4 +26,4 @@ const InputFloating: React.FC<InputProps> = ({ id, name, value, type, placeholde
     )
 }
 
-export default InputFloating;
+export default InputFloating;
