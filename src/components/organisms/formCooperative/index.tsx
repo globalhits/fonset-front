@@ -35,17 +35,6 @@ export default function FormCooperative() {
 
 								<Tab eventKey="general" title="DATOS GENERALES">
 									<FormDataGeneralCoop />
-<<<<<<< HEAD
-										<Entities />
-										<div className="row">
-											<div className="col-lg-6">
-												<InputSelected label="Pais coperante que podria financiar el proyecto" className="mb-3 inputFloating" />
-											</div>
-											<div className="col-lg-6">
-												<InputFloating label="Implementador (es)" className="mb-3 inputFloating" type="text" placeholder="Indique el operador que podria ejecutar el proyecto." setValueChange={(value: string) => { }} value=""/>
-											</div>
-										</div>									
-=======
 
 									<Entities />
 
@@ -57,7 +46,6 @@ export default function FormCooperative() {
 											<InputFloating label="Implementador (es)" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
 										</div>
 									</div>
->>>>>>> d29b9b85102dd4c96d36fef38dc60a5bcf1ca16c
 								</Tab>
 
 								<Tab eventKey="obj_general" title="OBJ. GENERAL">

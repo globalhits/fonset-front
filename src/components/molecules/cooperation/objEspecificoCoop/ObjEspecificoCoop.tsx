@@ -36,37 +36,16 @@ export default function FormObjEspecificoCoop() {
                         <InputFloating label="Justificación o antecedentes del proyecto" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
                     </div>
                     <Col sm={4}>
-<<<<<<< HEAD
-                        <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating " setValueChange={(value: string) => { }} value=""></InputFloating>
-                        <InputFloating label="Fecha esperada inicio*" type="date" placeholder="" className="mb-3 col-lg-13" setValueChange={(value: string) => { }} value=""></InputFloating>
-                        <InputSelected label="Categoria especifica*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted"></InputSelected>
-=======
                         <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
                         <InputFloating label="Fecha esperada inicio*" type="date" placeholder="" className="mb-3 col-lg-13" setValueChange={(value: string) => { }} value="" />
                         <InputSelected label="Categoria especifica*" className="mb-3 inputFloating" value="" options={[]} />
                         <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating" value="" options={[]} />
                         <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" value="" options={[]} />
->>>>>>> d29b9b85102dd4c96d36fef38dc60a5bcf1ca16c
 
 
                     </Col>
 
                     <Col sm={4}>
-<<<<<<< HEAD
-                        <InputFloating label="Indicador cuantitativo o cualitativo*" type="text" placeholder="" className="mb-3 inputFloating " setValueChange={(value: string) => { }} value=""></InputFloating>
-                        <InputFloating label="Fecha esperada final*" type="date" placeholder="" className="mb-3 col-lg-13 " setValueChange={(value: string) => { }} value=""></InputFloating>
-                        <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted"></InputSelected>
-
-                    </Col>
-                    <Col sm={4}>
-                        <InputFloating label="Resultado esperado*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value=""></InputFloating>
-                        <InputSelected label="Categoria general*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Programa*" className="mb-3 inputFloating"></InputSelected>
-=======
                         <InputFloating label="Indicador cuantitativo o cualitativo*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
                         <InputFloating label="Fecha esperada final*" type="date" placeholder="" className="mb-3 col-lg-13 " setValueChange={(value: string) => { }} value="" />
                         <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating" value="" options={[]} />
@@ -78,7 +57,6 @@ export default function FormObjEspecificoCoop() {
                         <InputSelected label="Categoria general*" className="mb-3 inputFloating" value="" options={[]} />
                         <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating" value="" options={[]} />
                         <InputSelected label="Programa*" className="mb-3 inputFloating" value="" options={[]} />
->>>>>>> d29b9b85102dd4c96d36fef38dc60a5bcf1ca16c
 
                     </Col>
                 </Row>
@@ -166,23 +144,10 @@ export default function FormObjEspecificoCoop() {
                         <Modal.Body>
                             <Row className="mt-4">
                                 <div>
-<<<<<<< HEAD
-                                    <InputFloating label="Obj. especifico*" type="text" placeholder="" className="mb-3 inputFloating " setValueChange={(value: string) => { }} value=""></InputFloating>
-=======
                                     <InputFloating label="Obj. especifico*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
->>>>>>> d29b9b85102dd4c96d36fef38dc60a5bcf1ca16c
                                 </div>
 
                                 <Col sm={6} >
-<<<<<<< HEAD
-                                    <InputSelected label="Tipo de actividad*"  className="mb-3 InputSelect"></InputSelected>
-                                    <InputFloating label="Fecha esperada final*" type="date" className="mb-3 InputSelect" setValueChange={(value: string) => { }} value=""></InputFloating>
-                                    <InputSelected label="Unidad responsable*" className="mb-3 InputSelect"></InputSelected>
-                                </Col>
-                                <Col sm={6}>
-                                    <InputFloating label="Actividad*" type="number"  className="mb-3 inputFloatingModal " setValueChange={(value: string) => { }} value=""></InputFloating>
-                                    <InputFloating label="Valor estimado*" type="number"  className="mb-3 inputFloatingModal " setValueChange={(value: string) => { }} value=""></InputFloating>
-=======
                                     <InputSelected label="Tipo de actividad*" className="mb-3 InputSelect" value="" options={[]} />
                                     <InputFloating label="Fecha esperada final*" type="date" className="mb-3 InputSelect" setValueChange={(value: string) => { }} value="" />
                                     <InputSelected label="Unidad responsable*" className="mb-3 InputSelect" value="" options={[]} />
@@ -190,18 +155,13 @@ export default function FormObjEspecificoCoop() {
                                 <Col sm={6}>
                                     <InputFloating label="Actividad*" type="number" className="mb-3 inputFloatingModal " setValueChange={(value: string) => { }} value="" />
                                     <InputFloating label="Valor estimado*" type="number" className="mb-3 inputFloatingModal " setValueChange={(value: string) => { }} value="" />
->>>>>>> d29b9b85102dd4c96d36fef38dc60a5bcf1ca16c
                                 </Col>
                                 <Col sm={4}>
 
                                 </Col>
                             </Row>
 
-<<<<<<< HEAD
-                            <InputFloating label="Adjuntos*" type="file" placeholder="" className="mb-3 inputFloatingModal" setValueChange={(value: string) => { }} value=""></InputFloating>
-=======
                             <InputFloating label="Adjuntos*" type="file" placeholder="" className="mb-3 inputFloatingModal" setValueChange={(value: string) => { }} value="" />
->>>>>>> d29b9b85102dd4c96d36fef38dc60a5bcf1ca16c
                             <Button className="mb-8" variant="primary" size="sm">AGREGAR</Button>
                             <div className="tableGoods">
                                 <div>

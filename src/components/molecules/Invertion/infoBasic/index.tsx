@@ -54,11 +54,7 @@ const InfoBasic: React.FC<InfoBasicInterface> = ({ formData }) => {
                     </div>
                 </div>
                 <div className="col-lg-9">
-<<<<<<< HEAD
-                    <InputFloating label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" placeholder="Escribe la dependencia responsable" setValueChange={(value: string) => { }} value=""/>
-=======
                     <InputFloating name="dependencia-responsable" label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" placeholder="Escribe la dependencia responsable" setValueChange={(value: string) => setDependency(value)} />
->>>>>>> d29b9b85102dd4c96d36fef38dc60a5bcf1ca16c
                     <InputSelected label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={listDependency} />
                 </div>
             </div>
