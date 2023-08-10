@@ -5,19 +5,21 @@ import './InputSelected.scss'
 
 interface InputSelectedProps {
     label: string;
+    name?: string;
     className?: string;
-    options?: any[]
+    options?: any[];
+    value?: string;
 }
 
-export default function InputSelected({ label, className, options }: InputSelectedProps) {
+export default function InputSelected({ label, name, className, options, value }: InputSelectedProps) {
     return (
         <FloatingLabel label={label} className='InputSelected'>
-            <Form.Select aria-label="Floating label select example">
+            <Form.Select name={name} aria-label="Floating label select example" value={value}>
                 {
                     options?.map((option) => (<option key={option.id} value={option.id}>{option.text}</option>)
                     )
                 }
             </Form.Select>
         </FloatingLabel>
-    )
+    )
 }

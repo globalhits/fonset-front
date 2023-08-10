@@ -32,62 +32,85 @@ export default function FormGoods() {
                     <Col sm={4}>
                         <InputSelected label="Categoria general*" className="mb-3 inputFloating"></InputSelected>
                         <InputSelected label="Unidad de medida*" className="mb-3 inputFloating InputSeleted"></InputSelected>
-                        <InputFloating label="Valor unit con iva*" type="text" placeholder="" className="mb-6 InputSelected"></InputFloating>
+                        <InputFloating label="Valor unit con iva*" type="text" placeholder="" className="mb-6 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
                         <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating"></InputSelected>
                         <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted"></InputSelected>
                     </Col>
                     <Col sm={4}>
                         <InputSelected label="Categoria especifica*" className="mb-3 inputFloating"></InputSelected>
                         <InputSelected label="Sub unidad de medida*" className="mb-3 inputFloating InputSeleted"></InputSelected>
-                        <InputFloating label="Cantidad*" type="text" placeholder="" className="mb-3 InputSelected"></InputFloating>
+                        <InputFloating label="Cantidad*" type="text" placeholder="" className="mb-3 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
                         <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted"></InputSelected>
-                        <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
                     </Col>
                     <Col sm={4}>
                         <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating"></InputSelected>
                         <InputSelected label="Presentacion*" className="mb-12 inputFloating InputSeleted"></InputSelected>
                         <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating"></InputSelected>
                         <InputSelected label="Programa*" className="mb-3 inputFloating"></InputSelected>
-
                     </Col>
                 </Row>
+                <Button className=" col-lg-18 agregar" style={{ marginLeft: "1080px", marginTop: "-50px" }}>AGREGAR</Button>
                 <Row className="mt-3">
                     <Col sm={12}>
                         <div className="tableGoods">
                             <div>
                                 <Table responsive hover>
                                     <thead>
-                                        <tr className="campos">
-                                            <th>Categoria general</th>
-                                            <th>Categoria especifica</th>
-                                            <th>Nombre bien/Servicio</th>
-                                            <th>Estado</th>
-                                            <th>Unidad de medida</th>
-                                            <th>Sub unidad de medida</th>
-                                            <th>Valor unit con iva</th>
-                                            <th>Cantidad</th>
-                                            <th>SubTotal</th>
-                                            <th>Obj. estrategico</th>
-                                            <th>Sub tema del Obj. estrategico</th>
-                                            <th>Acciones Objs. estrategicos</th>
-                                            <th>Acciones</th>
+                                        <tr className="campos" style={{ fontSize: "14px" }}>
+                                            <th> Categoria
+                                                <th>General</th>
+                                                <th>Especifica</th>
+                                                <th>Bien/Servicio</th>
+                                            </th>
+                                            <th> Medidas
+                                                <th>Estado</th>
+                                                <th>Unidad</th>
+                                                <th>Subunidad</th>
+                                            </th>
+
+                                            <th> Valor
+                                                <th>Unit+iva</th>
+                                                <th>Cant.</th>
+                                                <th>SubTotal</th>
+                                            </th>
+
+                                            <th> Objetivo estrategico
+                                                <th>Obj.</th>
+                                                <th>Subtema</th>
+                                            </th>
+                                            <th> Acciones  </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                        <tr style={{ fontSize: "12px" }}>
+                                            <td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </td>
+                                            <td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </td>
+                                            <td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </td>
+                                            <td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </td>
+
+                                            <td>
+                                                <td></td>
+                                                <td></td>
+                                            </td>
+                                            <td>
+                                                <td><Button className="mb-8 col-lg-12" size="sm" variant="primary">AGREGAR</Button></td>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </Table>

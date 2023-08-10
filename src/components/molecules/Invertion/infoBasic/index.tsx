@@ -37,7 +37,7 @@ export default function InfoBasic() {
                     </div>
                 </div>
                 <div className="col-lg-9">
-                    <InputFloating label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" placeholder="Escribe la dependencia responsable" />
+                    <InputFloating label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" placeholder="Escribe la dependencia responsable" setValueChange={(value: string) => { }} value=""/>
                     <InputSelected label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={listDependency} />
                 </div>
             </div>

@@ -8,24 +8,24 @@ const InfoBasicProject = () => {
             <h4>Justificación o antecedentes del proyecto</h4>
             <div className="row mt-4 mb-3">
                 <div className="col-lg-12">
-                    <InputFloating label="Digite la justificación" className="mb-3 inputFloating" type="text" placeholder="Escriba el objetivo general del proyecto" />
+                    <InputFloating label="Digite la justificación" className="mb-3 inputFloating" type="text" placeholder="Escriba el objetivo general del proyecto" setValueChange={(value: string) => { }} value=""/>
                 </div>
             </div>
             <hr />
             <h4>Población objetivo</h4>
             <div className="row mt-3">
                 <div className="col-lg-12">
-                    <InputFloating label="Población afectada por el problema" className="mb-3 inputFloating" type="text" placeholder="Digite la descripción" />
+                    <InputFloating label="Población afectada por el problema" className="mb-3 inputFloating" type="text" placeholder="Digite la descripción" setValueChange={(value: string) => { }} value=""/>
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-12">
-                    <InputFloating label="Población objeto de la intervención" className="mb-3 inputFloating" type="text" placeholder="Digite el indicador" />
+                    <InputFloating label="Población objeto de la intervención" className="mb-3 inputFloating" type="text" placeholder="Digite el indicador" setValueChange={(value: string) => { }} value=""/>
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-12">
-                    <InputFloating label="Caracteristicas demograficas de la población objetivo" className="mb-3 inputFloating" type="text" placeholder="Digite el indicador" />
+                    <InputFloating label="Caracteristicas demograficas de la población objetivo" className="mb-3 inputFloating" type="text" placeholder="Digite el indicador" setValueChange={(value: string) => { }} value=""/>
                 </div>
             </div>
             <hr />

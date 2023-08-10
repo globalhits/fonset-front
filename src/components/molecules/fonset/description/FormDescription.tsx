@@ -7,7 +7,7 @@ export default function FormDescription() {
     return (
         <div style={{ width: "80%" }}>
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-                <Row className="mt-3">
+                <Row className="mt-8">
                     <Col sm={3}>
                         <Nav variant="pills" className="flex-column">
                             <Nav.Item className="col-lg-16">
@@ -37,10 +37,9 @@ export default function FormDescription() {
                         </Nav>
                     </Col>
 
-                    <Col sm={9}>
-                        <Tab.Content>
-
-                            <Tab.Pane eventKey="obj_general">
+                    <Col sm={6} className="area">
+                        <Tab.Content >
+                            <Tab.Pane eventKey="obj_general" >
                                 <TextArea ></TextArea>
                             </Tab.Pane>
 

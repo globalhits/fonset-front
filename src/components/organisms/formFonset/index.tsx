@@ -2,10 +2,11 @@ import React from "react";
 import "./index.scss";
 
 // --- Components libraries ---
-import { Tab, Tabs } from "react-bootstrap";
+import { Card, Container, Tab, Tabs } from "react-bootstrap";
 
 // --- Components project ---
 import OriginProject from "../../molecules/originProject";
+import FormDataGeneralCoop from "../../molecules/cooperation/dataGeneralCoop/FormDataGeneraCoop";
 import FormDataGeneral from "../../molecules/fonset/dataGeneral/FormDataGeneral";
 import FormDescription from "../../molecules/fonset/description/FormDescription";
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
@@ -13,30 +14,37 @@ import FormGoods from "../../molecules/fonset/goods/FormGoods";
 export default function FormFonset() {
 	return (
 		<div className="content container-fluid">
-			<div className="content-header">
-				<h4 className="text">Formulario fonset</h4>
-			</div>
-			<div className="content container-fluid">
-				{/* Información de fonset */}
-				<Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
-					<Tab eventKey="home" title="INFORMACION DE PROYECTO">
+			<Container>
+				<Card>
+					<Card.Header>
+						<Card.Title as={"h4"}>
+							FORMULARIO FONSET
+						</Card.Title>
+					</Card.Header>
+					<Card.Body className="pt-3">
 						<OriginProject />
-					</Tab>
+						<Tabs
+							defaultActiveKey="infoBasic"
+							transition={false}
+							id="info-project"
+							className="mt-4 mb-3"
+						>
+							<Tab eventKey="general" title="DATOS GENERALES">
+								<FormDataGeneralCoop />
+							</Tab>
 
-					<Tab eventKey="general" title="DATOS GENERALES">
-						<FormDataGeneral />
-					</Tab>
+							<Tab eventKey="description" title="DESCRIPCION">
+								<FormDescription />
+							</Tab>
 
-					<Tab eventKey="description" title="DESCRIPCION">
-						<FormDescription />
-					</Tab>
+							<Tab eventKey="goods" title="BIENES">
+								<FormGoods />
+							</Tab>
 
-					<Tab eventKey="goods" title="BIENES">
-						<FormGoods />
-					</Tab>
-
-				</Tabs>
-			</div>
+						</Tabs>
+					</Card.Body>
+				</Card>
+			</Container>
 		</div>
 	);
 }

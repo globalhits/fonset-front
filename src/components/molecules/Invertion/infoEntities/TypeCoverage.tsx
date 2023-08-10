@@ -8,6 +8,7 @@ const TypeCoverage = () => {
             <div className="row">
                 <div className="col-lg-6"><CheckBox label="Nacional" type="checkbox" className="mr-3 mt-3 mb-3" /></div>
                 <div className="col-lg-6"><CheckBox label="Focalizada" type="checkbox" className="mr-3 mt-3 mb-3" /></div>
+                
             </div>
 
             <Table className="table table-bordered table-condensed table-stripe">
