@@ -13,19 +13,19 @@ export default function FormObjGeneralCoop() {
             </div>
 
             <div className="row">
-                <div className="col-lg-3">
-                    <InputFloating label="Fecha espera de inicio" className="mb-3 inputFloating" type="date" setValueChange={(value: string) => { }} value="" />
+                <div className="col-lg-4">
+                    <InputFloating label="Fecha espera de inicio" className="mb-3 inputFloating" type="date" setValueChange={(value: any) => { }} value="" />
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-4">
                     <InputFloating label="Fecha espera terminada" className="mb-3 inputFloating" type="date" setValueChange={(value: string) => { }} value="" />
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-4">
                     <InputFloating label="Duracion estimada en meses" className="mb-3 inputFloating" type="number" setValueChange={(value: string) => { }} value="" />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-16">
-                    <TextArea />
+                    <TextArea label="Escriba aqui el objetivo general del proyecto" />
                 </div>
             </div>
         </div>
