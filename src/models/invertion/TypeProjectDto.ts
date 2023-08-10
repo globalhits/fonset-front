@@ -1,4 +1,4 @@
 export interface TypeProjectDto {
-    id: number,
+    id?: any,
     description: string
 }

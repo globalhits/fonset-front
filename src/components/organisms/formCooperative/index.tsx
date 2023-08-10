@@ -12,7 +12,6 @@ import InputSelected from "../../atoms/selected/InputSelected";
 import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
 
-
 export default function FormCooperative() {
 	return (
 		<>
@@ -27,13 +26,13 @@ export default function FormCooperative() {
 					<Tab eventKey="home" title="PROCEDENCIA DEL PROYECTO">
 						<div className="row mt-3">
 							<div className="col-lg-4">
-								<InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" placeholder="1234" />
+								<InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" placeholder="1234" setValueChange={(value: string) => { }} value="" />
 							</div>
 							<div className="col-lg-4">
-								<InputFloating label="Fecha*" className="mb-3 inputFloating" type="date" placeholder="Fecha" />
+								<InputFloating label="Fecha*" className="mb-3 inputFloating" type="date" placeholder="Fecha" setValueChange={(value: string) => { }} value="" />
 							</div>
 							<div className="col-lg-4">
-								<InputFloating label="Nombre del proyecto*" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" />
+								<InputFloating label="Nombre del proyecto*" className="mb-3 inputFloating" type="text" placeholder="Nombre del proyecto" setValueChange={(value: string) => { }} value="" />
 							</div>
 						</div>
 					</Tab>
@@ -47,10 +46,10 @@ export default function FormCooperative() {
 
 						<div className="row">
 							<div className="col-lg-6">
-								<InputSelected label="Pais coperante que podria financiar el proyecto" className="mb-3 inputFloating" />
+								<InputSelected label="Pais coperante que podria financiar el proyecto" className="mb-3 inputFloating" options={[]} value="" />
 							</div>
 							<div className="col-lg-6">
-								<InputFloating label="Implementador (es)" className="mb-3 inputFloating" type="text" placeholder="Indique el operador que podria ejecutar el proyecto." />
+								<InputFloating label="Implementador (es)" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
 							</div>
 						</div>
 

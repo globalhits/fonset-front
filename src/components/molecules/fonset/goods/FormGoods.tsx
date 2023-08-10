@@ -30,17 +30,17 @@ export default function FormGoods() {
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                 <Row className="mt-3">
                     <Col sm={4}>
-                        <InputSelected label="Categoria general*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Unidad de medida*" className="mb-3 inputFloating InputSeleted"></InputSelected>
-                        <InputFloating label="Valor unit con iva*" type="text" placeholder="" className="mb-6 InputSelected"></InputFloating>
-                        <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted"></InputSelected>
+                        <InputSelected label="Categoria general*" className="mb-3 inputFloating" value="" options={[]}></InputSelected>
+                        <InputSelected label="Unidad de medida*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
+                        <InputFloating label="Valor unit con iva*" type="text" placeholder="" className="mb-6 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
+                        <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating" value="" options={[]}></InputSelected>
+                        <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
                     </Col>
                     <Col sm={4}>
-                        <InputSelected label="Categoria especifica*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Sub unidad de medida*" className="mb-3 inputFloating InputSeleted"></InputSelected>
-                        <InputFloating label="Cantidad*" type="text" placeholder="" className="mb-3 InputSelected"></InputFloating>
-                        <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted"></InputSelected>
+                        <InputSelected label="Categoria especifica*" className="mb-3 inputFloating" value="" options={[]}></InputSelected>
+                        <InputSelected label="Sub unidad de medida*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
+                        <InputFloating label="Cantidad*" type="text" placeholder="" className="mb-3 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
+                        <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
                         <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
                     </Col>
                     <Col sm={4}>

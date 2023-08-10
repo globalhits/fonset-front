@@ -10,37 +10,37 @@ export const GeneralObjective = ({ type }: GeneralObjectiveInterface) => {
         <>
             <div className="row mt-4">
                 <div className="col-lg-12">
-                    <InputFloating label="Digite el objetivo" className="mb-3 inputFloating" type="text" />
+                    <InputFloating label="Digite el objetivo" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-6">
-                    <InputFloating label="Descripción" className="mb-3 inputFloating" type="text" />
+                    <InputFloating label="Descripción" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
                 </div>
                 <div className="col-lg-6">
-                    <InputFloating label="Indicador" className="mb-3 inputFloating" type="text" />
+                    <InputFloating label="Indicador" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-3">
-                    <InputFloating label="Linea base" className="mb-3 inputFloating" type="text" />
+                    <InputFloating label="Linea base" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
                 </div>
                 <div className="col-lg-3">
-                    <InputFloating label="Meta" className="mb-3 inputFloating" type="text" />
+                    <InputFloating label="Meta" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
                 </div>
                 <div className="col-lg-6">
-                    <InputFloating label="Entregable" className="mb-3 inputFloating" type="text" />
+                    <InputFloating label="Entregable" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-3">
 
-                    <InputFloating label="Mes Inicio" className="inputFloating" type="date" />
+                    <InputFloating label="Mes Inicio" className="inputFloating" type="date" setValueChange={(value: string) => { }} value="" />
 
                 </div>
                 <div className="col-lg-3">
 
-                    <InputFloating label="Mes Final" className="inputFloating" type="date" />
+                    <InputFloating label="Mes Final" className="inputFloating" type="date" setValueChange={(value: string) => { }} value="" />
 
                 </div>
                 <div className="col-lg-6">
@@ -51,7 +51,7 @@ export const GeneralObjective = ({ type }: GeneralObjectiveInterface) => {
                 type === "specific" ? (
                     <div className="row mt-5">
                         <div className="col-lg-12">
-                            <InputFloating label="Archivo" className="mb-3 inputFloating" type="file" />
+                            <InputFloating label="Archivo" className="mb-3 inputFloating" type="file" setValueChange={(value: string) => { }} value="" />
                         </div>
                     </div>
                 ) :
