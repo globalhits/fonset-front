@@ -10,6 +10,7 @@ import FormDataGeneralCoop from "../../molecules/cooperation/dataGeneralCoop/For
 import FormDataGeneral from "../../molecules/fonset/dataGeneral/FormDataGeneral";
 import FormDescription from "../../molecules/fonset/description/FormDescription";
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
+import Buttons from "../../atoms/button/Buttons";
 
 export default function FormFonset() {
 	return (
@@ -24,7 +25,7 @@ export default function FormFonset() {
 					<Card.Body className="pt-3">
 						<OriginProject />
 						<Tabs
-							defaultActiveKey="infoBasic"
+							defaultActiveKey="general"
 							transition={false}
 							id="info-project"
 							className="mt-4 mb-3"
@@ -37,11 +38,21 @@ export default function FormFonset() {
 								<FormDescription />
 							</Tab>
 
-							<Tab eventKey="goods" title="BIENES">
+							<Tab eventKey="goods" title="BIENES Y/O SERVICIOS">
 								<FormGoods />
 							</Tab>
 
 						</Tabs>
+						<hr />
+						<div className="row">
+							<div className="col-lg-6">
+								<Buttons variant="light" label="Cancelar" />
+							</div>
+							<div className="col-lg-6 text-right">
+								<Buttons variant="primary" label="Guardar" classStyle="mr-3" />
+								<Buttons variant="outline-success" label="Finalizar" />
+							</div>
+						</div>
 					</Card.Body>
 				</Card>
 			</Container>
