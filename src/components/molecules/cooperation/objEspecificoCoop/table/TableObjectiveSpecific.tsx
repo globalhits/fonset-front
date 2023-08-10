@@ -12,51 +12,36 @@ export const TableObjectiveSpecific = () => {
 
     return (
         <div className="row mt-5">
-            <div className="col-lg-8">
+            <div className="col-lg-12">
                 <Table className="table table-bordered table-condensed table-striped" style={{ zoom: "0.7" }}>
                     <thead>
+                        <tr>
+                            <th colSpan={3}>Medidas</th>
+                            <th colSpan={3}>Valor</th>
+                            <th colSpan={3}>Categoria</th>
+                            <th colSpan={3}>Objetivo estrategico</th>
+                            <th colSpan={3}>Programa</th>
+                            <th rowSpan={2}>Acciones</th>
+                        </tr>
                         <tr className="campos" style={{ fontSize: "11px" }}>
-                            <th> Medidas
-                                <th>Estado</th>
-                                <th>Unidad</th>
-                                <th>Subunidad</th>
-                            </th>
-
-                            <th> Valor
-                                <th>Unit+iva</th>
-                                <th>Cant.</th>
-                                <th>SubTotal</th>
-                            </th>
-
-                            <th> Categoria
-                                <th>General</th>
-                                <th>Especifica</th>
-                                <th>Bien/Servicio</th>
-                            </th>
-                            <th> Objetivo estrategico
-                                <th>Obj.</th>
-                                <th>Subtema</th>
-                                <th>Acciones</th>
-                            </th>
-                            <th> Programa
-                                <th>Programa</th>
-                                <th>Linea</th>
-                                <th>Bien/Servicio</th>
-                            </th>
-                            <th>
-                                <th>Acciones</th>
-                            </th>
+                            <th>Estado</th>
+                            <th>Unidad</th>
+                            <th>Subunidad</th>
+                            <th>Unit+iva</th>
+                            <th>Cant.</th>
+                            <th>SubTotal</th>
+                            <th>General</th>
+                            <th>Especifica</th>
+                            <th>Bien/Servicio</th>
+                            <th>Obj.</th>
+                            <th>Subtema</th>
+                            <th>Acciones</th>
+                            <th>Programa</th>
+                            <th>Linea</th>
+                            <th>Bien/Servicio</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><Button className="mb-8 col-lg-12" size="sm" variant="primary" onClick={() => setModalShow(true)}>AGREGAR</Button></td>
-                        </tr>
                     </tbody>
                 </Table>
             </div>

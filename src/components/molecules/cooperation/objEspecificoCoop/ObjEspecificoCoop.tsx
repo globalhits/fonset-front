@@ -36,11 +36,11 @@ export default function FormObjEspecificoCoop() {
                         <InputSelected label="Categoria general*" className="mb-3 inputFloating" />
                         <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating" />
                         <InputSelected label="Programa*" className="mb-3 inputFloating" />
+                        {/* <Button className=" col-lg-8 agregar" variant="outline-info">AGREGAR OBJETIVO ESPECIFIVO</Button> */}
                     </Col>
                 </Row>
-                <Button className=" col-lg-18 agregar" variant="outline-info" style={{ marginLeft: "965px", marginTop: "-50px" }}>AGREGAR OBJETIVO ESPECIFIVO</Button>
+
                 <TableObjectiveSpecific />
-                +
             </Tab.Container >
         </div>
     )
