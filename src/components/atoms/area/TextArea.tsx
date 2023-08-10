@@ -5,11 +5,12 @@ interface TextAreaInterface {
 	label?: string;
 	classStyle?: string;
 	styles?: string;
+	placeholder?: string;
 }
-export default function TextArea({ label, classStyle, styles }: TextAreaInterface) {
+export default function TextArea({ label, classStyle, styles, placeholder }: TextAreaInterface) {
 	return (
 		<FloatingLabel controlId="floatingTextarea2" label={label} className={classStyle}>
-			<Form.Control as="textarea" placeholder="Leave a comment here" className='form-control-lg' />
+			<Form.Control as="textarea" placeholder={placeholder} className='form-control-lg' />
 		</FloatingLabel>
 	);
 }

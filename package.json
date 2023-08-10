@@ -22,7 +22,7 @@
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.14.1",
     "react-scripts": "^5.0.1",
-    "sass": "^1.63.6",
+    "sass": "^1.64.2",
     "sweetalert2": "^11.6.13",
     "toolkit": "^1.5.4",
     "typescript": "^4.9.5",
