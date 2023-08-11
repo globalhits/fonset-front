@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Col, Row, Tab } from "react-bootstrap";
+import { Button, Col, Row, Tab } from "react-bootstrap";
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
-import { DocumentUpload } from "../../upload/DocumentUpload";
+import DocumentUpload from "../../upload/DocumentUpload";
 import "./ObjEspecificoCoop.scss"
 import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific";
 
@@ -34,7 +34,7 @@ export default function FormObjEspecificoCoop() {
                         <InputSelected label="Categoria general*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
                         <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
                         <InputSelected label="Programa*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
-                        {/* <Button className=" col-lg-8 agregar" variant="outline-info">AGREGAR OBJETIVO ESPECIFIVO</Button> */}
+                        <Button className=" col-lg-8 agregar" variant="outline-info">AGREGAR OBJETIVO ESPECIFIVO</Button>
                     </Col>
                 </Row>
 

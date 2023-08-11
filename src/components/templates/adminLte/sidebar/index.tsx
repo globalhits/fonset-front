@@ -8,12 +8,12 @@ const Sidebar = () => {
 		<aside className="main-sidebar sidebar-dark-primary elevation-4">
 			{/* Brand Logo */}
 			<a href="/" className="brand-link text-center">
-				<span className="brand-text font-weight-light">FISCALIA - GESTOR</span>
+				{/* <span className="brand-text font-weight-light">FISCALIA - GESTOR</span> */}
 			</a>
 			<div className="sidebar">
 				<div className="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div className="image">
-						<img src="/images/logo.png" alt="Logo de la fiscalia" className="brand-image elevation-3" style={{ opacity: ".8", width: "120px", height: "80px", marginLeft: "50px" }} />
+						{/* <img src="/images/logo.png" alt="Logo de la fiscalia" className="brand-image elevation-3" style={{ opacity: ".8", width: "120px", height: "80px", marginLeft: "50px" }} /> */}
 					</div>
 				</div>
 				{/* Sidebar Menu */}

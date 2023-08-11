@@ -3,7 +3,7 @@ import { Col, Row, Table, Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import InputFloating from "../../../../atoms/input/Input";
 import InputSelected from "../../../../atoms/selected/InputSelected";
-import { DocumentUpload } from "../../../upload/DocumentUpload";
+import DocumentUpload from "../../../upload/DocumentUpload";
 
 
 export const TableObjectiveSpecific = () => {
@@ -42,6 +42,7 @@ export const TableObjectiveSpecific = () => {
                         </tr>
                     </thead>
                     <tbody>
+                        <tr><Button className="mb-8 col-lg-12" size="sm" variant="primary" onClick={() => setModalShow(true)}>Registro actividad</Button></tr>
                     </tbody>
                 </Table>
             </div>
@@ -66,11 +67,10 @@ export const TableObjectiveSpecific = () => {
                             <Col sm={6}>
                                 <InputFloating label="Actividad*" type="number" className="mb-3 inputFloatingModal " setValueChange={(value: string) => { }} value="" />
                                 <InputFloating label="Valor estimado*" type="number" className="mb-3 inputFloatingModal " setValueChange={(value: string) => { }} value="" />
-                            </Col>
-                            <Col sm={4}>
-
+                                <InputFloating label="Nombre del adjunto*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
                             </Col>
                         </Row>
+                        
                         <DocumentUpload />
 
                         <div className="tableGoods">

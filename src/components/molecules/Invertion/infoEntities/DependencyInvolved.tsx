@@ -1,8 +1,18 @@
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
+import InputFloating from "../../../atoms/input/Input";
 
 const DependencyInvolved = () => {
 
     return (
+        <div>
+            <div className="row mt-2">
+                <div className="col-lg-8">
+                    <InputFloating label="Nombre dependencia involucrada" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
+                </div>
+                <div className="col-lg-4">
+                     <Button className=" col-lg-2 mb-2"  variant="outline-info">+</Button>
+                </div>
+            </div>
         <Table className="table table-bordered table-condensed table-stripe">
             <thead>
                 <tr>
@@ -25,6 +35,7 @@ const DependencyInvolved = () => {
                 </tr>
             </tbody>
         </Table>
+        </div>
     );
 
 }
