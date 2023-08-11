@@ -26,21 +26,21 @@ export default function FormObjEspecificoCoop() {
                     </Col>
 
                     <Col sm={4}>
-                        <InputFloating label="Indicador cuantitativo o cualitativo*" type="text" placeholder="" className="mb-3 inputFloating " setValueChange={(value: string) => { }} value=""/>
-                        <InputFloating label="Fecha esperada final*" type="date" placeholder="" className="mb-3 col-lg-13 " setValueChange={(value: string) => { }} value=""/>
+                        <InputFloating label="Indicador cuantitativo o cualitativo*" type="text" placeholder="" className="mb-3 inputFloating " setValueChange={(value: string) => { }} value="" />
+                        <InputFloating label="Fecha esperada final*" type="date" placeholder="" className="mb-3 col-lg-13 " setValueChange={(value: string) => { }} value="" />
                         <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating" />
                         <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted" />
                     </Col>
                     <Col sm={4}>
-                        <InputFloating label="Resultado esperado*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value=""/>
+                        <InputFloating label="Resultado esperado*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
                         <InputSelected label="Categoria general*" className="mb-3 inputFloating" />
                         <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating" />
                         <InputSelected label="Programa*" className="mb-3 inputFloating" />
+                        {/* <Button className=" col-lg-8 agregar" variant="outline-info">AGREGAR OBJETIVO ESPECIFIVO</Button> */}
                     </Col>
                 </Row>
-                <Button className=" col-lg-18 agregar" variant="outline-info" style={{ marginLeft: "965px", marginTop: "-50px" }}>AGREGAR OBJETIVO ESPECIFIVO</Button>
-                <TableObjectiveSpecific/>
-+
+
+                <TableObjectiveSpecific />
             </Tab.Container >
         </div>
     )

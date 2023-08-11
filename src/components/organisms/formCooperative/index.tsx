@@ -72,6 +72,8 @@ export default function FormCooperative() {
 									<FormObjEspecificoCoop />
 								</Tab>
 							</Tabs>
+
+							<hr className="" />
 							<div className="row">
 								<div className="col-lg-6">
 									<Button variant="light" onClick={showConfirmationAlert}>Cancelar</Button>
