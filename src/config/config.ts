@@ -9,6 +9,7 @@ const config = {
     pathListFocusAge: process.env.PATH_LIST_FOCUS_AGE,
     pathListTypeCaseFile: process.env.PATH_LIST_TYPE_CASE_FILE,
     pathListGender: process.env.PATH_LIST_GENDER,
-    pathListTypeProcedure: process.env.PATH_LIST_TYPE_PROCEDURE
+    pathListTypeProcedure: process.env.PATH_LIST_TYPE_PROCEDURE,
+    pathListDependency: process.env.PATH_LIST_TYPE_PROCEDURE,
 };
 export default config;

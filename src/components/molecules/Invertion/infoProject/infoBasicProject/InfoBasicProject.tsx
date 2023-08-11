@@ -1,8 +1,14 @@
 import { Table } from "react-bootstrap"
 import InputFloating from "../../../../atoms/input/Input"
 import Buttons from "../../../../atoms/button/Buttons";
+import { RequestInvertionDto } from "../../../../../models/invertion/RequestInvertionDto";
 
-const InfoBasicProject = () => {
+interface InfoBasicProjectInterface {
+    formData: RequestInvertionDto,
+    setFormData: Function
+}
+
+const InfoBasicProject = ({ formData, setFormData }: InfoBasicProjectInterface) => {
     return (
         <div className="row">
             <h4>Justificación o antecedentes del proyecto</h4>
@@ -34,7 +40,7 @@ const InfoBasicProject = () => {
                     <h4>Analisis de participantes</h4>
                 </div>
                 <div className="col-lg-6 text-right">
-                    <Buttons variant="primary" label="Añadir" />
+                    <Buttons variant="primary" label="Añadir" onClick={() => { }} />
                 </div>
             </div>
             <div className="row mt-3">

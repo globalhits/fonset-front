@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 
 // --- Components libraries ---
@@ -14,8 +14,13 @@ import Entities from "../../molecules/Invertion/infoEntities";
 import InputSelected from "../../atoms/selected/InputSelected";
 import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
+import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
+import { initialState } from "../../../redux/states/invertion/invertion.slice";
 
 export default function FormCooperative() {
+
+	const [dataFormInvertion, setDataFormInvertion] = useState<RequestInvertionDto>(initialState);
+
 	const showConfirmationAlert = () => {
 		Swal.fire({
 			title: 'Una pregunta',
@@ -44,7 +49,7 @@ export default function FormCooperative() {
 							</Card.Title>
 						</Card.Header>
 						<Card.Body className="pt-3">
-							<OriginProject />
+							<OriginProject formData={dataFormInvertion} />
 							<Tabs
 								defaultActiveKey="general"
 								transition={false}
@@ -56,7 +61,7 @@ export default function FormCooperative() {
 									<Entities />
 									<div className="row">
 										<div className="col-lg-6">
-											<InputSelected label="Pais coperante que podria financiar el proyecto" className="mb-3 inputFloating" />
+											<InputSelected label="Pais coperante que podria financiar el proyecto" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
 										</div>
 										<div className="col-lg-6">
 											<InputFloating label="Implementador (es)" className="mb-3 inputFloating" type="text" placeholder="Indique el operador que podria ejecutar el proyecto." setValueChange={(value: string) => { }} value="" />
@@ -79,8 +84,8 @@ export default function FormCooperative() {
 									<Button variant="light" onClick={showConfirmationAlert}>Cancelar</Button>
 								</div>
 								<div className="col-lg-6 text-right">
-									<Buttons variant="primary" label="Guardar" classStyle="mr-3" />
-									<Buttons variant="outline-success" label="Finalizar" />
+									<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => { }} />
+									<Buttons variant="outline-success" label="Finalizar" onClick={() => { }} />
 								</div>
 							</div>
 						</Card.Body>

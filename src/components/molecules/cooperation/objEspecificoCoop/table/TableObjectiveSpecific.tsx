@@ -59,9 +59,9 @@ export const TableObjectiveSpecific = () => {
                             </div>
 
                             <Col sm={6} >
-                                <InputSelected label="Tipo de actividad*" className="mb-3 InputSelect" value="" options={[]} />
+                                <InputSelected label="Tipo de actividad*" className="mb-3 InputSelect" options={[]} onChange={(value: any) => { }} value="" />
                                 <InputFloating label="Fecha esperada final*" type="date" className="mb-3 InputSelect" setValueChange={(value: string) => { }} value="" />
-                                <InputSelected label="Unidad responsable*" className="mb-3 InputSelect" value="" options={[]} />
+                                <InputSelected label="Unidad responsable*" className="mb-3 InputSelect" options={[]} onChange={(value: any) => { }} value="" />
                             </Col>
                             <Col sm={6}>
                                 <InputFloating label="Actividad*" type="number" className="mb-3 inputFloatingModal " setValueChange={(value: string) => { }} value="" />

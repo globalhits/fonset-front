@@ -16,12 +16,12 @@ const FormDataGeneral: React.FC<FormDataGeneralCoopInterface> = ({ formData }) =
                 <InputFloating label="Seccional*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
             </div>
             <div className="col-lg-4 ">
-                <InputSelected label="Departamento*" className="mb-3 inputFloating" options={[]} value="" />
-                <InputSelected label="Municipio de origen*" className="mb-3 inputFloating" options={[]} value="" />
+                <InputSelected label="Departamento*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
+                <InputSelected label="Municipio de origen*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
             </div>
             <div className="col-lg-4 ">
-                <InputSelected label="Entidad dependencia responsable*" className="mb-3 inputFloating" options={[]} value="" />
-                <InputSelected label="Dsitrito judicial*" className="mb-3 inputFloating" options={[]} value="" /> 
+                <InputSelected label="Entidad dependencia responsable*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
+                <InputSelected label="Dsitrito judicial*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
             </div>
         </div>
     )

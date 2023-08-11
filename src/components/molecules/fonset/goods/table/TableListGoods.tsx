@@ -42,7 +42,7 @@ const TableListGoods: React.FC<any> = ({ }) => {
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td className="text-center"><Buttons variant="outline-primary" label="Agregar" classStyle="mt-4 " /></td>
+                            <td className="text-center"><Buttons variant="outline-primary" label="Agregar" classStyle="mt-4 " onClick={() => { }} /></td>
                         </tr>
                     </tbody>
                 </Table>

@@ -28,6 +28,10 @@ export default function FormInvertion() {
 
 	if (isLoading) return <Loader />;
 
+	const saveForm = () => {
+		console.log("guardar form", dataFormInvertion);
+	}
+
 	return (
 		<div className="content container-fluid">
 			<Container>
@@ -38,7 +42,7 @@ export default function FormInvertion() {
 						</Card.Title>
 					</Card.Header>
 					<Card.Body className="pt-3">
-						<OriginProject />
+						<OriginProject formData={dataFormInvertion} />
 						<Tabs
 							defaultActiveKey="infoBasic"
 							transition={false}
@@ -46,11 +50,11 @@ export default function FormInvertion() {
 							className="mt-4 mb-3"
 						>
 							<Tab eventKey="infoBasic" title="INFORMACIÓN BÁSICA">
-								<InfoBasic formData={dataFormInvertion} />
+								<InfoBasic formData={dataFormInvertion} setFormData={(data: RequestInvertionDto) => setDataFormInvertion(data)} />
 							</Tab>
 
 							<Tab eventKey="infoGeneral" title="INFORMACIÓN GENERAL">
-								<InfoBasicProject />
+								<InfoBasicProject formData={dataFormInvertion} setFormData={(data: RequestInvertionDto) => setDataFormInvertion(data)} />
 							</Tab>
 
 							<Tab eventKey="objetiveGeneral" title="OBJETIVOS">
@@ -63,11 +67,11 @@ export default function FormInvertion() {
 						<hr />
 						<div className="row">
 							<div className="col-lg-6">
-								<Buttons variant="light" label="Cancelar" />
+								<Buttons variant="light" label="Cancelar" onClick={() => { }} />
 							</div>
 							<div className="col-lg-6 text-right">
-								<Buttons variant="primary" label="Guardar" classStyle="mr-3" />
-								<Buttons variant="outline-success" label="Finalizar" />
+								<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => saveForm()} />
+								<Buttons variant="outline-success" label="Finalizar" onClick={() => saveForm()} />
 							</div>
 						</div>
 					</Card.Body>
