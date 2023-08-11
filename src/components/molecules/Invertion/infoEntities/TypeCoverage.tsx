@@ -22,6 +22,7 @@ const TypeCoverage = () => {
                     <Button className=""  variant="outline-info">+</Button>
                 </div>
                 
+                
             </div>
             <Table className="table table-bordered table-condensed table-stripe">
                 <thead>
