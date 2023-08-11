@@ -36,7 +36,7 @@ export default function FormObjEspecificoCoop() {
                         <InputSelected label="Categoria general*" className="mb-3 inputFloating" />
                         <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating" />
                         <InputSelected label="Programa*" className="mb-3 inputFloating" />
-                        {/* <Button className=" col-lg-8 agregar" variant="outline-info">AGREGAR OBJETIVO ESPECIFIVO</Button> */}
+                        <Button className=" col-lg-8 agregar" variant="outline-info">AGREGAR OBJETIVO ESPECIFIVO</Button>
                     </Col>
                 </Row>
 
