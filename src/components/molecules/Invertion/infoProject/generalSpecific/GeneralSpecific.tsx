@@ -11,35 +11,35 @@ export const GeneralSpecific = () => {
             <hr />
             <div className="row">
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria general / eje Tematico" />
+                    <InputSelected label="Categoria general / eje Tematico" options={[]} onChange={(value: any) => { }} value="" />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria Especifica" />
+                    <InputSelected label="Categoria Especifica" options={[]} onChange={(value: any) => { }} value="" />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Nombre Bien / Servicio" />
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-lg-4">
-                    <InputSelected label="Objetivo estratégico direccionamiento" />
-                </div>
-                <div className="col-lg-4">
-                    <InputSelected label="Subtema del objetivo estratégico" />
-                </div>
-                <div className="col-lg-4">
-                    <InputSelected label="Acciones Objetivo estratégico" />
+                    <InputSelected label="Nombre Bien / Servicio" options={[]} onChange={(value: any) => { }} value="" />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-4">
-                    <InputSelected label="Programa" />
+                    <InputSelected label="Objetivo estratégico direccionamiento" options={[]} onChange={(value: any) => { }} value="" />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Linea del programa" />
+                    <InputSelected label="Subtema del objetivo estratégico" options={[]} onChange={(value: any) => { }} value="" />
+                </div>
+                <div className="col-lg-4">
+                    <InputSelected label="Acciones Objetivo estratégico" options={[]} onChange={(value: any) => { }} value="" />
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-lg-4">
+                    <InputSelected label="Programa" options={[]} onChange={(value: any) => { }} value="" />
+                </div>
+                <div className="col-lg-4">
+                    <InputSelected label="Linea del programa" options={[]} onChange={(value: any) => { }} value="" />
                 </div>
                 <div className="col-lg-4 text-center">
-                    <Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " />
+                    <Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " onClick={() => { }} />
                 </div>
             </div>
             <TableObjectiveSpecific />

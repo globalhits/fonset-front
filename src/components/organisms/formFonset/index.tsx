@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 
 // --- Components libraries ---
@@ -10,8 +10,13 @@ import FormDataGeneral from "../../molecules/fonset/dataGeneral/FormDataGeneral"
 import FormDescription from "../../molecules/fonset/description/FormDescription";
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
 import Buttons from "../../atoms/button/Buttons";
+import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
+import { initialState } from "../../../redux/states/invertion/invertion.slice";
 
 export default function FormFonset() {
+
+	const [dataFormInvertion, setDataFormInvertion] = useState<RequestInvertionDto>(initialState);
+
 	return (
 		<div className="content container-fluid">
 			<Container>
@@ -22,7 +27,7 @@ export default function FormFonset() {
 						</Card.Title>
 					</Card.Header>
 					<Card.Body className="pt-3">
-						<OriginProject />
+						<OriginProject formData={dataFormInvertion} />
 						<Tabs
 							defaultActiveKey="general"
 							transition={false}
@@ -48,11 +53,11 @@ export default function FormFonset() {
 						<hr />
 						<div className="row">
 							<div className="col-lg-6">
-								<Buttons variant="light" label="Cancelar" />
+								<Buttons variant="light" label="Cancelar" onClick={() => { }} />
 							</div>
 							<div className="col-lg-6 text-right">
-								<Buttons variant="primary" label="Guardar" classStyle="mr-3" />
-								<Buttons variant="outline-success" label="Finalizar" />
+								<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => { }} />
+								<Buttons variant="outline-success" label="Finalizar" onClick={() => { }} />
 							</div>
 						</div>
 					</Card.Body>

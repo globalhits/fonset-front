@@ -17,7 +17,7 @@ export default function FormDataGeneralCoop() {
                 </div>
             </div>
             <div className="col-lg-8 ">
-                <InputSelected label="Dependencia funcional responsable *" className="mb-3 inputFloating" />
+                <InputSelected label="Dependencia funcional responsable *" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
             </div>
         </div>
     )

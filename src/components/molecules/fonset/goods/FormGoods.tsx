@@ -31,25 +31,25 @@ export default function FormGoods() {
         <>
             <Row>
                 <Col lg="4">
-                    <InputSelected label="Categoria general*" className="mb-3 inputFloating" value="" options={[]} />
+                    <InputSelected label="Categoria general*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Categoria especifica*" className="mb-3 inputFloating" value="" options={[]} />
+                    <InputSelected label="Categoria especifica*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating" />
+                    <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
                 </Col>
             </Row>
             <Row>
                 <Col lg="2">
-                    <InputSelected label="Unidad de medida*" className="mb-3 inputFloating InputSeleted" value="" options={[]} />
+                    <InputSelected label="Unidad de medida*" className="mb-3 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
 
                 </Col>
                 <Col lg="2">
-                    <InputSelected label="Sub de medida*" className="mb-3 inputFloating InputSeleted" value="" options={[]} />
+                    <InputSelected label="Sub de medida*" className="mb-3 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Presentacion*" className="mb-12 inputFloating InputSeleted" />
+                    <InputSelected label="Presentacion*" className="mb-12 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
                 </Col>
                 <Col lg="2">
                     <InputFloating label="Valor unit con iva*" type="text" placeholder="" className="mb-6 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
@@ -60,25 +60,25 @@ export default function FormGoods() {
             </Row>
             <Row>
                 <Col lg="4">
-                    <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating" />
+                    <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating" value="" options={[]} />
+                    <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
 
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted" value="" options={[]} />
+                    <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
                 </Col>
             </Row>
             <Row className="mt-3">
                 <Col sm={4}>
-                    <InputSelected label="Programa*" className="mb-3 inputFloating" />
+                    <InputSelected label="Programa*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
                 </Col>
                 <Col sm={4}>
-                    <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" value="" options={[]} />
+                    <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
                 </Col>
                 <div className="col-lg-4 text-center">
-                    <Buttons variant="outline-info" label="Agregar bien/servicio" classStyle="mt-4 " />
+                    <Buttons variant="outline-info" label="Agregar bien/servicio" classStyle="mt-4 " onClick={() => { }} />
                 </div>
             </Row>
             <hr />

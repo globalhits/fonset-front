@@ -5,12 +5,14 @@ interface BottonsProps {
 	variant: string;
 	label: string;
 	classStyle?: string;
+	onClick: Function;
 }
 
-export default function Buttons({ variant, label, classStyle }: BottonsProps) {
+export default function Buttons({ variant, label, classStyle, onClick }: BottonsProps) {
+
 	return (
 		<>
-			<Button variant={variant} className={classStyle}> {label} </Button>
+			<Button variant={variant} className={classStyle} onClick={() => onClick()}> {label} </Button>
 		</>
 	);
 }
