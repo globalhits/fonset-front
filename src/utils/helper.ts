@@ -16,6 +16,16 @@ class Helper {
     setItemLocalStorage(item: string, data: any) {
         localStorage.setItem(item, JSON.stringify(data));
     }
+
+    getDateNow() {
+        const currentDate = new Date();
+
+        const formattedDate = currentDate.toISOString().slice(0, 10);
+
+        console.log("formattedDate", formattedDate);
+
+        return formattedDate;
+    }
 }
 
 

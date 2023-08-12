@@ -14,12 +14,13 @@ import Entities from "../../molecules/Invertion/infoEntities";
 import InputSelected from "../../atoms/selected/InputSelected";
 import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
-import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
-import { initialState } from "../../../redux/states/invertion/invertion.slice";
+
+import { RequestCooperativeDto } from "../../../models/cooperative/RequestCooperativeDto";
+import { initialStateFormCooperative } from "../../../redux/states/cooperation/cooperation.slice";
 
 export default function FormCooperative() {
 
-	const [dataFormInvertion, setDataFormInvertion] = useState<RequestInvertionDto>(initialState);
+	const [dataForm, setDataForm] = useState<RequestCooperativeDto>(initialStateFormCooperative);
 
 	const showConfirmationAlert = () => {
 		Swal.fire({
@@ -49,7 +50,7 @@ export default function FormCooperative() {
 							</Card.Title>
 						</Card.Header>
 						<Card.Body className="pt-3">
-							<OriginProject formData={dataFormInvertion} />
+							<OriginProject formData={dataForm} setFormData={setDataForm} />
 							<Tabs
 								defaultActiveKey="general"
 								transition={false}

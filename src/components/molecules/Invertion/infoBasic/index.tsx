@@ -11,7 +11,7 @@ import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import Entities from "../infoEntities";
 import { RequestInvertionDto } from "../../../../models/invertion/RequestInvertionDto";
-import { TypeProjectDto } from "../../../../models/invertion/TypeProjectDto";
+import { TypeProjectDto } from "../../../../models/general/TypeProjectDto";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { DependencySelector, fetchApiDependencies } from "../../../../redux/states/generals/dependency.slice";
 import { log } from "console";
@@ -120,7 +120,7 @@ const InfoBasic: React.FC<InfoBasicInterface> = ({ formData, setFormData }) => {
             <div className="row mt-4 p-2">
                 <div className="col-lg-3">
                     <div className="ContainerForm">
-                        <h5 className="title">Tipo de proyecto</h5>
+                        <h5 className="title">Tipo de proyecto <span className="text-red">*</span></h5>
                         <div className="mt-3">
                             <CheckBox name={"tecnicas"} label="Tecnicas" type="checkbox" value="tecnicas" setValueChange={(e: any) => setTypeProject("tecnicas", e)} checked={checkedTecnica} />
                             <CheckBox name={"tecnologias"} label="Tecnologicas" type="checkbox" value="tecnologias" setValueChange={(e: any) => setTypeProject("tecnologias", e)} checked={checkedTecnologia} />

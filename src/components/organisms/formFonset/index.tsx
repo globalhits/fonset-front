@@ -10,12 +10,12 @@ import FormDataGeneral from "../../molecules/fonset/dataGeneral/FormDataGeneral"
 import FormDescription from "../../molecules/fonset/description/FormDescription";
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
 import Buttons from "../../atoms/button/Buttons";
-import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
-import { initialState } from "../../../redux/states/invertion/invertion.slice";
+import { RequestFonsetDto } from "../../../models/fonset/RequestFonsetDto";
+import { initialStateFormFonset } from "../../../redux/states/fonset/fonset.slice";
 
 export default function FormFonset() {
 
-	const [dataFormInvertion, setDataFormInvertion] = useState<RequestInvertionDto>(initialState);
+	const [dataForm, setDataForm] = useState<RequestFonsetDto>(initialStateFormFonset);
 
 	return (
 		<div className="content container-fluid">
@@ -27,7 +27,7 @@ export default function FormFonset() {
 						</Card.Title>
 					</Card.Header>
 					<Card.Body className="pt-3">
-						<OriginProject formData={dataFormInvertion} />
+						<OriginProject formData={dataForm} setFormData={setDataForm} />
 						<Tabs
 							defaultActiveKey="general"
 							transition={false}

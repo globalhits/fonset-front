@@ -1,20 +1,15 @@
-import { TypeProjectDto } from "./TypeProjectDto";
-import { NationalEntityInvolvedDto } from "./NationalEntityInvolvedDto"
-import { TypeCoverageDto } from "./TypeCoverageDto"
-import { DependencyInvolvedDto } from "./DependencyInvolvedDto";
+import { TypeProjectDto } from "../general/TypeProjectDto";
+import { NationalEntityInvolvedDto } from "../general/NationalEntityInvolvedDto"
+import { TypeCoverageDto } from "../general/TypeCoverageDto"
+import { DependencyInvolvedDto } from "../general/DependencyInvolvedDto";
 import { PeopleDto } from "./PeopleDto";
-import { SpecificObjetiveDto } from "./SpecificObjetiveDto";
-import { Activity } from "./ActivityDto";
+import { SpecificObjetiveDto } from "../general/SpecificObjetiveDto";
+import { Activity } from "../general/ActivityDto";
+import { InfoSharedDto } from "../general/InfoSharedDto";
 
-export interface RequestInvertionDto {
-    PROY_CODIGO?: string;
-    PROY_NOMBRE?: string;
-    PROY_TIPO?: TypeProjectDto[];
+export interface RequestInvertionDto extends InfoSharedDto {
+
     PROY_DEPENDENCIA_RESPONSABLE?: string;
-    PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE?: string;
-    PROY_ENTIDAD_NACIONAL_INVOLUCRADA?: NationalEntityInvolvedDto[];
-    PROY_DEPENDENCIAS_INVOLUCRADAS?: DependencyInvolvedDto[];
-    PROY_COBERTURA?: TypeCoverageDto;
 
     //PROYECTO
     PROY_JUSTIFICACION_ANTECEDENTES?: string;
@@ -34,7 +29,5 @@ export interface RequestInvertionDto {
     PROY_ENTREGABLE_GENERAL?: string;
     PROY_DESCRIPCION_ENTREGABLE_GENERAL?: string;
 
-    // OBJETIVO
-    PROY_OBJETIVO_ESPECIFICO?: SpecificObjetiveDto[];
-    PROY_ACTIVIDADES?: Activity[];
+
 }
