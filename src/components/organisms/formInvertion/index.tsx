@@ -15,14 +15,14 @@ import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionD
 import Loader from "../../atoms/loader";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { initialState } from "../../../redux/states/invertion/invertion.slice";
+import { initialState, initialStateFormInvertion } from "../../../redux/states/invertion/invertion.slice";
 import { loadingSelector } from "../../../redux/states/generals/loading.slice";
 
 export default function FormInvertion() {
 
 	const { isLoading } = useAppSelector(loadingSelector);
 
-	const [dataFormInvertion, setDataFormInvertion] = useState<RequestInvertionDto>(initialState);
+	const [dataFormInvertion, setDataFormInvertion] = useState<RequestInvertionDto>(initialStateFormInvertion);
 
 	const dispatch = useAppDispatch();
 
@@ -42,7 +42,7 @@ export default function FormInvertion() {
 						</Card.Title>
 					</Card.Header>
 					<Card.Body className="pt-3">
-						<OriginProject formData={dataFormInvertion} />
+						<OriginProject formData={dataFormInvertion} setFormData={setDataFormInvertion} />
 						<Tabs
 							defaultActiveKey="infoBasic"
 							transition={false}

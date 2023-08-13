@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
-import { TypeCoverageDto } from "../../../models/invertion/TypeCoverageDto";
+import { TypeCoverageDto } from "../../../models/general/TypeCoverageDto";
+import helper from "../../../utils/helper";
 
 
 const covergateState: TypeCoverageDto = {
@@ -9,9 +10,10 @@ const covergateState: TypeCoverageDto = {
     cobertura: []
 }
 
-export const initialState: RequestInvertionDto = {
+export const initialStateFormInvertion: RequestInvertionDto = {
     PROY_CODIGO: "",
     PROY_NOMBRE: "",
+    PROY_FECHA: helper.getDateNow(),
     PROY_TIPO: [],
     PROY_DEPENDENCIA_RESPONSABLE: "",
     PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE: "",
@@ -40,6 +42,18 @@ export const initialState: RequestInvertionDto = {
     // OBJETIVO
     PROY_OBJETIVO_ESPECIFICO: [],
     PROY_ACTIVIDADES: [],
+}
+
+export interface InvertionState {
+    data: RequestInvertionDto;
+    status: string;
+    error: any;
+}
+
+export const initialState: InvertionState = {
+    data: initialStateFormInvertion,
+    error: "",
+    status: ""
 }
 
 const InvertionSlice = createSlice({

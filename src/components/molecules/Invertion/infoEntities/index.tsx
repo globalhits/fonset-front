@@ -8,7 +8,7 @@ const Entities = () => {
     return (
         <div className="row">
             <div className="col-lg-12">
-                <h4>Entidades</h4>
+                <h4>Entidades <span className="text-red">*</span></h4>
             </div>
             <div className="col-lg-12">
                 <Tab.Container id="left-tabs-example" defaultActiveKey="first">

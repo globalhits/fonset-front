@@ -9,29 +9,41 @@ interface InfoBasicProjectInterface {
 }
 
 const InfoBasicProject = ({ formData, setFormData }: InfoBasicProjectInterface) => {
+
+    const setValueByIndex = (index: any, value: any) => {
+        let updatedRequest: RequestInvertionDto = {};
+
+        updatedRequest = {
+            ...formData,
+            [index]: value
+        }
+
+        setFormData(updatedRequest);
+    }
+
     return (
         <div className="row">
             <h4>Justificación o antecedentes del proyecto</h4>
             <div className="row mt-4 mb-3">
                 <div className="col-lg-12">
-                    <InputFloating label="Digite la justificación" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
+                    <InputFloating name="PROY_JUSTIFICACION_ANTECEDENTES" label="Digite la justificación" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_JUSTIFICACION_ANTECEDENTES", value)} value={formData.PROY_JUSTIFICACION_ANTECEDENTES} />
                 </div>
             </div>
             <hr />
             <h4>Población objetivo</h4>
             <div className="row mt-3">
                 <div className="col-lg-12">
-                    <InputFloating label="Población afectada por el problema" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
+                    <InputFloating name="PROY_POBLACION_AFECTADA" label="Población afectada por el problema" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_POBLACION_AFECTADA", value)} value={formData.PROY_POBLACION_AFECTADA} />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-12">
-                    <InputFloating label="Población objeto de la intervención" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
+                    <InputFloating name="PROY_POBLACION_OBJETO" label="Población objeto de la intervención" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_POBLACION_OBJETO", value)} value={formData.PROY_POBLACION_OBJETO} />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-12">
-                    <InputFloating label="Caracteristicas demograficas de la población objetivo" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
+                    <InputFloating label="Caracteristicas demograficas de la población objetivo" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_CARACTERISTICAS_DEMOGRAFICAS", value)} value={formData.PROY_CARACTERISTICAS_DEMOGRAFICAS} />
                 </div>
             </div>
             <hr />

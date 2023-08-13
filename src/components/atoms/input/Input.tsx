@@ -11,16 +11,17 @@ interface InputProps {
     label: string;
     className: string;
     readOnly?: boolean;
+    disabled?: boolean;
     setValueChange: Function;
 }
 
-const InputFloating: React.FC<InputProps> = ({ id, name, value, type, placeholder, label, className, readOnly, setValueChange }) => {
+const InputFloating: React.FC<InputProps> = ({ id, name, value, type, placeholder, label, className, readOnly, disabled, setValueChange }) => {
 
 
     return (
         <div>
             <FloatingLabel label={label} className={className}>
-                <Form.Control id={id} name={name} type={type} placeholder={placeholder} readOnly={readOnly} onChange={(e) => setValueChange(e.target.value)} value={value != "" ? value : ""} />
+                <Form.Control id={id} name={name} type={type} placeholder={placeholder} disabled={disabled} readOnly={readOnly} onChange={(e) => setValueChange(e.target.value)} value={value != "" ? value : ""} />
             </FloatingLabel>
         </div>
     )
