@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Col, Row, Tab } from "react-bootstrap";
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
-import DocumentUpload from "../../upload/DocumentUpload";
 import "./ObjEspecificoCoop.scss"
 import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific";
 

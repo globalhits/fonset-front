@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { Col, Row, Table, Button } from "react-bootstrap";
-import Modal from 'react-bootstrap/Modal';
-import InputFloating from "../../../../atoms/input/Input";
-import InputSelected from "../../../../atoms/selected/InputSelected";
-import DocumentUpload from "../../../upload/DocumentUpload";
-import DetailsObjEspecific from "../viewDetailObjCoop/DetailsObjEspecific";
+import RegisterActivities from "../modals/RegisterActivity/RegisterActivity";
+import DetailsObjEspecific from "../modals/viewDetailObjCoop/DetailsObjEspecific";
+import ViewRegisterActivities from "../modals/ViewRegisterActivities/ViewRegisterActivities";
+import ViewUpload from "../modals/Adjuntos/ViewUpload";
+import {BsTrash3} from 'react-icons/bs'
 
 
 export const TableObjectiveSpecific = () => {
-    const [modalShow, setModalShow] = useState(false);
-    const [modalDetailShow, setModalDetailShow] = useState(false);
+    const [modalRegisterActivity, setModalRegisterActivity] = useState(false);
+    const [modalDetail, setModalDetail] = useState(false);
+    const [modalActivities, setModalActivities] = useState(false);
+    const [modalAdjuntos, setModalAdjuntos] = useState(false);
 
     return (
         <div className="row mt-5">
-            <div className="col-lg-12">
+            <Col sm={12}>
                 <Table className="table table-bordered table-condensed table-striped" style={{ zoom: "0.7" }}>
                     <thead>
                         <tr>
@@ -43,74 +45,35 @@ export const TableObjectiveSpecific = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <Button className="mb-8 col-lg-12" size="sm" variant="primary" onClick={() => setModalShow(true)}>Registro actividad</Button>
-                            <Button className="mb-8 col-lg-12" size="sm" variant="primary" onClick={() => setModalDetailShow(true)}>Ver detalle obj especifico</Button>
-                        </tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <Button className="mb-8 col-lg-2" size="sm" variant="primary" onClick={() => setModalRegisterActivity(true)}>Registro actividad</Button>
+                            <Button className="mb-8 col-lg-2" size="sm" variant="primary" onClick={() => setModalDetail(true)}>Ver detalle obj especifico</Button>
+                            <Button className="mb-8 col-lg-2" size="sm" variant="primary" onClick={() => setModalActivities(true)}>Ver registro actividades</Button>
+                            <Button className="mb-8 col-lg-2" size="sm" variant="primary" onClick={() => setModalAdjuntos(true)}>Ver doc. adjuntos</Button>
+                            <Button className="mb-8 col-lg-2" size="sm" variant="danger"><BsTrash3/></Button>
+                        </td>
                     </tbody>
                 </Table>
-            </div>
-            <DetailsObjEspecific show={modalDetailShow} onHide={() => setModalDetailShow(false)}/>
-
-            <div>
-                <Modal show={modalShow} onHide={() => setModalShow(false)} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Actividades y cronograma de los objetivos especificos</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Row className="mt-4">
-                            <div>
-                                <InputFloating label="Obj. especifico*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
-                            </div>
-
-                            <Col sm={6} >
-                                <InputSelected label="Tipo de actividad*" className="mb-3 InputSelect" options={[]} onChange={(value: any) => { }} value="" />
-                                <InputFloating label="Fecha esperada final*" type="date" className="mb-3 InputSelect" setValueChange={(value: string) => { }} value="" />
-                                <InputSelected label="Unidad responsable*" className="mb-3 InputSelect" options={[]} onChange={(value: any) => { }} value="" />
-                            </Col>
-                            <Col sm={6}>
-                                <InputFloating label="Actividad*" type="number" className="mb-3 inputFloatingModal " setValueChange={(value: string) => { }} value="" />
-                                <InputFloating label="Valor estimado*" type="number" className="mb-3 inputFloatingModal " setValueChange={(value: string) => { }} value="" />
-                                <InputFloating label="Nombre del adjunto*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
-                            </Col>
-                        </Row>
-                        
-                        <DocumentUpload />
-
-                        <div className="tableGoods">
-                            <div>
-                                <Table responsive hover>
-                                    <thead>
-                                        <tr className="campos" style={{ fontSize: "13px" }}>
-                                            <th>No.</th>
-                                            <th>Obj. especifico</th>
-                                            <th>Tipo actividad</th>
-                                            <th>Actividad</th>
-                                            <th>Valor estimado</th>
-                                            <th>Unidad responsable</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td><Button className="mb-8 col-lg-12" size="sm" variant="danger">Eliminar</Button></td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                            </div>
-                        </div>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button className="mb-8" variant="primary" size="sm">FINALIZAR REGISTRO DE ACTIVIDAD</Button>
-                    </Modal.Footer>
-                </Modal>
-            </div>
+            </Col>
+            <RegisterActivities show={modalRegisterActivity} onHide={() => setModalRegisterActivity(false)}/>
+            <DetailsObjEspecific show={modalDetail} onHide={() => setModalDetail(false)}/>
+            <ViewRegisterActivities show={modalActivities} onHide={() => setModalActivities(false)}/>
+            <ViewUpload show={modalAdjuntos} onHide={() => setModalAdjuntos(false)}/>
         </div>
 
     )

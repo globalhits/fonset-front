@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Col, Row, Tab } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-import InputFloating from "../../../../atoms/input/Input";
-import InputSelected from "../../../../atoms/selected/InputSelected";
+import InputFloating from "../../../../../atoms/input/Input";
+import InputSelected from "../../../../../atoms/selected/InputSelected";
 
 type ModalProps = {
     show: boolean;
