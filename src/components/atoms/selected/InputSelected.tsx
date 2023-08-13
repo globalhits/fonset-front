@@ -9,14 +9,16 @@ interface InputSelectedProps {
     className?: string;
     options?: any[];
     value?: string;
+    onChange: Function;
 }
 
-export default function InputSelected({ label, name, className, options, value }: InputSelectedProps) {
+export default function InputSelected({ label, name, className, options, value, onChange }: InputSelectedProps) {
     return (
         <FloatingLabel label={label} className='InputSelected'>
-            <Form.Select name={name} aria-label="Floating label select example" value={value}>
+            <Form.Select name={name} aria-label="Floating label select example" value={value} onChange={(e) => onChange(e.target.value)}>
+                <option value={""}>Seleccionar...</option>
                 {
-                    options?.map((option) => (<option key={option.id} value={option.id}>{option.text}</option>)
+                    options?.map((option, i) => (<option key={i} value={option.id}>{option.description}</option>)
                     )
                 }
             </Form.Select>

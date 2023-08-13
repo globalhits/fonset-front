@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 export default function FileUploader() {
 	const fileInputRef = useRef(null);
@@ -20,16 +20,14 @@ export default function FileUploader() {
 	return (
 		<Form>
 			<Form.Group controlId="fileInput">
-				<Form.Label>Selecciona un archivo</Form.Label>
 				<Form.Control
 					type="file"
 					ref={fileInputRef}
 					onChange={() => { }}
 				/>
 			</Form.Group>
-			<Button variant="primary" onClick={() => { }} disabled={false}>
-				Subir archivo
-			</Button>
+			<br />
+			<br />
 		</Form>
 	);
 };

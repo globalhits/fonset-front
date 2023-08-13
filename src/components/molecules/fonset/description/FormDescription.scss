@@ -4,3 +4,22 @@
     margin-top: 2rem !important;
     justify-content: space-between;
 }
+
+.content-pills {
+    display: flex;
+    flex-direction: row;
+}
+
+.width100 {
+    width: 100% !important;
+}
+
+.border-nav-pills {
+    // border: 1px beige solid !important;
+    padding: 0.9rem !important;
+    width: max-content !important;
+}
+
+// .area{
+//     margin-left: 200px;
+// }

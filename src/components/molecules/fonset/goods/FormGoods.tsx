@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import "./FormGoods.scss"
+import Buttons from "../../../atoms/button/Buttons";
+import TableListGoods from "./table/TableListGoods";
 
 export default function FormGoods() {
 
@@ -26,84 +28,61 @@ export default function FormGoods() {
     };
 
     return (
-        <div>
-            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-                <Row className="mt-3">
-                    <Col sm={4}>
-                        <InputSelected label="Categoria general*" className="mb-3 inputFloating" value="" options={[]}></InputSelected>
-                        <InputSelected label="Unidad de medida*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
-                        <InputFloating label="Valor unit con iva*" type="text" placeholder="" className="mb-6 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
-                        <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating" value="" options={[]}></InputSelected>
-                        <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
-                    </Col>
-                    <Col sm={4}>
-                        <InputSelected label="Categoria especifica*" className="mb-3 inputFloating" value="" options={[]}></InputSelected>
-                        <InputSelected label="Sub unidad de medida*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
-                        <InputFloating label="Cantidad*" type="text" placeholder="" className="mb-3 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
-                        <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted" value="" options={[]}></InputSelected>
-                        <Button className="mb-8 col-lg-16 agregar">AGREGAR</Button>
-                    </Col>
-                    <Col sm={4}>
-                        <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Presentacion*" className="mb-12 inputFloating InputSeleted"></InputSelected>
-                        <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating"></InputSelected>
-                        <InputSelected label="Programa*" className="mb-3 inputFloating"></InputSelected>
+        <>
+            <Row>
+                <Col lg="4">
+                    <InputSelected label="Categoria general*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
+                </Col>
+                <Col lg="4">
+                    <InputSelected label="Categoria especifica*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
+                </Col>
+                <Col lg="4">
+                    <InputSelected label="Nombre bien/Servicio*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
+                </Col>
+            </Row>
+            <Row>
+                <Col lg="2">
+                    <InputSelected label="Unidad de medida*" className="mb-3 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
 
-                    </Col>
-                </Row>
-                <Row className="mt-3">
-                    <Col sm={12}>
-                        <div className="tableGoods">
-                            <div>
-                                <Table responsive hover>
-                                    <thead>
-                                        <tr className="campos">
-                                            <th>Categoria general</th>
-                                            <th>Categoria especifica</th>
-                                            <th>Nombre bien/Servicio</th>
-                                            <th>Estado</th>
-                                            <th>Unidad de medida</th>
-                                            <th>Sub unidad de medida</th>
-                                            <th>Valor unit con iva</th>
-                                            <th>Cantidad</th>
-                                            <th>SubTotal</th>
-                                            <th>Obj. estrategico</th>
-                                            <th>Sub tema del Obj. estrategico</th>
-                                            <th>Acciones Objs. estrategicos</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                            </div>
+                </Col>
+                <Col lg="2">
+                    <InputSelected label="Sub de medida*" className="mb-3 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
+                </Col>
+                <Col lg="4">
+                    <InputSelected label="Presentacion*" className="mb-12 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
+                </Col>
+                <Col lg="2">
+                    <InputFloating label="Valor unit con iva*" type="text" placeholder="" className="mb-6 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
+                </Col>
+                <Col lg="2">
+                    <InputFloating label="Cantidad*" type="text" placeholder="" className="mb-3 InputSelected" setValueChange={(value: string) => { }} value=""></InputFloating>
+                </Col>
+            </Row>
+            <Row>
+                <Col lg="4">
+                    <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
+                </Col>
+                <Col lg="4">
+                    <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
 
-                        </div>
-                    </Col>
-                </Row>
-            </Tab.Container>
-
-            <Button className="mb-8 col-lg-16 btn-cerrar" variant="light" onClick={showConfirmationAlert}>CERRAR</Button>
-            <Button className="mb-8 col-lg-16 btn-guardar" variant="outline-primary">GUARDAR</Button>
-            <Button className="mb-8 col-lg-16 btn-finalizar" variant="primary">FINALIZAR</Button>
-
-
-        </div>
-
+                </Col>
+                <Col lg="4">
+                    <InputSelected label="Acciones Objs. estrategicos*" className="mb-3 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
+                </Col>
+            </Row>
+            <Row className="mt-3">
+                <Col sm={4}>
+                    <InputSelected label="Programa*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
+                </Col>
+                <Col sm={4}>
+                    <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
+                </Col>
+                <div className="col-lg-4 text-center">
+                    <Buttons variant="outline-info" label="Agregar bien/servicio" classStyle="mt-4 " onClick={() => { }} />
+                </div>
+            </Row>
+            <hr />
+            <TableListGoods />
+        </>
     )
 }

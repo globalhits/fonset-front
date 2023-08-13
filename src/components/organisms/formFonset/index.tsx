@@ -1,42 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 
 // --- Components libraries ---
-import { Tab, Tabs } from "react-bootstrap";
+import { Card, Container, Tab, Tabs } from "react-bootstrap";
 
 // --- Components project ---
 import OriginProject from "../../molecules/originProject";
 import FormDataGeneral from "../../molecules/fonset/dataGeneral/FormDataGeneral";
 import FormDescription from "../../molecules/fonset/description/FormDescription";
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
+import Buttons from "../../atoms/button/Buttons";
+import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
+import { initialState } from "../../../redux/states/invertion/invertion.slice";
 
 export default function FormFonset() {
+
+	const [dataFormInvertion, setDataFormInvertion] = useState<RequestInvertionDto>(initialState);
+
 	return (
 		<div className="content container-fluid">
-			<div className="content-header">
-				<h4 className="text">Formulario fonset</h4>
-			</div>
-			<div className="content container-fluid">
-				{/* Información de fonset */}
-				<Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" className="mb-3">
-					<Tab eventKey="home" title="INFORMACION DE PROYECTO">
-						<OriginProject />
-					</Tab>
+			<Container>
+				<Card>
+					<Card.Header>
+						<Card.Title as={"h4"}>
+							FORMULARIO FONSET
+						</Card.Title>
+					</Card.Header>
+					<Card.Body className="pt-3">
+						<OriginProject formData={dataFormInvertion} />
+						<Tabs
+							defaultActiveKey="general"
+							transition={false}
+							id="info-project"
+							className="mt-4 mb-3"
+						>
+							<Tab eventKey="general" title="DATOS GENERALES">
+								<FormDataGeneral />
+							</Tab>
 
-					<Tab eventKey="general" title="DATOS GENERALES">
-						<FormDataGeneral />
-					</Tab>
+							<Tab eventKey="description" title="DESCRIPCION">
+								<FormDescription />
+							</Tab>
 
-					<Tab eventKey="description" title="DESCRIPCION">
-						<FormDescription />
-					</Tab>
+							<Tab eventKey="goods" title="BIENES Y/O SERVICIOS">
+								<FormGoods />
+							</Tab>
 
-					<Tab eventKey="goods" title="BIENES">
-						<FormGoods />
-					</Tab>
+							<Tab eventKey="documents" title="DOCUMENTOS">
+							</Tab>
 
-				</Tabs>
-			</div>
+						</Tabs>
+						<hr />
+						<div className="row">
+							<div className="col-lg-6">
+								<Buttons variant="light" label="Cancelar" onClick={() => { }} />
+							</div>
+							<div className="col-lg-6 text-right">
+								<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => { }} />
+								<Buttons variant="outline-success" label="Finalizar" onClick={() => { }} />
+							</div>
+						</div>
+					</Card.Body>
+				</Card>
+			</Container>
 		</div>
 	);
 }
