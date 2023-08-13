@@ -37,8 +37,6 @@ const InfoBasic: React.FC<InfoBasicInterface> = ({ formData, setFormData }) => {
 
     const [checkedHumanas, setCheckedHumanas] = useState(false);
 
-    const [listDependency, setListDependency] = useState(dependencies);
-
     const checkInputs = () => {
         if (formData.PROY_TIPO !== null) {
             formData.PROY_TIPO?.forEach(item => {
