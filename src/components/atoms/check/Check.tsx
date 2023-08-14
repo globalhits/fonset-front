@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { FormCheckType } from 'react-bootstrap/esm/FormCheck';
 
 interface CheckProps {
+	id?: string;
 	label: string;
 	name?: string;
 	type: FormCheckType;
@@ -12,12 +13,12 @@ interface CheckProps {
 	checked?: boolean;
 }
 
-export default function CheckBox({ label, name, type, className, value, setValueChange, checked }: CheckProps) {
+export default function CheckBox({ label, id, name, type, className, value, setValueChange, checked }: CheckProps) {
 
 	return (
 		<Form>
 			<div className="mb-3">
-				<Form.Check type={type} name={name} label={label} className={className} value={value} onChange={(e) => { setValueChange(e) }} checked={checked} />
+				<Form.Check type={type} id={id} name={name} label={label} className={className} value={value} onChange={(e) => { setValueChange(e) }} checked={checked} />
 			</div>
 		</Form>
 	);

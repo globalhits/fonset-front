@@ -24,8 +24,8 @@ export interface RequestInvertionDto extends InfoSharedDto {
     PROY_INDICADOR_GENERAL?: string;
     PROY_LINEA_BASE_GENERAL?: string;
     PROY_META_GENERAL?: string;
-    PROY_MES_INICIO_GENERAL?: Date;
-    PROY_MES_FINAL_GENERAL?: Date;
+    PROY_MES_INICIO_GENERAL?: string;
+    PROY_MES_FINAL_GENERAL?: string;
     PROY_ENTREGABLE_GENERAL?: string;
     PROY_DESCRIPCION_ENTREGABLE_GENERAL?: string;
 

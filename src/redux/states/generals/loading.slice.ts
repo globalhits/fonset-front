@@ -25,8 +25,8 @@ const LoadingSlice = createSlice({
     }
 })
 
-export const { setLoading, setLoadingError } = LoadingSlice.actions
+export const { setLoading, setLoadingError } = LoadingSlice.actions;
 
-export const loadingSelector = (state: RootState) => state.loading
+export const loadingSelector = (state: RootState) => state.loading;
 
 export default LoadingSlice.reducer;

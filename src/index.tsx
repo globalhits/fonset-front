@@ -7,8 +7,6 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// Carga las variables de entorno según el entorno actual
-
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
 );
