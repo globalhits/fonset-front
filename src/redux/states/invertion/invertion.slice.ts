@@ -34,8 +34,8 @@ export const initialStateFormInvertion: RequestInvertionDto = {
     PROY_INDICADOR_GENERAL: "",
     PROY_LINEA_BASE_GENERAL: "",
     PROY_META_GENERAL: "",
-    PROY_MES_INICIO_GENERAL: new Date(),
-    PROY_MES_FINAL_GENERAL: new Date(),
+    PROY_MES_INICIO_GENERAL: helper.getDateNow(),
+    PROY_MES_FINAL_GENERAL: helper.getDateNow(),
     PROY_ENTREGABLE_GENERAL: "",
     PROY_DESCRIPCION_ENTREGABLE_GENERAL: "",
 

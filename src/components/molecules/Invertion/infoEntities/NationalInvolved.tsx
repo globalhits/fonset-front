@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Table } from "react-bootstrap";
 import InputFloating from "../../../atoms/input/Input";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
@@ -6,6 +6,7 @@ import { InvertionSelector, setDataInvertion } from "../../../../redux/states/in
 import { RequestInvertionDto } from "../../../../models/invertion/RequestInvertionDto";
 import Buttons from "../../../atoms/button/Buttons";
 import Swal from "sweetalert2";
+import { NationalEntityInvolvedDto } from "../../../../models/general/NationalEntityInvolvedDto";
 
 const NationalInvolved = () => {
 
@@ -13,46 +14,50 @@ const NationalInvolved = () => {
 
     const [nameEntity, setNameEntity] = useState("");
 
-    const { data } = useAppSelector(InvertionSelector);
+    const [error, setError] = useState("");
 
+    const { data } = useAppSelector(InvertionSelector);
 
     const addEntity = async (itemDescription: any) => {
 
-        let listEntity = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA ? data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA : [];
-
-        let findInfo = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.find(item => item.descripcion == itemDescription);
-
-        if (!findInfo) {
-
-            const newItem = [...listEntity, { id: null, description: itemDescription }]
-            let newData = {
-                ...data,
-                PROY_ENTIDAD_NACIONAL_INVOLUCRADA: newItem
-            }
-
-            await dispatch(setDataInvertion(newData))
-
-            return true;
+        if (itemDescription.trim() === '') {
+            setError('El valor no puede estar vacío.');
+            return;
         }
-        //alert
-        Swal.fire({
-            title: 'Error',
-            text: 'Este item ya existe',
-            icon: 'error',
-            allowOutsideClick: false,
-            confirmButtonText: 'OK',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Aquí puedes agregar el código para cerrar la ventana o realizar alguna acción adicional
-                console.log('La ventana se cerrará');
-            }
-        });
-        return false;
+
+        console.log("input:", itemDescription.trim());
+
+        let listEntity: NationalEntityInvolvedDto[] = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA ? data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA : [];
+
+        let findInfo = listEntity.filter((item: NationalEntityInvolvedDto) => item.descripcion == itemDescription.trim());
+
+        console.log("findInfo:", findInfo);
+
+        if (findInfo && findInfo.length > 0) {
+
+            console.log("existe:", findInfo);
+            //alert
+            setError('El valor ya existe.');
+            return false;
+        }
+
+        const newItem = [...listEntity, { id: null, description: itemDescription }]
+        let newData = {
+            ...data,
+            PROY_ENTIDAD_NACIONAL_INVOLUCRADA: newItem
+        }
+
+        await dispatch(setDataInvertion(newData))
+
+        setError("");
+        setNameEntity("");
+
     }
 
-    const deleteEntity = async (index: any) => {
+    const deleteEntity = async (description: any) => {
+        console.log("delete value", description);
 
-        let newList = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.findIndex(indexItem => indexItem == index);
+        let newList = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.filter(indexItem => indexItem.descripcion !== description);
 
         console.log("new List", newList);
 
@@ -72,6 +77,11 @@ const NationalInvolved = () => {
                 </div>
                 <div className="col-lg-2">
                     <Button className="mt-2 mb-2" variant="warning" onClick={() => addEntity(nameEntity)}>+</Button>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-lg-12">
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
                 </div>
             </div>
 
