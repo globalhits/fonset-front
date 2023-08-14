@@ -9,14 +9,18 @@ import "./index.scss";
 import CheckBox from "../../../atoms/check/Check";
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
-import Entities from "../infoEntities";
+import Entities from "../../Invertion/infoEntities";
 import { RequestInvertionDto } from "../../../../models/invertion/RequestInvertionDto";
 import { TypeProjectDto } from "../../../../models/general/TypeProjectDto";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { DependencySelector, fetchApiDependencies } from "../../../../redux/states/generals/dependency.slice";
 import { InvertionSelector, setDataInvertion } from "../../../../redux/states/invertion/invertion.slice";
 
-const InfoBasic: React.FC<any> = ({ }) => {
+interface infoBasicInterface{
+    type?: string,
+}
+
+const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
 
     const dispatch = useAppDispatch();
 
@@ -122,9 +126,15 @@ const InfoBasic: React.FC<any> = ({ }) => {
                     </div>
                 </div>
                 <div className="col-lg-9">
-                    <InputFloating name="dependencia-responsable" label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" setValueChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_RESPONSABLE} />
-                    <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} />
-                </div>
+                    {type !== "cooperative" ? (
+                        <>
+                            <InputFloating name="dependencia-responsable" label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" setValueChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_RESPONSABLE} />
+                            <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} />
+                        </>
+                    ) : (
+                        <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} />
+                    )} 
+                    </div>
             </div>
             <Entities />
         </>

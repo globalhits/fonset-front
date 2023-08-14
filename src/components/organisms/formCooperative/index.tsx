@@ -11,8 +11,6 @@ import InputSelected from "../../atoms/selected/InputSelected";
 import InputFloating from "../../atoms/input/Input";
 import Buttons from "../../atoms/button/Buttons";
 
-import FormDataGeneralCoop from "../../molecules/cooperation/dataGeneralCoop/FormDataGeneralCoop";
-import Entities from "../../molecules/Invertion/infoEntities";
 import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
 import { RequestCooperativeDto } from "../../../models/cooperative/RequestCooperativeDto";
@@ -22,6 +20,7 @@ import Loader from "../../atoms/loader";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { initialStateFormCooperative } from "../../../redux/states/cooperation/cooperation.slice";
 import { loadingSelector } from "../../../redux/states/generals/loading.slice";
+import InfoBasic from "../../molecules/general/infoBasic";
 
 
 export default function FormCooperative() {
@@ -75,8 +74,8 @@ export default function FormCooperative() {
 								className="mt-4 mb-3"
 							>
 								<Tab eventKey="general" title="DATOS GENERALES">
-									<FormDataGeneralCoop formData={dataForm} setFormData={(data: RequestCooperativeDto) => setDataForm(data)}/>
-									<Entities />
+									{/* <FormDataGeneralCoop formData={dataForm} setFormData={(data: RequestCooperativeDto) => setDataForm(data)}/> */}
+									<InfoBasic type="cooperative"/>
 									<div className="row">
 										<div className="col-lg-6">
 											<InputSelected label="Pais coperante que podria financiar el proyecto" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
