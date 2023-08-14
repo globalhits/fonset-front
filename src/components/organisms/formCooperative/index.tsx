@@ -7,20 +7,36 @@ import Swal from 'sweetalert2';
 
 // --- Components project ---
 import OriginProject from "../../molecules/originProject";
+import InputSelected from "../../atoms/selected/InputSelected";
 import InputFloating from "../../atoms/input/Input";
 import Buttons from "../../atoms/button/Buttons";
+
 import FormDataGeneralCoop from "../../molecules/cooperation/dataGeneralCoop/FormDataGeneralCoop";
 import Entities from "../../molecules/Invertion/infoEntities";
-import InputSelected from "../../atoms/selected/InputSelected";
 import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
-
 import { RequestCooperativeDto } from "../../../models/cooperative/RequestCooperativeDto";
+
+import Loader from "../../atoms/loader";
+
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { initialStateFormCooperative } from "../../../redux/states/cooperation/cooperation.slice";
+import { loadingSelector } from "../../../redux/states/generals/loading.slice";
+
 
 export default function FormCooperative() {
 
+	const { isLoading } = useAppSelector(loadingSelector);
+
 	const [dataForm, setDataForm] = useState<RequestCooperativeDto>(initialStateFormCooperative);
+
+	const dispatch = useAppDispatch();
+
+	if (isLoading) return <Loader />;
+
+	const saveForm = () => {
+		console.log("guardar form", dataForm);
+	}
 
 	const showConfirmationAlert = () => {
 		Swal.fire({
@@ -39,6 +55,7 @@ export default function FormCooperative() {
 			}
 		});
 	};
+
 	return (
 		<>
 			<div className="content container-fluid">
@@ -58,7 +75,7 @@ export default function FormCooperative() {
 								className="mt-4 mb-3"
 							>
 								<Tab eventKey="general" title="DATOS GENERALES">
-									<FormDataGeneralCoop />
+									<FormDataGeneralCoop formData={dataForm} setFormData={(data: RequestCooperativeDto) => setDataForm(data)}/>
 									<Entities />
 									<div className="row">
 										<div className="col-lg-6">
@@ -71,11 +88,11 @@ export default function FormCooperative() {
 								</Tab>
 
 								<Tab eventKey="obj_general" title="OBJ. GENERAL">
-									<FormObjGeneralCoop />
+									<FormObjGeneralCoop formData={dataForm} setFormData={(data: RequestCooperativeDto) => setDataForm(data)}/>
 								</Tab>
 
 								<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-									<FormObjEspecificoCoop />
+									<FormObjEspecificoCoop formData={dataForm} setFormData={(data: RequestCooperativeDto) => setDataForm(data)}/>
 								</Tab>
 							</Tabs>
 
@@ -85,8 +102,8 @@ export default function FormCooperative() {
 									<Button variant="light" onClick={showConfirmationAlert}>Cancelar</Button>
 								</div>
 								<div className="col-lg-6 text-right">
-									<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => { }} />
-									<Buttons variant="outline-success" label="Finalizar" onClick={() => { }} />
+									<Buttons variant="primary" label="Guardar" classStyle="mr-3"  onClick={() => saveForm()} />
+									<Buttons variant="outline-success" label="Finalizar"  onClick={() => saveForm()} />
 								</div>
 							</div>
 						</Card.Body>

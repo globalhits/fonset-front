@@ -1,8 +1,14 @@
 import React from "react";
 import InputFloating from "../../../atoms/input/Input";
 import TextArea from "../../../atoms/area/TextArea";
+import { RequestCooperativeDto } from "../../../../models/cooperative/RequestCooperativeDto";
 
-export default function FormObjGeneralCoop() {
+interface ObjGeneralCoopInterface {
+    formData: RequestCooperativeDto,
+    setFormData: Function
+}
+
+const FormObjGeneralCoop = ({ formData, setFormData }: ObjGeneralCoopInterface) => {
 
     return (
         <>
@@ -31,3 +37,5 @@ export default function FormObjGeneralCoop() {
         </>
     )
 }
+
+export default FormObjGeneralCoop

@@ -4,8 +4,14 @@ import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import "./ObjEspecificoCoop.scss"
 import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific";
+import { RequestCooperativeDto } from "../../../../models/cooperative/RequestCooperativeDto";
 
-export default function FormObjEspecificoCoop() {
+interface ObjEspecificoCoopInterface {
+    formData: RequestCooperativeDto,
+    setFormData: Function
+}
+
+const FormObjEspecificoCoop = ({ formData, setFormData }: ObjEspecificoCoopInterface) => {
 
     return (
         <div>
@@ -42,3 +48,5 @@ export default function FormObjEspecificoCoop() {
         </div>
     )
 }
+
+export default FormObjEspecificoCoop;
