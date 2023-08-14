@@ -7,7 +7,7 @@ class DepartamentService {
 
     private pathListDepartament = config.pathListDepartament;
 
-    async getAll(): Promise<DepartamentDto[]> {
+    async getAll() {
         try {
             const response = await fetch(`${this.apiGenerals}/${this.pathListDepartament}`);
             const data = await response.json();

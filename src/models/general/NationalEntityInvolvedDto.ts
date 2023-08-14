@@ -1,4 +1,4 @@
 export interface NationalEntityInvolvedDto {
-    id: number;
+    id?: number;
     descripcion: string;
 }
