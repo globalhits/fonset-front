@@ -61,7 +61,7 @@ const InvertionSlice = createSlice({
     initialState,
     reducers: {
         setDataInvertion: (state, { payload }: PayloadAction<any>) => {
-            state = payload;
+            state.data = payload;
         }
     }
 });

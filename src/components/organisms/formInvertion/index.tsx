@@ -32,6 +32,10 @@ export default function FormInvertion() {
 		console.log("guardar form", dataFormInvertion);
 	}
 
+	const updateDate = (data: RequestInvertionDto) => {
+
+	}
+
 	return (
 		<div className="content container-fluid">
 			<Container>
