@@ -2,23 +2,24 @@ import { Table } from "react-bootstrap"
 import InputFloating from "../../../../atoms/input/Input"
 import Buttons from "../../../../atoms/button/Buttons";
 import { RequestInvertionDto } from "../../../../../models/invertion/RequestInvertionDto";
+import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
+import { InvertionSelector, setDataInvertion } from "../../../../../redux/states/invertion/invertion.slice";
 
-interface InfoBasicProjectInterface {
-    formData: RequestInvertionDto,
-    setFormData: Function
-}
+const InfoBasicProject = () => {
 
-const InfoBasicProject = ({ formData, setFormData }: InfoBasicProjectInterface) => {
+    const dispatch = useAppDispatch();
+
+    const { data } = useAppSelector(InvertionSelector)
 
     const setValueByIndex = (index: any, value: any) => {
         let updatedRequest: RequestInvertionDto = {};
 
         updatedRequest = {
-            ...formData,
+            ...data,
             [index]: value
         }
 
-        setFormData(updatedRequest);
+        dispatch(setDataInvertion(updatedRequest));
     }
 
     return (
@@ -26,24 +27,24 @@ const InfoBasicProject = ({ formData, setFormData }: InfoBasicProjectInterface) 
             <h4>Justificación o antecedentes del proyecto</h4>
             <div className="row mt-4 mb-3">
                 <div className="col-lg-12">
-                    <InputFloating name="PROY_JUSTIFICACION_ANTECEDENTES" label="Digite la justificación" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_JUSTIFICACION_ANTECEDENTES", value)} value={formData.PROY_JUSTIFICACION_ANTECEDENTES} />
+                    <InputFloating name="PROY_JUSTIFICACION_ANTECEDENTES" label="Digite la justificación" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_JUSTIFICACION_ANTECEDENTES", value)} value={data.PROY_JUSTIFICACION_ANTECEDENTES} />
                 </div>
             </div>
             <hr />
             <h4>Población objetivo</h4>
             <div className="row mt-3">
                 <div className="col-lg-12">
-                    <InputFloating name="PROY_POBLACION_AFECTADA" label="Población afectada por el problema" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_POBLACION_AFECTADA", value)} value={formData.PROY_POBLACION_AFECTADA} />
+                    <InputFloating name="PROY_POBLACION_AFECTADA" label="Población afectada por el problema" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_POBLACION_AFECTADA", value)} value={data.PROY_POBLACION_AFECTADA} />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-12">
-                    <InputFloating name="PROY_POBLACION_OBJETO" label="Población objeto de la intervención" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_POBLACION_OBJETO", value)} value={formData.PROY_POBLACION_OBJETO} />
+                    <InputFloating name="PROY_POBLACION_OBJETO" label="Población objeto de la intervención" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_POBLACION_OBJETO", value)} value={data.PROY_POBLACION_OBJETO} />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-12">
-                    <InputFloating label="Caracteristicas demograficas de la población objetivo" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_CARACTERISTICAS_DEMOGRAFICAS", value)} value={formData.PROY_CARACTERISTICAS_DEMOGRAFICAS} />
+                    <InputFloating label="Caracteristicas demograficas de la población objetivo" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_CARACTERISTICAS_DEMOGRAFICAS", value)} value={data.PROY_CARACTERISTICAS_DEMOGRAFICAS} />
                 </div>
             </div>
             <hr />

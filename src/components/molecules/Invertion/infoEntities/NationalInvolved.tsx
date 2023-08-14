@@ -2,10 +2,8 @@ import { useState, useEffect } from "react";
 import { Button, Table } from "react-bootstrap";
 import InputFloating from "../../../atoms/input/Input";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import { InvertionSelector, setDataInvertion } from "../../../../redux/states/invertion/invertion.slice";
-import { RequestInvertionDto } from "../../../../models/invertion/RequestInvertionDto";
+import { InvertionSelector, setEntityRelation } from "../../../../redux/states/invertion/invertion.slice";
 import Buttons from "../../../atoms/button/Buttons";
-import Swal from "sweetalert2";
 import { NationalEntityInvolvedDto } from "../../../../models/general/NationalEntityInvolvedDto";
 
 const NationalInvolved = () => {
@@ -18,55 +16,38 @@ const NationalInvolved = () => {
 
     const { data } = useAppSelector(InvertionSelector);
 
-    const addEntity = async (itemDescription: any) => {
+    const addItem = async (itemDescription: any) => {
 
         if (itemDescription.trim() === '') {
             setError('El valor no puede estar vacío.');
             return;
         }
 
-        console.log("input:", itemDescription.trim());
-
         let listEntity: NationalEntityInvolvedDto[] = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA ? data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA : [];
 
-        let findInfo = listEntity.filter((item: NationalEntityInvolvedDto) => item.descripcion == itemDescription.trim());
+        let findInfo = await listEntity.filter((item: any) => item.descripcion == itemDescription);
 
+        console.log("findInfo:", findInfo);
         console.log("findInfo:", findInfo);
 
         if (findInfo && findInfo.length > 0) {
-
-            console.log("existe:", findInfo);
-            //alert
             setError('El valor ya existe.');
             return false;
         }
 
-        const newItem = [...listEntity, { id: null, description: itemDescription }]
-        let newData = {
-            ...data,
-            PROY_ENTIDAD_NACIONAL_INVOLUCRADA: newItem
-        }
+        const newItem = [...listEntity, { id: null, descripcion: itemDescription }]
 
-        await dispatch(setDataInvertion(newData))
+        dispatch(setEntityRelation(newItem));
 
         setError("");
         setNameEntity("");
-
     }
 
-    const deleteEntity = async (description: any) => {
-        console.log("delete value", description);
+    const deleteItem = async (descripcion: string, index: number) => {
 
-        let newList = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.filter(indexItem => indexItem.descripcion !== description);
+        let newList = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.filter((item: any) => item.descripcion !== descripcion);
 
-        console.log("new List", newList);
-
-        let newData = {
-            ...data,
-            PROY_ENTIDAD_NACIONAL_INVOLUCRADA: newList
-        }
-
-        await dispatch(setDataInvertion(newData))
+        dispatch(setEntityRelation(newList));
     }
 
     return (
@@ -76,7 +57,7 @@ const NationalInvolved = () => {
                     <InputFloating label="Nombre entidad nacional" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setNameEntity(value)} value={nameEntity} />
                 </div>
                 <div className="col-lg-2">
-                    <Button className="mt-2 mb-2" variant="warning" onClick={() => addEntity(nameEntity)}>+</Button>
+                    <Button className="mt-2 mb-2" variant="warning" onClick={() => addItem(nameEntity)}>+</Button>
                 </div>
             </div>
             <div className="row">
@@ -94,11 +75,11 @@ const NationalInvolved = () => {
                 </thead>
                 <tbody>
                     {
-                        data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.map((item: any, index: number) => (
+                        data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.map((item: NationalEntityInvolvedDto, index: number) => (
                             <tr key={index}>
-                                <td width={"80%"}>{item.description}</td>
+                                <td width={"80%"}>{item.descripcion}</td>
                                 <td width={"20%"} className="text-center">
-                                    <Buttons size="xs" icon="trash3-fill" variant="danger" key={index} onClick={() => deleteEntity(item.description)} />
+                                    <Buttons size="xs" icon="trash3-fill" variant="danger" key={index} onClick={() => deleteItem(item.descripcion, index)} />
                                 </td>
                             </tr>
                         ))

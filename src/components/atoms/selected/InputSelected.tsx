@@ -10,12 +10,13 @@ interface InputSelectedProps {
     options?: any[];
     value?: string;
     onChange: Function;
+    disabled?: boolean;
 }
 
-export default function InputSelected({ label, name, className, options, value, onChange }: InputSelectedProps) {
+export default function InputSelected({ label, name, className, options, value, onChange, disabled }: InputSelectedProps) {
     return (
         <FloatingLabel label={label} className='InputSelected'>
-            <Form.Select name={name} aria-label="Floating label select example" value={value} onChange={(e) => onChange(e.target.value)}>
+            <Form.Select name={name} aria-label="Floating label select example" value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled}>
                 <option value={""}>Seleccionar...</option>
                 {
                     options?.map((option, i) => (<option key={i} value={option.id}>{option.description}</option>)
