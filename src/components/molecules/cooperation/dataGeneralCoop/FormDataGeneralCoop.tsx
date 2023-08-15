@@ -3,7 +3,7 @@ import InputSelected from "../../../atoms/selected/InputSelected";
 import CheckBox from "../../../atoms/check/Check";
 import "./FormDataGeneralCoop.scss"
 
-export default function FormDataGeneralCoop() {
+export default function FormDataGeneralCoop({ formData, setFormData }) {
     return (
         <div className="row">
             <div className="col-lg-4" style={{ display: "flex", justifyContent: "space-around" }}>

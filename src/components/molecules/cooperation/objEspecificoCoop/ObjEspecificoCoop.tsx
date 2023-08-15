@@ -5,7 +5,7 @@ import InputSelected from "../../../atoms/selected/InputSelected";
 import "./ObjEspecificoCoop.scss"
 import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific";
 
-export default function FormObjEspecificoCoop() {
+export default function FormObjEspecificoCoop({ formData, setFormData }) {
 
     return (
         <div>
