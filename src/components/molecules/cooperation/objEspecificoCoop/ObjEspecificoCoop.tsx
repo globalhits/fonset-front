@@ -10,7 +10,7 @@ import { CooperativeSelector, setDataCooperative } from "../../../../redux/state
 
 import "./ObjEspecificoCoop.scss"
 
-interface ObjEspecificoCoopInterface {
+interface ObjEspecificoCoopInterface { 
     formData: RequestCooperativeDto,
     setFormData: Function
 }
@@ -41,22 +41,21 @@ const FormObjEspecificoCoop = ({ formData, setFormData }: ObjEspecificoCoopInter
 
     const [programs, setPrograms] = useState([]);
 
+    
+
     const dispatch = useAppDispatch();
 
     const { data } = useAppSelector(CooperativeSelector);
 
 
-
-    const setValueByIndex = (index: any, value: any) => {
-/*         let updatedRequest: RequestCooperativeDto = {};
-
-        updatedRequest = {
+    const setValueByIndex = (index: keyof RequestCooperativeDto, value: any) => {
+        let updatedRequest: RequestCooperativeDto = {
             ...data,
-            [index]: value
-        }
-
-        dispatch(setDataCooperative(updatedRequest)); */
-    }
+            [index]: value,
+        };
+    
+        dispatch(setDataCooperative(updatedRequest));
+    };
 
     const addItem = () => {
 
@@ -66,17 +65,16 @@ const FormObjEspecificoCoop = ({ formData, setFormData }: ObjEspecificoCoopInter
         <div>
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                 <Row className="mt-3">
-                    <div className="col-lg-12">
-                        <InputFloating label="Justificación o antecedentes del proyecto" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" />
-                    </div>
-                    <Col sm={4}>
-                        <InputFloating name="descripción" label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
-                        <InputFloating name="mes_inicial" label="Fecha esperada inicio*" type="date" placeholder="" className="mb-3 col-lg-13" setValueChange={(value: string) => { }} value="" />
-                        <InputSelected label="Categoria especifica*" className="mb-3 inputFloating" options={categoriesSpecifies} onChange={(value: any) => setValueByIndex("", value)} value="" />
-                        <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating" options={subOjectiveStrategies} onChange={(value: any) => setValueByIndex("", value)} value="" />
+                    <Row sm={12}>
+                        <InputFloating name="PRCI_JUSTIFICACION" label="Justificación o antecedentes del proyecto" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PRCI_JUSTIFICACION", value)} value={data.PRCI_JUSTIFICACION}  />
+                    </Row>
+                    {/* <Col sm={4}>
+                        <InputFloating name="descripción" label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => setValueByIndex("descripción", value)} value={data.descripción}  />
+                        <InputFloating name="mes_inicial" label="Fecha esperada inicio*" type="date" placeholder="" className="mb-3 col-lg-13" setValueChange={(value: string) => setValueByIndex("mes_inicial", value)} value={data.mes_inicial}  />
+                        <InputSelected label="Categoria especifica*" className="mb-3 inputFloating" options={categoriesSpecifies} onChange={(value: any) => setValueByIndex(categoriesSpecifies, value)} value="" />
+                        <InputSelected label="Sub tema del Obj. estrategico*" className="mb-3 inputFloating" options={subOjectiveStrategies} onChange={(value: any) => setValueByIndex(subtema_objetivo_estrategico, value)} value="" />
                         <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" options={programs} onChange={(value: any) => setValueByIndex("", value)} value="" />
-                    </Col>
-
+                    </Col> 
                     <Col sm={4}>
                         <InputFloating name="indicador" label="Indicador cuantitativo o cualitativo*" type="text" placeholder="" className="mb-3 inputFloating " setValueChange={(value: string) => { }} value="" />
                         <InputFloating name="mes_final" label="Fecha esperada final*" type="date" placeholder="" className="mb-3 col-lg-13 " setValueChange={(value: string) => { }} value="" />
@@ -89,7 +87,7 @@ const FormObjEspecificoCoop = ({ formData, setFormData }: ObjEspecificoCoopInter
                         <InputSelected label="Obj. estrategico del direccionamiento*" className="mb-3 inputFloating" options={objetiveStrategies} onChange={(value: any)  => setValueByIndex("", value)} value="" />
                         <InputSelected label="Programa*" className="mb-3 inputFloating" options={programs} onChange={(value: any) => setValueByIndex("", value)} value="" />
                         <Button className=" col-lg-8 agregar" variant="outline-info">AGREGAR OBJETIVO ESPECIFIVO</Button>
-                    </Col>
+                    </Col>*/}
                 </Row>
 
                 <TableObjectiveSpecific />

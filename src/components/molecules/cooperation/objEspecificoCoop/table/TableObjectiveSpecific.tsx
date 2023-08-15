@@ -14,7 +14,7 @@ export const TableObjectiveSpecific = () => {
     const [modalAdjuntos, setModalAdjuntos] = useState(false);
 
     return (
-        <div className="row mt-5">
+        <Row className="row mt-5">
             <Col sm={12}>
                 <Table className="table table-bordered table-condensed table-striped" style={{ zoom: "0.7" }}>
                     <thead>
@@ -74,7 +74,7 @@ export const TableObjectiveSpecific = () => {
             <DetailsObjEspecific show={modalDetail} onHide={() => setModalDetail(false)}/>
             <ViewRegisterActivities show={modalActivities} onHide={() => setModalActivities(false)}/>
             <ViewUpload show={modalAdjuntos} onHide={() => setModalAdjuntos(false)}/>
-        </div>
+        </Row>
 
     )
 }

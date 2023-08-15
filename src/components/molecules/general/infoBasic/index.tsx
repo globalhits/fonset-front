@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import {Container, Col, Row } from "react-bootstrap";
 import "./index.scss";
 
 // --- Components Libraries ---
@@ -10,6 +10,7 @@ import CheckBox from "../../../atoms/check/Check";
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import Entities from "../../Invertion/infoEntities";
+
 import { RequestInvertionDto } from "../../../../models/invertion/RequestInvertionDto";
 import { TypeProjectDto } from "../../../../models/general/TypeProjectDto";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
@@ -114,18 +115,18 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
 
     return (
         <>
-            <div className="row mt-4 p-2">
-                <div className="col-lg-3">
-                    <div className="ContainerForm">
+            <Row className="row mt-4 p-2">
+                <Col className="col-lg-3">
+                    <Container className="ContainerForm">
                         <h5 className="title">Tipo de proyecto <span className="text-red">*</span></h5>
-                        <div className="mt-3">
+                        <Col className="mt-3">
                             <CheckBox name={"tecnicas"} label="Tecnicas" type="checkbox" value="tecnicas" setValueChange={(e: any) => setTypeProject("tecnicas", e)} checked={checkedTecnica} />
                             <CheckBox name={"tecnologias"} label="Tecnologicas" type="checkbox" value="tecnologias" setValueChange={(e: any) => setTypeProject("tecnologias", e)} checked={checkedTecnologia} />
                             <CheckBox name={"humanas"} label="Humanas" type="checkbox" value="humanas" setValueChange={(e: any) => setTypeProject("humanas", e)} checked={checkedHumanas} />
-                        </div>
-                    </div>
-                </div>
-                <div className="col-lg-9">
+                        </Col>
+                    </Container>
+                </Col>
+                <Col className="col-lg-9">
                     {type !== "cooperative" ? (
                         <>
                             <InputFloating name="dependencia-responsable" label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" setValueChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_RESPONSABLE} />
@@ -134,8 +135,8 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
                     ) : (
                         <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} />
                     )} 
-                    </div>
-            </div>
+                    </Col>
+            </Row>
             <Entities />
         </>
     )

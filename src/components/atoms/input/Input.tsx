@@ -11,7 +11,7 @@ interface InputProps {
     label: string;
     className: string;
     readOnly?: boolean;
-    disabled?: boolean;
+    disabled?: boolean; 
     setValueChange: Function;
 }
 

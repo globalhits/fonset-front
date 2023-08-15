@@ -63,7 +63,7 @@ export const GeneralObjective = ({ type }: GeneralObjectiveInterface) => {
 
                 </div>
                 <div className="col-lg-6">
-                    <TextArea label="Descripción del entregable" />
+                    <TextArea name="PROY_DESCRIPCION_ENTREGABLE_GENERAL"  label="Descripción del entregable" setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} value={data.PROY_DESCRIPCION_ENTREGABLE_GENERAL}/>
                 </div>
             </div>
             {

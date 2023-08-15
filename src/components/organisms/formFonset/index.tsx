@@ -10,13 +10,26 @@ import FormDataGeneral from "../../molecules/fonset/dataGeneral/FormDataGeneral"
 import FormDescription from "../../molecules/fonset/description/FormDescription";
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
 import Buttons from "../../atoms/button/Buttons";
+import Loader from "../../atoms/loader";
+
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RequestFonsetDto } from "../../../models/fonset/RequestFonsetDto";
+import { loadingSelector } from "../../../redux/states/generals/loading.slice";
 import { initialStateFormFonset } from "../../../redux/states/fonset/fonset.slice";
 
 export default function FormFonset() {
 
+	const { isLoading } = useAppSelector(loadingSelector);
+
 	const [dataForm, setDataForm] = useState<RequestFonsetDto>(initialStateFormFonset);
 
+	const dispatch = useAppDispatch();
+
+	if (isLoading) return <Loader />;
+
+	const saveForm = () => {
+		console.log("guardar form", dataForm);
+	}
 	return (
 		<div className="content container-fluid">
 			<Container>
@@ -39,7 +52,7 @@ export default function FormFonset() {
 							</Tab>
 
 							<Tab eventKey="description" title="DESCRIPCION">
-								<FormDescription />
+								<FormDescription formData={dataForm} setFormData={(data: RequestFonsetDto) => setDataForm(data)}/>
 							</Tab>
 
 							<Tab eventKey="goods" title="BIENES Y/O SERVICIOS">
