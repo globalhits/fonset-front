@@ -10,11 +10,11 @@ import CheckBox from "../../../atoms/check/Check";
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import Entities from "../infoEntities";
-import { RequestInvertionDto } from "../../../../models/invertion/RequestInvertionDto";
 import { TypeProjectDto } from "../../../../models/general/TypeProjectDto";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { DependencySelector, fetchApiDependencies } from "../../../../redux/states/generals/dependency.slice";
 import { InvertionSelector, setDataInvertion } from "../../../../redux/states/invertion/invertion.slice";
+import { RequestDto } from "../../../../models/general/RequestDto";
 
 const InfoBasic: React.FC<any> = ({ }) => {
 
@@ -74,7 +74,7 @@ const InfoBasic: React.FC<any> = ({ }) => {
             setCheckedHumanas(checked);
         }
 
-        let updatedRequest: RequestInvertionDto = {};
+        let updatedRequest: RequestDto = {};
 
         let listTipoProject = data.PROY_TIPO ? data.PROY_TIPO : [];
         if (checked) {
@@ -98,7 +98,7 @@ const InfoBasic: React.FC<any> = ({ }) => {
     }
 
     const setValueByIndex = (index: any, value: any) => {
-        let updatedRequest: RequestInvertionDto = {};
+        let updatedRequest: RequestDto = {};
 
         updatedRequest = {
             ...data,

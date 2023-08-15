@@ -1,3 +1,5 @@
+import { Activity } from "./ActivityDto";
+
 export interface SpecificObjetiveDto {
     id?: number,
     objetivo: string,

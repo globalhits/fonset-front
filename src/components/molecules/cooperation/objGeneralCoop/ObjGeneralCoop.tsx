@@ -1,8 +1,26 @@
 import React from "react";
 import InputFloating from "../../../atoms/input/Input";
 import TextArea from "../../../atoms/area/TextArea";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { InvertionSelector, setDataInvertion } from "../../../../redux/states/invertion/invertion.slice";
+import { RequestDto } from "../../../../models/general/RequestDto";
 
 export default function FormObjGeneralCoop() {
+
+    const dispatch = useAppDispatch();
+
+    const { data } = useAppSelector(InvertionSelector)
+
+    const setValueByIndex = (index: any, value: any) => {
+        let updatedRequest: RequestDto = {};
+
+        updatedRequest = {
+            ...data,
+            [index]: value
+        }
+
+        dispatch(setDataInvertion(updatedRequest));
+    }
 
     return (
         <>
@@ -24,8 +42,8 @@ export default function FormObjGeneralCoop() {
                 </div>
             </div>
             <div className="row mb-3">
-                <div className="col-lg-16">
-                    <TextArea label="Escriba aqui el objetivo general del proyecto" />
+                <div className="col-lg-12">
+                    <TextArea label="Escriba aqui el objetivo general del proyecto" value={data.PROY_OBJETIVO_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} />
                 </div>
             </div>
         </>

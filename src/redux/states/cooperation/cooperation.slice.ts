@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import helper from "../../../utils/helper";
-import { RequestCooperativeDto } from "../../../models/cooperative/RequestCooperativeDto";
 import { TypeCoverageDto } from "../../../models/general/TypeCoverageDto";
+import { RequestDto } from "../../../models/general/RequestDto";
 
 const covergateState: TypeCoverageDto = {
     tipo: "",
     cobertura: []
 }
 
-export const initialStateFormCooperative: RequestCooperativeDto = {
+export const initialStateFormCooperative: RequestDto = {
 
     //base
     PROY_CODIGO: "",
@@ -20,21 +20,20 @@ export const initialStateFormCooperative: RequestCooperativeDto = {
     PROY_ENTIDAD_NACIONAL_INVOLUCRADA: [],
     PROY_DEPENDENCIAS_INVOLUCRADAS: [],
     PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE: "",
-    PROY_OBJETIVO_ESPECIFICO: [],
+    PROY_OBJETIVOS_ESPECIFICOS: [],
     PROY_ACTIVIDADES: [],
 
-
-    PRCI_PAIS_COOPERANTE: "",
-    PRCI_IMPLEMENTADOR: "",
-    PRCI_JUSTIFICACION: "",
-    PRCI_FECHA_ESPERADA_INICIO: helper.getDateNow(),
-    PRCI_FECHA_ESPERADA_TERMINADA: helper.getDateNow(),
-    PRCI_DURACION_ESTIMADA_MESES: 0,
-    PRCI_OBJETIVO_GENERAL: "",
+    PROY_PAIS_COOPERANTE: "",
+    PROY_IMPLEMENTADOR: "",
+    PROY_JUSTIFICACION: "",
+    PROY_FECHA_ESPERADA_INICIO: helper.getDateNow(),
+    PROY_FECHA_ESPERADA_TERMINADA: helper.getDateNow(),
+    PROY_DURACION_ESTIMADA_MESES: 0,
+    PROY_OBJETIVO_GENERAL: "",
 }
 
 export interface CooperativeState {
-    data: RequestCooperativeDto;
+    data: RequestDto;
     status: string;
     error: any;
 }

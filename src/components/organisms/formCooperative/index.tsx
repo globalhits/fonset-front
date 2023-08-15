@@ -14,13 +14,13 @@ import Entities from "../../molecules/Invertion/infoEntities";
 import InputSelected from "../../atoms/selected/InputSelected";
 import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
+import { useAppSelector } from "../../../redux/hooks";
+import { FonsetSelector } from "../../../redux/states/fonset/fonset.slice";
 
-import { RequestCooperativeDto } from "../../../models/cooperative/RequestCooperativeDto";
-import { initialStateFormCooperative } from "../../../redux/states/cooperation/cooperation.slice";
 
 export default function FormCooperative() {
 
-	const [dataForm, setDataForm] = useState<RequestCooperativeDto>(initialStateFormCooperative);
+	const { data } = useAppSelector(FonsetSelector);
 
 	const showConfirmationAlert = () => {
 		Swal.fire({
@@ -50,7 +50,7 @@ export default function FormCooperative() {
 							</Card.Title>
 						</Card.Header>
 						<Card.Body className="pt-3">
-							<OriginProject formData={dataForm} setFormData={setDataForm} />
+							<OriginProject />
 							<Tabs
 								defaultActiveKey="general"
 								transition={false}
