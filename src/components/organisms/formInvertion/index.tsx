@@ -10,13 +10,13 @@ import InfoBasic from "../../molecules/Invertion/infoBasic";
 import InfoBasicProject from "./../../molecules/Invertion/infoProject/infoBasicProject/InfoBasicProject";
 import Buttons from "../../atoms/button/Buttons";
 import Objectives from "./../../molecules/Invertion/infoProject/objectives/Objectives";
-import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
 
 import Loader from "../../atoms/loader";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { InvertionSelector, initialState, initialStateFormInvertion } from "../../../redux/states/invertion/invertion.slice";
+import { InvertionSelector } from "../../../redux/states/invertion/invertion.slice";
 import { loadingSelector } from "../../../redux/states/generals/loading.slice";
+import { RequestDto } from "../../../models/general/RequestDto";
 
 export default function FormInvertion() {
 
@@ -24,18 +24,15 @@ export default function FormInvertion() {
 
 	const { data } = useAppSelector(InvertionSelector);
 
-	const [dataFormInvertion, setDataFormInvertion] = useState<RequestInvertionDto>(initialStateFormInvertion);
-
 	const dispatch = useAppDispatch();
 
 	if (isLoading) return <Loader />;
 
 	const saveForm = () => {
-
 		console.log("guardar form", data);
 	}
 
-	const updateDate = (data: RequestInvertionDto) => {
+	const updateDate = (data: RequestDto) => {
 
 	}
 

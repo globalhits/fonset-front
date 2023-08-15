@@ -1,6 +1,6 @@
 
 // --- Components project ---
-import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
+import { RequestDto } from "../../../models/general/RequestDto";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { InvertionSelector, setDataInvertion } from "../../../redux/states/invertion/invertion.slice";
 import InputFloating from "../../atoms/input/Input";
@@ -13,7 +13,7 @@ const OriginProject: React.FC<any> = ({ }) => {
     const dispatch = useAppDispatch();
 
     const setValueByIndex = (index: any, value: any) => {
-        let updatedRequest: RequestInvertionDto = {};
+        let updatedRequest: RequestDto = {};
 
         updatedRequest = {
             ...data,

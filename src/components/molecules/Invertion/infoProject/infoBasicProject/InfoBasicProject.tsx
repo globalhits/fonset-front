@@ -1,9 +1,9 @@
 import { Table } from "react-bootstrap"
 import InputFloating from "../../../../atoms/input/Input"
 import Buttons from "../../../../atoms/button/Buttons";
-import { RequestInvertionDto } from "../../../../../models/invertion/RequestInvertionDto";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
 import { InvertionSelector, setDataInvertion } from "../../../../../redux/states/invertion/invertion.slice";
+import { RequestDto } from "../../../../../models/general/RequestDto";
 
 const InfoBasicProject = () => {
 
@@ -12,7 +12,7 @@ const InfoBasicProject = () => {
     const { data } = useAppSelector(InvertionSelector)
 
     const setValueByIndex = (index: any, value: any) => {
-        let updatedRequest: RequestInvertionDto = {};
+        let updatedRequest: RequestDto = {};
 
         updatedRequest = {
             ...data,

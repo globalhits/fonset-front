@@ -10,12 +10,12 @@ import FormDataGeneral from "../../molecules/fonset/dataGeneral/FormDataGeneral"
 import FormDescription from "../../molecules/fonset/description/FormDescription";
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
 import Buttons from "../../atoms/button/Buttons";
-import { RequestFonsetDto } from "../../../models/fonset/RequestFonsetDto";
-import { initialStateFormFonset } from "../../../redux/states/fonset/fonset.slice";
+import { FonsetSelector, initialStateFormFonset } from "../../../redux/states/fonset/fonset.slice";
+import { useAppSelector } from "../../../redux/hooks";
 
 export default function FormFonset() {
 
-	const [dataForm, setDataForm] = useState<RequestFonsetDto>(initialStateFormFonset);
+	const { data } = useAppSelector(FonsetSelector);
 
 	return (
 		<div className="content container-fluid">
@@ -27,7 +27,7 @@ export default function FormFonset() {
 						</Card.Title>
 					</Card.Header>
 					<Card.Body className="pt-3">
-						<OriginProject formData={dataForm} setFormData={setDataForm} />
+						<OriginProject />
 						<Tabs
 							defaultActiveKey="general"
 							transition={false}

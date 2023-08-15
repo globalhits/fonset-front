@@ -1,34 +1,33 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import helper from "../../../utils/helper";
-import { RequestFonsetDto } from "../../../models/fonset/RequestFonsetDto";
+import { RequestDto } from "../../../models/general/RequestDto";
 
-
-export const initialStateFormFonset: RequestFonsetDto = {
+export const initialStateFormFonset: RequestDto = {
     PROY_CODIGO: "",
     PROY_FECHA: helper.getDateNow(),
     PROY_NOMBRE: "",
-    PRFO_SUB_REGIONAL_APOYO: "",
-    PRFO_SECCIONAL: "",
-    PRFO_DEPARTAMENTO: "",
-    PRFO_MUNICIPIO_ORIGEN: "",
-    PRFO_ENTIDAD_DEPENDENCIA_RESPONSABLE: "",
-    PRFO_DISTRITO_JUDICIAL: "",
-    PRFO_OBJETIVO_GENERAL: "",
-    PRFO_OBJETIVOS_ESPECIFICOS: "",
-    PRFO_POBLACION_OBJETIVO: "",
-    PRFO_DESCRIPCION_BIENES_SERVICIOS: "",
-    PRFO_JUSTIFICACION: "",
-    PRFO_DESCRIPCION_PROBLEMA: "",
-    PRFO_OBSERVACIONES: "",
-    PRFO_DOCUMENTOS_ANEXOS: [],
-    PRFO_BIENES_SERVICIOS: [],
-    PRFO_ESTADO: "",
-    PRFO_CREACION_PROYECTO: "",
+    PROY_SUB_REGIONAL_APOYO: "",
+    PROY_SECCIONAL: "",
+    PROY_DEPARTAMENTO: "",
+    PROY_MUNICIPIO_ORIGEN: "",
+    PROY_ENTIDAD_DEPENDENCIA_RESPONSABLE: "",
+    PROY_DISTRITO_JUDICIAL: "",
+    PROY_OBJETIVO_GENERAL: "",
+    PROY_OBJETIVOS_ESPECIFICOS: [],
+    PROY_POBLACION_OBJETIVO: "",
+    PROY_DESCRIPCION_BIENES_SERVICIOS: "",
+    PROY_JUSTIFICACION: "",
+    PROY_DESCRIPCION_PROBLEMA: "",
+    PROY_OBSERVACIONES: "",
+    PROY_DOCUMENTOS_ANEXOS: [],
+    PROY_BIENES_SERVICIOS: [],
+    PROY_ESTADO: "",
+    PROY_CREACION_PROYECTO: "",
 }
 
 export interface FonsetState {
-    data: RequestFonsetDto;
+    data: RequestDto;
     status: string;
     error: any;
 }
@@ -39,18 +38,18 @@ export const initialState: FonsetState = {
     status: ""
 }
 
-const InvertionSlice = createSlice({
+const FonsetSlice = createSlice({
     name: "fonset",
     initialState,
     reducers: {
-        setDataInvertion: (state, { payload }: PayloadAction<any>) => {
+        setDataFonset: (state, { payload }: PayloadAction<any>) => {
             state = payload;
         }
     }
 });
 
-export const { setDataInvertion } = InvertionSlice.actions
+export const { setDataFonset } = FonsetSlice.actions
 
-export const InvertionSelector = (state: RootState) => state.fonset;
+export const FonsetSelector = (state: RootState) => state.fonset;
 
-export default InvertionSlice.reducer;
+export default FonsetSlice.reducer;

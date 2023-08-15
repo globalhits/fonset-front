@@ -8,12 +8,14 @@ interface TextAreaInterface {
 	placeholder?: string;
 	rows?: number;
 	cols?: number;
+	value?: string;
+	setValueChange: Function;
 
 }
-export default function TextArea({ label, classStyle, styles, placeholder, rows, cols }: TextAreaInterface) {
+export default function TextArea({ label, classStyle, styles, placeholder, rows, cols, value, setValueChange }: TextAreaInterface) {
 	return (
 		<FloatingLabel controlId="floatingTextarea2" label={label} className={classStyle}>
-			<Form.Control as="textarea" placeholder={placeholder} className='form-control-lg' style={styles} rows={rows} cols={cols} />
+			<Form.Control as="textarea" placeholder={placeholder} className='form-control-lg' style={styles} rows={rows} cols={cols} value={value} onChange={(e) => setValueChange(e.target.value)} />
 		</FloatingLabel>
 	);
 }

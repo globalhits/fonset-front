@@ -1,4 +1,4 @@
-import { RequestInvertionDto } from "../../../../../models/invertion/RequestInvertionDto";
+import { RequestDto } from "../../../../../models/general/RequestDto";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
 import { InvertionSelector, setDataInvertion } from "../../../../../redux/states/invertion/invertion.slice";
 import TextArea from "../../../../atoms/area/TextArea"
@@ -15,7 +15,7 @@ export const GeneralObjective = ({ type }: GeneralObjectiveInterface) => {
     const { data } = useAppSelector(InvertionSelector)
 
     const setValueByIndex = (index: any, value: any) => {
-        let updatedRequest: RequestInvertionDto = {};
+        let updatedRequest: RequestDto = {};
 
         updatedRequest = {
             ...data,
@@ -63,7 +63,7 @@ export const GeneralObjective = ({ type }: GeneralObjectiveInterface) => {
 
                 </div>
                 <div className="col-lg-6">
-                    <TextArea label="Descripción del entregable" />
+                    <TextArea label="Descripción del entregable" value={data.PROY_DESCRIPCION_ENTREGABLE_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} />
                 </div>
             </div>
             {
