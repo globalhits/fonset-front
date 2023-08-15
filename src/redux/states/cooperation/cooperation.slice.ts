@@ -45,18 +45,18 @@ export const initialState: CooperativeState = {
     status: ""
 }
 
-const InvertionSlice = createSlice({
+const CooperativeSlice = createSlice({
     name: "cooperative",
     initialState,
     reducers: {
-        setDataInvertion: (state, { payload }: PayloadAction<any>) => {
+        setDataCooperative: (state, { payload }: PayloadAction<any>) => {
             state = payload;
         }
     }
 });
 
-export const { setDataInvertion } = InvertionSlice.actions
+export const { setDataCooperative } = CooperativeSlice.actions
 
-export const InvertionSelector = (state: RootState) => state.cooperative;
+export const CooperativeSelector = (state: RootState) => state.cooperative;
 
-export default InvertionSlice.reducer;
+export default CooperativeSlice.reducer;

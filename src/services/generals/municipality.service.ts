@@ -7,7 +7,7 @@ class MunicipalityService {
 
     private pathMunicipality = config.pathListCities;
 
-    async getAll(): Promise<MunicipalityDto[]> {
+    async getAll() {
         try {
             const response = await fetch(`${this.apiGenerals}/${this.pathMunicipality}`);
             const data = await response.json();

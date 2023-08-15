@@ -1,4 +1,4 @@
 export interface DependencyInvolvedDto {
-    id: number;
+    id?: number;
     descripcion: string;
 }

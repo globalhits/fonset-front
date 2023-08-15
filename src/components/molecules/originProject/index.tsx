@@ -1,25 +1,26 @@
 
 // --- Components project ---
 import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { InvertionSelector, setDataInvertion } from "../../../redux/states/invertion/invertion.slice";
 import InputFloating from "../../atoms/input/Input";
 
-interface OriginProjectInterface {
-    formData: RequestInvertionDto,
-    setFormData: Function,
-}
 
-const OriginProject: React.FC<OriginProjectInterface> = ({ formData, setFormData }) => {
+const OriginProject: React.FC<any> = ({ }) => {
 
+    const { data } = useAppSelector(InvertionSelector);
+
+    const dispatch = useAppDispatch();
 
     const setValueByIndex = (index: any, value: any) => {
         let updatedRequest: RequestInvertionDto = {};
 
         updatedRequest = {
-            ...formData,
+            ...data,
             [index]: value
         }
 
-        setFormData(updatedRequest);
+        dispatch(setDataInvertion(updatedRequest));
     }
 
     return (
@@ -31,13 +32,13 @@ const OriginProject: React.FC<OriginProjectInterface> = ({ formData, setFormData
             </div>
             <div className="row mt-3">
                 <div className="col-lg-3">
-                    <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" setValueChange={(value: any) => setValueByIndex("PROY_CODIGO", value)} value={formData.PROY_CODIGO} disabled={true} />
+                    <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" setValueChange={(value: any) => setValueByIndex("PROY_CODIGO", value)} value={data.PROY_CODIGO} disabled={true} />
                 </div>
                 <div className="col-lg-3">
-                    <InputFloating label="Fecha*" className="mb-3 inputFloating" type="date" setValueChange={(value: Date) => setValueByIndex("PROY_FECHA", value)} value={formData.PROY_FECHA} disabled={true} />
+                    <InputFloating label="Fecha*" className="mb-3 inputFloating" type="date" setValueChange={(value: Date) => setValueByIndex("PROY_FECHA", value)} value={data.PROY_FECHA} disabled={true} />
                 </div>
                 <div className="col-lg-6">
-                    <InputFloating label="Nombre del proyecto*" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_NOMBRE", value)} value={formData.PROY_NOMBRE} />
+                    <InputFloating label="Nombre del proyecto*" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_NOMBRE", value)} value={data.PROY_NOMBRE} />
                 </div>
             </div>
         </>

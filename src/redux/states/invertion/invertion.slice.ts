@@ -34,8 +34,8 @@ export const initialStateFormInvertion: RequestInvertionDto = {
     PROY_INDICADOR_GENERAL: "",
     PROY_LINEA_BASE_GENERAL: "",
     PROY_META_GENERAL: "",
-    PROY_MES_INICIO_GENERAL: new Date(),
-    PROY_MES_FINAL_GENERAL: new Date(),
+    PROY_MES_INICIO_GENERAL: helper.getDateNow(),
+    PROY_MES_FINAL_GENERAL: helper.getDateNow(),
     PROY_ENTREGABLE_GENERAL: "",
     PROY_DESCRIPCION_ENTREGABLE_GENERAL: "",
 
@@ -61,12 +61,26 @@ const InvertionSlice = createSlice({
     initialState,
     reducers: {
         setDataInvertion: (state, { payload }: PayloadAction<any>) => {
-            state = payload;
+            state.data = payload;
+        },
+        setEntityRelation: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA = payload;
+        },
+        setDependencyInvolved: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_DEPENDENCIAS_INVOLUCRADAS = payload;
+        },
+        setTypeCoverage: (state, { payload }: PayloadAction<string>) => {
+            if (state.data.PROY_COBERTURA) {
+                state.data.PROY_COBERTURA.tipo = payload
+            }
+        },
+        addTypeCoverages: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_COBERTURA = payload;
         }
     }
 });
 
-export const { setDataInvertion } = InvertionSlice.actions
+export const { setDataInvertion, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages } = InvertionSlice.actions
 
 export const InvertionSelector = (state: RootState) => state.invertion;
 
