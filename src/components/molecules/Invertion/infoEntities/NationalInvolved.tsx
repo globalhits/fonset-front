@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { InvertionSelector, setEntityRelation } from "../../../../redux/states/invertion/invertion.slice";
 import Buttons from "../../../atoms/button/Buttons";
 import { NationalEntityInvolvedDto } from "../../../../models/general/NationalEntityInvolvedDto";
+import { GeneralSelector } from "../../../../redux/states/generals/general.slice";
 
 const NationalInvolved = () => {
 
@@ -14,7 +15,7 @@ const NationalInvolved = () => {
 
     const [error, setError] = useState("");
 
-    const { data } = useAppSelector(InvertionSelector);
+    const { data } = useAppSelector(GeneralSelector);
 
     const addItem = async (itemDescription: any) => {
 

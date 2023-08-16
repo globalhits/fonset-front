@@ -5,12 +5,13 @@ import './FormDescription.scss'
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { FonsetSelector, setDataFonset } from "../../../../redux/states/fonset/fonset.slice";
 import { RequestDto } from "../../../../models/general/RequestDto";
+import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
 
 export default function FormDescription() {
 
     const dispatch = useAppDispatch();
 
-    const { data } = useAppSelector(FonsetSelector);
+    const { data } = useAppSelector(GeneralSelector);
 
     const setValueByIndex = (index: any, value: any) => {
         let updatedRequest: RequestDto = {};
@@ -20,7 +21,7 @@ export default function FormDescription() {
             [index]: value
         }
 
-        dispatch(setDataFonset(updatedRequest));
+        dispatch(setDataGeneral(updatedRequest));
     }
 
     return (

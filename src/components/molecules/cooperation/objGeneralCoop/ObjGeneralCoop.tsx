@@ -2,14 +2,14 @@ import React from "react";
 import InputFloating from "../../../atoms/input/Input";
 import TextArea from "../../../atoms/area/TextArea";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import { InvertionSelector, setDataInvertion } from "../../../../redux/states/invertion/invertion.slice";
 import { RequestDto } from "../../../../models/general/RequestDto";
+import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
 
 export default function FormObjGeneralCoop() {
 
     const dispatch = useAppDispatch();
 
-    const { data } = useAppSelector(InvertionSelector)
+    const { data } = useAppSelector(GeneralSelector)
 
     const setValueByIndex = (index: any, value: any) => {
         let updatedRequest: RequestDto = {};
@@ -19,7 +19,7 @@ export default function FormObjGeneralCoop() {
             [index]: value
         }
 
-        dispatch(setDataInvertion(updatedRequest));
+        dispatch(setDataGeneral(updatedRequest));
     }
 
     return (

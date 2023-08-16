@@ -10,7 +10,7 @@ const covergateState: TypeCoverageDto = {
     cobertura: []
 }
 
-export const initialStateFormInvertion: RequestDto = {
+export const initialStateFormGeneral: RequestDto = {
     PROY_CODIGO: "",
     PROY_NOMBRE: "",
     PROY_FECHA: helper.getDateNow(),
@@ -42,25 +42,33 @@ export const initialStateFormInvertion: RequestDto = {
     // OBJETIVO
     PROY_OBJETIVOS_ESPECIFICOS: [],
     PROY_ACTIVIDADES: [],
+
+
+    PROY_PAIS_COOPERANTE: "",
+    PROY_IMPLEMENTADOR: "",
+    PROY_JUSTIFICACION: "",
+    PROY_FECHA_ESPERADA_INICIO: helper.getDateNow(),
+    PROY_FECHA_ESPERADA_TERMINADA: helper.getDateNow(),
+    PROY_DURACION_ESTIMADA_MESES: 0,
 }
 
-export interface InvertionState {
+export interface GeneralState {
     data: RequestDto;
     status: string;
     error: any;
 }
 
-export const initialState: InvertionState = {
-    data: initialStateFormInvertion,
+export const initialState: GeneralState = {
+    data: initialStateFormGeneral,
     error: "",
     status: ""
 }
 
-const InvertionSlice = createSlice({
+const GeneralSlice = createSlice({
     name: "invertion",
     initialState,
     reducers: {
-        setDataInvertion: (state, { payload }: PayloadAction<any>) => {
+        setDataGeneral: (state, { payload }: PayloadAction<any>) => {
             state.data = payload;
         },
         setEntityRelation: (state, { payload }: PayloadAction<any>) => {
@@ -76,12 +84,15 @@ const InvertionSlice = createSlice({
         },
         addTypeCoverages: (state, { payload }: PayloadAction<any>) => {
             state.data.PROY_COBERTURA = payload;
-        }
+        },
+        addPeoples: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_ANALISIS_PARTICIPANTES = payload;
+        },
     }
 });
 
-export const { setDataInvertion, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages } = InvertionSlice.actions
+export const { setDataGeneral, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples } = GeneralSlice.actions
 
-export const InvertionSelector = (state: RootState) => state.invertion;
+export const GeneralSelector = (state: RootState) => state.general;
 
-export default InvertionSlice.reducer;
+export default GeneralSlice.reducer;

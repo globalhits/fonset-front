@@ -7,6 +7,7 @@ import { CoverageDto, TypeCoverageDto } from "../../../../models/general/TypeCov
 import { DepartamentSelector, fetchApiDepartament } from "../../../../redux/states/generals/departament.slice";
 import { MunicipalitySelector, fetchApiMunicipality, findByDepartamentId } from "../../../../redux/states/generals/municipality.slice";
 import Buttons from "../../../atoms/button/Buttons";
+import { GeneralSelector } from "../../../../redux/states/generals/general.slice";
 
 const TypeCoverage = () => {
 
@@ -22,7 +23,7 @@ const TypeCoverage = () => {
 
     const [error, setError] = useState("");
 
-    const { data } = useAppSelector(InvertionSelector);
+    const { data } = useAppSelector(GeneralSelector);
 
     const { departaments } = useAppSelector(DepartamentSelector);
 

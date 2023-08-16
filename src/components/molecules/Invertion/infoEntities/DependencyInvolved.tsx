@@ -5,6 +5,7 @@ import { InvertionSelector, setDependencyInvolved } from "../../../../redux/stat
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { DependencyInvolvedDto } from "../../../../models/general/DependencyInvolvedDto";
 import Buttons from "../../../atoms/button/Buttons";
+import { GeneralSelector } from "../../../../redux/states/generals/general.slice";
 
 const DependencyInvolved = () => {
 
@@ -14,7 +15,7 @@ const DependencyInvolved = () => {
 
     const [error, setError] = useState("");
 
-    const { data } = useAppSelector(InvertionSelector);
+    const { data } = useAppSelector(GeneralSelector);
 
     const addItem = async (itemDescription: any) => {
 
