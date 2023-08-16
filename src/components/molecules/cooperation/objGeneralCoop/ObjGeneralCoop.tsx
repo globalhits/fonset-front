@@ -44,7 +44,7 @@ const FormObjGeneralCoop = ({ formData, setFormData }: ObjGeneralCoopInterface) 
                     <InputFloating  name="PROY_FECHA_ESPERADA_TERMINADA" label="Fecha espera terminada" className="mb-3 inputFloating" type="date" setValueChange={(value: string) => setValueByIndex("PROY_FECHA_ESPERADA_TERMINADA", value)} value={data.PROY_FECHA_ESPERADA_TERMINADA} />
                 </Col>
                 <Col sm={4}>
-                    <InputFloating  name="PROY_DURACION_ESTIMADA_MESES" label="Duracion estimada en meses" className="mb-3 inputFloating" type="number" setValueChange={(value: number) => setValueByIndex("PROY_DURACION_ESTIMADA_MESES", value.toString())} value={data.PROY_DURACION_ESTIMADA_MESES.toString()}   />
+                    <InputFloating  name="PROY_DURACION_ESTIMADA_MESES" label="Duracion estimada en meses" className="mb-3 inputFloating" type="number" setValueChange={(value: number) => setValueByIndex("PROY_DURACION_ESTIMADA_MESES", value)} value={data.PROY_DURACION_ESTIMADA_MESES}   />
                 </Col>
             </Row>
             <Row >

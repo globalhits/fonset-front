@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+/*  import React, { useState, useEffect } from "react";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import CheckBox from "../../../atoms/check/Check";
 import "./FormDataGeneralCoop.scss"
-import { RequestCooperativeDto } from "../../../../models/cooperative/RequestCooperativeDto";
+import { RequestDto } from "../../../../models/general/RequestDto";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { DependencySelector, fetchApiDependencies } from "../../../../redux/states/generals/dependency.slice";
 
 interface DataGeneralCoopInterface {
     formData: RequestCooperativeDto,
     setFormData: Function
-}
+} 
 
 const FormDataGeneralCoop = ({ formData, setFormData }: DataGeneralCoopInterface) => {
 
@@ -54,7 +54,7 @@ const FormDataGeneralCoop = ({ formData, setFormData }: DataGeneralCoopInterface
     }, [])
 
     const setTypeProject = (index: string, e: any) => {
-       /*  let value = e.target.value;
+       let value = e.target.value;
         let checked = e.target.checked;
 
         if (value == "tecnicas") {
@@ -84,15 +84,15 @@ const FormDataGeneralCoop = ({ formData, setFormData }: DataGeneralCoopInterface
                 ...formData,
                 PROY_TIPO: newTypes
             } 
-        }*}
+        }
 
-       /*  setFormData(updatedRequest); */
+         setFormData(updatedRequest); 
 
         console.log("formdata", formData);
 
     }
 
-    /* const setValueByIndex = (index: any, value: any) => {
+     const setValueByIndex = (index: any, value: any) => {
         let updatedRequest: RequestCooperativeDto = {};
 
         updatedRequest = {
@@ -101,8 +101,11 @@ const FormDataGeneralCoop = ({ formData, setFormData }: DataGeneralCoopInterface
         }
 
         setFormData(updatedRequest);
-    } */
+    } 
+    
+
     return (
+       
         <div className="row">
             <div className="col-lg-4" style={{ display: "flex", justifyContent: "space-around" }}>
                 <div className="ContainerForm">
@@ -115,10 +118,15 @@ const FormDataGeneralCoop = ({ formData, setFormData }: DataGeneralCoopInterface
                 </div>
             </div>
             <div className="col-lg-8 ">
-                {/* <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={formData.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} /> */}
+                 <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={formData.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} /> 
             </div>
         </div>
+        
     )
-}
+} 
 
-export default FormDataGeneralCoop
+export default FormDataGeneralCoop */
+
+export default function FormDataGeneralCoop(){
+    
+}

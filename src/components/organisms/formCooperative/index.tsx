@@ -11,14 +11,15 @@ import InputSelected from "../../atoms/selected/InputSelected";
 import InputFloating from "../../atoms/input/Input";
 import Buttons from "../../atoms/button/Buttons";
 
-import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
-import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
+/* import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop"; */
 import Loader from "../../atoms/loader";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { loadingSelector } from "../../../redux/states/generals/loading.slice";
 import InfoBasic from "../../molecules/general/infoBasic";
 import { GeneralSelector } from "../../../redux/states/generals/general.slice";
+import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
+import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
 
 
 export default function FormCooperative() {
@@ -84,11 +85,13 @@ export default function FormCooperative() {
 								</Tab>
 
 								<Tab eventKey="obj_general" title="OBJ. GENERAL">
-									{/* <FormObjGeneralCoop formData={data}/> */}
+									{/* <FormObjGeneralCoop />  */}
+									<GeneralSpecific/>
 								</Tab>
 
 								<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-									{/* <FormObjEspecificoCoop formData={data}/> */}
+									 <FormObjEspecificoCoop /> 
+
 								</Tab>
 							</Tabs>
 
