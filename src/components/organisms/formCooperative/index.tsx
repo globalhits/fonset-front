@@ -13,29 +13,25 @@ import Buttons from "../../atoms/button/Buttons";
 
 import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
-import { RequestCooperativeDto } from "../../../models/cooperative/RequestCooperativeDto";
-
 import Loader from "../../atoms/loader";
 
-
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { initialStateFormCooperative } from "../../../redux/states/cooperation/cooperation.slice";
 import { loadingSelector } from "../../../redux/states/generals/loading.slice";
 import InfoBasic from "../../molecules/general/infoBasic";
+import { GeneralSelector } from "../../../redux/states/generals/general.slice";
 
 
 export default function FormCooperative() {
 
+	const { data } = useAppSelector(GeneralSelector);
 	const { isLoading } = useAppSelector(loadingSelector);
-
-	const [dataForm, setDataForm] = useState<RequestCooperativeDto>(initialStateFormCooperative);
 
 	const dispatch = useAppDispatch();
 
 	if (isLoading) return <Loader />;
 
 	const saveForm = () => {
-		console.log("guardar form", dataForm);
+		console.log("guardar form", data);
 	}
 
 	const showConfirmationAlert = () => {
@@ -67,7 +63,7 @@ export default function FormCooperative() {
 							</Card.Title>
 						</Card.Header>
 						<Card.Body className="pt-3">
-							<OriginProject formData={dataForm} setFormData={setDataForm} />
+							<OriginProject />
 							<Tabs
 								defaultActiveKey="general"
 								transition={false}
@@ -88,11 +84,11 @@ export default function FormCooperative() {
 								</Tab>
 
 								<Tab eventKey="obj_general" title="OBJ. GENERAL">
-									<FormObjGeneralCoop formData={dataForm} setFormData={(data: RequestCooperativeDto) => setDataForm(data)}/>
+									{/* <FormObjGeneralCoop formData={data}/> */}
 								</Tab>
 
 								<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-									<FormObjEspecificoCoop formData={dataForm} setFormData={(data: RequestCooperativeDto) => setDataForm(data)}/>
+									{/* <FormObjEspecificoCoop formData={data}/> */}
 								</Tab>
 							</Tabs>
 

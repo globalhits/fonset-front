@@ -2,10 +2,10 @@ import React from "react";
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import "./FormDataGeneral.scss"
-import { RequestInvertionDto } from "../../../../models/invertion/RequestInvertionDto";
+import { RequestDto } from "../../../../models/general/RequestDto";
 
 interface FormDataGeneralCoopInterface {
-    formData?: RequestInvertionDto
+    formData?: RequestDto
 }
 
 const FormDataGeneral: React.FC<FormDataGeneralCoopInterface> = ({ formData }) => {

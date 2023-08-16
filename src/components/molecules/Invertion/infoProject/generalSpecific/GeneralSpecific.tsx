@@ -1,12 +1,12 @@
 
 import { useState } from "react";
-import { RequestInvertionDto } from "../../../../../models/invertion/RequestInvertionDto"
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks"
-import { InvertionSelector, setDataInvertion } from "../../../../../redux/states/invertion/invertion.slice"
 import Buttons from "../../../../atoms/button/Buttons"
 import InputSelected from "../../../../atoms/selected/InputSelected"
 import { GeneralObjective } from "../generalObjective/GeneralObjective"
 import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific"
+import { RequestDto } from "../../../../../models/general/RequestDto";
+import { GeneralSelector, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
 
 export const GeneralSpecific = () => {
 
@@ -36,19 +36,18 @@ export const GeneralSpecific = () => {
 
     const dispatch = useAppDispatch();
 
-    const { data } = useAppSelector(InvertionSelector);
-
+    const { data } = useAppSelector(GeneralSelector);
 
 
     const setValueByIndex = (index: any, value: any) => {
-        let updatedRequest: RequestInvertionDto = {};
+        let updatedRequest: RequestDto = {};
 
         updatedRequest = {
             ...data,
             [index]: value
         }
 
-        dispatch(setDataInvertion(updatedRequest));
+        dispatch(setDataGeneral(updatedRequest));
     }
 
     const addItem = () => {

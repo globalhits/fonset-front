@@ -1,26 +1,26 @@
 import {Col, Row} from "react-bootstrap"
 // --- Components project ---
-import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
+import { RequestDto } from "../../../models/general/RequestDto";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { InvertionSelector, setDataInvertion } from "../../../redux/states/invertion/invertion.slice";
+import { GeneralSelector, setDataGeneral } from "../../../redux/states/generals/general.slice";
 import InputFloating from "../../atoms/input/Input";
 
 
 const OriginProject: React.FC<any> = ({ }) => {
 
-    const { data } = useAppSelector(InvertionSelector);
+    const { data } = useAppSelector(GeneralSelector);
 
     const dispatch = useAppDispatch();
 
     const setValueByIndex = (index: any, value: any) => {
-        let updatedRequest: RequestInvertionDto = {};
+        let updatedRequest: RequestDto = {};
 
         updatedRequest = {
             ...data,
             [index]: value
         }
 
-        dispatch(setDataInvertion(updatedRequest));
+        dispatch(setDataGeneral(updatedRequest));
     }
 
     return (

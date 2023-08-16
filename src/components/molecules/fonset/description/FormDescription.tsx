@@ -1,32 +1,28 @@
 import React from "react";
-import { Col, Nav, Row, Tab, Table } from "react-bootstrap";
+import { Nav, Tab, Table } from "react-bootstrap";
 import TextArea from "../../../atoms/area/TextArea";
 import './FormDescription.scss'
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { RequestDto } from "../../../../models/general/RequestDto";
+import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
 
-import { RequestFonsetDto } from "../../../../models/fonset/RequestFonsetDto";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks"
-import { InvertionSelector, setDataInvertion } from "../../../../redux/states/invertion/invertion.slice";
-
-
-interface FormDescriptionInterface {
-    formData: RequestFonsetDto,
-    setFormData: Function
-}
-
-const FormDescription = ({ formData, setFormData }: FormDescriptionInterface) => {
+export default function FormDescription() {
 
     const dispatch = useAppDispatch();
 
-    const { data } = useAppSelector(InvertionSelector)
+    const { data } = useAppSelector(GeneralSelector);
 
-    const setValueByIndex = (index: keyof RequestFonsetDto, value: any) => {
-        let updatedRequest: RequestFonsetDto = {
+    const setValueByIndex = (index: any, value: any) => {
+        let updatedRequest: RequestDto = {};
+
+        updatedRequest = {
             ...data,
-            [index]: value,
-        };
-    
-        dispatch(setDataInvertion(updatedRequest));
-    };
+            [index]: value
+        }
+
+        dispatch(setDataGeneral(updatedRequest));
+    }
+
     return (
         <div>
             <Tab.Container id="left-tabs-example" defaultActiveKey="obj_general">
@@ -60,31 +56,31 @@ const FormDescription = ({ formData, setFormData }: FormDescriptionInterface) =>
 
                     <Tab.Content className="width100">
                         <Tab.Pane eventKey="obj_general" >
-                            <TextArea name="PRFO_OBJETIVO_GENERAL" label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} setValueChange={(value: string) => setValueByIndex("PRFO_OBJETIVO_GENERAL", value)} value={""} />
+                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_OBJETIVO_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_OBJETIVO_GENERAL", value)} />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="obj_especifico">
-                            <TextArea name="PRFO_OBJETIVOS_ESPECIFICOS" label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} setValueChange={(value: string) => setValueByIndex("PRFO_OBJETIVOS_ESPECIFICOS", value)} value={""} />
+                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_OBJETIVO_ESPECIFICO} setValueChange={(value: string) => setValueByIndex("PROY_OBJETIVO_ESPECIFICO", value)} />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="poblacion_obj">
-                            <TextArea name="PRFO_POBLACION_OBJETIVO" label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} setValueChange={(value: string) => setValueByIndex("PRFO_POBLACION_OBJETIVO", value)} value={""} />
+                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_POBLACION_OBJETIVO} setValueChange={(value: string) => setValueByIndex("PROY_POBLACION_OBJETIVO", value)} />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="bienes_servicios">
-                            <TextArea name="PRFO_DESCRIPCION_BIENES_SERVICIOS" label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} setValueChange={(value: string) => setValueByIndex("PRFO_DESCRIPCION_BIENES_SERVICIOS", value)} value={""} />
+                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_DESCRIPCION_BIENES_SERVICIOS} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_BIENES_SERVICIOS", value)} />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="justificacion">
-                            <TextArea name="PRFO_JUSTIFICACION" label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} setValueChange={(value: string) => setValueByIndex("PRFO_JUSTIFICACION", value)} value={""} />
+                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_OBJETIVO_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="problema">
-                            <TextArea name="PRFO_DESCRIPCION_PROBLEMA" label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} setValueChange={(value: string) => setValueByIndex("PRFO_DESCRIPCION_PROBLEMA", value)} value={""} />
+                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_OBJETIVO_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="observaciones">
-                            <TextArea name="PRFO_OBSERVACIONES" label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} setValueChange={(value: string) => setValueByIndex("PRFO_OBSERVACIONES", value)} value={""} />
+                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_OBJETIVO_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="documentos">
@@ -116,10 +112,7 @@ const FormDescription = ({ formData, setFormData }: FormDescriptionInterface) =>
                 </div>
             </Tab.Container>
 
-
         </div>
 
     )
 }
-
-export default FormDescription

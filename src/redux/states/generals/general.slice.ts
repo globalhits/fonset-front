@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
-import { RequestInvertionDto } from "../../../models/invertion/RequestInvertionDto";
 import { TypeCoverageDto } from "../../../models/general/TypeCoverageDto";
 import helper from "../../../utils/helper";
+import { RequestDto } from "../../../models/general/RequestDto";
 
 
 const covergateState: TypeCoverageDto = {
@@ -10,7 +10,7 @@ const covergateState: TypeCoverageDto = {
     cobertura: []
 }
 
-export const initialStateFormInvertion: RequestInvertionDto = {
+export const initialStateFormGeneral: RequestDto = {
     PROY_CODIGO: "",
     PROY_NOMBRE: "",
     PROY_FECHA: helper.getDateNow(),
@@ -40,27 +40,51 @@ export const initialStateFormInvertion: RequestInvertionDto = {
     PROY_DESCRIPCION_ENTREGABLE_GENERAL: "",
 
     // OBJETIVO
-    PROY_OBJETIVO_ESPECIFICO: [],
+    PROY_OBJETIVOS_ESPECIFICOS: [],
     PROY_ACTIVIDADES: [],
+
+    //COOPERATIVE
+    PROY_PAIS_COOPERANTE: "",
+    PROY_IMPLEMENTADOR: "",
+    PROY_JUSTIFICACION: "",
+    PROY_FECHA_ESPERADA_INICIO: helper.getDateNow(),
+    PROY_FECHA_ESPERADA_TERMINADA: helper.getDateNow(),
+    PROY_DURACION_ESTIMADA_MESES: 0,
+
+    //FONSET
+    PROY_SUB_REGIONAL_APOYO: "",
+    PROY_SECCIONAL: "",
+    PROY_DEPARTAMENTO: "",
+    PROY_MUNICIPIO_ORIGEN: "",
+    PROY_ENTIDAD_DEPENDENCIA_RESPONSABLE: "",
+    PROY_DISTRITO_JUDICIAL: "",
+    PROY_POBLACION_OBJETIVO: "",
+    PROY_DESCRIPCION_BIENES_SERVICIOS: "",
+    PROY_DESCRIPCION_PROBLEMA: "",
+    PROY_OBSERVACIONES: "",
+    PROY_DOCUMENTOS_ANEXOS: [],
+    PROY_BIENES_SERVICIOS: [],
+    PROY_ESTADO: "",
+    PROY_CREACION_PROYECTO: "",
 }
 
-export interface InvertionState {
-    data: RequestInvertionDto;
+export interface GeneralState {
+    data: RequestDto;
     status: string;
     error: any;
 }
 
-export const initialState: InvertionState = {
-    data: initialStateFormInvertion,
+export const initialState: GeneralState = {
+    data: initialStateFormGeneral,
     error: "",
     status: ""
 }
 
-const InvertionSlice = createSlice({
+const GeneralSlice = createSlice({
     name: "invertion",
     initialState,
     reducers: {
-        setDataInvertion: (state, { payload }: PayloadAction<any>) => {
+        setDataGeneral: (state, { payload }: PayloadAction<any>) => {
             state.data = payload;
         },
         setEntityRelation: (state, { payload }: PayloadAction<any>) => {
@@ -76,12 +100,15 @@ const InvertionSlice = createSlice({
         },
         addTypeCoverages: (state, { payload }: PayloadAction<any>) => {
             state.data.PROY_COBERTURA = payload;
-        }
+        },
+        addPeoples: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_ANALISIS_PARTICIPANTES = payload;
+        },
     }
 });
 
-export const { setDataInvertion, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages } = InvertionSlice.actions
+export const { setDataGeneral, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples } = GeneralSlice.actions
 
-export const InvertionSelector = (state: RootState) => state.invertion;
+export const GeneralSelector = (state: RootState) => state.general;
 
-export default InvertionSlice.reducer;
+export default GeneralSlice.reducer;

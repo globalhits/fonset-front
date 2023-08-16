@@ -1,6 +1,6 @@
-import { RequestInvertionDto } from "../../../../../models/invertion/RequestInvertionDto";
+import { RequestDto } from "../../../../../models/general/RequestDto";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
-import { InvertionSelector, setDataInvertion } from "../../../../../redux/states/invertion/invertion.slice";
+import { GeneralSelector, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
 import TextArea from "../../../../atoms/area/TextArea"
 import InputFloating from "../../../../atoms/input/Input"
 
@@ -12,17 +12,17 @@ export const GeneralObjective = ({ type }: GeneralObjectiveInterface) => {
 
     const dispatch = useAppDispatch();
 
-    const { data } = useAppSelector(InvertionSelector)
+    const { data } = useAppSelector(GeneralSelector)
 
     const setValueByIndex = (index: any, value: any) => {
-        let updatedRequest: RequestInvertionDto = {};
+        let updatedRequest: RequestDto = {};
 
         updatedRequest = {
             ...data,
             [index]: value
         }
 
-        dispatch(setDataInvertion(updatedRequest));
+        dispatch(setDataGeneral(updatedRequest));
     }
 
     return (
@@ -63,7 +63,7 @@ export const GeneralObjective = ({ type }: GeneralObjectiveInterface) => {
 
                 </div>
                 <div className="col-lg-6">
-                    <TextArea name="PROY_DESCRIPCION_ENTREGABLE_GENERAL"  label="Descripción del entregable" setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} value={data.PROY_DESCRIPCION_ENTREGABLE_GENERAL}/>
+                    <TextArea label="Descripción del entregable" value={data.PROY_DESCRIPCION_ENTREGABLE_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} />
                 </div>
             </div>
             {

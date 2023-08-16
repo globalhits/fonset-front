@@ -9,13 +9,13 @@ import "./index.scss";
 import CheckBox from "../../../atoms/check/Check";
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
-import Entities from "../../Invertion/infoEntities";
 
-import { RequestInvertionDto } from "../../../../models/invertion/RequestInvertionDto";
 import { TypeProjectDto } from "../../../../models/general/TypeProjectDto";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { DependencySelector, fetchApiDependencies } from "../../../../redux/states/generals/dependency.slice";
-import { InvertionSelector, setDataInvertion } from "../../../../redux/states/invertion/invertion.slice";
+import { RequestDto } from "../../../../models/general/RequestDto";
+import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
+import Entities from "../../Invertion/infoEntities";
 
 interface infoBasicInterface{
     type?: string,
@@ -25,7 +25,7 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
 
     const dispatch = useAppDispatch();
 
-    const { data } = useAppSelector(InvertionSelector)
+    const { data } = useAppSelector(GeneralSelector)
 
     const { dependencies } = useAppSelector(DependencySelector);
 
@@ -79,7 +79,7 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
             setCheckedHumanas(checked);
         }
 
-        let updatedRequest: RequestInvertionDto = {};
+        let updatedRequest: RequestDto = {};
 
         let listTipoProject = data.PROY_TIPO ? data.PROY_TIPO : [];
         if (checked) {
@@ -98,19 +98,19 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
             }
         }
 
-        dispatch(setDataInvertion(updatedRequest));
+        dispatch(setDataGeneral(updatedRequest));
 
     }
 
     const setValueByIndex = (index: any, value: any) => {
-        let updatedRequest: RequestInvertionDto = {};
+        let updatedRequest: RequestDto = {};
 
         updatedRequest = {
             ...data,
             [index]: value
         }
 
-        dispatch(setDataInvertion(updatedRequest));
+        dispatch(setDataGeneral(updatedRequest));
     }
 
     return (
@@ -137,7 +137,7 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
                     )} 
                     </Col>
             </Row>
-            <Entities />
+            <Entities/>
         </>
     )
 }
