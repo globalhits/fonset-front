@@ -3,7 +3,6 @@ import { Nav, Tab, Table } from "react-bootstrap";
 import TextArea from "../../../atoms/area/TextArea";
 import './FormDescription.scss'
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import { FonsetSelector, setDataFonset } from "../../../../redux/states/fonset/fonset.slice";
 import { RequestDto } from "../../../../models/general/RequestDto";
 import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
 
