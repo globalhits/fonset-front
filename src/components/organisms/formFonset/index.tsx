@@ -10,12 +10,12 @@ import FormDataGeneral from "../../molecules/fonset/dataGeneral/FormDataGeneral"
 import FormDescription from "../../molecules/fonset/description/FormDescription";
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
 import Buttons from "../../atoms/button/Buttons";
-import { FonsetSelector, initialStateFormFonset } from "../../../redux/states/fonset/fonset.slice";
 import { useAppSelector } from "../../../redux/hooks";
+import { GeneralSelector } from "../../../redux/states/generals/general.slice";
 
 export default function FormFonset() {
 
-	const { data } = useAppSelector(FonsetSelector);
+	const { data } = useAppSelector(GeneralSelector);
 
 	return (
 		<div className="content container-fluid">
