@@ -15,12 +15,12 @@ import InputSelected from "../../atoms/selected/InputSelected";
 import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
 import { useAppSelector } from "../../../redux/hooks";
-import { FonsetSelector } from "../../../redux/states/fonset/fonset.slice";
+import { GeneralSelector } from "../../../redux/states/generals/general.slice";
 
 
 export default function FormCooperative() {
 
-	const { data } = useAppSelector(FonsetSelector);
+	const { data } = useAppSelector(GeneralSelector);
 
 	const showConfirmationAlert = () => {
 		Swal.fire({

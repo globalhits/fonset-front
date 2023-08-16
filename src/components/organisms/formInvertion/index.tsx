@@ -14,15 +14,15 @@ import Objectives from "./../../molecules/Invertion/infoProject/objectives/Objec
 import Loader from "../../atoms/loader";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { InvertionSelector } from "../../../redux/states/invertion/invertion.slice";
 import { loadingSelector } from "../../../redux/states/generals/loading.slice";
 import { RequestDto } from "../../../models/general/RequestDto";
+import { GeneralSelector } from "../../../redux/states/generals/general.slice";
 
 export default function FormInvertion() {
 
 	const { isLoading } = useAppSelector(loadingSelector);
 
-	const { data } = useAppSelector(InvertionSelector);
+	const { data } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 

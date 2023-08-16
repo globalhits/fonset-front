@@ -13,14 +13,14 @@ import Entities from "../infoEntities";
 import { TypeProjectDto } from "../../../../models/general/TypeProjectDto";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { DependencySelector, fetchApiDependencies } from "../../../../redux/states/generals/dependency.slice";
-import { InvertionSelector, setDataInvertion } from "../../../../redux/states/invertion/invertion.slice";
 import { RequestDto } from "../../../../models/general/RequestDto";
+import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
 
 const InfoBasic: React.FC<any> = ({ }) => {
 
     const dispatch = useAppDispatch();
 
-    const { data } = useAppSelector(InvertionSelector)
+    const { data } = useAppSelector(GeneralSelector)
 
     const { dependencies } = useAppSelector(DependencySelector);
 
@@ -93,7 +93,7 @@ const InfoBasic: React.FC<any> = ({ }) => {
             }
         }
 
-        dispatch(setDataInvertion(updatedRequest));
+        dispatch(setDataGeneral(updatedRequest));
 
     }
 
@@ -105,7 +105,7 @@ const InfoBasic: React.FC<any> = ({ }) => {
             [index]: value
         }
 
-        dispatch(setDataInvertion(updatedRequest));
+        dispatch(setDataGeneral(updatedRequest));
     }
 
     return (

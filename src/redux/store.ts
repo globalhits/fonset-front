@@ -5,9 +5,7 @@ import DepartamentReducer from './states/generals/departament.slice';
 import MunicipalityReducer from './states/generals/municipality.slice';
 import dependencyReducer from "./states/generals/dependency.slice";
 
-import InvertionReducer from './states/invertion/invertion.slice';
-import FonsetReducer from "./states/fonset/fonset.slice";
-import cooperationReducer from "./states/cooperation/cooperation.slice";
+import GeneralReducer from './states/generals/general.slice';
 
 export const store = configureStore({
 	reducer: {
@@ -15,9 +13,7 @@ export const store = configureStore({
 		departament: DepartamentReducer,
 		municipality: MunicipalityReducer,
 		dependency: dependencyReducer,
-		invertion: InvertionReducer,
-		fonset: FonsetReducer,
-		cooperative: cooperationReducer
+		general: GeneralReducer,
 	}
 })
 

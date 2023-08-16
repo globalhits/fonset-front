@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import InputFloating from "../../../atoms/input/Input";
-import { InvertionSelector, setDependencyInvolved } from "../../../../redux/states/invertion/invertion.slice";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { DependencyInvolvedDto } from "../../../../models/general/DependencyInvolvedDto";
 import Buttons from "../../../atoms/button/Buttons";
+import { GeneralSelector, setDependencyInvolved } from "../../../../redux/states/generals/general.slice";
 
 const DependencyInvolved = () => {
 
@@ -14,7 +14,7 @@ const DependencyInvolved = () => {
 
     const [error, setError] = useState("");
 
-    const { data } = useAppSelector(InvertionSelector);
+    const { data } = useAppSelector(GeneralSelector);
 
     const addItem = async (itemDescription: any) => {
 

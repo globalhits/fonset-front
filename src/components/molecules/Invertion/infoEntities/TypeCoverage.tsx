@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { Table, Button, Form } from "react-bootstrap";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import { InvertionSelector, addTypeCoverages, setTypeCoverage } from "../../../../redux/states/invertion/invertion.slice";
 import { CoverageDto, TypeCoverageDto } from "../../../../models/general/TypeCoverageDto";
 import { DepartamentSelector, fetchApiDepartament } from "../../../../redux/states/generals/departament.slice";
 import { MunicipalitySelector, fetchApiMunicipality, findByDepartamentId } from "../../../../redux/states/generals/municipality.slice";
 import Buttons from "../../../atoms/button/Buttons";
+import { GeneralSelector, addTypeCoverages, setTypeCoverage } from "../../../../redux/states/generals/general.slice";
 
 const TypeCoverage = () => {
 
@@ -22,7 +22,7 @@ const TypeCoverage = () => {
 
     const [error, setError] = useState("");
 
-    const { data } = useAppSelector(InvertionSelector);
+    const { data } = useAppSelector(GeneralSelector);
 
     const { departaments } = useAppSelector(DepartamentSelector);
 
