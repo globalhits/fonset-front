@@ -21,7 +21,7 @@ import { GeneralSelector, showAlertForInputs } from "../../../redux/states/gener
 
 export default function FormInvertion() {
 
-	const { data } = useAppSelector(GeneralSelector);
+	const { data, error, errorInputs, response } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 

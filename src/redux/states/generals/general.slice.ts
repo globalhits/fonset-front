@@ -1,8 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { TypeCoverageDto } from "../../../models/general/TypeCoverageDto";
 import helper from "../../../utils/helper";
 import { RequestDto } from "../../../models/general/RequestDto";
+import invertionService from "../../../services/invertion/invertion.service";
+import cooperativeService from "../../../services/cooperative/cooperative.service";
+import fonsetService from "../../../services/fonset/fonset.service";
 
 
 const covergateState: TypeCoverageDto = {
@@ -70,6 +73,7 @@ export const initialStateFormGeneral: RequestDto = {
 
 export interface GeneralState {
     data: RequestDto;
+    response: any;
     status: string;
     error: any;
     errorInputs: boolean;
@@ -77,10 +81,30 @@ export interface GeneralState {
 
 export const initialState: GeneralState = {
     data: initialStateFormGeneral,
+    response: null,
     error: "",
     status: "",
     errorInputs: false
 }
+
+//API
+export const saveFormInvertionApi = createAsyncThunk('data/invertion', async (request: RequestDto) => {
+    const response = await invertionService.save(request); // Llamar al servicio
+    console.log("response", response);
+    return response;
+});
+
+export const saveFormFonsetApi = createAsyncThunk('data/fonset', async (request: RequestDto) => {
+    const response = await fonsetService.save(request); // Llamar al servicio
+    console.log("response", response);
+    return response;
+});
+
+export const saveFormCooperativeApi = createAsyncThunk('data/cooperative', async (request: RequestDto) => {
+    const response = await cooperativeService.save(request); // Llamar al servicio
+    console.log("response", response);
+    return response;
+});
 
 const GeneralSlice = createSlice({
     name: "invertion",
@@ -112,7 +136,34 @@ const GeneralSlice = createSlice({
             // show alert when to on click button "finish" 
             state.errorInputs = payload;
         }
-    }
+    },
+    extraReducers(builder) {
+        builder.addCase(saveFormInvertionApi.pending, state => {
+            state.status = 'loading';
+        }).addCase(saveFormInvertionApi.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.response = action.payload;
+        }).addCase(saveFormInvertionApi.rejected, (state, action) => {
+            state.status = 'failed';
+            state.error = action.error.message;
+        }).addCase(saveFormFonsetApi.pending, state => {
+            state.status = 'loading';
+        }).addCase(saveFormFonsetApi.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.response = action.payload;
+        }).addCase(saveFormFonsetApi.rejected, (state, action) => {
+            state.status = 'failed';
+            state.error = action.error.message;
+        }).addCase(saveFormCooperativeApi.pending, state => {
+            state.status = 'loading';
+        }).addCase(saveFormCooperativeApi.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.response = action.payload;
+        }).addCase(saveFormCooperativeApi.rejected, (state, action) => {
+            state.status = 'failed';
+            state.error = action.error.message;
+        })
+    },
 });
 
 export const { setDataGeneral, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples, showAlertForInputs } = GeneralSlice.actions

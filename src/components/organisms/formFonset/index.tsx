@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "./index.scss";
 
 // --- Components libraries ---
@@ -11,18 +11,46 @@ import FormDescription from "../../molecules/fonset/description/FormDescription"
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
 import Buttons from "../../atoms/button/Buttons";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { GeneralSelector } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { setLoading } from "../../../redux/states/generals/loading.slice";
 
 export default function FormFonset() {
 
-	const { data } = useAppSelector(GeneralSelector);
+	const { data, error, errorInputs, response } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 
+	useEffect(() => {
+		dispatch(setLoading(false))
+	}, [])
 
 	const saveForm = () => {
 		console.log("guardar form", data);
 	}
+
+	const finishForm = () => {
+
+		showAlertsForInputsRequired();
+
+		if (data.PROY_CODIGO != "") {
+			//ALERT ARROJAR ERROR
+		}
+
+		if (data.PROY_NOMBRE != "") {
+			//ALERT ARROJAR ERROR
+		}
+
+		if (data.PROY_FECHA != "") {
+			//ALERT ARROJAR ERROR
+		}
+
+		console.log("guardar form", data);
+	}
+
+	const showAlertsForInputsRequired = () => {
+		dispatch(showAlertForInputs(true));
+	}
+
 	return (
 		<div className="content container-fluid">
 			<Container>
@@ -45,7 +73,7 @@ export default function FormFonset() {
 							</Tab>
 
 							<Tab eventKey="description" title="DESCRIPCION">
-								<FormDescription/>
+								<FormDescription />
 							</Tab>
 
 							<Tab eventKey="goods" title="BIENES Y/O SERVICIOS">
@@ -62,8 +90,8 @@ export default function FormFonset() {
 								<Buttons variant="light" label="Cancelar" onClick={() => { }} />
 							</div>
 							<div className="col-lg-6 text-right">
-								<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => { }} />
-								<Buttons variant="outline-success" label="Finalizar" onClick={() => { }} />
+								<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => saveForm()} />
+								<Buttons variant="outline-success" label="Finalizar" onClick={() => finishForm()} />
 							</div>
 						</div>
 					</Card.Body>
