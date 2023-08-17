@@ -22,7 +22,7 @@ const PeopleTable = () => {
 
     const [error, setError] = useState("");
 
-    const addItem = () => {
+    const addItem = async () => {
 
         if (actor.trim() === '') {
             setError('El campo actor no puede estar vacío.');
@@ -61,6 +61,11 @@ const PeopleTable = () => {
 
         dispatch(addPeoples(newDataList))
 
+    }
+
+    const deleteItem = async (item: PeopleDto, index: number) => {
+        const newDataList = await data.PROY_ANALISIS_PARTICIPANTES?.filter(object => (object.id == item.id || object.index == index));
+        dispatch(addPeoples(newDataList))
     }
 
     return (
@@ -102,14 +107,14 @@ const PeopleTable = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.PROY_ANALISIS_PARTICIPANTES?.map((item: PeopleDto) => (
+                            {data.PROY_ANALISIS_PARTICIPANTES?.map((item: PeopleDto, index: number) => (
                                 <tr>
                                     <td>{item.nombre}</td>
                                     <td>{item.ubicacion}</td>
                                     <td>{item.interes}</td>
                                     <td>{item.posicion}</td>
                                     <td>
-                                        <Buttons variant="warning" icon="trash" onClick={() => { }}></Buttons>
+                                        <Buttons variant="warning" icon="trash" onClick={() => deleteItem(item, index)}></Buttons>
                                     </td>
                                 </tr>
                             ))}
