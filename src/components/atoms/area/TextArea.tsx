@@ -1,13 +1,15 @@
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import { StringOptionsWithImporter } from 'sass';
 
 interface TextAreaInterface {
 	label?: string;
 	classStyle?: string;
 	styles?: any;
-	placeholder?: string;
+	placeholder?: string; 
 	rows?: number;
 	cols?: number;
+	name?: string;
 	value?: string;
 	setValueChange: Function;
 

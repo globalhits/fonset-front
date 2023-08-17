@@ -19,7 +19,7 @@ export default function FileUploader() {
 
 	return (
 		<Form>
-			<Form.Group controlId="fileInput">
+			<Form.Group controlId="fileInput" >
 				<Form.Control
 					type="file"
 					ref={fileInputRef}

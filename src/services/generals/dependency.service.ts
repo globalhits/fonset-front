@@ -1,6 +1,5 @@
 import config from "../../config/config";
 import { LIST_FGN_DEPENDENCY } from "../../config/constants";
-import { DependencyDto } from "../../models/general/DependencyDto";
 
 class DependencyService {
 

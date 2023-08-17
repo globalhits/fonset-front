@@ -4,6 +4,7 @@ import { Table, Button, Accordion, Row, Col } from "react-bootstrap";
 import InputFloating from "../../atoms/input/Input";
 import FileUploader from "./FileUploader";
 import Swal from "sweetalert2";
+import {BsPencilSquare, BsTrash3, BsDownload} from 'react-icons/bs'
 
 export default function DocumentUpload() {
 
@@ -27,46 +28,39 @@ export default function DocumentUpload() {
 
     return (
         <div>
-            <Accordion defaultActiveKey="1" className="mt-5 mb-4">
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>Adjuntar archivos</Accordion.Header>
-                    <Accordion.Body>
-                        <Row sm={12}>
-                            <Col>
-                                <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
-                            </Col>
-                            <Col>
-                               <FileUploader />
-                            </Col>
-                        </Row>
-                        
-                        <div className="tableDocumentUpload">
-                            <div>
-                                <Table responsive hover>
-                                    <thead>
-                                        <tr className="campos" style={{ fontSize: "13px" }}>
-                                            <th>Descripcion</th>
-                                            <th>Archivo</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td >
-                                                <Button className="mb-8 col-lg-3" size="sm" variant="outline-success">Editar</Button>
-                                                <Button className="mb-8 col-lg-3" size="sm" variant="danger" onClick={showConfirmationAlert}>Eliminar</Button>
-                                                <Button className="mb-8 col-lg-3" size="sm" variant="outline-warning">Descargar</Button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                            </div>
-                        </div>
-                    </Accordion.Body>
-                </Accordion.Item>
-            </Accordion>
+            <Row sm={12}>
+                <Col>
+                    <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
+                </Col>
+                <Col>
+                    <FileUploader />
+                </Col>
+            </Row>
+
+            <Row className="tableDocumentUpload">
+                <Col sm={12}>
+                    <Table responsive hover>
+                        <thead>
+                            <tr className="campos" style={{ fontSize: "13px" }}>
+                                <th>Descripcion</th>
+                                <th>Archivo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td >
+                                    <Button className="mb-4 col-lg-2" size="sm" variant="success"><BsPencilSquare/></Button>
+                                    <Button className="mb-4 col-lg-2" size="sm" variant="danger" onClick={showConfirmationAlert}><BsTrash3/></Button>
+                                    <Button className="mb-4 col-lg-2" size="sm" variant="warning"><BsDownload/></Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                </Col>
+            </Row>
         </div>
     );
 }

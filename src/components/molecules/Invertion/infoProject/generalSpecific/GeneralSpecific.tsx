@@ -8,7 +8,11 @@ import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific"
 import { RequestDto } from "../../../../../models/general/RequestDto";
 import { GeneralSelector, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
 
-export const GeneralSpecific = () => {
+interface GeneralSpecificInterface {
+    type?: string
+}
+
+export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
     const [categoriesGeneral, setCategoriesGeneral] = useState([]);
 
@@ -22,6 +26,10 @@ export const GeneralSpecific = () => {
 
     const [actionsObjetives, setActionsObjectives] = useState([]);
 
+    const [programs, setPrograms] = useState([]);
+
+    const [linesPrograms, setLinesPrograms] = useState([]);
+
     // INPUT
 
     const [categoryGeneral, setCategoryGeneral] = useState("");
@@ -32,7 +40,11 @@ export const GeneralSpecific = () => {
 
     const [objetiveStrategy, setObjetiveStrategy] = useState("");
 
-    const [programs, setPrograms] = useState([]);
+    const [subObjetiveStrategy, setSubObjetiveStrategy] = useState("");
+
+    const [program, setProgram] = useState("");
+
+    const [linesProgram, setLinesProgram] = useState("");
 
     const dispatch = useAppDispatch();
 
@@ -56,36 +68,36 @@ export const GeneralSpecific = () => {
 
     return (
         <>
-            <GeneralObjective type="specific" />
+            <GeneralObjective type={type} isSpecify={true} />
             <hr />
             <div className="row">
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria general / eje Tematico" options={categoriesGeneral} onChange={(value: any) => setValueByIndex("", value)} value="" />
+                    <InputSelected label="Categoria general / eje Tematico" options={categoriesGeneral} onChange={(value: any) => setCategoryGeneral(value)} value="" />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria Especifica" options={categoriesSpecifies} onChange={(value: any) => setValueByIndex("", value)} value="" />
+                    <InputSelected label="Categoria Especifica" options={categoriesSpecifies} onChange={(value: any) => setCategorySpecify(value)} value="" />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Nombre Bien / Servicio" options={services} onChange={(value: any) => setValueByIndex("", value)} value="" />
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-lg-4">
-                    <InputSelected label="Objetivo estratégico direccionamiento" options={objetiveStrategies} onChange={(value: any) => setValueByIndex("", value)} value="" />
-                </div>
-                <div className="col-lg-4">
-                    <InputSelected label="Subtema del objetivo estratégico" options={subOjectiveStrategies} onChange={(value: any) => setValueByIndex("", value)} value="" />
-                </div>
-                <div className="col-lg-4">
-                    <InputSelected label="Acciones Objetivo estratégico" options={actionsObjetives} onChange={(value: any) => setValueByIndex("", value)} value="" />
+                    <InputSelected label="Nombre Bien / Servicio" options={services} onChange={(value: any) => setService(value)} value="" />
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-4">
-                    <InputSelected label="Programa" options={programs} onChange={(value: any) => setValueByIndex("", value)} value="" />
+                    <InputSelected label="Objetivo estratégico direccionamiento" options={objetiveStrategies} onChange={(value: any) => setObjetiveStrategy(value)} value="" />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Linea del programa" options={programs} onChange={(value: any) => setValueByIndex("", value)} value="" />
+                    <InputSelected label="Subtema del objetivo estratégico" options={subOjectiveStrategies} onChange={(value: any) => setSubObjetiveStrategy(value)} value="" />
+                </div>
+                <div className="col-lg-4">
+                    <InputSelected label="Acciones Objetivo estratégico" options={actionsObjetives} onChange={(value: any) => setActionsObjectives(value)} value="" />
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-lg-4">
+                    <InputSelected label="Programa" options={programs} onChange={(value: any) => setProgram(value)} value="" />
+                </div>
+                <div className="col-lg-4">
+                    <InputSelected label="Lineas del programa" options={linesPrograms} onChange={(value: any) => setLinesProgram(value)} value="" />
                 </div>
                 <div className="col-lg-4 text-center">
                     <Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " onClick={() => { }} />

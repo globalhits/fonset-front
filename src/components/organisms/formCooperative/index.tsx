@@ -2,25 +2,38 @@ import React, { useState } from "react";
 import "./index.scss";
 
 // --- Components libraries ---
-import { Tab, Tabs, Card, Container, Button } from "react-bootstrap";
+import { Tab, Tabs, Card, Container, Button, Col, Row } from "react-bootstrap";
 import Swal from 'sweetalert2';
 
 // --- Components project ---
 import OriginProject from "../../molecules/originProject";
+import InputSelected from "../../atoms/selected/InputSelected";
 import InputFloating from "../../atoms/input/Input";
 import Buttons from "../../atoms/button/Buttons";
-import FormDataGeneralCoop from "../../molecules/cooperation/dataGeneralCoop/FormDataGeneralCoop";
-import Entities from "../../molecules/Invertion/infoEntities";
-import InputSelected from "../../atoms/selected/InputSelected";
-import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
-import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
-import { useAppSelector } from "../../../redux/hooks";
+
+/* import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop"; */
+import Loader from "../../atoms/loader";
+
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { loadingSelector } from "../../../redux/states/generals/loading.slice";
+import InfoBasic from "../../molecules/general/infoBasic";
 import { GeneralSelector } from "../../../redux/states/generals/general.slice";
+import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
+import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
 
 
 export default function FormCooperative() {
 
 	const { data } = useAppSelector(GeneralSelector);
+	const { isLoading } = useAppSelector(loadingSelector);
+
+	const dispatch = useAppDispatch();
+
+	if (isLoading) return <Loader />;
+
+	const saveForm = () => {
+		console.log("guardar form", data);
+	}
 
 	const showConfirmationAlert = () => {
 		Swal.fire({
@@ -39,6 +52,7 @@ export default function FormCooperative() {
 			}
 		});
 	};
+
 	return (
 		<>
 			<div className="content container-fluid">
@@ -58,37 +72,39 @@ export default function FormCooperative() {
 								className="mt-4 mb-3"
 							>
 								<Tab eventKey="general" title="DATOS GENERALES">
-									<FormDataGeneralCoop />
-									<Entities />
-									<div className="row">
-										<div className="col-lg-6">
+									{/* <FormDataGeneralCoop formData={dataForm} setFormData={(data: RequestCooperativeDto) => setDataForm(data)}/> */}
+									<InfoBasic type="cooperative"/>
+									<Row sm={12}>
+										<Col sm={6}>
 											<InputSelected label="Pais coperante que podria financiar el proyecto" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
-										</div>
-										<div className="col-lg-6">
+										</Col>
+										<Col sm={6}>
 											<InputFloating label="Implementador (es)" className="mb-3 inputFloating" type="text" placeholder="Indique el operador que podria ejecutar el proyecto." setValueChange={(value: string) => { }} value="" />
-										</div>
-									</div>
+										</Col>
+									</Row>
 								</Tab>
 
 								<Tab eventKey="obj_general" title="OBJ. GENERAL">
-									<FormObjGeneralCoop />
+									{/* <FormObjGeneralCoop />  */}
+									<GeneralSpecific/>
 								</Tab>
 
 								<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-									<FormObjEspecificoCoop />
+									 <FormObjEspecificoCoop /> 
+
 								</Tab>
 							</Tabs>
 
 							<hr className="" />
-							<div className="row">
-								<div className="col-lg-6">
+							<Row sm={12}>
+								<Col sm={6}>
 									<Button variant="light" onClick={showConfirmationAlert}>Cancelar</Button>
-								</div>
-								<div className="col-lg-6 text-right">
-									<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => { }} />
-									<Buttons variant="outline-success" label="Finalizar" onClick={() => { }} />
-								</div>
-							</div>
+								</Col>
+								<Col sm={6} className="text-right">
+									<Buttons variant="primary" label="Guardar" classStyle="mr-3"  onClick={() => saveForm()} />
+									<Buttons variant="outline-success" label="Finalizar"  onClick={() => saveForm()} />
+								</Col>
+							</Row>
 						</Card.Body>
 					</Card>
 				</Container>

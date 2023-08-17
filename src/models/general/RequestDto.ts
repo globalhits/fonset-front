@@ -8,7 +8,7 @@ import { TypeProjectDto } from "./TypeProjectDto";
 
 export interface RequestDto {
 
-    //GENERAL
+    //GENERALmeses
     PROY_CODIGO?: string;
     PROY_NOMBRE?: string;
     PROY_FECHA?: string;
@@ -26,6 +26,7 @@ export interface RequestDto {
     PROY_POBLACION_AFECTADA?: string; // INVERTION, 
     PROY_POBLACION_OBJETO?: string;
     PROY_CARACTERISTICAS_DEMOGRAFICAS?: string; // INVERTION
+    PROY_RESULTADO_ESPERADO?: string; // INVERTION
 
     PROY_ANALISIS_PARTICIPANTES?: PeopleDto[]; // INVERTION
 

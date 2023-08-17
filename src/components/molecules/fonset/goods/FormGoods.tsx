@@ -77,9 +77,11 @@ export default function FormGoods() {
                 <Col sm={4}>
                     <InputSelected label="Lineas del programa*" className="mb-3 inputFloating InputSeleted" options={[]} onChange={(value: any) => { }} value="" />
                 </Col>
-                <div className="col-lg-4 text-center">
+
+                
+                <Col className="col-lg-4 text-center">
                     <Buttons variant="outline-info" label="Agregar bien/servicio" classStyle="mt-4 " onClick={() => { }} />
-                </div>
+                </Col>
             </Row>
             <hr />
             <TableListGoods />
