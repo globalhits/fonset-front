@@ -73,9 +73,9 @@ const DependencyInvolved = () => {
                     {
                         data.PROY_DEPENDENCIAS_INVOLUCRADAS?.map((item: DependencyInvolvedDto, index: number) => (
                             <tr key={index}>
-                                <td width={"80%"}>{item.descripcion}</td>
+                                <td width={"80%"}>{item.DESCRIPCION}</td>
                                 <td width={"20%"} className="text-center">
-                                    <Buttons size="xs" icon="trash3-fill" variant="danger" key={index} onClick={() => deleteItem(item.descripcion, index)} />
+                                    <Buttons size="xs" icon="trash3-fill" variant="danger" key={index} onClick={() => deleteItem(item.DESCRIPCION, index)} />
                                 </td>
                             </tr>
                         ))

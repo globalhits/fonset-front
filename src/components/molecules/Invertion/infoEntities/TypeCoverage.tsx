@@ -66,7 +66,7 @@ const TypeCoverage = () => {
             return;
         }
 
-        let listCoverage: CoverageDto[] = data.PROY_COBERTURA?.cobertura ? data.PROY_COBERTURA.cobertura : [];
+        let listCoverage: CoverageDto[] = data.PROY_COBERTURA?.COBERTURA ? data.PROY_COBERTURA.COBERTURA : [];
 
         const newItem = [...listCoverage, {
             departamento_id: departamentSelected,
@@ -172,7 +172,7 @@ const TypeCoverage = () => {
                         </thead>
                         <tbody>
                             {
-                                data.PROY_COBERTURA?.cobertura?.map((item: any, index: number) => (
+                                data.PROY_COBERTURA?.COBERTURA?.map((item: any, index: number) => (
                                     <tr key={index}>
                                         <td width={"40%"}>{item.nombre_deparamento}</td>
                                         <td width={"40%"}>{item.nombre_municipio}</td>

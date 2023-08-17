@@ -16,6 +16,7 @@ import { DependencySelector, fetchApiDependencies } from "../../../../redux/stat
 import { RequestDto } from "../../../../models/general/RequestDto";
 import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
 import Entities from "../../Invertion/infoEntities";
+import helper from "../../../../utils/helper";
 
 interface infoBasicInterface{
     type?: string,
@@ -42,17 +43,17 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
     const checkInputs = () => {
         if (data.PROY_TIPO !== null) {
             data.PROY_TIPO?.forEach(item => {
-                if (item.description == "tecnicas") {
+                if (item.DESCRIPCION == "tecnicas") {
                     setCheckedTecnica(true);
                 } else {
                     setCheckedTecnica(false);
                 }
-                if (item.description == "tecnologias") {
+                if (item.DESCRIPCION == "tecnologias") {
                     setCheckedTecnologia(true)
                 } else {
                     setCheckedTecnologia(false);
                 }
-                if (item.description == "humanas") {
+                if (item.DESCRIPCION == "humanas") {
                     setCheckedHumanas(true);
                 } else {
                     setCheckedHumanas(false);
@@ -84,14 +85,15 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
         let listTipoProject = data.PROY_TIPO ? data.PROY_TIPO : [];
         if (checked) {
             // Elemento no existe, agregarlo al array
-            const newItem = [...listTipoProject, { id: "", description: value }];
+            const newItem = [...listTipoProject, { INDEX: helper.getRandomInt(), ID: null, DESCRIPCION: value }];
             updatedRequest = {
                 ...data,
-                PROY_TIPO: newItem,
+                PROY_TIPO: newItem
             };
+
         } else {
             // Eliminar elemento del array
-            let newTypes = listTipoProject.filter(item => item.description != value);
+            let newTypes = listTipoProject.filter(item => item.DESCRIPCION != value);
             updatedRequest = {
                 ...data,
                 PROY_TIPO: newTypes

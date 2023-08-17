@@ -6,8 +6,8 @@ import { RequestDto } from "../../../models/general/RequestDto";
 
 
 const covergateState: TypeCoverageDto = {
-    tipo: "",
-    cobertura: []
+    TIPO: "",
+    COBERTURA: []
 }
 
 export const initialStateFormGeneral: RequestDto = {
@@ -95,7 +95,7 @@ const GeneralSlice = createSlice({
         },
         setTypeCoverage: (state, { payload }: PayloadAction<string>) => {
             if (state.data.PROY_COBERTURA) {
-                state.data.PROY_COBERTURA.tipo = payload
+                state.data.PROY_COBERTURA.TIPO = payload
             }
         },
         addTypeCoverages: (state, { payload }: PayloadAction<any>) => {

@@ -30,7 +30,7 @@ const MunicipalitySlice = createSlice({
             state.filters = state.municipalities;
         },
         findByDepartamentId: (state, { payload }: PayloadAction<number>) => {
-            state.filters = state.municipalities.filter((item: MunicipalityDto) => item.parentId == payload);
+            state.filters = state.municipalities.filter((item: MunicipalityDto) => item.PARENTID == payload);
         },
         setMunicipalityError: (state, { payload }: PayloadAction<string>) => {
             state.error = payload;
