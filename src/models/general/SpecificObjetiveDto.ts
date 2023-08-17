@@ -1,4 +1,3 @@
-import { Activity } from "./ActivityDto";
 
 export interface SpecificObjetiveDto {
     index?: number;
