@@ -7,6 +7,7 @@ import { DepartamentSelector, fetchApiDepartament } from "../../../../redux/stat
 import { MunicipalitySelector, fetchApiMunicipality, findByDepartamentId } from "../../../../redux/states/generals/municipality.slice";
 import Buttons from "../../../atoms/button/Buttons";
 import { GeneralSelector, addTypeCoverages, setTypeCoverage } from "../../../../redux/states/generals/general.slice";
+import helper from "../../../../utils/helper";
 
 const TypeCoverage = () => {
 
@@ -14,7 +15,7 @@ const TypeCoverage = () => {
 
     const [disabledMunicipalities, setDisabledMunicipalities] = useState<boolean>(true);
 
-    const [disabledTable, setDisabledTable] = useState<boolean>(false);
+    const [disabledTable, setDisabledTable] = useState<boolean>(true);
 
     const [departamentSelected, setDepartamentSelected] = useState("");
 
@@ -22,7 +23,7 @@ const TypeCoverage = () => {
 
     const [error, setError] = useState("");
 
-    const { data } = useAppSelector(GeneralSelector);
+    const { data, errorInputs } = useAppSelector(GeneralSelector);
 
     const { departaments } = useAppSelector(DepartamentSelector);
 
@@ -30,6 +31,7 @@ const TypeCoverage = () => {
 
     useEffect(() => {
         // Disparar la acción para obtener los datos
+        dispatch(setTypeCoverage("nacional"))
         dispatch(fetchApiDepartament());
         dispatch(fetchApiMunicipality());
     }, [dispatch]);
@@ -68,11 +70,21 @@ const TypeCoverage = () => {
 
         let listCoverage: CoverageDto[] = data.PROY_COBERTURA?.COBERTURA ? data.PROY_COBERTURA.COBERTURA : [];
 
+        let findRow = listCoverage.filter((item: CoverageDto) => (parseInt(departamentSelected.trim()) == item.DEPARTAMENTO_ID && parseInt(municipalitySelected.trim()) == item.MUNICIPIO_ID));
+
+        console.log("find", findRow);
+
+        if (findRow && findRow.length > 0) {
+            setError("Ya se encuentra este departamento y municipio agragado.")
+            return
+        }
+
         const newItem = [...listCoverage, {
-            departamento_id: departamentSelected,
-            nombre_deparamento: departaments.find((item: any) => item.id == departamentSelected),
-            municipio_id: municipalitySelected,
-            nombre_municipio: filters.find((item: any) => item.id == municipalitySelected),
+            INDEX: helper.getRandomInt(),
+            DEPARTAMENT_ID: parseInt(departamentSelected),
+            NOMBRE_DEPARTAMENTO: departaments.find((item: any) => item.id == departamentSelected)?.name,
+            MUNICIPIO_ID: parseInt(municipalitySelected),
+            NOMBRE_MUNICIPIO: filters.find((item: any) => item.id == municipalitySelected)?.name,
         }]
 
         dispatch(addTypeCoverages(newItem));
@@ -83,8 +95,9 @@ const TypeCoverage = () => {
         setDisabledMunicipalities(true);
     }
 
-    const deleteItem = (item: any, index: number) => {
-
+    const deleteItem = (coverage: CoverageDto, index: number) => {
+        let newList = data.PROY_COBERTURA?.COBERTURA?.filter((item: CoverageDto) => (item.INDEX !== coverage.INDEX || item.ID !== coverage.ID));
+        dispatch(addTypeCoverages(newList));
     }
 
     const changeDepartament = (departament: any) => {
@@ -106,6 +119,7 @@ const TypeCoverage = () => {
 
                         <div className="col-lg-6">
                             <Form.Check
+                                checked={disabledTable}
                                 inline
                                 label="Nacional"
                                 name="group1"
@@ -146,10 +160,10 @@ const TypeCoverage = () => {
 
             <div className="row mt-2">
                 <div className="col-lg-5 mb-2">
-                    <InputSelected label="Departamento*" className="mb-2 inputFloating" options={departaments} onChange={(value: any) => changeDepartament(value)} value={departamentSelected} disabled={disabledTable} />
+                    <InputSelected label="Departamentos*" className="mb-2 inputFloating" options={departaments} onChange={(value: any) => changeDepartament(value)} value={departamentSelected} disabled={disabledTable} />
                 </div>
                 <div className="col-lg-5 mb-2">
-                    <InputSelected label="Departamento*" className="mb-3 inputFloating" options={filters} onChange={(value: any) => setMunicipalitySelected(value)} value={municipalitySelected} disabled={disabledMunicipalities} />
+                    <InputSelected label="Municipios*" className="mb-3 inputFloating" options={filters} onChange={(value: any) => setMunicipalitySelected(value)} value={municipalitySelected} disabled={disabledMunicipalities} />
                 </div>
                 <div className="col-lg-2">
                     <Button disabled={(departamentSelected !== "" && municipalitySelected !== "") ? false : true} className="mt-4 mb-2" variant="warning" onClick={() => addItem()}>+</Button>
@@ -174,13 +188,18 @@ const TypeCoverage = () => {
                             {
                                 data.PROY_COBERTURA?.COBERTURA?.map((item: any, index: number) => (
                                     <tr key={index}>
-                                        <td width={"40%"}>{item.nombre_deparamento}</td>
-                                        <td width={"40%"}>{item.nombre_municipio}</td>
+                                        <td width={"40%"}>{item.NOMBRE_DEPARTAMENTO}</td>
+                                        <td width={"40%"}>{item.NOMBRE_MUNICIPIO}</td>
                                         <td width={"20%"} className="text-center">
                                             <Buttons size="xs" icon="trash3-fill" variant="danger" key={index} onClick={() => deleteItem(item, index)} />
                                         </td>
                                     </tr>
                                 ))
+                            }
+                            {
+                                errorInputs && data.PROY_COBERTURA?.COBERTURA?.length == 0
+                                    ? (<tr><td colSpan={3} className="text-center"><h5 className="text-danger">¡Coberturas requeridas!</h5></td></tr>)
+                                    : null
                             }
                         </tbody>
                     </Table>

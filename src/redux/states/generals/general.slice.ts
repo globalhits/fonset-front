@@ -72,12 +72,14 @@ export interface GeneralState {
     data: RequestDto;
     status: string;
     error: any;
+    errorInputs: boolean;
 }
 
 export const initialState: GeneralState = {
     data: initialStateFormGeneral,
     error: "",
-    status: ""
+    status: "",
+    errorInputs: false
 }
 
 const GeneralSlice = createSlice({
@@ -99,15 +101,21 @@ const GeneralSlice = createSlice({
             }
         },
         addTypeCoverages: (state, { payload }: PayloadAction<any>) => {
-            state.data.PROY_COBERTURA = payload;
+            if (state.data.PROY_COBERTURA?.COBERTURA) {
+                state.data.PROY_COBERTURA.COBERTURA = payload;
+            }
         },
         addPeoples: (state, { payload }: PayloadAction<any>) => {
             state.data.PROY_ANALISIS_PARTICIPANTES = payload;
         },
+        showAlertForInputs: (state, { payload }: PayloadAction<boolean>) => {
+            // show alert when to on click button "finish" 
+            state.errorInputs = payload;
+        }
     }
 });
 
-export const { setDataGeneral, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples } = GeneralSlice.actions
+export const { setDataGeneral, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples, showAlertForInputs } = GeneralSlice.actions
 
 export const GeneralSelector = (state: RootState) => state.general;
 

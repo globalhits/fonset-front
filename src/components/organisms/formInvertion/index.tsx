@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "./index.scss";
 
 // --- Components libraries ---
@@ -14,23 +14,51 @@ import Objectives from "./../../molecules/Invertion/infoProject/objectives/Objec
 import Loader from "../../atoms/loader";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { loadingSelector } from "../../../redux/states/generals/loading.slice";
+import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
 import { RequestDto } from "../../../models/general/RequestDto";
-import { GeneralSelector } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 
 
 export default function FormInvertion() {
-
-	const { isLoading } = useAppSelector(loadingSelector);
 
 	const { data } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 
-	if (isLoading) return <Loader />;
+	useEffect(() => {
+		dispatch(setLoading(false))
+	}, [])
 
 	const saveForm = () => {
+
 		console.log("guardar form", data);
+	}
+
+	const finishForm = () => {
+
+		showAlertsForInputsRequired();
+
+		if (data.PROY_CODIGO != "") {
+			//ALERT ARROJAR ERROR
+		}
+
+		if (data.PROY_NOMBRE != "") {
+			//ALERT ARROJAR ERROR
+		}
+
+		if (data.PROY_FECHA != "") {
+			//ALERT ARROJAR ERROR
+		}
+
+		if (data.PROY_COBERTURA?.TIPO == "focalizada" && data.PROY_COBERTURA.COBERTURA?.length == 0) {
+			//Arrojar error
+			alert("error")
+		}
+		console.log("guardar form", data);
+	}
+
+	const showAlertsForInputsRequired = () => {
+		dispatch(showAlertForInputs(true));
 	}
 
 	const updateDate = (data: RequestDto) => {
@@ -76,7 +104,7 @@ export default function FormInvertion() {
 							</div>
 							<div className="col-lg-6 text-right">
 								<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => saveForm()} />
-								<Buttons variant="outline-success" label="Finalizar" onClick={() => saveForm()} />
+								<Buttons variant="outline-success" label="Finalizar" onClick={() => finishForm()} />
 							</div>
 						</div>
 					</Card.Body>
