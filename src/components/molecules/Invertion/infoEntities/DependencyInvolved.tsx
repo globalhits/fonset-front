@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { DependencyInvolvedDto } from "../../../../models/general/DependencyInvolvedDto";
 import Buttons from "../../../atoms/button/Buttons";
 import { GeneralSelector, setDependencyInvolved } from "../../../../redux/states/generals/general.slice";
+import helper from "../../../../utils/helper";
 
 const DependencyInvolved = () => {
 
@@ -14,7 +15,7 @@ const DependencyInvolved = () => {
 
     const [error, setError] = useState("");
 
-    const { data } = useAppSelector(GeneralSelector);
+    const { data, errorInputs } = useAppSelector(GeneralSelector);
 
     const addItem = async (itemDescription: any) => {
 
@@ -25,14 +26,19 @@ const DependencyInvolved = () => {
 
         let listDependency: DependencyInvolvedDto[] = data.PROY_DEPENDENCIAS_INVOLUCRADAS ? data.PROY_DEPENDENCIAS_INVOLUCRADAS : [];
 
-        let findInfo = await listDependency.filter((item: any) => item.descripcion == itemDescription);
+        let findInfo = await listDependency.filter((item: DependencyInvolvedDto) => item.DESCRIPCION == itemDescription);
 
         if (findInfo && findInfo.length > 0) {
             setError('El valor ya existe.');
             return false;
         }
 
-        const newItem = [...listDependency, { id: null, descripcion: itemDescription }]
+        const newItem = [...listDependency, {
+            INDEX: helper.getRandomInt(),
+            ID: null,
+            DESCRIPCION: itemDescription
+        }]
+
 
         dispatch(setDependencyInvolved(newItem));
 
@@ -40,9 +46,9 @@ const DependencyInvolved = () => {
         setNameDescription("");
     }
 
-    const deleteItem = async (descripcion: string, index: number) => {
+    const deleteItem = (item: DependencyInvolvedDto, index: number) => {
 
-        let newList = data.PROY_DEPENDENCIAS_INVOLUCRADAS?.filter((item: any) => item.descripcion !== descripcion);
+        let newList = data.PROY_DEPENDENCIAS_INVOLUCRADAS?.filter((object: DependencyInvolvedDto) => object.INDEX !== item.INDEX);
 
         dispatch(setDependencyInvolved(newList));
     }
@@ -73,12 +79,17 @@ const DependencyInvolved = () => {
                     {
                         data.PROY_DEPENDENCIAS_INVOLUCRADAS?.map((item: DependencyInvolvedDto, index: number) => (
                             <tr key={index}>
-                                <td width={"80%"}>{item.descripcion}</td>
+                                <td width={"80%"}>{item.DESCRIPCION}</td>
                                 <td width={"20%"} className="text-center">
-                                    <Buttons size="xs" icon="trash3-fill" variant="danger" key={index} onClick={() => deleteItem(item.descripcion, index)} />
+                                    <Buttons size="xs" icon="trash3-fill" variant="danger" key={index} onClick={() => deleteItem(item, index)} />
                                 </td>
                             </tr>
                         ))
+                    }
+                    {
+                        errorInputs && data.PROY_DEPENDENCIAS_INVOLUCRADAS?.length == 0
+                            ? (<tr><td colSpan={3} className="text-center"><h5 className="text-danger">¡Dependencias involucradas requeridas!</h5></td></tr>)
+                            : null
                     }
                 </tbody>
             </Table>

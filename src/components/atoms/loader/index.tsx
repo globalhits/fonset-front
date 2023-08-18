@@ -1,10 +1,13 @@
 import React from 'react';
 import "./loader.scss";
+import { Spinner } from 'react-bootstrap';
 
 const Loader = () => {
 	return (
-		<div className='loader flex flex-c'>
-			<img src={"/assets/images/loader.svg"} alt="loader" />
+		<div className="loading">
+			<Spinner className='size-loading' animation="border" role="status" variant="primary" size="sm">
+				<span className="visually-hidden">Loading...</span>
+			</Spinner>
 		</div>
 	)
 }

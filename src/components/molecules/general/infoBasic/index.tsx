@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import "./index.scss";
 
 // --- Components Libraries ---
@@ -16,16 +16,17 @@ import { DependencySelector, fetchApiDependencies } from "../../../../redux/stat
 import { RequestDto } from "../../../../models/general/RequestDto";
 import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
 import Entities from "../../Invertion/infoEntities";
+import helper from "../../../../utils/helper";
 
-interface infoBasicInterface{
+interface infoBasicInterface {
     type?: string,
 }
 
-const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
+const InfoBasic: React.FC<infoBasicInterface> = ({ type }) => {
 
     const dispatch = useAppDispatch();
 
-    const { data } = useAppSelector(GeneralSelector)
+    const { data, errorInputs } = useAppSelector(GeneralSelector)
 
     const { dependencies } = useAppSelector(DependencySelector);
 
@@ -42,17 +43,17 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
     const checkInputs = () => {
         if (data.PROY_TIPO !== null) {
             data.PROY_TIPO?.forEach(item => {
-                if (item.description == "tecnicas") {
+                if (item.DESCRIPCION == "tecnicas") {
                     setCheckedTecnica(true);
                 } else {
                     setCheckedTecnica(false);
                 }
-                if (item.description == "tecnologias") {
+                if (item.DESCRIPCION == "tecnologias") {
                     setCheckedTecnologia(true)
                 } else {
                     setCheckedTecnologia(false);
                 }
-                if (item.description == "humanas") {
+                if (item.DESCRIPCION == "humanas") {
                     setCheckedHumanas(true);
                 } else {
                     setCheckedHumanas(false);
@@ -84,14 +85,15 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
         let listTipoProject = data.PROY_TIPO ? data.PROY_TIPO : [];
         if (checked) {
             // Elemento no existe, agregarlo al array
-            const newItem = [...listTipoProject, { id: "", description: value }];
+            const newItem = [...listTipoProject, { INDEX: helper.getRandomInt(), ID: null, DESCRIPCION: value }];
             updatedRequest = {
                 ...data,
-                PROY_TIPO: newItem,
+                PROY_TIPO: newItem
             };
+
         } else {
             // Eliminar elemento del array
-            let newTypes = listTipoProject.filter(item => item.description != value);
+            let newTypes = listTipoProject.filter(item => item.DESCRIPCION != value);
             updatedRequest = {
                 ...data,
                 PROY_TIPO: newTypes
@@ -117,27 +119,29 @@ const InfoBasic: React.FC<infoBasicInterface> = ({type}) => {
         <>
             <Row className="row mt-4 p-2">
                 <Col className="col-lg-3">
-                    <Container className="ContainerForm">
-                        <h5 className="title">Tipo de proyecto <span className="text-red">*</span></h5>
-                        <Col className="mt-3">
-                            <CheckBox name={"tecnicas"} label="Tecnicas" type="checkbox" value="tecnicas" setValueChange={(e: any) => setTypeProject("tecnicas", e)} checked={checkedTecnica} />
-                            <CheckBox name={"tecnologias"} label="Tecnologicas" type="checkbox" value="tecnologias" setValueChange={(e: any) => setTypeProject("tecnologias", e)} checked={checkedTecnologia} />
-                            <CheckBox name={"humanas"} label="Humanas" type="checkbox" value="humanas" setValueChange={(e: any) => setTypeProject("humanas", e)} checked={checkedHumanas} />
-                        </Col>
-                    </Container>
+                    <h5 className="title">Tipo de proyecto <span className="text-red">*</span></h5>
+                    <CheckBox name={"tecnicas"} label="Tecnicas" type="checkbox" value="tecnicas" setValueChange={(e: any) => setTypeProject("tecnicas", e)} checked={checkedTecnica} />
+                    <CheckBox name={"tecnologias"} label="Tecnologicas" type="checkbox" value="tecnologias" setValueChange={(e: any) => setTypeProject("tecnologias", e)} checked={checkedTecnologia} />
+                    <CheckBox name={"humanas"} label="Humanas" type="checkbox" value="humanas" setValueChange={(e: any) => setTypeProject("humanas", e)} checked={checkedHumanas} />
+
+                    {
+                        errorInputs && data.PROY_TIPO?.length == 0
+                            ? (<p style={{ fontSize: "15px" }} className="text-danger">Tipo de proyecto* es requerid@.</p>)
+                            : null
+                    }
                 </Col>
-                <Col className="col-lg-9">
+                <Col className="col-lg-9 mt-3">
                     {type !== "cooperative" ? (
                         <>
-                            <InputFloating name="dependencia-responsable" label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" setValueChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_RESPONSABLE} />
-                            <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} />
+                            <InputFloating name="dependencia-responsable" label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" setValueChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_RESPONSABLE} isInvalid={!data.PROY_DEPENDENCIA_RESPONSABLE && errorInputs} />
+                            <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} isInvalid={!data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE && errorInputs} />
                         </>
                     ) : (
                         <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} />
-                    )} 
-                    </Col>
+                    )}
+                </Col>
             </Row>
-            <Entities/>
+            <Entities />
         </>
     )
 }

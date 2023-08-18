@@ -1,18 +1,18 @@
 import config from "../../config/config";
-import { LIST_FGN_DEPENDENCY } from "../../config/constants";
+import { LIST_PROGRAMS } from "../../config/constants";
 
-class DependencyService {
+class LineProgramService {
 
     private apiGenerals = config.apiGeneralHost;
 
-    private pathListDependency = config.pathListDependency;
+    private pathListLineProgram = config.pathListLineProgram;
 
     async getAll() {
         try {
-            // const response = await fetch(`${this.apiGenerals}/${this.pathListDependency}`);
+            // const response = await fetch(`${this.apiGenerals}/${this.pathListLineProgram}`);
             // const data = await response.json();
             // return data;
-            return LIST_FGN_DEPENDENCY;
+            return LIST_PROGRAMS;
         } catch (error) {
             console.error('Error fetching data:', error);
             throw error;
@@ -20,4 +20,4 @@ class DependencyService {
     }
 }
 
-export default new DependencyService();
+export default new LineProgramService();

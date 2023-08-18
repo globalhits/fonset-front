@@ -8,7 +8,11 @@ import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific"
 import { RequestDto } from "../../../../../models/general/RequestDto";
 import { GeneralSelector, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
 
-export const GeneralSpecific = () => {
+interface GeneralSpecificInterface {
+    type?: string
+}
+
+export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
     const [categoriesGeneral, setCategoriesGeneral] = useState([]);
 
@@ -64,7 +68,7 @@ export const GeneralSpecific = () => {
 
     return (
         <>
-            <GeneralObjective type="specific" />
+            <GeneralObjective type={type} isSpecify={true} />
             <hr />
             <div className="row">
                 <div className="col-lg-4">

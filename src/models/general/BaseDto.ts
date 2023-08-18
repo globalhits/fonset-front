@@ -1,5 +1,5 @@
 export interface BaseDto {
-    index?: number,
+    INDEX?: number,
     id?: number,
     name?: string,
     description?: string,
