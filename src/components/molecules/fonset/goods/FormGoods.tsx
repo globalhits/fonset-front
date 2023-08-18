@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import { Col, Row, Tab, Table, Button } from "react-bootstrap";
-import Swal from 'sweetalert2';
+
 import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
-import "./FormGoods.scss"
 import Buttons from "../../../atoms/button/Buttons";
 import TableListGoods from "./table/TableListGoods";
+import Swal from 'sweetalert2';
+import "./FormGoods.scss"
+
+import { RequestDto } from "../../../../models/general/RequestDto";
+import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 
 export default function FormGoods() {
 
@@ -26,6 +31,58 @@ export default function FormGoods() {
             }
         });
     };
+
+    const [categoriesGeneral, setCategoriesGeneral] = useState([]);
+
+    const [categoriesSpecifies, setCategoriesSpecifies] = useState([]);
+
+    const [services, setServices] = useState([]);
+
+    const [objetiveStrategies, setObjetiveStrategies] = useState([]);
+
+    const [subOjectiveStrategies, setSubOjectiveStrategies] = useState([]);
+
+    const [actionsObjetives, setActionsObjectives] = useState([]);
+
+    const [programs, setPrograms] = useState([]);
+
+    const [linesPrograms, setLinesPrograms] = useState([]);
+
+    // INPUT
+
+    const [categoryGeneral, setCategoryGeneral] = useState("");
+
+    const [categorySpecify, setCategorySpecify] = useState("");
+
+    const [service, setService] = useState("");
+
+    const [objetiveStrategy, setObjetiveStrategy] = useState("");
+
+    const [subObjetiveStrategy, setSubObjetiveStrategy] = useState("");
+
+    const [program, setProgram] = useState("");
+
+    const [linesProgram, setLinesProgram] = useState("");
+
+    const dispatch = useAppDispatch();
+
+    const { data } = useAppSelector(GeneralSelector);
+
+
+    const setValueByIndex = (index: any, value: any) => {
+        let updatedRequest: RequestDto = {};
+
+        updatedRequest = {
+            ...data,
+            [index]: value
+        }
+
+        dispatch(setDataGeneral(updatedRequest));
+    }
+
+    const addItem = () => {
+
+    }
 
     return (
         <>

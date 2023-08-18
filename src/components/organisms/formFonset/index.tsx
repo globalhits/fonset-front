@@ -10,13 +10,18 @@ import FormDataGeneral from "../../molecules/fonset/dataGeneral/FormDataGeneral"
 import FormDescription from "../../molecules/fonset/description/FormDescription";
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
 import Buttons from "../../atoms/button/Buttons";
+
+import Loader from "../../atoms/loader";
+
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
+import { RequestDto } from "../../../models/general/RequestDto";
 import { GeneralSelector, showAlertForInputs } from "../../../redux/states/generals/general.slice";
-import { setLoading } from "../../../redux/states/generals/loading.slice";
+
 
 export default function FormFonset() {
 
-	const { data, error, errorInputs, response } = useAppSelector(GeneralSelector);
+	const { data, error, errorInputs, response } = useAppSelector(GeneralSelector); 
 
 	const dispatch = useAppDispatch();
 

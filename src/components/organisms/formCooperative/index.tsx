@@ -52,7 +52,7 @@ export default function FormCooperative() {
 			}
 		});
 	};
-
+ 
 	return (
 		<>
 			<div className="content container-fluid">
