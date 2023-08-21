@@ -6,9 +6,9 @@ import NationalInvolved from "./NationalInvolved";
 const Entities = () => {
 
     return (
-        <div className="row">
+        <div className="row p-2">
             <div className="col-lg-12">
-                <h4>Entidades <span className="text-red">*</span></h4>
+                <h5>Entidades <span className="text-red">*</span></h5>
             </div>
             <div className="col-lg-12">
                 <Tab.Container id="left-tabs-example" defaultActiveKey="first">

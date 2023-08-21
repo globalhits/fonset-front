@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import Buttons from "../../../atoms/button/Buttons";
 import { NationalEntityInvolvedDto } from "../../../../models/general/NationalEntityInvolvedDto";
 import { GeneralSelector, setEntityRelation } from "../../../../redux/states/generals/general.slice";
+import helper from "../../../../utils/helper";
 
 const NationalInvolved = () => {
 
@@ -14,7 +15,7 @@ const NationalInvolved = () => {
 
     const [error, setError] = useState("");
 
-    const { data } = useAppSelector(GeneralSelector);
+    const { data, errorInputs } = useAppSelector(GeneralSelector);
 
     const addItem = async (itemDescription: any) => {
 
@@ -25,17 +26,18 @@ const NationalInvolved = () => {
 
         let listEntity: NationalEntityInvolvedDto[] = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA ? data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA : [];
 
-        let findInfo = await listEntity.filter((item: any) => item.descripcion == itemDescription);
-
-        console.log("findInfo:", findInfo);
-        console.log("findInfo:", findInfo);
+        let findInfo = await listEntity.filter((item: NationalEntityInvolvedDto) => item.DESCRIPCION == itemDescription);
 
         if (findInfo && findInfo.length > 0) {
             setError('El valor ya existe.');
             return false;
         }
 
-        const newItem = [...listEntity, { id: null, descripcion: itemDescription }]
+        const newItem = [...listEntity, {
+            INDEX: helper.getRandomInt(),
+            ID: null,
+            DESCRIPCION: itemDescription
+        }]
 
         dispatch(setEntityRelation(newItem));
 
@@ -43,9 +45,9 @@ const NationalInvolved = () => {
         setNameEntity("");
     }
 
-    const deleteItem = async (descripcion: string, index: number) => {
+    const deleteItem = async (item: NationalEntityInvolvedDto, index: number) => {
 
-        let newList = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.filter((item: any) => item.descripcion !== descripcion);
+        let newList = data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.filter((object: NationalEntityInvolvedDto) => object.INDEX !== item.INDEX);
 
         dispatch(setEntityRelation(newList));
     }
@@ -79,10 +81,15 @@ const NationalInvolved = () => {
                             <tr key={index}>
                                 <td width={"80%"}>{item.DESCRIPCION}</td>
                                 <td width={"20%"} className="text-center">
-                                    <Buttons size="xs" icon="trash3-fill" variant="danger" key={index} onClick={() => deleteItem(item.DESCRIPCION, index)} />
+                                    <Buttons size="xs" icon="trash3-fill" variant="danger" key={index} onClick={() => deleteItem(item, index)} />
                                 </td>
                             </tr>
                         ))
+                    }
+                    {
+                        errorInputs && data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.length == 0
+                            ? (<tr><td colSpan={3} className="text-center"><h5 className="text-danger">¡Entidades nacionales requeridas!</h5></td></tr>)
+                            : null
                     }
                 </tbody>
             </Table>

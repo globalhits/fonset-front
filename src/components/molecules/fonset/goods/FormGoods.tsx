@@ -6,7 +6,6 @@ import InputFloating from "../../../atoms/input/Input";
 import InputSelected from "../../../atoms/selected/InputSelected";
 import Buttons from "../../../atoms/button/Buttons";
 import TableListGoods from "./table/TableListGoods";
-
 import "./FormGoods.scss"
 
 import { RequestDto } from "../../../../models/general/RequestDto";

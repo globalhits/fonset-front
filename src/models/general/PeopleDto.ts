@@ -1,8 +1,8 @@
 export interface PeopleDto {
-    index?: number;
-    id?: number;
-    nombre?: string;
-    ubicacion?: string;
-    interes?: string;
-    posicion?: string;
+    INDEX?: number;
+    ID?: number;
+    NOMBRE?: string;
+    UBICACION?: string;
+    INTERES?: string;
+    POSICION?: string;
 }

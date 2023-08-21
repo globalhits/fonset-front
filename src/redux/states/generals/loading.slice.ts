@@ -7,7 +7,7 @@ export interface LoadingState {
 }
 
 export const initialState: LoadingState = {
-    isLoading: false,
+    isLoading: true,
     error: ""
 }
 

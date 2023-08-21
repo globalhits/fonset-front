@@ -8,11 +8,11 @@ import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific"
 import { RequestDto } from "../../../../../models/general/RequestDto";
 import { GeneralSelector, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
 
-interface GeneralObjectiveInterface {
-    type?: string;
-} 
+interface GeneralSpecificInterface {
+    type?: string
+}
 
-export const GeneralSpecific = ({ type }: GeneralObjectiveInterface) => {
+export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
     const [categoriesGeneral, setCategoriesGeneral] = useState([]);
 
@@ -68,16 +68,8 @@ export const GeneralSpecific = ({ type }: GeneralObjectiveInterface) => {
 
     return (
         <>
-            {type === "cooperation" ? (
-                <>
-                    <GeneralObjective type="invertion" />
-                </>
-                ) : (
-                <>
-                    <GeneralObjective type="cooperation" />
-                </>
-            )}
-            < hr />
+            <GeneralObjective type={type} isSpecify={true} />
+            <hr />
             <div className="row">
                 <div className="col-lg-4">
                     <InputSelected label="Categoria general / eje Tematico" options={categoriesGeneral} onChange={(value: any) => setCategoryGeneral(value)} value="" />

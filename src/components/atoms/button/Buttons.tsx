@@ -16,7 +16,7 @@ export default function Buttons({ variant, label, classStyle, icon, onClick }: B
 		<>
 			<Button variant={variant} className={classStyle} onClick={() => onClick()}>
 				{label}
-				{icon !== "" ? (<i className={'bi bi-' + icon}></i>) : null}
+				{icon !== "" ? (<i className={'bi bi-' + icon + ' pl-1 pr-1'}></i>) : null}
 			</Button>
 		</>
 	);
