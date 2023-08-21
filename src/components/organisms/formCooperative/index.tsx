@@ -20,6 +20,8 @@ import InfoBasic from "../../molecules/general/infoBasic";
 import { GeneralSelector } from "../../../redux/states/generals/general.slice";
 import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
 import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
+import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
+import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
 
 
 export default function FormCooperative() {
@@ -85,12 +87,12 @@ export default function FormCooperative() {
 								</Tab>
 
 								<Tab eventKey="obj_general" title="OBJ. GENERAL">
-									{/* <FormObjGeneralCoop />  */}
-									<GeneralSpecific/>
+									<GeneralObjective type="cooperation"/>
 								</Tab>
 
 								<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-									 <FormObjEspecificoCoop /> 
+									 {/* <FormObjEspecificoCoop />  */}
+									 <GeneralSpecific type="cooperation"/>
 
 								</Tab>
 							</Tabs>

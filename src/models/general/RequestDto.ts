@@ -58,6 +58,7 @@ export interface RequestDto {
     PROY_POBLACION_OBJETIVO?: string;
     PROY_DESCRIPCION_BIENES_SERVICIOS?: string;
     PROY_DESCRIPCION_PROBLEMA?: string;
+    PROY_PROBLEMA?: string;
     PROY_OBSERVACIONES?: string;
     PROY_DOCUMENTOS_ANEXOS?: any[];
     PROY_BIENES_SERVICIOS?: any[];
@@ -68,4 +69,7 @@ export interface RequestDto {
     PROY_JUSTIFICACION?: string;
 
     PROY_DURACION_ESTIMADA_MESES?: number;
+    PROY_VALOR_UNITARIO_IVA?: string;
+    PROY_CANTIDAD?: number;
+
 }

@@ -12,13 +12,13 @@ export default function Objectives() {
             <Accordion.Item eventKey="0">
                 <Accordion.Header>Objectivo General</Accordion.Header>
                 <Accordion.Body>
-                    <GeneralObjective />
+                    <GeneralObjective type="invertion"/>
                 </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
                 <Accordion.Header>Objetivos Especificos</Accordion.Header>
                 <Accordion.Body>
-                    <GeneralSpecific />
+                    <GeneralSpecific/>
                 </Accordion.Body>
             </Accordion.Item>
         </Accordion>
