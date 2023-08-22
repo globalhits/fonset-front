@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import goodService from "../../../services/generals/goods.service";
-import { MunicipalityDto } from "../../../models/general/MunicipalityDto";
+import { BaseDto } from "../../../models/general/BaseDto";
 
 export interface GoodState {
-    goods: MunicipalityDto[];
+    goods: BaseDto[];
     error: any;
     status: string;
 }

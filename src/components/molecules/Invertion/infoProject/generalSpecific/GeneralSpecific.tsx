@@ -12,7 +12,7 @@ import { CategorySelector, fetchApiCategoriesGenerals, fetchApiCategoriesSpecifi
 import { SpecificObjetiveDto } from "../../../../../models/general/SpecificObjetiveDto";
 import helper from "../../../../../utils/helper";
 import { UnitSelector, fetchApiSubUnits, fetchApiUnits } from "../../../../../redux/states/generals/unit.slice";
-import { GoodSelector } from "../../../../../redux/states/generals/good.slice";
+import { GoodSelector, fetchApiGood } from "../../../../../redux/states/generals/good.slice";
 
 interface GeneralSpecificInterface {
     type?: string
@@ -24,30 +24,23 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
     const dispatch = useAppDispatch();
 
     const { data, errorInputs } = useAppSelector(GeneralSelector);
-
     const { generals, specifies } = useAppSelector(CategorySelector);
-
     const { programs, line_programs_filters } = useAppSelector(ProgramSelector);
     const { unities, sub_unities, sub_unities_filters } = useAppSelector(UnitSelector);
     const { goods } = useAppSelector(GoodSelector)
 
     useEffect(() => {
-        dispatch(fetchApiLinePrograms());
         dispatch(fetchApiPrograms());
+        dispatch(fetchApiLinePrograms());
         dispatch(fetchApiCategoriesGenerals());
         dispatch(fetchApiCategoriesSpecifies());
-        dispatch(fetchApiUnits());
-        dispatch(fetchApiSubUnits());
-        // dispatch(fet());
+        //dispatch(fetchApiUnits());
+        //dispatch(fetchApiSubUnits());
+        dispatch(fetchApiGood());
     }, [])
 
     // state basics
-
     const [error, setError] = useState("");
-
-    const [categoriesGeneral, setCategoriesGeneral] = useState(generals);
-
-    const [categoriesSpecifies, setCategoriesSpecifies] = useState(specifies);
 
     const [services, setServices] = useState(goods);
 
@@ -60,6 +53,10 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
     const [programsList, setPrograms] = useState(programs);
 
     const [linesPrograms, setLinesPrograms] = useState(line_programs_filters);
+
+    // const [unitiesList, setUnitiesList] = useState(unities);
+
+    // const [subUnitiesList, setSubUnitiesList] = useState(sub_unities_filters);
 
     // INPUT
 
@@ -92,24 +89,9 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
         dispatch(setDataGeneral(updatedRequest));
     }
 
-
-
     const addItem = async () => {
 
         let objetives: SpecificObjetiveDto[] = data.PROY_OBJETIVOS_ESPECIFICOS ? data.PROY_OBJETIVOS_ESPECIFICOS : [];
-
-        // let findInfo = await objetives.filter((item: SpecificObjetiveDto) => item.DESCRIPCION == itemDescription);
-
-        //     ENTREGABLE: data.PROY_ENTREGABLE_GENERAL_SPECIFY,
-        //     DESCRIPCION_ENTREGABLE: "",
-        //     CATEGORIA_GENERAL: categoryGeneral,
-        //     CATEGORIA_ESPECIFICA: categorySpecify,
-        //     NOMBRE_BIEN: service,
-        //     OBJETIVO_ESTRATEGICO: objetiveStrategy,
-        //     SUBTEMA_OBJETIVO_ESTRATEGICO: subObjetiveStrategy,
-        //     ACCIONES_OBJETIVO_ESTRATEGICO: actionObjetiveStrategy,
-        //     PROGRAMA: program,
-        //     LINEA_PROGRAMA: linesProgram,
 
         if (type !== "cooperative") {
             if (data.PROY_OBJETIVO_ESPECIFICO == "") {
@@ -174,7 +156,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             }
 
             if (data.PROY_RESULTADO_ESPERADO_SPECIFY == "") {
-                setError('Indicador general vacio.');
+                setError('Resultado esperado vacio.');
                 return false;
             }
 
@@ -216,7 +198,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
         }
 
         if (actionObjetiveStrategy == "") {
-            setError('SubObjetivo estrategico vacio.');
+            setError('Accion del estrategico vacio.');
             return false;
         }
 
@@ -250,7 +232,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             ACCIONES_OBJETIVO_ESTRATEGICO: actionObjetiveStrategy,
             PROGRAMA: program,
             LINEA_PROGRAMA: linesProgram,
-        }]
+        }];
 
         dispatch(addObjetiveSpecifies(newItem));
 
@@ -280,35 +262,40 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria general / eje Tematico" options={categoriesGeneral} onChange={(value: any) => setCategoryGeneral(value)} />
+                    <InputSelected label="Categoria general / eje Tematico" options={generals} onChange={(value: any) => setCategoryGeneral(value)} value={categoryGeneral} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria Especifica" options={categoriesSpecifies} onChange={(value: any) => setCategorySpecify(value)} value="" />
+                    <InputSelected label="Categoria Especifica" options={specifies} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Nombre Bien / Servicio" options={services} onChange={(value: any) => setService(value)} value="" />
-                </div>
-            </div>
-            <div className="row mt-3">
-                <div className="col-lg-4">
-                    <InputSelected label="Objetivo estratégico direccionamiento" options={objetiveStrategies} onChange={(value: any) => setObjetiveStrategy(value)} value="" />
-                </div>
-                <div className="col-lg-4">
-                    <InputSelected label="Subtema del objetivo estratégico" options={subOjectiveStrategies} onChange={(value: any) => setSubObjetiveStrategy(value)} value="" />
-                </div>
-                <div className="col-lg-4">
-                    <InputSelected label="Acciones Objetivo estratégico" options={actionsObjetives} onChange={(value: any) => setActionsObjectives(value)} value="" />
+                    <InputSelected label="Nombre Bien / Servicio" options={goods} onChange={(value: any) => setService(value)} value={service} />
                 </div>
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputSelected label="Programa" options={programsList} onChange={(value: any) => changeProgram(value)} value="" />
+                    <InputSelected label="Objetivo estratégico direccionamiento" options={objetiveStrategies} onChange={(value: any) => setObjetiveStrategy(value)} value={objetiveStrategy} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Lineas del programa" options={linesPrograms} onChange={(value: any) => setLinesProgram(value)} value="" disabled={disabledLinesProgram} />
+                    <InputSelected label="Subtema del objetivo estratégico" options={subOjectiveStrategies} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} />
+                </div>
+                <div className="col-lg-4">
+                    <InputSelected label="Acciones Objetivo estratégico" options={actionsObjetives} onChange={(value: any) => setActionsObjectives(value)} value={actionObjetiveStrategy} />
+                </div>
+            </div>
+            <div className="row mt-3">
+                <div className="col-lg-4">
+                    <InputSelected label="Programa" options={programsList} onChange={(value: any) => changeProgram(value)} value={program} />
+                </div>
+                <div className="col-lg-4">
+                    <InputSelected label="Lineas del programa" options={linesPrograms} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} disabled={disabledLinesProgram} />
                 </div>
                 <div className="col-lg-4 text-center">
                     <Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " onClick={() => addItem()} />
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-lg-12">
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
                 </div>
             </div>
             <TableObjectiveSpecific type={type} />
