@@ -8,6 +8,7 @@ class UnitService {
 
     async getAll() {
         try {
+            console.log("units", `${this.apiGenerals}/${this.pathListUnities}`);
             const response = await fetch(`${this.apiGenerals}/${this.pathListUnities}`);
             const data = await response.json();
             return data;

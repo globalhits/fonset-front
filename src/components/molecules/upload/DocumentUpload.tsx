@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Table, Button, Accordion, Row, Col } from "react-bootstrap";
 import InputFloating from "../../atoms/input/Input";
@@ -11,6 +11,8 @@ import { GeneralSelector } from "../../../redux/states/generals/general.slice";
 export default function DocumentUpload() {
 
     const { data } = useAppSelector(GeneralSelector)
+
+    const [uploadedFiles, setUploadedFiles] = useState([]);
 
     useEffect(() => {
         console.log("data", data);
@@ -42,7 +44,7 @@ export default function DocumentUpload() {
                     <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
                 </Col>
                 <Col>
-                    <FileUploader />
+                    <FileUploader setUploadedFiles={setUploadedFiles} />
                 </Col>
             </Row>
 
@@ -51,21 +53,21 @@ export default function DocumentUpload() {
                     <Table responsive hover>
                         <thead>
                             <tr className="campos" style={{ fontSize: "13px" }}>
-                                <th>Descripcion</th>
                                 <th>Archivo</th>
+                                <th>Extensión</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td >
-                                    <Button className="mb-4 col-lg-2" size="sm" variant="success"><BsPencilSquare /></Button>
-                                    <Button className="mb-4 col-lg-2" size="sm" variant="danger" onClick={showConfirmationAlert}><BsTrash3 /></Button>
-                                    <Button className="mb-4 col-lg-2" size="sm" variant="warning"><BsDownload /></Button>
-                                </td>
-                            </tr>
+                            {uploadedFiles.map((file: any, index: number) => (
+                                <tr key={index}>
+                                    <td>{file.name}</td>
+                                    <td>{file.extension}</td>
+                                    <td>
+                                        <button onClick={() => showConfirmationAlert()}>Borrar</button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </Table>
                 </Col>

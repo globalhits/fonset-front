@@ -11,6 +11,8 @@ import { ProgramSelector, fetchApiLinePrograms, fetchApiPrograms } from "../../.
 import { CategorySelector, fetchApiCategoriesGenerals, fetchApiCategoriesSpecifies } from "../../../../../redux/states/generals/category.slice";
 import { SpecificObjetiveDto } from "../../../../../models/general/SpecificObjetiveDto";
 import helper from "../../../../../utils/helper";
+import { UnitSelector, fetchApiSubUnits, fetchApiUnits } from "../../../../../redux/states/generals/unit.slice";
+import { GoodSelector } from "../../../../../redux/states/generals/good.slice";
 
 interface GeneralSpecificInterface {
     type?: string
@@ -26,12 +28,16 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
     const { generals, specifies } = useAppSelector(CategorySelector);
 
     const { programs, line_programs_filters } = useAppSelector(ProgramSelector);
+    const { unities, sub_unities, sub_unities_filters } = useAppSelector(UnitSelector);
+    const { goods } = useAppSelector(GoodSelector)
 
     useEffect(() => {
         dispatch(fetchApiLinePrograms());
         dispatch(fetchApiPrograms());
         dispatch(fetchApiCategoriesGenerals());
-        dispatch(fetchApiCategoriesSpecifies())
+        dispatch(fetchApiCategoriesSpecifies());
+        dispatch(fetchApiUnits());
+        dispatch(fetchApiSubUnits());
         // dispatch(fet());
     }, [])
 
@@ -41,7 +47,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
     const [categoriesSpecifies, setCategoriesSpecifies] = useState(specifies);
 
-    const [services, setServices] = useState([]);
+    const [services, setServices] = useState(goods);
 
     const [objetiveStrategies, setObjetiveStrategies] = useState([]);
 

@@ -10,6 +10,8 @@ import GeneralReducer from './states/generals/general.slice';
 import programReducer from "./states/generals/program.slice";
 import objetiveReducer from "./states/generals/objetive.slice";
 import categoryReducer from "./states/generals/category.slice";
+import unitReducer from "./states/generals/unit.slice";
+import goodReducer from "./states/generals/good.slice";
 
 export const store = configureStore({
 	reducer: {
@@ -19,10 +21,11 @@ export const store = configureStore({
 		municipality: MunicipalityReducer,
 		dependency: dependencyReducer,
 		program: programReducer,
+		unit: unitReducer,
+		good: goodReducer,
 		objetive: objetiveReducer,
 		category: categoryReducer,
 		general: GeneralReducer,
-
 	}
 })
 
