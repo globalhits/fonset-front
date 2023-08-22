@@ -29,7 +29,7 @@ const InfoBasicProject = () => {
                     <InputFloating name="PROY_JUSTIFICACION_ANTECEDENTES" label="Digite la justificación" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_JUSTIFICACION_ANTECEDENTES", value)} value={data.PROY_JUSTIFICACION_ANTECEDENTES} isInvalid={!data.PROY_JUSTIFICACION_ANTECEDENTES && errorInputs} />
                 </div>
             </div>
-            <hr className="mt-1 mb-4" />
+            {/* <hr className="mt-1 mb-4" /> */}
             <h5>Población objetivo<span className="text-red">*</span></h5>
             <div className="row mt-3">
                 <div className="col-lg-12">
@@ -46,7 +46,7 @@ const InfoBasicProject = () => {
                     <InputFloating label="Caracteristicas demograficas de la población objetivo" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_CARACTERISTICAS_DEMOGRAFICAS", value)} value={data.PROY_CARACTERISTICAS_DEMOGRAFICAS} isInvalid={!data.PROY_CARACTERISTICAS_DEMOGRAFICAS && errorInputs} />
                 </div>
             </div>
-            <hr className="mt-2 mb-3" />
+            {/* <hr className="mt-2 mb-3" /> */}
             <PeopleTable />
         </div>
     )

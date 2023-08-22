@@ -1,5 +1,5 @@
 import config from "../../config/config";
-import { LIST_OBJETIVES_STRATEGIES_DIRECTIONS, LIST_PROGRAMS } from "../../config/constants";
+import { LIST_OBJETIVES_STRATEGIES_DIRECTIONS } from "../../config/constants";
 
 class ObjetiveDirectionService {
 

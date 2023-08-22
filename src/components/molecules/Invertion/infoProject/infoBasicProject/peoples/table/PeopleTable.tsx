@@ -76,7 +76,7 @@ const PeopleTable = () => {
 
     return (
         <>
-            <div className="row mt-2">
+            <div className="row mt-2"> 
                 <div className="col-lg-12">
                     <h5>Analisis de participantes<span className="text-red">*</span></h5>
                 </div>

@@ -1,18 +1,18 @@
 import config from "../../config/config";
-import { LIST_PROGRAMS } from "../../config/constants";
+import { LIST_LINES_PROGRAMS } from "../../config/constants";
 
-class ProgramService {
+class LineProgramService {
 
     private apiGenerals = config.apiGeneralHost;
 
-    private pathListProgram = config.pathListProgram;
+    private pathListLineProgram = config.pathListLineProgram;
 
     async getAll() {
         try {
-            // const response = await fetch(`${this.apiGenerals}/${this.pathListProgram}`);
+            // const response = await fetch(`${this.apiGenerals}/${this.pathListLineProgram}`);
             // const data = await response.json();
             // return data;
-            return LIST_PROGRAMS;
+            return LIST_LINES_PROGRAMS;
         } catch (error) {
             console.error('Error fetching data:', error);
             throw error;
@@ -20,4 +20,4 @@ class ProgramService {
     }
 }
 
-export default new ProgramService();
+export default new LineProgramService();

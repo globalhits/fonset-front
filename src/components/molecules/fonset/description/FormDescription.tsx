@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { RequestDto } from "../../../../models/general/RequestDto";
 import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
 
-export default function FormDescription() {
+export default function FormDescription() { 
 
     const dispatch = useAppDispatch();
 
@@ -56,31 +56,31 @@ export default function FormDescription() {
 
                     <Tab.Content className="width100">
                         <Tab.Pane eventKey="obj_general" >
-                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_OBJETIVO_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_OBJETIVO_GENERAL", value)} />
+                            <TextArea name="PROY_OBJETIVO_GENERAL" label="Digite la descripción del objetivo..." setValueChange={(value: string) => setValueByIndex("PROY_OBJETIVO_GENERAL", value)} value={data.PROY_OBJETIVO_GENERAL} />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="obj_especifico">
-                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_OBJETIVO_ESPECIFICO} setValueChange={(value: string) => setValueByIndex("PROY_OBJETIVO_ESPECIFICO", value)} />
+                            <TextArea name="PROY_OBJETIVO_ESPECIFICO" label="Digite la descripción del objetivo..." setValueChange={(value: string) => setValueByIndex("PROY_OBJETIVO_ESPECIFICO", value)} value={data.PROY_OBJETIVO_ESPECIFICO}  />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="poblacion_obj">
-                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_POBLACION_OBJETIVO} setValueChange={(value: string) => setValueByIndex("PROY_POBLACION_OBJETIVO", value)} />
+                            <TextArea name="PROY_POBLACION_OBJETIVO" label="Digite la descripción del objetivo..." setValueChange={(value: string) => setValueByIndex("PROY_POBLACION_OBJETIVO", value)} value={data.PROY_POBLACION_OBJETIVO}  />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="bienes_servicios">
-                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_DESCRIPCION_BIENES_SERVICIOS} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_BIENES_SERVICIOS", value)} />
+                            <TextArea name="PROY_DESCRIPCION_BIENES_SERVICIOS" label="Digite la descripción del objetivo..." setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_BIENES_SERVICIOS", value)} value={data.PROY_DESCRIPCION_BIENES_SERVICIOS}  />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="justificacion">
-                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_OBJETIVO_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} />
+                            <TextArea name="PROY_DESCRIPCION_PROBLEMA" label="Digite la descripción del objetivo..." setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_PROBLEMA", value)} value={data.PROY_DESCRIPCION_PROBLEMA}  />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="problema">
-                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_OBJETIVO_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} />
+                            <TextArea name="PROY_PROBLEMA" label="Digite la descripción del objetivo..." setValueChange={(value: string) => setValueByIndex("PROY_PROBLEMA", value)} value={data.PROY_PROBLEMA} />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="observaciones">
-                            <TextArea label="Digite la descripción del objetivo..." rows={12} cols={20} styles={{ height: "auto" }} value={data.PROY_OBJETIVO_GENERAL} setValueChange={(value: string) => setValueByIndex("PROY_DESCRIPCION_ENTREGABLE_GENERAL", value)} />
+                            <TextArea name="PROY_OBSERVACIONES" label="Digite la descripción del objetivo..." setValueChange={(value: string) => setValueByIndex("PROY_OBSERVACIONES", value)} value={data.PROY_OBSERVACIONES}  />
                         </Tab.Pane>
 
                         <Tab.Pane eventKey="documentos">

@@ -26,7 +26,7 @@ const DependencyInvolved = () => {
 
         let listDependency: DependencyInvolvedDto[] = data.PROY_DEPENDENCIAS_INVOLUCRADAS ? data.PROY_DEPENDENCIAS_INVOLUCRADAS : [];
 
-        let findInfo = await listDependency.filter((item: DependencyInvolvedDto) => item.DESCRIPCION == itemDescription);
+        let findInfo = await listDependency.filter((item: DependencyInvolvedDto) => item.description == itemDescription);
 
         if (findInfo && findInfo.length > 0) {
             setError('El valor ya existe.');
@@ -79,7 +79,7 @@ const DependencyInvolved = () => {
                     {
                         data.PROY_DEPENDENCIAS_INVOLUCRADAS?.map((item: DependencyInvolvedDto, index: number) => (
                             <tr key={index}>
-                                <td width={"80%"}>{item.DESCRIPCION}</td>
+                                <td width={"80%"}>{item.description}</td>
                                 <td width={"20%"} className="text-center">
                                     <Buttons size="xs" icon="trash3-fill" variant="danger" key={index} onClick={() => deleteItem(item, index)} />
                                 </td>

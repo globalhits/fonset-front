@@ -1,15 +1,14 @@
 import config from "../../config/config";
-import { LIST_FGN_DEPENDENCY } from "../../config/constants";
 
-class DependencyService {
+class UnitService {
 
     private apiGenerals = config.apiGeneralHost;
 
-    private pathListDependency = config.pathListDependency;
+    private pathListUnities = config.pathListUnities;
 
     async getAll() {
         try {
-            const response = await fetch(`${this.apiGenerals}${this.pathListDependency}`);
+            const response = await fetch(`${this.apiGenerals}/${this.pathListUnities}`);
             const data = await response.json();
             return data;
         } catch (error) {
@@ -19,4 +18,4 @@ class DependencyService {
     }
 }
 
-export default new DependencyService();
+export default new UnitService();
