@@ -152,6 +152,9 @@ const GeneralSlice = createSlice({
         addPeoples: (state, { payload }: PayloadAction<any>) => {
             state.data.PROY_ANALISIS_PARTICIPANTES = payload;
         },
+        addGoods: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_BIENES_SERVICIOS = payload;
+        },
         showAlertForInputs: (state, { payload }: PayloadAction<boolean>) => {
             // show alert when to on click button "finish" 
             state.errorInputs = payload;
@@ -191,7 +194,7 @@ const GeneralSlice = createSlice({
     },
 });
 
-export const { setDataGeneral, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples, addObjetiveSpecifies, showAlertForInputs } = GeneralSlice.actions
+export const { setDataGeneral, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples, addGoods, addObjetiveSpecifies, showAlertForInputs } = GeneralSlice.actions
 
 export const GeneralSelector = (state: RootState) => state.general;
 

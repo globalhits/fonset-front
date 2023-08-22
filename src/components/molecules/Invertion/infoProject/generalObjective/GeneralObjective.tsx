@@ -2,6 +2,7 @@ import { RequestDto } from "../../../../../models/general/RequestDto";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
 import { GeneralSelector, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
 import TextArea from "../../../../atoms/area/TextArea"
+import { Row, Col } from "react-bootstrap";
 import InputFloating from "../../../../atoms/input/Input"
 
 interface GeneralObjectiveInterface {
