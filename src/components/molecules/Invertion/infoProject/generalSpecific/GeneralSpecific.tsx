@@ -7,7 +7,7 @@ import { GeneralObjective } from "../generalObjective/GeneralObjective"
 import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific"
 import { RequestDto } from "../../../../../models/general/RequestDto";
 import { GeneralSelector, addObjetiveSpecifies, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
-import { fetchApiLinePrograms, fetchApiPrograms } from "../../../../../redux/states/generals/program.slice";
+import { ProgramSelector, fetchApiLinePrograms, fetchApiPrograms } from "../../../../../redux/states/generals/program.slice";
 import { CategorySelector, fetchApiCategoriesGenerals, fetchApiCategoriesSpecifies } from "../../../../../redux/states/generals/category.slice";
 import { SpecificObjetiveDto } from "../../../../../models/general/SpecificObjetiveDto";
 import helper from "../../../../../utils/helper";
@@ -25,9 +25,11 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
     const { generals, specifies } = useAppSelector(CategorySelector);
 
+    const { programs, line_programs_filters } = useAppSelector(ProgramSelector);
+
     useEffect(() => {
-        //dispatch(fetchApiLinePrograms());
-        //dispatch(fetchApiPrograms());
+        dispatch(fetchApiLinePrograms());
+        dispatch(fetchApiPrograms());
         dispatch(fetchApiCategoriesGenerals());
         dispatch(fetchApiCategoriesSpecifies())
         // dispatch(fet());
@@ -47,9 +49,9 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
     const [actionsObjetives, setActionsObjectives] = useState([]);
 
-    const [programs, setPrograms] = useState([]);
+    const [programsList, setPrograms] = useState(programs);
 
-    const [linesPrograms, setLinesPrograms] = useState([]);
+    const [linesPrograms, setLinesPrograms] = useState(line_programs_filters);
 
     // INPUT
 
@@ -63,9 +65,13 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
     const [subObjetiveStrategy, setSubObjetiveStrategy] = useState("");
 
+    const [actionObjetiveStrategy, setActionObjetiveStrategy] = useState("");
+
     const [program, setProgram] = useState("");
 
     const [linesProgram, setLinesProgram] = useState("");
+
+    const [disabledLinesProgram, setDisabledLinesProgram] = useState(true);
 
     const setValueByIndex = (index: any, value: any) => {
         let updatedRequest: RequestDto = {};
@@ -80,7 +86,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
 
 
-    const addItem = async (item: any) => {
+    const addItem = async () => {
 
         let objetives: SpecificObjetiveDto[] = data.PROY_OBJETIVOS_ESPECIFICOS ? data.PROY_OBJETIVOS_ESPECIFICOS : [];
 
@@ -106,11 +112,11 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             CATEGORIA_GENERAL: categoryGeneral,
             CATEGORIA_ESPECIFICA: categorySpecify,
             NOMBRE_BIEN: service,
-            OBJETIVO_ESTRATEGICO: "",
-            SUBTEMA_OBJETIVO_ESTRATEGICO: "",
-            ACCIONES_OBJETIVO_ESTRATEGICO: "",
-            PROGRAMA: "",
-            LINEA_PROGRAMA: "",
+            OBJETIVO_ESTRATEGICO: objetiveStrategy,
+            SUBTEMA_OBJETIVO_ESTRATEGICO: subObjetiveStrategy,
+            ACCIONES_OBJETIVO_ESTRATEGICO: actionObjetiveStrategy,
+            PROGRAMA: program,
+            LINEA_PROGRAMA: linesProgram,
         }]
 
         dispatch(addObjetiveSpecifies(newItem));
@@ -124,6 +130,14 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
         let newList = data.PROY_OBJETIVOS_ESPECIFICOS?.filter((object: SpecificObjetiveDto) => object.INDEX !== item.INDEX);
 
         dispatch(addObjetiveSpecifies(newList));
+    }
+
+    const changeProgram = (value: any) => {
+
+        if (value == "") {
+            return
+        }
+        setProgram(value)
     }
 
     return (
@@ -156,13 +170,13 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputSelected label="Programa" options={programs} onChange={(value: any) => setProgram(value)} value="" />
+                    <InputSelected label="Programa" options={programsList} onChange={(value: any) => changeProgram(value)} value="" />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Lineas del programa" options={linesPrograms} onChange={(value: any) => setLinesProgram(value)} value="" />
+                    <InputSelected label="Lineas del programa" options={linesPrograms} onChange={(value: any) => setLinesProgram(value)} value="" disabled={disabledLinesProgram} />
                 </div>
                 <div className="col-lg-4 text-center">
-                    <Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " onClick={() => { }} />
+                    <Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " onClick={() => addItem()} />
                 </div>
             </div>
             <TableObjectiveSpecific />

@@ -1,13 +1,7 @@
-export interface SubObjetive {
-    INDEX?: number,
-    ID?: number,
-    NOMBRE?: string,
-    DESCRIPCION?: string
+import { BaseDto } from "./BaseDto"
+
+export interface SubObjetive extends BaseDto {
 }
 
-export interface ObjetiveStrategyDirectionDto {
-    INDEX?: number,
-    ID?: number,
-    DESCRIPCION?: string,
-    SUB_OBJETIVES?: SubObjetive[]
+export interface ObjetiveStrategyDirectionDto extends BaseDto {
 }
