@@ -68,7 +68,7 @@ const ProgramSlice = createSlice({
     }
 })
 
-// export const { listAll, setLineProgramError } = ProgramSlice.actions
+export const { filterByProgramId, listAllLinePrograms, setLineProgramsError } = ProgramSlice.actions
 
 export const ProgramSelector = (state: RootState) => state.program;
 

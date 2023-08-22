@@ -23,7 +23,7 @@ export default function InputSelected({ label, name, className, options, value, 
                     options?.map((option, i) => (
                         <option key={i} value={option.id || option.ID}>
                             {
-                                option.name ? option.name : (option.NAME ? option.NAME : (option.descripcion ? option.descripcion : option.DESCRIPCION))
+                                option.name ? option.name : (option.NAME ? option.NAME : (option.descripcion ? option.descripcion : (option.DESCRIPCION ? option.DESCRIPCION : option.description)))
                             }
                         </option>)
                     )

@@ -7,7 +7,7 @@ import { GeneralObjective } from "../generalObjective/GeneralObjective"
 import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific"
 import { RequestDto } from "../../../../../models/general/RequestDto";
 import { GeneralSelector, addObjetiveSpecifies, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
-import { ProgramSelector, fetchApiLinePrograms, fetchApiPrograms } from "../../../../../redux/states/generals/program.slice";
+import { ProgramSelector, fetchApiLinePrograms, fetchApiPrograms, filterByProgramId, } from "../../../../../redux/states/generals/program.slice";
 import { CategorySelector, fetchApiCategoriesGenerals, fetchApiCategoriesSpecifies } from "../../../../../redux/states/generals/category.slice";
 import { SpecificObjetiveDto } from "../../../../../models/general/SpecificObjetiveDto";
 import helper from "../../../../../utils/helper";
@@ -41,7 +41,9 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
         // dispatch(fet());
     }, [])
 
-    // 
+    // state basics
+
+    const [error, setError] = useState("");
 
     const [categoriesGeneral, setCategoriesGeneral] = useState(generals);
 
@@ -98,10 +100,135 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
         // let findInfo = await objetives.filter((item: SpecificObjetiveDto) => item.DESCRIPCION == itemDescription);
 
-        // if (findInfo && findInfo.length > 0) {
-        //     setError('El valor ya existe.');
-        //     return false;
-        // }
+        //     ENTREGABLE: data.PROY_ENTREGABLE_GENERAL_SPECIFY,
+        //     DESCRIPCION_ENTREGABLE: "",
+        //     CATEGORIA_GENERAL: categoryGeneral,
+        //     CATEGORIA_ESPECIFICA: categorySpecify,
+        //     NOMBRE_BIEN: service,
+        //     OBJETIVO_ESTRATEGICO: objetiveStrategy,
+        //     SUBTEMA_OBJETIVO_ESTRATEGICO: subObjetiveStrategy,
+        //     ACCIONES_OBJETIVO_ESTRATEGICO: actionObjetiveStrategy,
+        //     PROGRAMA: program,
+        //     LINEA_PROGRAMA: linesProgram,
+
+        if (type !== "cooperative") {
+            if (data.PROY_OBJETIVO_ESPECIFICO == "") {
+                setError('Objetivo especifico vacio.');
+                return false;
+            }
+
+            if (data.PROY_DESCRIPCION_GENERAL_SPECIFY == "") {
+                setError('Descripción objetivo especifico vacio.');
+                return false;
+            }
+
+            if (data.PROY_INDICADOR_GENERAL_SPECIFY == "") {
+                setError('Indicador general vacio.');
+                return false;
+            }
+
+            if (data.PROY_LINEA_BASE_GENERAL_SPECIFY == "") {
+                setError('Linea base vacia.');
+                return false;
+            }
+
+            if (data.PROY_META_GENERAL_SPECIFY == "") {
+                setError('Meta vacia.');
+                return false;
+            }
+
+            if (data.PROY_MES_INICIO_GENERAL_SPECIFY == "") {
+                setError('Mes inicio vacio.');
+                return false;
+            }
+
+            if (data.PROY_MES_FINAL_GENERAL_SPECIFY == "") {
+                setError('Mes final vacio.');
+                return false;
+            }
+
+            if (data.PROY_ENTREGABLE_GENERAL_SPECIFY == "") {
+                setError('Indicador general vacio.');
+                return false;
+            }
+
+            if (data.PROY_DESCRIPCION_ENTREGABLE_GENERAL_SPECIFY == "") {
+                setError('Indicador general vacio.');
+                return false;
+            }
+
+        } else {
+            if (data.PROY_OBJETIVO_ESPECIFICO == "") {
+                setError('Objetivo especifico vacio.');
+                return false;
+            }
+
+            if (data.PROY_DESCRIPCION_GENERAL_SPECIFY == "") {
+                setError('Descripción objetivo especifico vacio.');
+                return false;
+            }
+
+            if (data.PROY_INDICADOR_GENERAL_SPECIFY == "") {
+                setError('Indicador general vacio.');
+                return false;
+            }
+
+            if (data.PROY_RESULTADO_ESPERADO_SPECIFY == "") {
+                setError('Indicador general vacio.');
+                return false;
+            }
+
+            if (data.PROY_MES_INICIO_GENERAL_SPECIFY == "") {
+                setError('Mes inicio vacio.');
+                return false;
+            }
+
+            if (data.PROY_MES_FINAL_GENERAL_SPECIFY == "") {
+                setError('Mes final vacio.');
+                return false;
+            }
+        }
+
+        //detalles
+        if (categoryGeneral == "") {
+            setError('Categoria general vacio.');
+            return false;
+        }
+
+        if (categorySpecify == "") {
+            setError('Categoria especifica vacio.');
+            return false;
+        }
+
+        if (service == "") {
+            setError('Servicio o bien vacio.');
+            return false;
+        }
+
+        if (objetiveStrategy == "") {
+            setError('Objetivo estrategico vacio.');
+            return false;
+        }
+
+        if (subObjetiveStrategy == "") {
+            setError('SubObjetivo estrategico vacio.');
+            return false;
+        }
+
+        if (actionObjetiveStrategy == "") {
+            setError('SubObjetivo estrategico vacio.');
+            return false;
+        }
+
+        if (program == "") {
+            setError('Programa vacio.');
+            return false;
+        }
+
+        if (linesProgram == "") {
+            setError('Linea de programa vacia.');
+            return false;
+        }
 
         const newItem = [...objetives, {
             INDEX: helper.getRandomInt(),
@@ -114,7 +241,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             MES_INICIAL: data.PROY_MES_INICIO_GENERAL_SPECIFY,
             MES_FINAL: data.PROY_MES_FINAL_GENERAL_SPECIFY,
             ENTREGABLE: data.PROY_ENTREGABLE_GENERAL_SPECIFY,
-            DESCRIPCION_ENTREGABLE: "",
+            DESCRIPCION_ENTREGABLE: data.PROY_DESCRIPCION_ENTREGABLE_GENERAL_SPECIFY,
             CATEGORIA_GENERAL: categoryGeneral,
             CATEGORIA_ESPECIFICA: categorySpecify,
             NOMBRE_BIEN: service,
@@ -127,23 +254,22 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
         dispatch(addObjetiveSpecifies(newItem));
 
-        // setError("");
-        // setNameEntity("");
-    }
-
-    const deleteItem = async (item: SpecificObjetiveDto, index: number) => {
-
-        let newList = data.PROY_OBJETIVOS_ESPECIFICOS?.filter((object: SpecificObjetiveDto) => object.INDEX !== item.INDEX);
-
-        dispatch(addObjetiveSpecifies(newList));
+        setError("");
     }
 
     const changeProgram = (value: any) => {
 
         if (value == "") {
+            setDisabledLinesProgram(true);
+            setError("Seleccione un programa")
             return
         }
+
         setProgram(value)
+
+        dispatch(filterByProgramId(Number(value)));
+
+        setDisabledLinesProgram(false);
     }
 
     return (
@@ -185,7 +311,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
                     <Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " onClick={() => addItem()} />
                 </div>
             </div>
-            <TableObjectiveSpecific />
+            <TableObjectiveSpecific type={type} />
         </>
     )
 }
