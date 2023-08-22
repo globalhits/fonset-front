@@ -14,19 +14,19 @@ const TableListGoods: React.FC<any> = ({ }) => {
                             <th colSpan={3}>Valor</th>
                             <th colSpan={2}>Objetivo estrategico</th>
                             <th rowSpan={2}>Acciones</th>
-                        </tr>
+                        </tr> 
                         <tr className="text-center">
-                            <th>General</th>
-                            <th>Especifica</th>
-                            <th>Bien/Servicio</th>
-                            <th>Estado</th>
-                            <th>Unidad</th>
-                            <th>Subunidad</th>
-                            <th>Unit+iva</th>
-                            <th>Cant.</th>
-                            <th>SubTotal</th>
-                            <th>Obj.</th>
-                            <th>Subtema</th>
+                            <th className="text-center">General</th>
+                            <th className="text-center">Especifica</th>
+                            <th className="text-center">Bien/Servicio</th>
+                            <th className="text-center">Estado</th>
+                            <th className="text-center">Unidad</th>
+                            <th className="text-center">Subunidad</th>
+                            <th className="text-center">Unit+iva</th>
+                            <th className="text-center">Cant.</th>
+                            <th className="text-center">SubTotal</th>
+                            <th className="text-center">Obj.</th>
+                            <th className="text-center">Subtema</th>
                         </tr>
                     </thead>
                     <tbody>
