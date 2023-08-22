@@ -1,8 +1,14 @@
 import React from "react";
-import { Button, Col, Row, Table } from "react-bootstrap";
+import { Col, Row, Table } from "react-bootstrap";
 import Buttons from "../../../../atoms/button/Buttons";
+import { GoodsDto } from "../../../../../models/general/GoodDto";
+import { useAppSelector } from "../../../../../redux/hooks";
+import { GeneralSelector } from "../../../../../redux/states/generals/general.slice";
 
-const TableListGoods: React.FC<any> = ({ }) => {
+const TableListGoods: React.FC<any> = () => {
+
+    const { data, errorInputs } = useAppSelector(GeneralSelector);
+
     return (
         <Row className="mt-3 mb-3">
             <Col sm={12}>
@@ -30,20 +36,23 @@ const TableListGoods: React.FC<any> = ({ }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style={{ fontSize: "12px" }}>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td className="text-center"><Buttons variant="outline-primary" label="Agregar" classStyle="mt-4 " onClick={() => { }} /></td>
-                        </tr>
+                        {data.PROY_BIENES_SERVICIOS?.map((item: GoodsDto, index: number) => (
+                            <tr key={index} style={{ fontSize: "12px" }}>
+                                <td>{item.CATEGORIA_GENERAL_TEXT}</td>
+                                <td>{item.CATEGORIA_ESPECIFICA_TEXT}</td>
+                                <td>{item.NOMBRE_BIEN_TEXT}</td>
+                                <td>{item.UNIDAD_MEDIDA_TEXT}</td>
+                                <td>{item.SUBUNIDAD_MEDIDA_TEXT}</td>
+                                <td>{item.VALOR_UNITARIO}</td>
+                                <td>{item.CANTIDAD}</td>
+                                <td>{/* Calculate SubTotal here */}</td>
+                                <td>{item.OBJ_ESTRATEGICO_TEXT}</td>
+                                <td>{item.SUBTEMA_OBJ_ESTRATEGICO_TEXT}</td>
+                                <td className="text-center">
+                                    <Buttons variant="outline-primary" label="Agregar" classStyle="mt-4 " onClick={() => { /* Handle click if needed */ }} />
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </Table>
             </Col>
