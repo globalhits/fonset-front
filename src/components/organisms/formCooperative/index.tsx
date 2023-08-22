@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "./index.scss";
 
 // --- Components libraries ---
@@ -11,27 +11,28 @@ import InputSelected from "../../atoms/selected/InputSelected";
 import InputFloating from "../../atoms/input/Input";
 import Buttons from "../../atoms/button/Buttons";
 
-/* import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop"; */
-import Loader from "../../atoms/loader";
-
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { loadingSelector } from "../../../redux/states/generals/loading.slice";
+import { setLoading } from "../../../redux/states/generals/loading.slice";
 import InfoBasic from "../../molecules/general/infoBasic";
-import { GeneralSelector } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, setDataGeneral } from "../../../redux/states/generals/general.slice";
 import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
-import FormObjEspecificoCoop from "../../molecules/cooperation/objEspecificoCoop/ObjEspecificoCoop";
-import FormObjGeneralCoop from "../../molecules/cooperation/objGeneralCoop/ObjGeneralCoop";
 import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
+import { CountrySelector, fetchApiCountry } from "../../../redux/states/generals/country.slice";
+import { RequestDto } from "../../../models/general/RequestDto";
 
 
 export default function FormCooperative() {
 
-	const { data } = useAppSelector(GeneralSelector);
-	const { isLoading } = useAppSelector(loadingSelector);
+	const { data, errorInputs } = useAppSelector(GeneralSelector);
+
+	const { countries } = useAppSelector(CountrySelector);
 
 	const dispatch = useAppDispatch();
 
-	if (isLoading) return <Loader />;
+	useEffect(() => {
+		dispatch(setLoading(false));
+		dispatch(fetchApiCountry());
+	}, []);
 
 	const saveForm = () => {
 		console.log("guardar form", data);
@@ -54,7 +55,18 @@ export default function FormCooperative() {
 			}
 		});
 	};
- 
+
+	const setValueByIndex = (index: any, value: any) => {
+		let updatedRequest: RequestDto = {};
+
+		updatedRequest = {
+			...data,
+			[index]: value
+		}
+
+		dispatch(setDataGeneral(updatedRequest));
+	}
+
 	return (
 		<>
 			<div className="content container-fluid">
@@ -75,25 +87,23 @@ export default function FormCooperative() {
 							>
 								<Tab eventKey="general" title="DATOS GENERALES">
 									{/* <FormDataGeneralCoop formData={dataForm} setFormData={(data: RequestCooperativeDto) => setDataForm(data)}/> */}
-									<InfoBasic type="cooperative"/>
-									<Row sm={12}>
-										<Col sm={6}>
-											<InputSelected label="Pais coperante que podria financiar el proyecto" className="mb-3 inputFloating" options={[]} onChange={(value: any) => { }} value="" />
+									<InfoBasic type="cooperative" />
+									<Row>
+										<Col lg={6}>
+											<InputSelected label="Pais coperante que podria financiar el proyecto" className="inputFloating" options={countries} onChange={(value: any) => setValueByIndex("PROY_PAIS_COOPERANTE", value)} value={data.PROY_PAIS_COOPERANTE} isInvalid={!data.PROY_PAIS_COOPERANTE && errorInputs} />
 										</Col>
-										<Col sm={6}>
-											<InputFloating label="Implementador (es)" className="mb-3 inputFloating" type="text" placeholder="Indique el operador que podria ejecutar el proyecto." setValueChange={(value: string) => { }} value="" />
+										<Col lg={6}>
+											<InputFloating label="Implementador (es)" className="inputFloating" type="text" placeholder="Indique el operador que podria ejecutar el proyecto." setValueChange={(value: string) => setValueByIndex("PROY_IMPLEMENTADOR", value)} value={data.PROY_IMPLEMENTADOR} isInvalid={!data.PROY_IMPLEMENTADOR && errorInputs} />
 										</Col>
 									</Row>
 								</Tab>
 
 								<Tab eventKey="obj_general" title="OBJ. GENERAL">
-									<GeneralObjective type="cooperation"/>
+									<GeneralObjective type={"cooperative"} />
 								</Tab>
 
 								<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-									 {/* <FormObjEspecificoCoop />  */}
-									 <GeneralSpecific type="cooperation"/>
-
+									<GeneralSpecific type={"cooperative"} />
 								</Tab>
 							</Tabs>
 
@@ -103,8 +113,8 @@ export default function FormCooperative() {
 									<Button variant="light" onClick={showConfirmationAlert}>Cancelar</Button>
 								</Col>
 								<Col sm={6} className="text-right">
-									<Buttons variant="primary" label="Guardar" classStyle="mr-3"  onClick={() => saveForm()} />
-									<Buttons variant="outline-success" label="Finalizar"  onClick={() => saveForm()} />
+									<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => saveForm()} />
+									<Buttons variant="outline-success" label="Finalizar" onClick={() => saveForm()} />
 								</Col>
 							</Row>
 						</Card.Body>

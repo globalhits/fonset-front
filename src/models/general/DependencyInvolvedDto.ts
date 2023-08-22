@@ -1,5 +1,4 @@
-export interface DependencyInvolvedDto {
-    INDEX?: number;
-    ID?: number;
-    DESCRIPCION: string;
+import { BaseDto } from "./BaseDto";
+
+export interface DependencyInvolvedDto extends BaseDto {
 }

@@ -6,6 +6,7 @@ export interface SpecificObjetiveDto {
     DESCRIPCIÓN?: string,
     INDICADOR?: string,
     LINEA_BASE?: string,
+
     META?: string,
     MES_INICIAL?: string,
     MES_FINAL?: string,

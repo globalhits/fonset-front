@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Table, Button, Accordion, Row, Col } from "react-bootstrap";
 import InputFloating from "../../atoms/input/Input";
 import FileUploader from "./FileUploader";
 import Swal from "sweetalert2";
-import {BsPencilSquare, BsTrash3, BsDownload} from 'react-icons/bs'
+import { BsPencilSquare, BsTrash3, BsDownload } from 'react-icons/bs'
+import { useAppSelector } from "../../../redux/hooks";
+import { GeneralSelector } from "../../../redux/states/generals/general.slice";
 
 export default function DocumentUpload() {
+
+    const { data } = useAppSelector(GeneralSelector)
+
+    useEffect(() => {
+        console.log("data", data);
+
+    }, [])
 
     const showConfirmationAlert = () => {
         Swal.fire({
@@ -52,9 +61,9 @@ export default function DocumentUpload() {
                                 <td></td>
                                 <td></td>
                                 <td >
-                                    <Button className="mb-4 col-lg-2" size="sm" variant="success"><BsPencilSquare/></Button>
-                                    <Button className="mb-4 col-lg-2" size="sm" variant="danger" onClick={showConfirmationAlert}><BsTrash3/></Button>
-                                    <Button className="mb-4 col-lg-2" size="sm" variant="warning"><BsDownload/></Button>
+                                    <Button className="mb-4 col-lg-2" size="sm" variant="success"><BsPencilSquare /></Button>
+                                    <Button className="mb-4 col-lg-2" size="sm" variant="danger" onClick={showConfirmationAlert}><BsTrash3 /></Button>
+                                    <Button className="mb-4 col-lg-2" size="sm" variant="warning"><BsDownload /></Button>
                                 </td>
                             </tr>
                         </tbody>
