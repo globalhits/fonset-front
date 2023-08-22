@@ -50,10 +50,6 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
     const [actionsObjetives, setActionsObjectives] = useState([]);
 
-    const [programsList, setPrograms] = useState(programs);
-
-    const [linesPrograms, setLinesPrograms] = useState(line_programs_filters);
-
     // const [unitiesList, setUnitiesList] = useState(unities);
 
     // const [subUnitiesList, setSubUnitiesList] = useState(sub_unities_filters);
@@ -284,10 +280,10 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputSelected label="Programa" options={programsList} onChange={(value: any) => changeProgram(value)} value={program} />
+                    <InputSelected label="Programa" options={programs} onChange={(value: any) => changeProgram(value)} value={program} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Lineas del programa" options={linesPrograms} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} disabled={disabledLinesProgram} />
+                    <InputSelected label="Lineas del programa" options={line_programs_filters} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} disabled={disabledLinesProgram} />
                 </div>
                 <div className="col-lg-4 text-center">
                     <Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " onClick={() => addItem()} />
