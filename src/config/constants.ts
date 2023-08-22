@@ -1,7 +1,6 @@
 
 import { ActionStrategyObjetiveDto } from "../models/general/ActionStrategyObjetiveDto";
 import { DependencyInvolvedDto } from "../models/general/DependencyInvolvedDto";
-import { LineProgramDto, Program } from "../models/general/LineProgram";
 import { ObjetiveStrategyDirectionDto } from "../models/general/ObjetiveStrategyDirectionDto";
 
 export const LIST_FGN_DEPENDENCY: DependencyInvolvedDto[] = [
@@ -106,100 +105,100 @@ export const LIST_OBJETIVES_STRATEGIES_DIRECTIONS: ObjetiveStrategyDirectionDto[
     }
 ];
 
-export const LIST_PROGRAMS: Program[] = [
-    {
-        INDEX: 1,
-        ID: 1,
-        DESCRIPCION: "Acceso a la justicia",
-        LINES_PROGRAMAS: [
-            {
-                INDEX: 1,
-                ID: 1,
-                DESCRIPCION: "Mejoramiento de la interacción de la FGN con la ciudadanía a través de lo digital"
-            }, {
-                INDEX: 2,
-                ID: 2,
-                DESCRIPCION: "Mejoramiento de la infraestructura física de la FGN a nivel nacional"
-            }, {
-                INDEX: 3,
-                ID: 3,
-                DESCRIPCION: "Ampliación de la infraestructura física en la FGN a nivel nacional"
-            }, {
-                INDEX: 4,
-                ID: 4,
-                DESCRIPCION: "Operatividad para el acceso a la justicia"
-            }
-        ]
-    }, {
-        INDEX: 2,
-        ID: 2,
-        DESCRIPCION: "Interoperabilidad",
-        LINES_PROGRAMAS: [
-            {
-                INDEX: 1,
-                ID: 1,
-                DESCRIPCION: "Fortalecimiento de los mecanismos jurídicos y tecnológicos para la consulta e intercambio de información que apoyan la investigación criminal"
-            }
-        ]
-    }, {
-        INDEX: 3,
-        ID: 3,
-        DESCRIPCION: "Capacidades investigativas y analíticas",
-        LINES_PROGRAMAS: [
-            {
-                INDEX: 1,
-                ID: 1,
-                DESCRIPCION: "Toma de decisiones mediante analítica de datos para el apoyo a los territorios"
-            }, {
-                INDEX: 2,
-                ID: 2,
-                DESCRIPCION: "Fortalecimiento de la capacidad técnico-científica de los laboratorios y grupos de criminalística"
-            }, {
-                INDEX: 3,
-                ID: 3,
-                DESCRIPCION: "Fortalecimiento y modernización tecnológica de la policía judicial de la FGN para la investigación penal"
-            }, {
-                INDEX: 4,
-                ID: 4,
-                DESCRIPCION: "Fortalecimiento de las investigaciones de los delitos contra los recursos naturales y el medio ambiente"
-            }, {
-                INDEX: 5,
-                ID: 5,
-                DESCRIPCION: "Fortalecimiento del conocimiento y competencias de los servidores de la Fiscalía"
-            }, {
-                INDEX: 6,
-                ID: 6,
-                DESCRIPCION: "Fortalecimiento de las investigaciones de los demás delitos"
-            }
-        ]
-    }, {
-        INDEX: 4,
-        ID: 4,
-        DESCRIPCION: "Soluciones tecnológicas",
-        LINES_PROGRAMAS: [
-            {
-                INDEX: 1,
-                ID: 1,
-                DESCRIPCION: "Fortalecer los sistemas de información penal y de apoyo de la FGN"
-            }
-        ]
-    }, {
-        INDEX: 5,
-        ID: 5,
-        DESCRIPCION: "Capacidades de TI adaptables",
-        LINES_PROGRAMAS: [
-            {
-                INDEX: 1,
-                ID: 1,
-                DESCRIPCION: "Fortalecer los sistemas de información penal y de apoyo de la FGN"
-            }, {
-                INDEX: 2,
-                ID: 2,
-                DESCRIPCION: "Fortalecimiento de los servicios de TIC en la implementación de la arquitectura institucional"
-            }
-        ]
-    }
-];
+// export const LIST_PROGRAMS: Program[] = [
+//     {
+//         INDEX: 1,
+//         ID: 1,
+//         DESCRIPCION: "Acceso a la justicia",
+//         LINES_PROGRAMAS: [
+//             {
+//                 INDEX: 1,
+//                 ID: 1,
+//                 DESCRIPCION: "Mejoramiento de la interacción de la FGN con la ciudadanía a través de lo digital"
+//             }, {
+//                 INDEX: 2,
+//                 ID: 2,
+//                 DESCRIPCION: "Mejoramiento de la infraestructura física de la FGN a nivel nacional"
+//             }, {
+//                 INDEX: 3,
+//                 ID: 3,
+//                 DESCRIPCION: "Ampliación de la infraestructura física en la FGN a nivel nacional"
+//             }, {
+//                 INDEX: 4,
+//                 ID: 4,
+//                 DESCRIPCION: "Operatividad para el acceso a la justicia"
+//             }
+//         ]
+//     }, {
+//         INDEX: 2,
+//         ID: 2,
+//         DESCRIPCION: "Interoperabilidad",
+//         LINES_PROGRAMAS: [
+//             {
+//                 INDEX: 1,
+//                 ID: 1,
+//                 DESCRIPCION: "Fortalecimiento de los mecanismos jurídicos y tecnológicos para la consulta e intercambio de información que apoyan la investigación criminal"
+//             }
+//         ]
+//     }, {
+//         INDEX: 3,
+//         ID: 3,
+//         DESCRIPCION: "Capacidades investigativas y analíticas",
+//         LINES_PROGRAMAS: [
+//             {
+//                 INDEX: 1,
+//                 ID: 1,
+//                 DESCRIPCION: "Toma de decisiones mediante analítica de datos para el apoyo a los territorios"
+//             }, {
+//                 INDEX: 2,
+//                 ID: 2,
+//                 DESCRIPCION: "Fortalecimiento de la capacidad técnico-científica de los laboratorios y grupos de criminalística"
+//             }, {
+//                 INDEX: 3,
+//                 ID: 3,
+//                 DESCRIPCION: "Fortalecimiento y modernización tecnológica de la policía judicial de la FGN para la investigación penal"
+//             }, {
+//                 INDEX: 4,
+//                 ID: 4,
+//                 DESCRIPCION: "Fortalecimiento de las investigaciones de los delitos contra los recursos naturales y el medio ambiente"
+//             }, {
+//                 INDEX: 5,
+//                 ID: 5,
+//                 DESCRIPCION: "Fortalecimiento del conocimiento y competencias de los servidores de la Fiscalía"
+//             }, {
+//                 INDEX: 6,
+//                 ID: 6,
+//                 DESCRIPCION: "Fortalecimiento de las investigaciones de los demás delitos"
+//             }
+//         ]
+//     }, {
+//         INDEX: 4,
+//         ID: 4,
+//         DESCRIPCION: "Soluciones tecnológicas",
+//         LINES_PROGRAMAS: [
+//             {
+//                 INDEX: 1,
+//                 ID: 1,
+//                 DESCRIPCION: "Fortalecer los sistemas de información penal y de apoyo de la FGN"
+//             }
+//         ]
+//     }, {
+//         INDEX: 5,
+//         ID: 5,
+//         DESCRIPCION: "Capacidades de TI adaptables",
+//         LINES_PROGRAMAS: [
+//             {
+//                 INDEX: 1,
+//                 ID: 1,
+//                 DESCRIPCION: "Fortalecer los sistemas de información penal y de apoyo de la FGN"
+//             }, {
+//                 INDEX: 2,
+//                 ID: 2,
+//                 DESCRIPCION: "Fortalecimiento de los servicios de TIC en la implementación de la arquitectura institucional"
+//             }
+//         ]
+//     }
+// ];
 
 export const LIST_ACTIONS_STRATEGIES_OBJETIVES: ActionStrategyObjetiveDto[] = [
     {

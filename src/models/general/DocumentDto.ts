@@ -1,4 +1,4 @@
-export interface Document {
+export interface DocumentDto {
     index?: number;
     id?: number,
     name: string,

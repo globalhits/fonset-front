@@ -17,6 +17,8 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
 import { RequestDto } from "../../../models/general/RequestDto";
 import { GeneralSelector, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
+import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
 
 
 export default function FormInvertion() {
@@ -90,12 +92,16 @@ export default function FormInvertion() {
 								<InfoBasicProject />
 							</Tab>
 
-							<Tab eventKey="objetiveGeneral" title="OBJETIVOS">
-								<Objectives />
+							<Tab eventKey="objGeneral" title="OBJ. GENERAL">
+								<GeneralObjective type={"invertion"} />
 							</Tab>
 
-							<Tab eventKey="documents" title="DOCUMENTOS">
+							<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
+								<GeneralSpecific type={"invertion"} />
 							</Tab>
+
+							{/* <Tab eventKey="documents" title="DOCUMENTOS">
+							</Tab> */}
 						</Tabs>
 						<hr />
 						<div className="row">
