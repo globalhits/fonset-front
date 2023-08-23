@@ -14,7 +14,7 @@ import Buttons from "../../atoms/button/Buttons";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setLoading } from "../../../redux/states/generals/loading.slice";
 import InfoBasic from "../../molecules/general/infoBasic";
-import { GeneralSelector, setDataGeneral, setDataTypeForm } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, saveFormCooperativeApi, setDataGeneral, setDataTypeForm, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
 import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
 import { CountrySelector, fetchApiCountry } from "../../../redux/states/generals/country.slice";
@@ -37,6 +37,41 @@ export default function FormCooperative() {
 	const saveForm = () => {
 		dispatch(setDataTypeForm("cooperacion_temp"))
 		console.log("guardar form", data);
+	}
+
+	const finishForm = async () => {
+
+		await dispatch(setDataTypeForm("inversion"))
+
+		await dispatch(setLoading(true))
+
+		await showAlertsForInputsRequired();
+
+		if (data.PROY_CODIGO != "") {
+			//ALERT ARROJAR ERROR
+		}
+
+		if (data.PROY_NOMBRE != "") {
+			//ALERT ARROJAR ERROR
+		}
+
+		if (data.PROY_FECHA != "") {
+			//ALERT ARROJAR ERROR
+		}
+
+		if (data.PROY_COBERTURA?.TIPO == "focalizada" && data.PROY_COBERTURA.COBERTURA?.length == 0) {
+			//Arrojar error
+			alert("error")
+		}
+		console.log("guardar form", data);
+
+		await dispatch(saveFormCooperativeApi(data));
+
+		await dispatch(setLoading(false))
+	}
+
+	const showAlertsForInputsRequired = () => {
+		dispatch(showAlertForInputs(true));
 	}
 
 	const showConfirmationAlert = () => {
@@ -115,7 +150,7 @@ export default function FormCooperative() {
 								</Col>
 								<Col sm={6} className="text-right">
 									<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => saveForm()} />
-									<Buttons variant="outline-success" label="Finalizar" onClick={() => saveForm()} />
+									<Buttons variant="outline-success" label="Finalizar" onClick={() => finishForm()} />
 								</Col>
 							</Row>
 						</Card.Body>
