@@ -1,48 +1,46 @@
 
 import { ActionStrategyObjetiveDto } from "../models/general/ActionStrategyObjetiveDto";
-import { BaseDto } from "../models/general/BaseDto";
 import { DependencyInvolvedDto } from "../models/general/DependencyInvolvedDto";
 import { LineProgramDto, ProgramDto } from "../models/general/LineProgramDto";
 import { ObjetiveStrategyDirectionDto, SubObjetive } from "../models/general/ObjetiveStrategyDirectionDto";
 
-
 export const CATEGORY_GENERAL = [
-        {
-            "id": 158712,
-            "name": "Componentes tecnológicos y de conectividad",
-            "description": "Componentes tecnológicos y de conectividad",
-            "value": "CTC"
-        },
-        {
-            "id": 158713,
-            "name": "Infraestructura física",
-            "description": "Infraestructura física",
-            "value": "IF"
-        },
-        {
-            "id": 158714,
-            "name": "Parque automotor",
-            "description": "Parque automotor",
-            "value": "PA"
-        },
-        {
-            "id": 158715,
-            "name": "PJ - Criminalística",
-            "description": "PJ - Criminalística",
-            "value": "PJ"
-        },
-        {
-            "id": 158716,
-            "name": "PJ - Investigaciones",
-            "description": "PJ - Investigaciones",
-            "value": "PJINVES"
-        },
-        {
-            "id": 158717,
-            "name": "Prevención del delito",
-            "description": "Prevención del delito",
-            "value": "PD"
-        }
+    {
+        "id": 158712,
+        "name": "Componentes tecnológicos y de conectividad",
+        "description": "Componentes tecnológicos y de conectividad",
+        "value": "CTC"
+    },
+    {
+        "id": 158713,
+        "name": "Infraestructura física",
+        "description": "Infraestructura física",
+        "value": "IF"
+    },
+    {
+        "id": 158714,
+        "name": "Parque automotor",
+        "description": "Parque automotor",
+        "value": "PA"
+    },
+    {
+        "id": 158715,
+        "name": "PJ - Criminalística",
+        "description": "PJ - Criminalística",
+        "value": "PJ"
+    },
+    {
+        "id": 158716,
+        "name": "PJ - Investigaciones",
+        "description": "PJ - Investigaciones",
+        "value": "PJINVES"
+    },
+    {
+        "id": 158717,
+        "name": "Prevención del delito",
+        "description": "Prevención del delito",
+        "value": "PD"
+    }
 ];
 
 export const CATEGORY_SPECIFYC = [
@@ -373,8 +371,8 @@ export const CATEGORY_SPECIFYC = [
         "name": "Camionetas",
         "description": "Camionetas",
         "value": "CAM",
-        "parentId": 158714
-    }
+        "parentId": 158714
+    }
 ]
 
 export const SERVICES = [
@@ -1476,48 +1474,48 @@ export const LIST_FGN_DEPENDENCY: DependencyInvolvedDto[] = [
 ];
 
 export const UNID_MEASUREMENT = [
-    { id: 0, NAME: 'Porcentaje', description:"Porcentaje" },
-    { id: 1, NAME: 'Capacidad', descripcion:"Capacidad" },
-    { id: 2, NAME: 'Frecuencia', descripcion:"Frecuencia"},
-    { id: 3, NAME: 'Longitud', descripcion:"Longitud"},
-    { id: 4, NAME: 'Masa y peso', descripcion:"Masa y peso"},
+    { id: 0, NAME: 'Porcentaje', description: "Porcentaje" },
+    { id: 1, NAME: 'Capacidad', descripcion: "Capacidad" },
+    { id: 2, NAME: 'Frecuencia', descripcion: "Frecuencia" },
+    { id: 3, NAME: 'Longitud', descripcion: "Longitud" },
+    { id: 4, NAME: 'Masa y peso', descripcion: "Masa y peso" },
 ];
 
 export const SUB_UNID_MEASUREMENT = [
     // Porcentaje
-    { id: 1, NAME: 'Porcentaje', simbolo: '%', description:"Porcentaje" },
+    { id: 1, NAME: 'Porcentaje', simbolo: '%', description: "Porcentaje" },
 
     // Unidades de Capacidad
-    { id: 2, NAME: 'Litro', simbolo: 'L', description:"Litro" },
-    { id: 3, NAME: 'Mililitro', simbolo: 'mL', description:"Mililitro" },
-    { id: 4, NAME: 'Metro Cúbico', simbolo: 'm³', description:"Metro Cúbico" },
-    { id: 5, NAME: 'Galon', simbolo: 'gal', description:"Galon" },
+    { id: 2, NAME: 'Litro', simbolo: 'L', description: "Litro" },
+    { id: 3, NAME: 'Mililitro', simbolo: 'mL', description: "Mililitro" },
+    { id: 4, NAME: 'Metro Cúbico', simbolo: 'm³', description: "Metro Cúbico" },
+    { id: 5, NAME: 'Galon', simbolo: 'gal', description: "Galon" },
 
     // Unidad de Frecuencia
-    { id: 6, NAME: 'Hertz', simbolo: 'Hz', description:"Hertz" },
-    { id: 7, NAME: 'Kilohertz', simbolo: 'kHz', description:"Kilohertz" },
-    { id: 8, NAME: 'Megahertz', simbolo: 'MHz', description:"Megahertz" },
+    { id: 6, NAME: 'Hertz', simbolo: 'Hz', description: "Hertz" },
+    { id: 7, NAME: 'Kilohertz', simbolo: 'kHz', description: "Kilohertz" },
+    { id: 8, NAME: 'Megahertz', simbolo: 'MHz', description: "Megahertz" },
 
     // Longitud
-    { id: 9, NAME: 'Metro', simbolo: 'm', description:"Metro" },
-    { id: 10, NAME: 'Kilómetro', simbolo: 'km', description:"Kilómetro" },
-    { id: 11, NAME: 'Centímetro', simbolo: 'cm', description:"Centímetro" },
-    { id: 12, NAME: 'Pulgada', simbolo: 'in', description:"Pulgada" },
+    { id: 9, NAME: 'Metro', simbolo: 'm', description: "Metro" },
+    { id: 10, NAME: 'Kilómetro', simbolo: 'km', description: "Kilómetro" },
+    { id: 11, NAME: 'Centímetro', simbolo: 'cm', description: "Centímetro" },
+    { id: 12, NAME: 'Pulgada', simbolo: 'in', description: "Pulgada" },
 
     // Masa y Peso
-    { id: 13, NAME: 'Gramo', simbolo: 'g', description:"Gramo" },
-    { id: 14, NAME: 'Kilogramo', simbolo: 'kg', description:"Kilogramo" },
-    { id: 15, NAME: 'Tonelada', simbolo: 't', description:"Tonelada" },
-    { id: 16, NAME: 'Libra', simbolo: 'lb', description:"Libra" },
+    { id: 13, NAME: 'Gramo', simbolo: 'g', description: "Gramo" },
+    { id: 14, NAME: 'Kilogramo', simbolo: 'kg', description: "Kilogramo" },
+    { id: 15, NAME: 'Tonelada', simbolo: 't', description: "Tonelada" },
+    { id: 16, NAME: 'Libra', simbolo: 'lb', description: "Libra" },
 ];
 
 export const TIPE_PRESENTATION = [
-    { id: 1, NAME: "caja", description:"caja" },
-    { id: 2, NAME: "Carpeta", description:"Carpeta" },
-    { id: 3, NAME: "Folder", description:"Folder" },
-    { id: 4, NAME: "Resma", description:"Resma" },
-    { id: 3, NAME: "Galon", description:"Galon" },
-    { id: 4, NAME: "Garrafa", description:"Garrafa" },
+    { id: 1, NAME: "caja", description: "caja" },
+    { id: 2, NAME: "Carpeta", description: "Carpeta" },
+    { id: 3, NAME: "Folder", description: "Folder" },
+    { id: 4, NAME: "Resma", description: "Resma" },
+    { id: 3, NAME: "Galon", description: "Galon" },
+    { id: 4, NAME: "Garrafa", description: "Garrafa" },
 ]
 
 export const LIST_OBJETIVES_STRATEGIES_DIRECTIONS: ObjetiveStrategyDirectionDto[] = [
