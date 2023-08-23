@@ -61,7 +61,6 @@ export default function FormGoods() {
     };
 
     // INPUT
-
     const [categoryGeneral, setCategoryGeneral] = useState("");
 
     const [categorySpecify, setCategorySpecify] = useState("");
@@ -289,7 +288,7 @@ export default function FormGoods() {
             return
         }
 
-        dispatch(filterByUnitId(Number(value)))
+        dispatch(filterByUnitId(value))
 
         setDisabledSubUnit(false)
     }

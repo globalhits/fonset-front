@@ -28,7 +28,7 @@ export const fetchApiUnits = createAsyncThunk('data/units', async () => {
 
 export const fetchApiSubUnits = createAsyncThunk('data/sub-units', async () => {
     const response = await subUnitService.getAll(); // Llamar al servicio
-    console.log("response", response);
+    console.log("response-sub-units", response);
     return response;
 });
 
