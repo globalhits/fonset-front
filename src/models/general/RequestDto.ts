@@ -73,7 +73,6 @@ export interface RequestDto {
     PROY_VALOR_UNITARIO_IVA?: string;
     PROY_CANTIDAD?: number;
 
-
     //SPECIFIES INPUTS TEMPS
     PROY_OBJETIVO_GENERAL_SPECIFY?: string;
     PROY_DESCRIPCION_GENERAL_SPECIFY?: string;

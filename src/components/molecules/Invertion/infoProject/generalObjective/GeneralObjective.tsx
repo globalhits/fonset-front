@@ -105,10 +105,10 @@ export const GeneralObjective = ({ type, isSpecify = false }: GeneralObjectiveIn
                                                     <InputFloating name={"PROY_RESULTADO_ESPERADO_SPECIFY"} label="Resultado esperado" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_RESULTADO_ESPERADO_SPECIFY", value)} value={data.PROY_RESULTADO_ESPERADO_SPECIFY} />
                                                 </div>
                                                 <div className="col-lg-3">
-                                                    <InputFloating name={"PROY_FECHA_ESPERADA_INICIO_SPECIFY"} label="Inicío*" className="mb-3 inputFloating" type="date" setValueChange={(value: string) => setValueByIndex("PROY_FECHA_ESPERADA_INICIO_SPECIFY", value)} value={data.PROY_FECHA_ESPERADA_INICIO_SPECIFY} isInvalid={!data.PROY_FECHA_ESPERADA_INICIO && errorInputs} />
+                                                    <InputFloating name={"PROY_MES_INICIO_GENERAL_SPECIFY"} label="Inicío*" className="mb-3 inputFloating" type="date" setValueChange={(value: string) => setValueByIndex("PROY_MES_INICIO_GENERAL_SPECIFY", value)} value={data.PROY_MES_INICIO_GENERAL_SPECIFY} isInvalid={!data.PROY_MES_INICIO_GENERAL_SPECIFY && errorInputs} />
                                                 </div>
                                                 <div className="col-lg-3">
-                                                    <InputFloating name={"PROY_FECHA_ESPERADA_TERMINADA_SPECIFY"} label="Fín*" className="mb-3 inputFloating" type="date" setValueChange={(value: string) => setValueByIndex("PROY_FECHA_ESPERADA_TERMINADA_SPECIFY", value)} value={data.PROY_FECHA_ESPERADA_TERMINADA_SPECIFY} isInvalid={!data.PROY_FECHA_ESPERADA_TERMINADA && errorInputs} />
+                                                    <InputFloating name={"PROY_MES_FINAL_GENERAL_SPECIFY"} label="Fín*" className="mb-3 inputFloating" type="date" setValueChange={(value: string) => setValueByIndex("PROY_MES_FINAL_GENERAL_SPECIFY", value)} value={data.PROY_MES_FINAL_GENERAL_SPECIFY} isInvalid={!data.PROY_MES_FINAL_GENERAL_SPECIFY && errorInputs} />
                                                 </div>
                                             </div>
                                         </>
@@ -122,7 +122,7 @@ export const GeneralObjective = ({ type, isSpecify = false }: GeneralObjectiveIn
 
                                             <div className="row mt-4">
                                                 <div className="col-lg-12">
-                                                    <InputFloating label="Digite la justificación o antecedentes del proyecto*" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_JUSTIFICACION_ANTECEDENTES", value)} value={data.PROY_JUSTIFICACION_ANTECEDENTES} isInvalid={!data.PROY_JUSTIFICACION_ANTECEDENTES && errorInputs} />
+                                                    <InputFloating label="Digite la justificación o antecedentes del proyecto*" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_JUSTIFICACION", value)} value={data.PROY_JUSTIFICACION} isInvalid={!data.PROY_JUSTIFICACION && errorInputs} />
                                                 </div>
                                             </div>
                                             <div className="row">
