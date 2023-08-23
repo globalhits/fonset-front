@@ -41,7 +41,7 @@ export default function FormCooperative() {
 
 	const finishForm = async () => {
 
-		await dispatch(setDataTypeForm("inversion"))
+		await dispatch(setDataTypeForm("cooperacion"))
 
 		await dispatch(setLoading(true))
 
