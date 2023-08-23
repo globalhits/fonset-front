@@ -1474,48 +1474,48 @@ export const LIST_FGN_DEPENDENCY: DependencyInvolvedDto[] = [
 ];
 
 export const UNID_MEASUREMENT = [
-    { id: 0, NAME: 'Porcentaje', description: "Porcentaje" },
-    { id: 1, NAME: 'Capacidad', descripcion: "Capacidad" },
-    { id: 2, NAME: 'Frecuencia', descripcion: "Frecuencia" },
-    { id: 3, NAME: 'Longitud', descripcion: "Longitud" },
-    { id: 4, NAME: 'Masa y peso', descripcion: "Masa y peso" },
+    { INDEX: 1, id: 1, name: "Porcentaje", description: "Porcentaje" },
+    { INDEX: 2, id: 2, name: "Capacidad", descripcion: "Capacidad" },
+    { INDEX: 3, id: 3, name: "Frecuencia", descripcion: "Frecuencia" },
+    { INDEX: 4, id: 4, name: "Longitud", descripcion: "Longitud" },
+    { INDEX: 5, id: 5, name: "Masa y peso", descripcion: "Masa y peso" },
 ];
 
 export const SUB_UNID_MEASUREMENT = [
     // Porcentaje
-    { id: 1, NAME: 'Porcentaje', simbolo: '%', description: "Porcentaje" },
+    { INDEX: 1, id: 1, parentId: 1, name: "Porcentaje", simbolo: "%", description: "Porcentaje" },
 
     // Unidades de Capacidad
-    { id: 2, NAME: 'Litro', simbolo: 'L', description: "Litro" },
-    { id: 3, NAME: 'Mililitro', simbolo: 'mL', description: "Mililitro" },
-    { id: 4, NAME: 'Metro Cúbico', simbolo: 'm³', description: "Metro Cúbico" },
-    { id: 5, NAME: 'Galon', simbolo: 'gal', description: "Galon" },
+    { INDEX: 2, id: 2, parentId: 2, name: "Litro", simbolo: "L", description: "Litro" },
+    { INDEX: 3, id: 3, parentId: 2, name: "Mililitro", simbolo: "mL", description: "Mililitro" },
+    { INDEX: 4, id: 4, parentId: 2, name: "Metro Cúbico", simbolo: "m³", description: "Metro Cúbico" },
+    { INDEX: 5, id: 5, parentId: 2, name: "Galon", simbolo: "gal", description: "Galon" },
 
     // Unidad de Frecuencia
-    { id: 6, NAME: 'Hertz', simbolo: 'Hz', description: "Hertz" },
-    { id: 7, NAME: 'Kilohertz', simbolo: 'kHz', description: "Kilohertz" },
-    { id: 8, NAME: 'Megahertz', simbolo: 'MHz', description: "Megahertz" },
+    { INDEX: 6, id: 6, parentId: 3, name: "Hertz", simbolo: "Hz", description: "Hertz" },
+    { INDEX: 7, id: 7, parentId: 3, name: "Kilohertz", simbolo: "kHz", description: "Kilohertz" },
+    { INDEX: 8, id: 8, parentId: 3, name: "Megahertz", simbolo: "MHz", description: "Megahertz" },
 
     // Longitud
-    { id: 9, NAME: 'Metro', simbolo: 'm', description: "Metro" },
-    { id: 10, NAME: 'Kilómetro', simbolo: 'km', description: "Kilómetro" },
-    { id: 11, NAME: 'Centímetro', simbolo: 'cm', description: "Centímetro" },
-    { id: 12, NAME: 'Pulgada', simbolo: 'in', description: "Pulgada" },
+    { INDEX: 9, id: 9, parentId: 4, name: "Metro", simbolo: "m", description: "Metro" },
+    { INDEX: 10, id: 10, parentId: 4, name: "Kilómetro", simbolo: "km", description: "Kilómetro" },
+    { INDEX: 11, id: 11, parentId: 4, name: "Centímetro", simbolo: "cm", description: "Centímetro" },
+    { INDEX: 12, id: 12, parentId: 4, name: "Pulgada", simbolo: "in", description: "Pulgada" },
 
     // Masa y Peso
-    { id: 13, NAME: 'Gramo', simbolo: 'g', description: "Gramo" },
-    { id: 14, NAME: 'Kilogramo', simbolo: 'kg', description: "Kilogramo" },
-    { id: 15, NAME: 'Tonelada', simbolo: 't', description: "Tonelada" },
-    { id: 16, NAME: 'Libra', simbolo: 'lb', description: "Libra" },
+    { INDEX: 13, id: 13, parentId: 5, name: "Gramo", simbolo: "g", description: "Gramo" },
+    { INDEX: 14, id: 14, parentId: 5, name: "Kilogramo", simbolo: "kg", description: "Kilogramo" },
+    { INDEX: 15, id: 15, parentId: 5, name: "Tonelada", simbolo: "t", description: "Tonelada" },
+    { INDEX: 16, id: 16, parentId: 5, name: "Libra", simbolo: "lb", description: "Libra" },
 ];
 
 export const TIPE_PRESENTATION = [
-    { id: 1, NAME: "caja", description: "caja" },
-    { id: 2, NAME: "Carpeta", description: "Carpeta" },
-    { id: 3, NAME: "Folder", description: "Folder" },
-    { id: 4, NAME: "Resma", description: "Resma" },
-    { id: 3, NAME: "Galon", description: "Galon" },
-    { id: 4, NAME: "Garrafa", description: "Garrafa" },
+    { id: 1, name: "caja", description: "caja" },
+    { id: 2, name: "Carpeta", description: "Carpeta" },
+    { id: 3, name: "Folder", description: "Folder" },
+    { id: 4, name: "Resma", description: "Resma" },
+    { id: 3, name: "Galon", description: "Galon" },
+    { id: 4, name: "Garrafa", description: "Garrafa" },
 ]
 
 export const LIST_OBJETIVES_STRATEGIES_DIRECTIONS: ObjetiveStrategyDirectionDto[] = [

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import Swal from 'sweetalert2';
 
@@ -13,25 +13,34 @@ import { useAppSelector, useAppDispatch } from "../../../../redux/hooks";
 import { GeneralSelector, setDataGeneral, addGoods } from "../../../../redux/states/generals/general.slice";
 import { GoodsDto } from "../../../../models/general/GoodDto";
 import helper from "../../../../utils/helper";
-import { CATEGORY_GENERAL, CATEGORY_SPECIFYC, LIST_ACTIONS_STRATEGIES_OBJETIVES, LIST_LINES_PROGRAMS, LIST_OBJETIVES_STRATEGIES_DIRECTIONS, LIST_PROGRAMS, LIST_SUB_OBJETIVES, SERVICES, SUB_UNID_MEASUREMENT, TIPE_PRESENTATION, UNID_MEASUREMENT} from "../../../../config/constants";
+import { CATEGORY_GENERAL, CATEGORY_SPECIFYC, LIST_ACTIONS_STRATEGIES_OBJETIVES, LIST_LINES_PROGRAMS, LIST_OBJETIVES_STRATEGIES_DIRECTIONS, LIST_PROGRAMS, LIST_SUB_OBJETIVES, SERVICES, SUB_UNID_MEASUREMENT, TIPE_PRESENTATION, UNID_MEASUREMENT } from "../../../../config/constants";
+import { CategorySelector, fetchApiCategoriesGenerals, fetchApiCategoriesSpecifies, filterByCategoryGeneralId } from "../../../../redux/states/generals/category.slice";
+import { ProgramSelector, fetchApiLinePrograms, fetchApiPrograms, filterByProgramId } from "../../../../redux/states/generals/program.slice";
+import { UnitSelector, fetchApiSubUnits, fetchApiUnits, filterByUnitId } from "../../../../redux/states/generals/unit.slice";
+import { GoodSelector, fetchApiGood } from "../../../../redux/states/generals/good.slice";
+import { ObjetiveSelector, fetchApiActionStrategies, fetchApiObjetives, fetchApiSubObjetives, filterBySubObjetiveByParentId } from "../../../../redux/states/generals/objetive.slice";
 
 
 export default function FormGoods() {
 
-    /* const { generals, specifies } = useAppSelector(CategorySelector);
     const { programs, line_programs_filters } = useAppSelector(ProgramSelector);
-    const { unities, sub_unities, sub_unities_filters } = useAppSelector(UnitSelector);
-    const { goods } = useAppSelector(GoodSelector) */
+    const { generals, specifies_filter } = useAppSelector(CategorySelector);
+    const { unities, sub_unities_filters } = useAppSelector(UnitSelector);
+    const { goods } = useAppSelector(GoodSelector);
+    const { strategies, sub_strategies_filters, actions } = useAppSelector(ObjetiveSelector);
 
-   /*  useEffect(() => {
+    useEffect(() => {
         dispatch(fetchApiPrograms());
         dispatch(fetchApiLinePrograms());
         dispatch(fetchApiCategoriesGenerals());
         dispatch(fetchApiCategoriesSpecifies());
-        //dispatch(fetchApiUnits());
-        //dispatch(fetchApiSubUnits());
+        dispatch(fetchApiUnits());
+        dispatch(fetchApiSubUnits());
         dispatch(fetchApiGood());
-    }, []) */
+        dispatch(fetchApiObjetives())
+        dispatch(fetchApiSubObjetives())
+        dispatch(fetchApiActionStrategies())
+    }, [])
 
     const showConfirmationAlert = () => {
         Swal.fire({
@@ -51,39 +60,21 @@ export default function FormGoods() {
         });
     };
 
-    const [categoriesGeneral, setCategoriesGeneral] = useState([]);
-
-    const [categoriesSpecifies, setCategoriesSpecifies] = useState([]);
-
-    const [services, setServices] = useState([]);
-
-    const [units, setUnits] = useState([]);
-
-    const [subUnits, setSubUnits] = useState([]);
-
-    const [presentations, setPresentations] = useState([]);
-
-    const [objetiveStrategies, setObjetiveStrategies] = useState([]);
-
-    const [subOjectiveStrategies, setSubOjectiveStrategies] = useState([]);
-
-    const [actionsObjetives, setActionsObjectives] = useState([]);
-
-    const [programs, setPrograms] = useState([]);
-
-    const [linesPrograms, setLinesPrograms] = useState([]);
-
     // INPUT
 
     const [categoryGeneral, setCategoryGeneral] = useState("");
 
     const [categorySpecify, setCategorySpecify] = useState("");
 
+    const [disabledCategorySpecific, setDisabledCategorySpecific] = useState(true);
+
     const [service, setService] = useState("");
 
     const [unit, setUnit] = useState("");
 
     const [subUnit, setSubUnit] = useState("");
+
+    const [disabledSubUnit, setDisabledSubUnit] = useState(true);
 
     const [presentation, SetPresentation] = useState("");
 
@@ -95,19 +86,21 @@ export default function FormGoods() {
 
     const [subObjetiveStrategy, setSubObjetiveStrategy] = useState("");
 
+    const [disabledSubObjetive, setDisableSubObjetive] = useState(true)
+
     const [program, setProgram] = useState("");
 
     const [actionObjetive, setActionObjective] = useState("");
 
     const [linesProgram, setLinesProgram] = useState("");
 
+    const [disabledLinesProgram, setDisabledLinesProgram] = useState(true);
 
     const [error, setError] = useState("");
 
     const { data, errorInputs } = useAppSelector(GeneralSelector);
 
     const dispatch = useAppDispatch();
-
 
     const setValueByIndex = (index: any, value: any) => {
         let updatedRequest: RequestDto = {};
@@ -122,7 +115,7 @@ export default function FormGoods() {
 
     const addItem = () => {
 
-       if (categoryGeneral.trim() == "") {
+        if (categoryGeneral.trim() == "") {
             setError('El campo categoria general no puede estar vacío.');
             return;
         }
@@ -135,7 +128,7 @@ export default function FormGoods() {
         if (service.trim() == "") {
             setError('El campo nombre bien / servicios no puede estar vacío.');
             return;
-        } 
+        }
 
         if (unit.trim() == "") {
             setError('El campo unidad de medida no puede estar vacío.');
@@ -175,7 +168,7 @@ export default function FormGoods() {
         if (actionObjetive.trim() == "") {
             setError('El campo acciones obj estrategico no puede estar vacío.');
             return;
-        } 
+        }
 
         if (program.trim() == "") {
             setError('El campo programa no puede estar vacío.');
@@ -244,25 +237,82 @@ export default function FormGoods() {
         dispatch(addGoods(newDataList))
     }
 
+    const changeProgram = (value: any) => {
+
+        if (value == "") {
+            setDisabledLinesProgram(true);
+            setError("Seleccione un programa")
+            return
+        }
+
+        setProgram(value)
+
+        dispatch(filterByProgramId(Number(value)));
+
+        setDisabledLinesProgram(false);
+    }
+
+    const changeCategoryGeneral = (value: any) => {
+        setCategoryGeneral(value);
+
+        if (value == "") {
+            setError("Seleccionar un objetivo general")
+            setDisabledCategorySpecific(true)
+            return
+        }
+
+        dispatch(filterByCategoryGeneralId(value))
+
+        setDisabledCategorySpecific(false)
+    }
+
+    const changeObjetiveDirection = (value: any) => {
+        setObjetiveStrategy(value);
+
+        if (value == "") {
+            setError("Seleccionar el objetivo de direccionamiento")
+            setDisableSubObjetive(true)
+            return
+        }
+
+        dispatch(filterBySubObjetiveByParentId(value))
+
+        setDisableSubObjetive(false)
+    }
+
+    const changeUnit = (value: any) => {
+        setUnit(value);
+
+        if (value == "") {
+            setError("Seleccionar una unidad de medida")
+            setDisabledSubUnit(true)
+            return
+        }
+
+        dispatch(filterByUnitId(Number(value)))
+
+        setDisabledSubUnit(false)
+    }
+
     return (
         <>
             <Row className="mt-3">
                 <Col lg="4">
-                    <InputSelected label="Categoria general*" options={CATEGORY_GENERAL} onChange={(value: any) => setCategoryGeneral(value)} value={categoryGeneral} />
+                    <InputSelected label="Categoria general*" options={generals} onChange={(value: any) => changeCategoryGeneral(value)} value={categoryGeneral} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Categoria especifica*" options={CATEGORY_SPECIFYC} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} />
+                    <InputSelected label="Categoria especifica*" options={specifies_filter} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} disabled={disabledCategorySpecific} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Nombre bien/Servicio*" options={SERVICES} onChange={(value: any) => setService(value)} value={service} />
+                    <InputSelected label="Nombre bien/Servicio*" options={goods} onChange={(value: any) => setService(value)} value={service} />
                 </Col>
             </Row>
             <Row className="mt-3">
                 <Col lg="2">
-                    <InputSelected label="Unidad de medida*" options={UNID_MEASUREMENT} onChange={(value: any) => setUnit(value)} value={unit} />
+                    <InputSelected label="Unidad de medida*" options={unities} onChange={(value: any) => changeUnit(value)} value={unit} />
                 </Col>
                 <Col lg="2">
-                    <InputSelected label="Sub unidad de medida*" options={SUB_UNID_MEASUREMENT} onChange={(value: any) => setSubUnit(value)} value={subUnit} />
+                    <InputSelected label="Subuni. de medida*" options={sub_unities_filters} onChange={(value: any) => setSubUnit(value)} value={subUnit} disabled={disabledSubUnit} />
                 </Col>
                 <Col lg="4">
                     <InputSelected label="Presentacion*" options={TIPE_PRESENTATION} onChange={(value: any) => SetPresentation(value)} value={presentation} />
@@ -276,21 +326,21 @@ export default function FormGoods() {
             </Row>
             <Row className="mt-3">
                 <Col lg="4">
-                    <InputSelected label="Obj. estrategico del direccionamiento*" options={LIST_OBJETIVES_STRATEGIES_DIRECTIONS} onChange={(value: any) => setObjetiveStrategy(value)} value={objetiveStrategy} />
+                    <InputSelected label="Obj. estrategico del direccionamiento*" options={strategies} onChange={(value: any) => changeObjetiveDirection(value)} value={objetiveStrategy} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Sub tema del Obj. estrategico*" options={LIST_SUB_OBJETIVES} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} />
+                    <InputSelected label="Sub tema del Obj. estrategico*" options={sub_strategies_filters} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} disabled={disabledSubObjetive} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Acciones Objs. estrategicos*" options={LIST_ACTIONS_STRATEGIES_OBJETIVES} onChange={(value: any) => setActionObjective(value)} value={actionObjetive} />
+                    <InputSelected label="Acciones Objs. estrategicos*" options={actions} onChange={(value: any) => setActionObjective(value)} value={actionObjetive} />
                 </Col>
             </Row>
             <Row className="mt-3">
                 <Col sm={4}>
-                    <InputSelected label="Programa*" options={LIST_LINES_PROGRAMS} onChange={(value: any) => setProgram(value)} value={program} />
+                    <InputSelected label="Programa*" options={programs} onChange={(value: any) => changeProgram(value)} value={program} />
                 </Col>
                 <Col sm={4}>
-                    <InputSelected label="Lineas del programa*" options={LIST_PROGRAMS} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} />
+                    <InputSelected label="Lineas del programa*" options={line_programs_filters} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} disabled={disabledLinesProgram} />
                 </Col>
                 <Col className="col-lg-4 text-center">
                     <Buttons variant="outline-info" label="Agregar bien/servicio" classStyle="mt-4 " onClick={() => addItem()} />
