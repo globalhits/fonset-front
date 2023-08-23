@@ -8,6 +8,7 @@ import { GeneralSelector, setDataGeneral } from "../../../../redux/states/genera
 import { DepartamentSelector, fetchApiDepartament } from "../../../../redux/states/generals/departament.slice";
 import { MunicipalitySelector, fetchApiMunicipality, findByDepartamentId } from "../../../../redux/states/generals/municipality.slice";
 import { DependencySelector, fetchApiDependencies } from "../../../../redux/states/generals/dependency.slice";
+import { DistrictSelector, fetchApiDistricts } from "../../../../redux/states/generals/district.slice";
 
 const FormDataGeneral: React.FC<any> = ({ }) => {
 
@@ -33,16 +34,19 @@ const FormDataGeneral: React.FC<any> = ({ }) => {
 
     const { dependencies } = useAppSelector(DependencySelector);
 
-    
+    const { districts } = useAppSelector(DistrictSelector);
+
+
 
     useEffect(() => {
         // Disparar la acción para obtener los datos
         dispatch(fetchApiDepartament());
         dispatch(fetchApiMunicipality());
         dispatch(fetchApiDependencies());
+        dispatch(fetchApiDistricts());
     }, []);
 
-    
+
 
     const dispatch = useAppDispatch();
 
@@ -89,7 +93,7 @@ const FormDataGeneral: React.FC<any> = ({ }) => {
                     <InputSelected label="Entidad dependencia responsable*" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_ENTIDAD_DEPENDENCIA_RESPONSABLE", value)} value={data.PROY_ENTIDAD_DEPENDENCIA_RESPONSABLE} />
                 </div>
                 <div className="col-lg-4 ">
-                    <InputSelected label="Distrito judicial*" className="mb-3 inputFloating" options={[]} onChange={(value: any) => setJudicialDistrict(value)} value="" />
+                    <InputSelected label="Distrito judicial*" className="mb-3 inputFloating" options={districts} onChange={(value: any) => setJudicialDistrict(value)} value={judicialDistrict} />
                 </div>
             </div>
         </>
