@@ -49,9 +49,6 @@ export default function FormDescription() {
                         <Nav.Item className="col-lg-16">
                             <Nav.Link eventKey="observaciones">OBSERVACIONES</Nav.Link>
                         </Nav.Item>
-                        <Nav.Item className="col-lg-16">
-                            <Nav.Link eventKey="documentos">DOCUMENTOS ANEXOS</Nav.Link>
-                        </Nav.Item>
                     </Nav>
 
                     <Tab.Content className="width100">
@@ -81,32 +78,6 @@ export default function FormDescription() {
 
                         <Tab.Pane eventKey="observaciones">
                             <TextArea name="PROY_OBSERVACIONES" label="Digite la descripción del objetivo..." setValueChange={(value: string) => setValueByIndex("PROY_OBSERVACIONES", value)} value={data.PROY_OBSERVACIONES}  />
-                        </Tab.Pane>
-
-                        <Tab.Pane eventKey="documentos">
-                            <Table className="table table-bordered table-condensed table-stripe">
-                                <thead>
-                                    <tr>
-                                        <th className="text-center">Descripcion</th>
-                                        <th className="text-center">Archivo</th>
-                                        <th className="text-center">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </Table>
                         </Tab.Pane>
                     </Tab.Content>
                 </div>

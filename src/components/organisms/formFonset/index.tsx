@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
 import { RequestDto } from "../../../models/general/RequestDto";
 import { GeneralSelector, setDataTypeForm, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import DocumentUpload from "../../molecules/upload/DocumentUpload";
 
 
 export default function FormFonset() {
@@ -88,7 +89,8 @@ export default function FormFonset() {
 								<FormGoods />
 							</Tab>
 
-							<Tab eventKey="documents" title="DOCUMENTOS">
+							<Tab eventKey="documents" title="DOCUMENTOS ANEXOS">
+								<DocumentUpload/>
 							</Tab>
 
 						</Tabs>

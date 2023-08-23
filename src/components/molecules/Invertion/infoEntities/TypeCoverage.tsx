@@ -24,7 +24,7 @@ const TypeCoverage = () => {
     const [error, setError] = useState("");
 
     const { data, errorInputs } = useAppSelector(GeneralSelector);
-
+ 
     const { departaments } = useAppSelector(DepartamentSelector);
 
     const { filters } = useAppSelector(MunicipalitySelector);
