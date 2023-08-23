@@ -7,6 +7,7 @@ import categoryGeneralService from "../../../services/generals/category-general.
 export interface CategoryState {
     generals: CategoryDto[];
     specifies: CategoryDto[];
+    specifies_filter: CategoryDto[];
     status: string;
     error: any;
 }
@@ -14,6 +15,7 @@ export interface CategoryState {
 export const initialState: CategoryState = {
     generals: [],
     specifies: [],
+    specifies_filter: [],
     status: "idle",
     error: ""
 }
@@ -33,13 +35,18 @@ export const fetchApiCategoriesGenerals = createAsyncThunk('data/categories-gene
 const CategorySlice = createSlice({
     name: "category",
     initialState,
-    reducers: {},
+    reducers: {
+        filterByCategoryGeneralId: (state, { payload }: PayloadAction<number>) => {
+            state.specifies_filter = state.specifies.filter(item => item.parentId == payload);
+        },
+    },
     extraReducers: builder => {
         builder.addCase(fetchApiCategoriesSpecifies.pending, state => {
             state.status = 'loading';
         }).addCase(fetchApiCategoriesSpecifies.fulfilled, (state, action) => {
             state.status = 'succeeded';
             state.specifies = action.payload;
+            state.specifies_filter = action.payload;
         }).addCase(fetchApiCategoriesSpecifies.rejected, (state, action) => {
             state.status = 'failed';
             state.error = action.error.message;
@@ -55,7 +62,7 @@ const CategorySlice = createSlice({
     }
 })
 
-// export const { listAll, setLineProgramError } = CategorySlice.actions
+export const { filterByCategoryGeneralId } = CategorySlice.actions
 
 export const CategorySelector = (state: RootState) => state.category;
 
