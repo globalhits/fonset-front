@@ -16,12 +16,12 @@ import Loader from "../../atoms/loader";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
 import { RequestDto } from "../../../models/general/RequestDto";
-import { GeneralSelector, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, setDataTypeForm, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 
 
 export default function FormFonset() {
 
-	const { data, error, errorInputs, response } = useAppSelector(GeneralSelector); 
+	const { data, error, errorInputs, response } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 
@@ -30,10 +30,13 @@ export default function FormFonset() {
 	}, [])
 
 	const saveForm = () => {
+		dispatch(setDataTypeForm("fonset_temp"))
 		console.log("guardar form", data);
 	}
 
 	const finishForm = () => {
+
+		dispatch(setDataTypeForm("fonset"))
 
 		showAlertsForInputsRequired();
 

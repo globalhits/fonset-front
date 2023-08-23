@@ -7,7 +7,13 @@ class InvertionService {
 
     async save(request: RequestDto) {
         try {
-            const response = await fetch(`${this.urlApi}/proyeto-inversion`);
+            const response = await fetch(`${this.urlApi}/proyecto-inversion`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(request)
+            });
             const data = await response.json();
             return data;
         } catch (error) {

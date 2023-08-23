@@ -14,7 +14,7 @@ const covergateState: TypeCoverageDto = {
 }
 
 export const initialStateFormGeneral: RequestDto = {
-    PROY_CODIGO: "",
+    PROY_CODIGO: "FI-0001",
     PROY_NOMBRE: "",
     PROY_FECHA: helper.getDateNow(),
     PROY_TIPO: [],
@@ -127,11 +127,14 @@ export const saveFormCooperativeApi = createAsyncThunk('data/cooperative', async
 });
 
 const GeneralSlice = createSlice({
-    name: "invertion",
+    name: "general",
     initialState,
     reducers: {
         setDataGeneral: (state, { payload }: PayloadAction<any>) => {
             state.data = payload;
+        },
+        setDataTypeForm: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_TIPO_FORM = payload;
         },
         setEntityRelation: (state, { payload }: PayloadAction<any>) => {
             state.data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA = payload;
@@ -194,7 +197,7 @@ const GeneralSlice = createSlice({
     },
 });
 
-export const { setDataGeneral, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples, addGoods, addObjetiveSpecifies, showAlertForInputs } = GeneralSlice.actions
+export const { setDataGeneral, setDataTypeForm, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples, addGoods, addObjetiveSpecifies, showAlertForInputs } = GeneralSlice.actions
 
 export const GeneralSelector = (state: RootState) => state.general;
 

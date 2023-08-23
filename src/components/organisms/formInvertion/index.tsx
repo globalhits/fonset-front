@@ -9,14 +9,10 @@ import OriginProject from "../../molecules/originProject/index";
 import InfoBasic from "../../molecules/general/infoBasic";
 import InfoBasicProject from "./../../molecules/Invertion/infoProject/infoBasicProject/InfoBasicProject";
 import Buttons from "../../atoms/button/Buttons";
-import Objectives from "./../../molecules/Invertion/infoProject/objectives/Objectives";
-
-import Loader from "../../atoms/loader";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
-import { RequestDto } from "../../../models/general/RequestDto";
-import { GeneralSelector, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, saveFormInvertionApi, setDataGeneral, setDataTypeForm, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
 import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
 
@@ -32,11 +28,15 @@ export default function FormInvertion() {
 	}, [])
 
 	const saveForm = () => {
-
+		dispatch(setDataTypeForm("inversion_temp"))
 		console.log("guardar form", data);
 	}
 
 	const finishForm = () => {
+
+		dispatch(setDataTypeForm("inversion"))
+
+		dispatch(setLoading(true))
 
 		showAlertsForInputsRequired();
 
@@ -57,14 +57,14 @@ export default function FormInvertion() {
 			alert("error")
 		}
 		console.log("guardar form", data);
+
+		dispatch(saveFormInvertionApi(data));
+
+		dispatch(setLoading(false))
 	}
 
 	const showAlertsForInputsRequired = () => {
 		dispatch(showAlertForInputs(true));
-	}
-
-	const updateDate = (data: RequestDto) => {
-
 	}
 
 	return (
