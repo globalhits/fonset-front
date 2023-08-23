@@ -14,7 +14,7 @@ import Buttons from "../../atoms/button/Buttons";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setLoading } from "../../../redux/states/generals/loading.slice";
 import InfoBasic from "../../molecules/general/infoBasic";
-import { GeneralSelector, setDataGeneral } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, setDataGeneral, setDataTypeForm } from "../../../redux/states/generals/general.slice";
 import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
 import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
 import { CountrySelector, fetchApiCountry } from "../../../redux/states/generals/country.slice";
@@ -35,6 +35,7 @@ export default function FormCooperative() {
 	}, []);
 
 	const saveForm = () => {
+		dispatch(setDataTypeForm("cooperacion_temp"))
 		console.log("guardar form", data);
 	}
 

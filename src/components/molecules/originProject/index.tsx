@@ -32,7 +32,7 @@ const OriginProject: React.FC<any> = ({ }) => {
             </Row>
             <Row>
                 <Col sm={3}>
-                    <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="number" setValueChange={(value: any) => setValueByIndex("PROY_CODIGO", value)} value={data.PROY_CODIGO} disabled={true} isInvalid={!data.PROY_CODIGO && errorInputs} />
+                    <InputFloating label="Cod. proyecto*" className="mb-3 inputFloating" type="text" setValueChange={(value: any) => setValueByIndex("PROY_CODIGO", value)} value={data.PROY_CODIGO} disabled={true} isInvalid={!data.PROY_CODIGO && errorInputs} />
                 </Col>
                 <Col sm={3}>
                     <InputFloating label="Fecha*" className="mb-3 inputFloating" type="date" setValueChange={(value: Date) => setValueByIndex("PROY_FECHA", value)} value={data.PROY_FECHA} disabled={true} isInvalid={!data.PROY_FECHA && errorInputs} />
