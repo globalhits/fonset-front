@@ -66,13 +66,13 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
                                     <td>{item.MES_FINAL}</td>
                                     <td>{item.ENTREGABLE}</td>
                                     <td>{item.DESCRIPCION_ENTREGABLE}</td>
-                                    <td>{item.PRESUPUESTO}</td>
+                                    <td className="text-right">{item.PRESUPUESTO ?? 0}</td>
                                     <td>
-                                        <Buttons size="xs" variant="primary" label="" icon="bi-plus" onClick={() => { }} />
-                                        <Buttons size="xs" variant="primary" label="" icon="bi-search" onClick={() => { }} />
-                                        <Buttons size="xs" variant="primary" label="" icon="bi-search" onClick={() => { }} />
-                                        <Buttons size="xs" variant="primary" label="" icon="bi-search" onClick={() => { }} />
-                                        <Buttons size="xs" variant="primary" label="" icon="bi-search" onClick={() => { }} />
+                                        <Buttons size="xs" variant="primary" label="" icon="plus" onClick={() => { }} />
+                                        <Buttons size="xs" variant="light" label="" icon="search" onClick={() => { }} />
+                                        <Buttons size="xs" variant="light" label="" icon="search" onClick={() => { }} />
+                                        <Buttons size="xs" variant="warning" label="" icon="file-zip" onClick={() => { }} />
+                                        <Buttons size="xs" variant="danger" label="" icon="trash" onClick={() => { }} />
                                     </td>
                                 </tr>)
                                 : (<tr>
@@ -83,13 +83,13 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
                                     <td>{item.RESULTADO_ESPERADO}</td>
                                     <td>{item.MES_INICIAL}</td>
                                     <td>{item.MES_FINAL}</td>
-                                    <td>{item.PRESUPUESTO}</td>
+                                    <td className="text-right">{item.PRESUPUESTO ?? 0}</td>
                                     <td>
-                                        <Buttons size="xs" variant="primary" label="" icon="bi-plus" onClick={() => { }} />
-                                        <Buttons size="xs" variant="primary" label="" icon="bi-search" onClick={() => { }} />
-                                        <Buttons size="xs" variant="primary" label="" icon="bi-search" onClick={() => { }} />
-                                        <Buttons size="xs" variant="primary" label="" icon="bi-search" onClick={() => { }} />
-                                        <Buttons size="xs" variant="primary" label="" icon="bi-search" onClick={() => { }} />
+                                        <Buttons size="xs" variant="primary" label="" icon="plus" onClick={() => { }} />
+                                        <Buttons size="xs" variant="light" label="" icon="search" onClick={() => { }} />
+                                        <Buttons size="xs" variant="light" label="" icon="search" onClick={() => { }} />
+                                        <Buttons size="xs" variant="warning" label="" icon="file-zip" onClick={() => { }} />
+                                        <Buttons size="xs" variant="danger" label="" icon="trash" onClick={() => { }} />
                                     </td>
                                 </tr>)
                         ))}

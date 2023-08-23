@@ -4,7 +4,6 @@ let config: any = {
     apiUrl: process.env.REACT_APP_API_URL,
     apiGeneralHost: process.env.REACT_APP_SERVICE_GENERAL_HOST,
 
-
     pathListCountry: process.env.REACT_APP_PATH_LIST_COUNTRY,
     pathListDepartament: process.env.REACT_APP_PATH_LIST_DEPARTAMENT,
     pathListCities: process.env.REACT_APP_PATH_LIST_CITIES,

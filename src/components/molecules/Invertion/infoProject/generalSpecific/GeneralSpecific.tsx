@@ -8,11 +8,12 @@ import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific"
 import { RequestDto } from "../../../../../models/general/RequestDto";
 import { GeneralSelector, addObjetiveSpecifies, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
 import { ProgramSelector, fetchApiLinePrograms, fetchApiPrograms, filterByProgramId, } from "../../../../../redux/states/generals/program.slice";
-import { CategorySelector, fetchApiCategoriesGenerals, fetchApiCategoriesSpecifies } from "../../../../../redux/states/generals/category.slice";
+import { CategorySelector, fetchApiCategoriesGenerals, fetchApiCategoriesSpecifies, filterByCategoryGeneralId } from "../../../../../redux/states/generals/category.slice";
 import { SpecificObjetiveDto } from "../../../../../models/general/SpecificObjetiveDto";
 import helper from "../../../../../utils/helper";
 import { UnitSelector, fetchApiSubUnits, fetchApiUnits } from "../../../../../redux/states/generals/unit.slice";
 import { GoodSelector, fetchApiGood } from "../../../../../redux/states/generals/good.slice";
+import { ObjetiveSelector, fetchApiActionStrategies, fetchApiObjetives, fetchApiSubObjetives, filterBySubObjetiveByParentId } from "../../../../../redux/states/generals/objetive.slice";
 
 interface GeneralSpecificInterface {
     type?: string
@@ -23,10 +24,12 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
     // dispath
     const dispatch = useAppDispatch();
 
+    // state basics
+    const [error, setError] = useState("");
     const { data, errorInputs } = useAppSelector(GeneralSelector);
-    const { generals, specifies } = useAppSelector(CategorySelector);
+    const { generals, specifies, specifies_filter } = useAppSelector(CategorySelector);
     const { programs, line_programs_filters } = useAppSelector(ProgramSelector);
-    const { unities, sub_unities, sub_unities_filters } = useAppSelector(UnitSelector);
+    const { strategies, sub_strategies_filters, actions } = useAppSelector(ObjetiveSelector)
     const { goods } = useAppSelector(GoodSelector)
 
     useEffect(() => {
@@ -34,25 +37,11 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
         dispatch(fetchApiLinePrograms());
         dispatch(fetchApiCategoriesGenerals());
         dispatch(fetchApiCategoriesSpecifies());
-        //dispatch(fetchApiUnits());
-        //dispatch(fetchApiSubUnits());
         dispatch(fetchApiGood());
+        dispatch(fetchApiObjetives())
+        dispatch(fetchApiSubObjetives())
+        dispatch(fetchApiActionStrategies())
     }, [])
-
-    // state basics
-    const [error, setError] = useState("");
-
-    const [services, setServices] = useState(goods);
-
-    const [objetiveStrategies, setObjetiveStrategies] = useState([]);
-
-    const [subOjectiveStrategies, setSubOjectiveStrategies] = useState([]);
-
-    const [actionsObjetives, setActionsObjectives] = useState([]);
-
-    // const [unitiesList, setUnitiesList] = useState(unities);
-
-    // const [subUnitiesList, setSubUnitiesList] = useState(sub_unities_filters);
 
     // INPUT
 
@@ -60,11 +49,15 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
     const [categorySpecify, setCategorySpecify] = useState("");
 
+    const [disabledCategorySpecific, setDisabledCategorySpecific] = useState(true);
+
     const [service, setService] = useState("");
 
     const [objetiveStrategy, setObjetiveStrategy] = useState("");
 
     const [subObjetiveStrategy, setSubObjetiveStrategy] = useState("");
+
+    const [disabledSubObjetive, setDisableSubObjetive] = useState(true)
 
     const [actionObjetiveStrategy, setActionObjetiveStrategy] = useState("");
 
@@ -211,8 +204,8 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
         const newItem = [...objetives, {
             INDEX: helper.getRandomInt(),
             ID: null,
-            OBJETIVO: data.PROY_OBJETIVO_ESPECIFICO,
-            DESCRIPCIÓN: data.PROY_DESCRIPCION_GENERAL_SPECIFY,
+            OBJETIVO: data.PROY_OBJETIVO_GENERAL_SPECIFY,
+            DESCRIPCION: data.PROY_DESCRIPCION_GENERAL_SPECIFY,
             INDICADOR: data.PROY_INDICADOR_GENERAL_SPECIFY,
             LINEA_BASE: data.PROY_LINEA_BASE_GENERAL_SPECIFY,
             META: data.PROY_META_GENERAL_SPECIFY,
@@ -250,6 +243,34 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
         setDisabledLinesProgram(false);
     }
 
+    const changeCategoryGeneral = (value: any) => {
+        setCategoryGeneral(value);
+
+        if (value == "") {
+            setError("Seleccionar un objetivo general")
+            setDisabledCategorySpecific(true)
+            return
+        }
+
+        dispatch(filterByCategoryGeneralId(value))
+
+        setDisabledCategorySpecific(false)
+    }
+
+    const changeObjetiveDirection = (value: any) => {
+        setObjetiveStrategy(value);
+
+        if (value == "") {
+            setError("Seleccionar el objetivo de direccionamiento")
+            setDisableSubObjetive(true)
+            return
+        }
+
+        dispatch(filterBySubObjetiveByParentId(value))
+
+        setDisableSubObjetive(false)
+    }
+
     return (
         <>
             <GeneralObjective type={type} isSpecify={true} />
@@ -258,10 +279,10 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria general / eje Tematico" options={generals} onChange={(value: any) => setCategoryGeneral(value)} value={categoryGeneral} />
+                    <InputSelected label="Categoria general / eje Tematico" options={generals} onChange={(value: any) => changeCategoryGeneral(value)} value={categoryGeneral} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria Especifica" options={specifies} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} />
+                    <InputSelected label="Categoria Especifica" options={specifies_filter} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} disabled={disabledCategorySpecific} />
                 </div>
                 <div className="col-lg-4">
                     <InputSelected label="Nombre Bien / Servicio" options={goods} onChange={(value: any) => setService(value)} value={service} />
@@ -269,13 +290,13 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputSelected label="Objetivo estratégico direccionamiento" options={objetiveStrategies} onChange={(value: any) => setObjetiveStrategy(value)} value={objetiveStrategy} />
+                    <InputSelected label="Objetivo estratégico direccionamiento" options={strategies} onChange={(value: any) => changeObjetiveDirection(value)} value={objetiveStrategy} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Subtema del objetivo estratégico" options={subOjectiveStrategies} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} />
+                    <InputSelected label="Subtema del objetivo estratégico" options={sub_strategies_filters} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} disabled={disabledSubObjetive} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Acciones Objetivo estratégico" options={actionsObjetives} onChange={(value: any) => setActionsObjectives(value)} value={actionObjetiveStrategy} />
+                    <InputSelected label="Acciones Objetivo estratégico" options={actions} onChange={(value: any) => setActionObjetiveStrategy(value)} value={actionObjetiveStrategy} />
                 </div>
             </div>
             <div className="row mt-3">
