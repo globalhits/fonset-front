@@ -11,7 +11,7 @@ import FormDescription from "../../molecules/fonset/description/FormDescription"
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
 import Buttons from "../../atoms/button/Buttons";
 
-import Loader from "../../atoms/loader";
+import Loader from "../../atoms/loader"; 
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";

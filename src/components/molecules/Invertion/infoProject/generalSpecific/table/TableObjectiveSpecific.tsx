@@ -8,7 +8,7 @@ export const TableObjectiveSpecific = () => {
                 <Table className="table table-bordered table-condensed table-striped" style={{ zoom: "0.7" }}>
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th>No</th> 
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Linea Base</th>

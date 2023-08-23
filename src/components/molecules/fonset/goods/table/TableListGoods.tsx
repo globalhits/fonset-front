@@ -3,7 +3,7 @@ import { Button, Col, Row, Table } from "react-bootstrap";
 import Buttons from "../../../../atoms/button/Buttons";
 
 const TableListGoods: React.FC<any> = ({ }) => {
-    return (
+    return ( 
         <Row className="mt-3 mb-3">
             <Col sm={12}>
                 <Table className="table table-bordered table-condensed table-striped" style={{ zoom: "0.7" }}>
