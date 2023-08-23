@@ -2,12 +2,18 @@ import React from "react";
 import { Col, Row, Table } from "react-bootstrap";
 import Buttons from "../../../../atoms/button/Buttons";
 import { GoodsDto } from "../../../../../models/general/GoodDto";
-import { useAppSelector } from "../../../../../redux/hooks";
-import { GeneralSelector } from "../../../../../redux/states/generals/general.slice";
+import { useAppSelector, useAppDispatch } from "../../../../../redux/hooks";
+import { GeneralSelector, addGoods } from "../../../../../redux/states/generals/general.slice";
 
 const TableListGoods: React.FC<any> = () => {
 
     const { data, errorInputs } = useAppSelector(GeneralSelector);
+    const dispatch = useAppDispatch();
+
+    const deleteItem = async (item: GoodsDto, index: number) => {
+        const newDataList = await data.PROY_BIENES_SERVICIOS?.filter((object: GoodsDto) => object.INDEX != item.INDEX);
+        dispatch(addGoods(newDataList))
+    }
 
     return (
         <Row className="mt-3 mb-3">
@@ -20,7 +26,7 @@ const TableListGoods: React.FC<any> = () => {
                             <th colSpan={3}>Valor</th>
                             <th colSpan={2}>Objetivo estrategico</th>
                             <th rowSpan={2}>Acciones</th>
-                        </tr> 
+                        </tr>
                         <tr className="text-center">
                             <th className="text-center">General</th>
                             <th className="text-center">Especifica</th>
@@ -36,25 +42,37 @@ const TableListGoods: React.FC<any> = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.PROY_BIENES_SERVICIOS?.map((item: GoodsDto, index: number) => (
-                            <tr key={index} style={{ fontSize: "12px" }}>
-                                <td>{item.CATEGORIA_GENERAL_TEXT}</td>
-                                <td>{item.CATEGORIA_ESPECIFICA_TEXT}</td>
-                                <td>{item.NOMBRE_BIEN_TEXT}</td>
-                                <td>{item.UNIDAD_MEDIDA_TEXT}</td>
-                                <td>{item.SUBUNIDAD_MEDIDA_TEXT}</td>
-                                <td>{item.VALOR_UNITARIO}</td>
-                                <td>{item.CANTIDAD}</td>
-                                <td>{/* Calculate SubTotal here */}</td>
-                                <td>{item.OBJ_ESTRATEGICO_TEXT}</td>
-                                <td>{item.SUBTEMA_OBJ_ESTRATEGICO_TEXT}</td>
-                                <td className="text-center">
-                                    <Buttons variant="outline-primary" label="Agregar" classStyle="mt-4 " onClick={() => { /* Handle click if needed */ }} />
-                                </td>
-                            </tr>
-                        ))}
+                        {data.PROY_BIENES_SERVICIOS?.map((item: GoodsDto, index: number) => {
+                            let subtotal = 0
+                            let cant = item.CANTIDAD ? item.CANTIDAD : 0
+                            let valor = item.VALOR_UNITARIO ? item.VALOR_UNITARIO : 0
+                            subtotal = cant * valor
+
+                            return (
+                                <tr key={index} style={{ fontSize: "12px" }}>
+                                    <td>{item.CATEGORIA_GENERAL_TEXT}</td>
+                                    <td>{item.CATEGORIA_ESPECIFICA_TEXT}</td>
+                                    <td>{item.NOMBRE_BIEN_TEXT}</td>
+                                    <td></td>
+                                    <td>{item.UNIDAD_MEDIDA_TEXT}</td>
+                                    <td>{item.SUBUNIDAD_MEDIDA_TEXT}</td>
+                                    <td>{item.VALOR_UNITARIO}</td>
+                                    <td>{item.CANTIDAD}</td>
+                                    <td>{subtotal}</td>
+                                    <td>{item.OBJ_ESTRATEGICO_TEXT}</td>
+                                    <td>{item.SUBTEMA_OBJ_ESTRATEGICO_TEXT}</td>
+                                    <td className="text-center">
+                                        <Buttons variant="danger" icon="trash" onClick={() => deleteItem(item, index)}></Buttons>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </Table>
+
+                <Row>
+                    <input type="text" />
+                </Row>
             </Col>
         </Row>
     )

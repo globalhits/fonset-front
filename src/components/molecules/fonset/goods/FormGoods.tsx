@@ -193,9 +193,9 @@ export default function FormGoods() {
             NOMBRE_BIEN: service,
             NOMBRE_BIEN_TEXT: SERVICES.find(item => item.id == Number(service))?.description,
             UNIDAD_MEDIDA: unit,
-            UNIDAD_MEDIDA_TEXT: UNID_MEASUREMENT.find(item => item.id == Number(unit))?.description,
+            UNIDAD_MEDIDA_TEXT: unities.find(item => item.id == Number(unit))?.description,
             SUBUNIDAD_MEDIDA: subUnit,
-            SUBUNIDAD_MEDIDA_TEXT: SUB_UNID_MEASUREMENT.find(item => item.id == Number(subUnit))?.description,
+            SUBUNIDAD_MEDIDA_TEXT: sub_unities_filters.find(item => item.id == Number(subUnit))?.description,
             PRESENTACION: presentation,
             PRESENTACION_TEXT: TIPE_PRESENTATION.find(item => item.id == Number(presentation))?.description,
 
