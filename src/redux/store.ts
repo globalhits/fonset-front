@@ -12,6 +12,7 @@ import objetiveReducer from "./states/generals/objetive.slice";
 import categoryReducer from "./states/generals/category.slice";
 import unitReducer from "./states/generals/unit.slice";
 import goodReducer from "./states/generals/good.slice";
+import districtReducer from "./states/generals/district.slice";
 
 export const store = configureStore({
 	reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
 		good: goodReducer,
 		objetive: objetiveReducer,
 		category: categoryReducer,
+		district: districtReducer,
 		general: GeneralReducer,
 	}
 })
