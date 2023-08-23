@@ -8,8 +8,8 @@ class GoodsService {
 
     async getAll() {
         try {
-            console.log("category-specific", `${this.apiGenerals}/${this.pathListGoods}`);
-            const response = await fetch(`${this.apiGenerals}${this.pathListGoods}`);
+            console.log("goods", `${this.apiGenerals}/${this.pathListGoods}`);
+            const response = await fetch(`${this.apiGenerals}/${this.pathListGoods}`);
             const data = await response.json();
             return data;
         } catch (error) {

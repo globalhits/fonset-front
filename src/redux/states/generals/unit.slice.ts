@@ -32,17 +32,17 @@ export const fetchApiSubUnits = createAsyncThunk('data/sub-units', async () => {
     return response;
 });
 
-const ProgramSlice = createSlice({
+const UnitSlice = createSlice({
     name: "program",
     initialState,
     reducers: {
-        filterByProgramId: (state, { payload }: PayloadAction<number>) => {
+        filterByUnitId: (state, { payload }: PayloadAction<number>) => {
             state.sub_unities_filters = state.sub_unities.filter(item => item.parentId == payload);
         },
-        listAllLinePrograms: (state) => {
+        listAllSubUnits: (state) => {
             state.sub_unities_filters = state.sub_unities;
         },
-        setLineProgramsError: (state, { payload }: PayloadAction<string>) => {
+        setSubUnitsError: (state, { payload }: PayloadAction<string>) => {
             state.error = payload;
         }
     },
@@ -68,8 +68,8 @@ const ProgramSlice = createSlice({
     }
 })
 
-// export const { listAll, setLineProgramError } = ProgramSlice.actions
+export const { filterByUnitId, listAllSubUnits, setSubUnitsError } = UnitSlice.actions
 
-export const ProgramSelector = (state: RootState) => state.program;
+export const UnitSelector = (state: RootState) => state.unit;
 
-export default ProgramSlice.reducer;
+export default UnitSlice.reducer;

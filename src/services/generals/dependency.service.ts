@@ -9,7 +9,7 @@ class DependencyService {
 
     async getAll() {
         try {
-            const response = await fetch(`${this.apiGenerals}${this.pathListDependency}`);
+            const response = await fetch(`${this.apiGenerals}/${this.pathListDependency}`);
             const data = await response.json();
             return data;
         } catch (error) {

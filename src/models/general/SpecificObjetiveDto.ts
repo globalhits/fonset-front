@@ -3,9 +3,11 @@ export interface SpecificObjetiveDto {
     INDEX?: number;
     ID?: number,
     OBJETIVO?: string,
-    DESCRIPCIÓN?: string,
+    DESCRIPCION?: string,
     INDICADOR?: string,
     LINEA_BASE?: string,
+    PRESUPUESTO?: string,
+    RESULTADO_ESPERADO?: string,
 
     META?: string,
     MES_INICIAL?: string,

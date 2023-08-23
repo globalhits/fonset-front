@@ -48,7 +48,7 @@ const EditActivity: React.FC<ModalProps> = ({ show, onHide }) => {
                         <Tab eventKey="documentos" title="DOCUMENTOS">
                             <Col sm={12}>
                                 <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
-                                <FileUploader />
+                                <FileUploader setUploadedFiles={() => { }} />
                             </Col>
                         </Tab>
                     </Tabs>
