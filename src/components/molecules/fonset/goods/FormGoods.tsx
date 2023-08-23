@@ -23,6 +23,8 @@ import { ObjetiveSelector, fetchApiActionStrategies, fetchApiObjetives, fetchApi
 
 export default function FormGoods() {
 
+    const dispatch = useAppDispatch();
+
     const { programs, line_programs_filters } = useAppSelector(ProgramSelector);
     const { generals, specifies_filter } = useAppSelector(CategorySelector);
     const { unities, sub_unities_filters } = useAppSelector(UnitSelector);
@@ -40,7 +42,7 @@ export default function FormGoods() {
         dispatch(fetchApiObjetives())
         dispatch(fetchApiSubObjetives())
         dispatch(fetchApiActionStrategies())
-    }, [])
+    }, [dispatch])
 
     const showConfirmationAlert = () => {
         Swal.fire({
@@ -98,8 +100,6 @@ export default function FormGoods() {
     const [error, setError] = useState("");
 
     const { data, errorInputs } = useAppSelector(GeneralSelector);
-
-    const dispatch = useAppDispatch();
 
     const setValueByIndex = (index: any, value: any) => {
         let updatedRequest: RequestDto = {};
@@ -280,7 +280,9 @@ export default function FormGoods() {
     }
 
     const changeUnit = (value: any) => {
-        setUnit(value);
+
+        console.log("typeof", typeof value);
+        console.log("value", value);
 
         if (value == "") {
             setError("Seleccionar una unidad de medida")
@@ -289,6 +291,8 @@ export default function FormGoods() {
         }
 
         dispatch(filterByUnitId(value))
+
+        setUnit(value);
 
         setDisabledSubUnit(false)
     }

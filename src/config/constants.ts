@@ -1,5 +1,6 @@
 
 import { ActionStrategyObjetiveDto } from "../models/general/ActionStrategyObjetiveDto";
+import { BaseDto } from "../models/general/BaseDto";
 import { DependencyInvolvedDto } from "../models/general/DependencyInvolvedDto";
 import { LineProgramDto, ProgramDto } from "../models/general/LineProgramDto";
 import { ObjetiveStrategyDirectionDto, SubObjetive } from "../models/general/ObjetiveStrategyDirectionDto";
@@ -1473,40 +1474,40 @@ export const LIST_FGN_DEPENDENCY: DependencyInvolvedDto[] = [
     },
 ];
 
-export const UNID_MEASUREMENT = [
+export const UNID_MEASUREMENT: BaseDto[] = [
     { INDEX: 1, id: 1, name: "Porcentaje", description: "Porcentaje" },
-    { INDEX: 2, id: 2, name: "Capacidad", descripcion: "Capacidad" },
-    { INDEX: 3, id: 3, name: "Frecuencia", descripcion: "Frecuencia" },
-    { INDEX: 4, id: 4, name: "Longitud", descripcion: "Longitud" },
-    { INDEX: 5, id: 5, name: "Masa y peso", descripcion: "Masa y peso" },
+    { INDEX: 2, id: 2, name: "Capacidad", description: "Capacidad" },
+    { INDEX: 3, id: 3, name: "Frecuencia", description: "Frecuencia" },
+    { INDEX: 4, id: 4, name: "Longitud", description: "Longitud" },
+    { INDEX: 5, id: 5, name: "Masa y peso", description: "Masa y peso" },
 ];
 
-export const SUB_UNID_MEASUREMENT = [
+export const SUB_UNID_MEASUREMENT: BaseDto[] = [
     // Porcentaje
-    { INDEX: 1, id: 1, parentId: 1, name: "Porcentaje", simbolo: "%", description: "Porcentaje" },
+    { INDEX: 1, id: 1, parentId: 1, name: "Porcentaje", description: "Porcentaje" },
 
     // Unidades de Capacidad
-    { INDEX: 2, id: 2, parentId: 2, name: "Litro", simbolo: "L", description: "Litro" },
-    { INDEX: 3, id: 3, parentId: 2, name: "Mililitro", simbolo: "mL", description: "Mililitro" },
-    { INDEX: 4, id: 4, parentId: 2, name: "Metro Cúbico", simbolo: "m³", description: "Metro Cúbico" },
-    { INDEX: 5, id: 5, parentId: 2, name: "Galon", simbolo: "gal", description: "Galon" },
+    { INDEX: 2, id: 2, parentId: 2, name: "Litro", description: "Litro" },
+    { INDEX: 3, id: 3, parentId: 2, name: "Mililitro", description: "Mililitro" },
+    { INDEX: 4, id: 4, parentId: 2, name: "Metro Cúbico", description: "Metro Cúbico" },
+    { INDEX: 5, id: 5, parentId: 2, name: "Galon", description: "Galon" },
 
     // Unidad de Frecuencia
-    { INDEX: 6, id: 6, parentId: 3, name: "Hertz", simbolo: "Hz", description: "Hertz" },
-    { INDEX: 7, id: 7, parentId: 3, name: "Kilohertz", simbolo: "kHz", description: "Kilohertz" },
-    { INDEX: 8, id: 8, parentId: 3, name: "Megahertz", simbolo: "MHz", description: "Megahertz" },
+    { INDEX: 6, id: 6, parentId: 3, name: "Hertz", description: "Hertz" },
+    { INDEX: 7, id: 7, parentId: 3, name: "Kilohertz", description: "Kilohertz" },
+    { INDEX: 8, id: 8, parentId: 3, name: "Megahertz", description: "Megahertz" },
 
     // Longitud
-    { INDEX: 9, id: 9, parentId: 4, name: "Metro", simbolo: "m", description: "Metro" },
-    { INDEX: 10, id: 10, parentId: 4, name: "Kilómetro", simbolo: "km", description: "Kilómetro" },
-    { INDEX: 11, id: 11, parentId: 4, name: "Centímetro", simbolo: "cm", description: "Centímetro" },
-    { INDEX: 12, id: 12, parentId: 4, name: "Pulgada", simbolo: "in", description: "Pulgada" },
+    { INDEX: 9, id: 9, parentId: 4, name: "Metro", description: "Metro" },
+    { INDEX: 10, id: 10, parentId: 4, name: "Kilómetro", description: "Kilómetro" },
+    { INDEX: 11, id: 11, parentId: 4, name: "Centímetro", description: "Centímetro" },
+    { INDEX: 12, id: 12, parentId: 4, name: "Pulgada", description: "Pulgada" },
 
     // Masa y Peso
-    { INDEX: 13, id: 13, parentId: 5, name: "Gramo", simbolo: "g", description: "Gramo" },
-    { INDEX: 14, id: 14, parentId: 5, name: "Kilogramo", simbolo: "kg", description: "Kilogramo" },
-    { INDEX: 15, id: 15, parentId: 5, name: "Tonelada", simbolo: "t", description: "Tonelada" },
-    { INDEX: 16, id: 16, parentId: 5, name: "Libra", simbolo: "lb", description: "Libra" },
+    { INDEX: 13, id: 13, parentId: 5, name: "Gramo", description: "Gramo" },
+    { INDEX: 14, id: 14, parentId: 5, name: "Kilogramo", description: "Kilogramo" },
+    { INDEX: 15, id: 15, parentId: 5, name: "Tonelada", description: "Tonelada" },
+    { INDEX: 16, id: 16, parentId: 5, name: "Libra", description: "Libra" },
 ];
 
 export const TIPE_PRESENTATION = [
