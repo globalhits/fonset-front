@@ -69,6 +69,26 @@ export const initialStateFormGeneral: RequestDto = {
     PROY_BIENES_SERVICIOS: [],
     PROY_ESTADO: "",
     PROY_CREACION_PROYECTO: "",
+
+    //INPUTS FILES OBJETIVE SPECIFIES TO ADD TABLE
+    PROY_OBJETIVO_GENERAL_SPECIFY: "",
+    PROY_DESCRIPCION_GENERAL_SPECIFY: "",
+    PROY_INDICADOR_GENERAL_SPECIFY: "",
+    PROY_LINEA_BASE_GENERAL_SPECIFY: "",
+    PROY_META_GENERAL_SPECIFY: "",
+    PROY_ENTREGABLE_GENERAL_SPECIFY: "",
+    PROY_MES_INICIO_GENERAL_SPECIFY: helper.getDateNow(),
+    PROY_MES_FINAL_GENERAL_SPECIFY: helper.getDateNow(),
+    PROY_DESCRIPCION_ENTREGABLE_GENERAL_SPECIFY: "",
+
+    PROY_EJE_TEMATICO_SPECIFY: "",
+    PROY_CATEGORY_SPECIFY: "",
+    PROY_BIEN_SPECIFY: "",
+    PROY_OBJETIVO_ESTRATEGICO_SPECIFY: "",
+    PROY_SUB_TEMA_OBJETIVO_ESTRATEGICO_SPECIFY: "",
+    PROY_ACCIONES_OBJETIVO_ESTRATEGICO: "",
+    PROY_PROGRAMA_SPECIFY: "",
+    PROY_LINEA_PROGRAMA: ""
 }
 
 export interface GeneralState {
@@ -132,10 +152,18 @@ const GeneralSlice = createSlice({
         addPeoples: (state, { payload }: PayloadAction<any>) => {
             state.data.PROY_ANALISIS_PARTICIPANTES = payload;
         },
+        addGoods: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_BIENES_SERVICIOS = payload;
+        },
         showAlertForInputs: (state, { payload }: PayloadAction<boolean>) => {
             // show alert when to on click button "finish" 
             state.errorInputs = payload;
-        }
+        },
+        addObjetiveSpecifies: (state, { payload }: PayloadAction<any>) => {
+            if (state.data.PROY_OBJETIVOS_ESPECIFICOS) {
+                state.data.PROY_OBJETIVOS_ESPECIFICOS = payload;
+            }
+        },
     },
     extraReducers(builder) {
         builder.addCase(saveFormInvertionApi.pending, state => {
@@ -166,7 +194,7 @@ const GeneralSlice = createSlice({
     },
 });
 
-export const { setDataGeneral, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples, showAlertForInputs } = GeneralSlice.actions
+export const { setDataGeneral, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples, addGoods, addObjetiveSpecifies, showAlertForInputs } = GeneralSlice.actions
 
 export const GeneralSelector = (state: RootState) => state.general;
 

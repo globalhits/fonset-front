@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { Col, Row} from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import Swal from 'sweetalert2';
 
 import InputFloating from "../../../atoms/input/Input";
@@ -10,10 +10,28 @@ import "./FormGoods.scss"
 
 import { RequestDto } from "../../../../models/general/RequestDto";
 import { useAppSelector, useAppDispatch } from "../../../../redux/hooks";
-import { GeneralSelector, setDataGeneral } from "../../../../redux/states/generals/general.slice";
+import { GeneralSelector, setDataGeneral, addGoods } from "../../../../redux/states/generals/general.slice";
+import { GoodsDto } from "../../../../models/general/GoodDto";
+import helper from "../../../../utils/helper";
+import { CATEGORY_GENERAL, CATEGORY_SPECIFYC, LIST_ACTIONS_STRATEGIES_OBJETIVES, LIST_LINES_PROGRAMS, LIST_OBJETIVES_STRATEGIES_DIRECTIONS, LIST_PROGRAMS, LIST_SUB_OBJETIVES, SERVICES, SUB_UNID_MEASUREMENT, TIPE_PRESENTATION, UNID_MEASUREMENT} from "../../../../config/constants";
 
 
 export default function FormGoods() {
+
+    /* const { generals, specifies } = useAppSelector(CategorySelector);
+    const { programs, line_programs_filters } = useAppSelector(ProgramSelector);
+    const { unities, sub_unities, sub_unities_filters } = useAppSelector(UnitSelector);
+    const { goods } = useAppSelector(GoodSelector) */
+
+   /*  useEffect(() => {
+        dispatch(fetchApiPrograms());
+        dispatch(fetchApiLinePrograms());
+        dispatch(fetchApiCategoriesGenerals());
+        dispatch(fetchApiCategoriesSpecifies());
+        //dispatch(fetchApiUnits());
+        //dispatch(fetchApiSubUnits());
+        dispatch(fetchApiGood());
+    }, []) */
 
     const showConfirmationAlert = () => {
         Swal.fire({
@@ -45,7 +63,6 @@ export default function FormGoods() {
 
     const [presentations, setPresentations] = useState([]);
 
- 
     const [objetiveStrategies, setObjetiveStrategies] = useState([]);
 
     const [subOjectiveStrategies, setSubOjectiveStrategies] = useState([]);
@@ -72,15 +89,24 @@ export default function FormGoods() {
 
     const [objetiveStrategy, setObjetiveStrategy] = useState("");
 
+    const [valueUnitary, setValueUnitary] = useState("");
+
+    const [count, setCount] = useState("");
+
     const [subObjetiveStrategy, setSubObjetiveStrategy] = useState("");
 
     const [program, setProgram] = useState("");
 
+    const [actionObjetive, setActionObjective] = useState("");
+
     const [linesProgram, setLinesProgram] = useState("");
 
-    const dispatch = useAppDispatch();
 
-    const { data } = useAppSelector(GeneralSelector);
+    const [error, setError] = useState("");
+
+    const { data, errorInputs } = useAppSelector(GeneralSelector);
+
+    const dispatch = useAppDispatch();
 
 
     const setValueByIndex = (index: any, value: any) => {
@@ -96,65 +122,188 @@ export default function FormGoods() {
 
     const addItem = () => {
 
+       if (categoryGeneral.trim() == "") {
+            setError('El campo categoria general no puede estar vacío.');
+            return;
+        }
+
+        if (categorySpecify.trim() == "") {
+            setError('El campo categoria especifica no puede estar vacío.');
+            return;
+        }
+
+        if (service.trim() == "") {
+            setError('El campo nombre bien / servicios no puede estar vacío.');
+            return;
+        } 
+
+        if (unit.trim() == "") {
+            setError('El campo unidad de medida no puede estar vacío.');
+            return;
+        }
+
+        if (subUnit.trim() == "") {
+            setError('El campo sub unidad de medida no puede estar vacío.');
+            return;
+        }
+
+        if (presentation.trim() == "") {
+            setError('El campo presentacion no puede estar vacío.');
+            return;
+        }
+
+        if (valueUnitary.trim() == "") {
+            setError('El campo valor unitario con iva  no puede estar vacío.');
+            return;
+        }
+
+        if (count.trim() == "") {
+            setError('El campo cantidad no puede estar vacío.');
+            return;
+        }
+
+        if (objetiveStrategy.trim() == "") {
+            setError('El campo objetivo estartegico no puede estar vacío.');
+            return;
+        }
+
+        if (subObjetiveStrategy.trim() == "") {
+            setError('El campo sub tema obj. estrategico no puede estar vacío.');
+            return;
+        }
+
+        if (actionObjetive.trim() == "") {
+            setError('El campo acciones obj estrategico no puede estar vacío.');
+            return;
+        } 
+
+        if (program.trim() == "") {
+            setError('El campo programa no puede estar vacío.');
+            return;
+        }
+
+        if (linesProgram.trim() == "") {
+            setError('El campo lineas del programa no puede estar vacío.');
+            return;
+        }
+
+        console.log(addItem + "ESTA LLAMDO EL ADD")
+
+        let newList: GoodsDto[] = data.PROY_BIENES_SERVICIOS ? data.PROY_BIENES_SERVICIOS : [];
+
+        const newDataList = [...newList, {
+            INDEX: helper.getRandomInt(),
+            ID: null,
+            CATEGORIA_GENERAL: categoryGeneral,
+            CATEGORIA_GENERAL_TEXT: CATEGORY_GENERAL.find(item => item.id == Number(categoryGeneral))?.description,
+            CATEGORIA_ESPECIFICA: categorySpecify,
+            CATEGORIA_ESPECIFICA_TEXT: CATEGORY_SPECIFYC.find(item => item.id == Number(categorySpecify))?.description,
+            NOMBRE_BIEN: service,
+            NOMBRE_BIEN_TEXT: SERVICES.find(item => item.id == Number(service))?.description,
+            UNIDAD_MEDIDA: unit,
+            UNIDAD_MEDIDA_TEXT: UNID_MEASUREMENT.find(item => item.id == Number(unit))?.description,
+            SUBUNIDAD_MEDIDA: subUnit,
+            SUBUNIDAD_MEDIDA_TEXT: SUB_UNID_MEASUREMENT.find(item => item.id == Number(subUnit))?.description,
+            PRESENTACION: presentation,
+            PRESENTACION_TEXT: TIPE_PRESENTATION.find(item => item.id == Number(presentation))?.description,
+
+            VALOR_UNITARIO: valueUnitary,
+            CANTIDAD: count,
+
+            OBJ_ESTRATEGICO: objetiveStrategy,
+            OBJ_ESTRATEGICO_TEXT: LIST_OBJETIVES_STRATEGIES_DIRECTIONS.find(item => item.id == Number(objetiveStrategy))?.description,
+            SUBTEMA_OBJ_ESTRATEGICO: subObjetiveStrategy,
+            SUBTEMA_OBJ_ESTRATEGICO_TEXT: LIST_SUB_OBJETIVES.find(item => item.id == Number(subObjetiveStrategy))?.description,
+            ACCIONES: actionObjetive,
+            ACCIONES_TEXT: LIST_ACTIONS_STRATEGIES_OBJETIVES.find(item => item.id == Number(actionObjetive))?.description,
+            PROGRAMA: program,
+            PROGRAMA_TEXT: LIST_PROGRAMS.find(item => item.id == Number(program))?.description,
+            LINEA_PROGRAMA: linesProgram,
+            LINEA_PROGRAMA_TEXT: LIST_LINES_PROGRAMS.find(item => item.id == Number(linesProgram))?.description,
+        }];
+
+        dispatch(addGoods(newDataList));
+
+        setCategoryGeneral("");
+        setCategorySpecify("");
+        setService("");
+        setUnit("");
+        setSubUnit("");
+        SetPresentation("");
+        setValueUnitary("");
+        setCount("");
+        setObjetiveStrategy("");
+        setSubObjetiveStrategy("");
+        setActionObjective("");
+        setProgram("");
+        setLinesProgram("");
+    }
+
+    const deleteItem = async (item: GoodsDto, index: number) => {
+        const newDataList = await data.PROY_BIENES_SERVICIOS?.filter((object: GoodsDto) => object.INDEX != item.INDEX);
+        dispatch(addGoods(newDataList))
     }
 
     return (
         <>
-            <Row>
+            <Row className="mt-3">
                 <Col lg="4">
-                    <InputSelected label="Categoria general*" options={categoriesGeneral} onChange={(value: any) => setCategoryGeneral(value)} value="" />
+                    <InputSelected label="Categoria general*" options={CATEGORY_GENERAL} onChange={(value: any) => setCategoryGeneral(value)} value={categoryGeneral} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Categoria especifica*" options={categoriesSpecifies} onChange={(value: any) => setCategorySpecify(value)} value=""/>
+                    <InputSelected label="Categoria especifica*" options={CATEGORY_SPECIFYC} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Nombre bien/Servicio*" options={services} onChange={(value: any) => setService(value)} value="" />
+                    <InputSelected label="Nombre bien/Servicio*" options={SERVICES} onChange={(value: any) => setService(value)} value={service} />
                 </Col>
             </Row>
-            <Row>
+            <Row className="mt-3">
                 <Col lg="2">
-                    <InputSelected label="Unidad de medida*" options={units} onChange={(value: any) => setUnits(value)} value="" />
-
+                    <InputSelected label="Unidad de medida*" options={UNID_MEASUREMENT} onChange={(value: any) => setUnit(value)} value={unit} />
                 </Col>
                 <Col lg="2">
-                    <InputSelected label="Sub unidad de medida*" options={subUnits} onChange={(value: any) => setSubUnit(value)} value="" />
+                    <InputSelected label="Sub unidad de medida*" options={SUB_UNID_MEASUREMENT} onChange={(value: any) => setSubUnit(value)} value={subUnit} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Presentacion*" options={presentations} onChange={(value: any) => SetPresentation(value)} value=""/>
+                    <InputSelected label="Presentacion*" options={TIPE_PRESENTATION} onChange={(value: any) => SetPresentation(value)} value={presentation} />
                 </Col>
                 <Col lg="2">
-                    <InputFloating name="PROY_VALOR_UNITARIO_IVA" label="Valor unit con iva*" className="mb-3 inputFloating" type="string" setValueChange={(value: string) => setValueByIndex("PROY_VALOR_UNITARIO_IVA", value)} value={data.PROY_VALOR_UNITARIO_IVA} />
+                    <InputFloating name="PROY_VALOR_UNITARIO_IVA" label="Valor unit con iva*" className="mb-3 inputFloating" type="string" setValueChange={(value: string) => setValueUnitary(value)} value={valueUnitary} />
                 </Col>
                 <Col lg="2">
-                    <InputFloating name="PROY_CANTIDAD" label="Cantidad*" className="mb-3 inputFloating" type="number" setValueChange={(value: number) => setValueByIndex("PROY_CANTIDAD", value)} value={data.PROY_CANTIDAD} />
+                    <InputFloating name="PROY_CANTIDAD" label="Cantidad*" className="mb-3 inputFloating" type="number" setValueChange={(value: string) => setCount(value)} value={count} />
                 </Col>
             </Row>
-            <Row>
+            <Row className="mt-3">
                 <Col lg="4">
-                    <InputSelected label="Obj. estrategico del direccionamiento*" options={objetiveStrategies} onChange={(value: any) => setObjetiveStrategy(value)} value=""/>
+                    <InputSelected label="Obj. estrategico del direccionamiento*" options={LIST_OBJETIVES_STRATEGIES_DIRECTIONS} onChange={(value: any) => setObjetiveStrategy(value)} value={objetiveStrategy} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Sub tema del Obj. estrategico*" options={subOjectiveStrategies} onChange={(value: any) => setSubObjetiveStrategy(value)} value=""/>
-
+                    <InputSelected label="Sub tema del Obj. estrategico*" options={LIST_SUB_OBJETIVES} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Acciones Objs. estrategicos*" options={actionsObjetives} onChange={(value: any) => setActionsObjectives(value)} value=""/>
+                    <InputSelected label="Acciones Objs. estrategicos*" options={LIST_ACTIONS_STRATEGIES_OBJETIVES} onChange={(value: any) => setActionObjective(value)} value={actionObjetive} />
                 </Col>
             </Row>
             <Row className="mt-3">
                 <Col sm={4}>
-                    <InputSelected label="Programa*" options={programs} onChange={(value: any) => setProgram(value)} value="" />
+                    <InputSelected label="Programa*" options={LIST_LINES_PROGRAMS} onChange={(value: any) => setProgram(value)} value={program} />
                 </Col>
                 <Col sm={4}>
-                    <InputSelected label="Lineas del programa*" options={linesPrograms} onChange={(value: any) => setLinesProgram(value)} value="" />
+                    <InputSelected label="Lineas del programa*" options={LIST_PROGRAMS} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} />
                 </Col>
-
-                
                 <Col className="col-lg-4 text-center">
-                    <Buttons variant="outline-info" label="Agregar bien/servicio" classStyle="mt-4 " onClick={() => { }} />
+                    <Buttons variant="outline-info" label="Agregar bien/servicio" classStyle="mt-4 " onClick={() => addItem()} />
                 </Col>
             </Row>
+
+            <div className="row">
+                <div className="col-lg-12">
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                </div>
+            </div>
             <hr />
+
             <TableListGoods />
         </>
     )

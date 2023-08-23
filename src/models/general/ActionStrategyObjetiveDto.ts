@@ -1,6 +1,4 @@
-export interface ActionStrategyObjetiveDto {
-    INDEX?: number,
-    ID?: number,
-    NOMBRE?: string,
-    DESCRIPCION?: string,
+import { BaseDto } from "./BaseDto";
+
+export interface ActionStrategyObjetiveDto extends BaseDto {
 }

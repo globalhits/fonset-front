@@ -7,9 +7,11 @@ import MunicipalityReducer from './states/generals/municipality.slice';
 import dependencyReducer from "./states/generals/dependency.slice";
 
 import GeneralReducer from './states/generals/general.slice';
-import lineProgramReducer from "./states/generals/line-program.slice";
-import objetiveDirectionReducer from "./states/generals/objetive-direction.slice";
-import actionObjetiveReducer from "./states/generals/action-objetive.slice";
+import programReducer from "./states/generals/program.slice";
+import objetiveReducer from "./states/generals/objetive.slice";
+import categoryReducer from "./states/generals/category.slice";
+import unitReducer from "./states/generals/unit.slice";
+import goodReducer from "./states/generals/good.slice";
 
 export const store = configureStore({
 	reducer: {
@@ -18,10 +20,12 @@ export const store = configureStore({
 		departament: DepartamentReducer,
 		municipality: MunicipalityReducer,
 		dependency: dependencyReducer,
+		program: programReducer,
+		unit: unitReducer,
+		good: goodReducer,
+		objetive: objetiveReducer,
+		category: categoryReducer,
 		general: GeneralReducer,
-		lineProgram: lineProgramReducer,
-		objetiveDirection: objetiveDirectionReducer,
-		actionStrategy: actionObjetiveReducer
 	}
 })
 

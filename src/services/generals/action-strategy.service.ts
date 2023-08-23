@@ -3,9 +3,9 @@ import { LIST_ACTIONS_STRATEGIES_OBJETIVES } from "../../config/constants";
 
 class ActionStrategyService {
 
-    private apiGenerals = config.apiGeneralHost;
+    // private apiGenerals = config.apiGeneralHost;
 
-    private pathListActionStrategy = config.pathListActionStrategy;
+    // private pathListActionStrategy = config.pathListActionStrategy;
 
     async getAll() {
         try {

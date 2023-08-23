@@ -3,16 +3,22 @@
 let config: any = {
     apiUrl: process.env.REACT_APP_API_URL,
     apiGeneralHost: process.env.REACT_APP_SERVICE_GENERAL_HOST,
-    pathListTypeDocument: process.env.REACT_APP_PATH_LIST_TYPE_DOCUMENT,
+
     pathListCountry: process.env.REACT_APP_PATH_LIST_COUNTRY,
     pathListDepartament: process.env.REACT_APP_PATH_LIST_DEPARTAMENT,
     pathListCities: process.env.REACT_APP_PATH_LIST_CITIES,
-    pathListStatesGruex: process.env.REACT_APP_PATH_LIST_STATES_GRUEX,
-    pathListFocusAge: process.env.REACT_APP_PATH_LIST_FOCUS_AGE,
-    pathListTypeCaseFile: process.env.REACT_APP_PATH_LIST_TYPE_CASE_FILE,
-    pathListGender: process.env.REACT_APP_PATH_LIST_GENDER,
+
     pathListTypeProcedure: process.env.REACT_APP_PATH_LIST_TYPE_PROCEDURE,
-    pathListDependency: process.env.REACT_APP_PATH_LIST_TYPE_PROCEDURE,
+    pathListDependency: process.env.REACT_APP_PATH_LIST_DEPENDENCIES,
+    pathListDistricts: process.env.REACT_APP_PATH_LIST_DISTR_JUDICIALES,
+
+    //
+    pathListCategoryGeneral: process.env.REACT_APP_PATH_LIST_CATEGORY_GENERAL_FONSET,
+    pathListCategorySpecify: process.env.REACT_APP_PATH_LIST_CATEGORY_ESP_FONSET,
+    pathListGoods: process.env.REACT_APP_PATH_LIST_BIEN_FONSET,
+    pathListUnities: process.env.REACT_APP_PATH_LIST_UNI_MEDIDA,
+    pathListSubUnities: process.env.REACT_APP_PATH_LIST_SUB_UNI_MEDIDA
+
 };
 
 export default config;

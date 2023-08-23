@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import dependencyService from "../../../services/generals/dependency.service";
 import { DependencyDto } from "../../../models/general/DependencyDto";
-import { log } from "console";
 
 export interface DependencyState {
     dependencies: DependencyDto[];
