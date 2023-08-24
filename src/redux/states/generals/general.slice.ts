@@ -45,6 +45,7 @@ export const initialStateFormGeneral: RequestDto = {
     // OBJETIVO
     PROY_OBJETIVOS_ESPECIFICOS: [],
     PROY_ACTIVIDADES: [],
+    PROY_ACTIVIDADES_FILTERS: [],
 
     //COOPERATIVE
     PROY_PAIS_COOPERANTE: "",
@@ -167,6 +168,22 @@ const GeneralSlice = createSlice({
                 state.data.PROY_OBJETIVOS_ESPECIFICOS = payload;
             }
         },
+        addActivities: (state, { payload }: PayloadAction<any>) => {
+            if (state.data.PROY_ACTIVIDADES) {
+                state.data.PROY_ACTIVIDADES = payload;
+                // state.data.PROY_ACTIVIDADES_FILTERS = payload;
+            }
+        },
+        addActivitiesFilters: (state, { payload }: PayloadAction<any>) => {
+            if (state.data.PROY_ACTIVIDADES_FILTERS) {
+                state.data.PROY_ACTIVIDADES_FILTERS = payload;
+                // state.data.PROY_ACTIVIDADES_FILTERS = payload;
+            }
+        },
+        filterActivitiesByParentId: (state, { payload }: PayloadAction<any>) => {
+            console.log("parentId-redux", payload);
+            state.data.PROY_ACTIVIDADES_FILTERS = state.data.PROY_ACTIVIDADES?.filter(item => item.parentId == Number(payload))
+        }
     },
     extraReducers(builder) {
         builder.addCase(saveFormInvertionApi.pending, state => {
@@ -197,7 +214,21 @@ const GeneralSlice = createSlice({
     },
 });
 
-export const { setDataGeneral, setDataTypeForm, setEntityRelation, setDependencyInvolved, setTypeCoverage, addTypeCoverages, addPeoples, addGoods, addObjetiveSpecifies, showAlertForInputs } = GeneralSlice.actions
+export const {
+    setDataGeneral,
+    setDataTypeForm,
+    setEntityRelation,
+    setDependencyInvolved,
+    setTypeCoverage,
+    addTypeCoverages,
+    addPeoples,
+    addGoods,
+    addObjetiveSpecifies,
+    addActivities,
+    addActivitiesFilters,
+    filterActivitiesByParentId,
+    showAlertForInputs
+} = GeneralSlice.actions
 
 export const GeneralSelector = (state: RootState) => state.general;
 

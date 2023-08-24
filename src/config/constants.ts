@@ -1780,7 +1780,24 @@ export const LIST_PROGRAMS: ProgramDto[] = [
     }
 ];
 
-
+export const LIST_TYPE_ACTIVITIES: BaseDto[] = [
+    {
+        INDEX: 1,
+        id: 1,
+        name: "Fortalecimiento de capacidades humanas",
+        description: "Fortalecimiento de capacidades humanas"
+    }, {
+        INDEX: 2,
+        id: 2,
+        name: "Fortalecimiento de capacidades técnicas",
+        description: "Fortalecimiento de capacidades técnicas"
+    }, {
+        INDEX: 1,
+        id: 1,
+        name: "Fortalecimiento de capacidades tecnológicas",
+        description: "Fortalecimiento de capacidades tecnológicas"
+    }
+]
 
 
 

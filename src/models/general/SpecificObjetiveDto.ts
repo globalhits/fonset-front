@@ -1,3 +1,4 @@
+import { ActivityDto } from "./ActivityDto";
 
 export interface SpecificObjetiveDto {
     INDEX?: number;
@@ -27,5 +28,5 @@ export interface SpecificObjetiveDto {
     ACCIONES_OBJETIVO_ESTRATEGICO?: string,
     PROGRAMA?: string,
     LINEA_PROGRAMA?: string,
-    FILES?: Document[],
+    ACTIVIDADES?: ActivityDto[]
 }

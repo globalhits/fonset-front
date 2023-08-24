@@ -27,7 +27,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
     // state basics
     const [error, setError] = useState("");
     const { data, errorInputs } = useAppSelector(GeneralSelector);
-    const { generals, specifies, specifies_filter } = useAppSelector(CategorySelector);
+    const { generals, specifies_filter } = useAppSelector(CategorySelector);
     const { programs, line_programs_filters } = useAppSelector(ProgramSelector);
     const { strategies, sub_strategies_filters, actions } = useAppSelector(ObjetiveSelector)
     const { goods } = useAppSelector(GoodSelector)
@@ -203,7 +203,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
         const newItem = [...objetives, {
             INDEX: helper.getRandomInt(),
-            ID: null,
+            ID: helper.getRandomInt(),
             OBJETIVO: data.PROY_OBJETIVO_GENERAL_SPECIFY,
             DESCRIPCION: data.PROY_DESCRIPCION_GENERAL_SPECIFY,
             INDICADOR: data.PROY_INDICADOR_GENERAL_SPECIFY,
@@ -272,7 +272,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
     }
 
     return (
-        <>
+        <div>
             <GeneralObjective type={type} isSpecify={true} />
             <div className="row mt-3 mb-2">
                 <h5>Información detallada <span className="text-danger">*</span></h5>
@@ -316,6 +316,6 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
                 </div>
             </div>
             <TableObjectiveSpecific type={type} />
-        </>
+        </div>
     )
 }
