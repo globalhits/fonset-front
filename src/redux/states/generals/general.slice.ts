@@ -171,18 +171,39 @@ const GeneralSlice = createSlice({
         addActivities: (state, { payload }: PayloadAction<any>) => {
             if (state.data.PROY_ACTIVIDADES) {
                 state.data.PROY_ACTIVIDADES = payload;
-                // state.data.PROY_ACTIVIDADES_FILTERS = payload;
+            }
+        },
+        addDocuments: (state, { payload }: PayloadAction<any>) => {
+            if (state.data.PROY_DOCUMENTOS_ANEXOS) {
+                state.data.PROY_DOCUMENTOS_ANEXOS = payload;
             }
         },
         addActivitiesFilters: (state, { payload }: PayloadAction<any>) => {
             if (state.data.PROY_ACTIVIDADES_FILTERS) {
                 state.data.PROY_ACTIVIDADES_FILTERS = payload;
-                // state.data.PROY_ACTIVIDADES_FILTERS = payload;
             }
         },
         filterActivitiesByParentId: (state, { payload }: PayloadAction<any>) => {
             console.log("parentId-redux", payload);
             state.data.PROY_ACTIVIDADES_FILTERS = state.data.PROY_ACTIVIDADES?.filter(item => item.parentId == Number(payload))
+        },
+        clearSpecifiesInputs: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_OBJETIVO_GENERAL_SPECIFY = "";
+            state.data.PROY_CATEGORY_SPECIFY = "";
+            state.data.PROY_BIEN_SPECIFY = "";
+            state.data.PROY_OBJETIVO_ESTRATEGICO_SPECIFY = "";
+            state.data.PROY_SUB_TEMA_OBJETIVO_ESTRATEGICO_SPECIFY = "";
+            state.data.PROY_PROGRAMA_SPECIFY = "";
+            state.data.PROY_OBJETIVO_ESPECIFICO = "";
+            state.data.PROY_DESCRIPCION_GENERAL_SPECIFY = "";
+            state.data.PROY_INDICADOR_GENERAL_SPECIFY = "";
+            state.data.PROY_LINEA_BASE_GENERAL_SPECIFY = "";
+            state.data.PROY_META_GENERAL_SPECIFY = "";
+            state.data.PROY_ENTREGABLE_GENERAL_SPECIFY = "";
+            state.data.PROY_MES_INICIO_GENERAL_SPECIFY = "";
+            state.data.PROY_MES_FINAL_GENERAL_SPECIFY = "";
+            state.data.PROY_DESCRIPCION_ENTREGABLE_GENERAL_SPECIFY = "";
+            state.data.PROY_RESULTADO_ESPERADO_SPECIFY = "";
         }
     },
     extraReducers(builder) {
@@ -227,7 +248,9 @@ export const {
     addActivities,
     addActivitiesFilters,
     filterActivitiesByParentId,
-    showAlertForInputs
+    addDocuments,
+    showAlertForInputs,
+    clearSpecifiesInputs
 } = GeneralSlice.actions
 
 export const GeneralSelector = (state: RootState) => state.general;

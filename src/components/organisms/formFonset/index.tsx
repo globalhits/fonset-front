@@ -11,12 +11,12 @@ import FormDescription from "../../molecules/fonset/description/FormDescription"
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
 import Buttons from "../../atoms/button/Buttons";
 
-import Loader from "../../atoms/loader"; 
+import Loader from "../../atoms/loader";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
 import { RequestDto } from "../../../models/general/RequestDto";
-import { GeneralSelector, setDataTypeForm, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, saveFormFonsetApi, setDataTypeForm, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 import DocumentUpload from "../../molecules/upload/DocumentUpload";
 
 
@@ -31,11 +31,11 @@ export default function FormFonset() {
 	}, [])
 
 	const saveForm = () => {
-		dispatch(setDataTypeForm("fonset_temp"))
+		dispatch(setDataTypeForm("fonset"))
 		console.log("guardar form", data);
 	}
 
-	const finishForm = () => {
+	const finishForm = async () => {
 
 		dispatch(setDataTypeForm("fonset"))
 
@@ -52,6 +52,10 @@ export default function FormFonset() {
 		if (data.PROY_FECHA != "") {
 			//ALERT ARROJAR ERROR
 		}
+
+		await dispatch(saveFormFonsetApi(data));
+
+		await dispatch(setLoading(false))
 
 		console.log("guardar form", data);
 	}
@@ -90,7 +94,7 @@ export default function FormFonset() {
 							</Tab>
 
 							<Tab eventKey="documents" title="DOCUMENTOS ANEXOS">
-								<DocumentUpload/>
+								<DocumentUpload />
 							</Tab>
 
 						</Tabs>

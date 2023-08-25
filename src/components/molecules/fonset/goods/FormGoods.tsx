@@ -185,7 +185,7 @@ export default function FormGoods() {
 
         const newDataList = [...newList, {
             INDEX: helper.getRandomInt(),
-            ID: null,
+            ID: helper.getRandomInt(),
             CATEGORIA_GENERAL: categoryGeneral,
             CATEGORIA_GENERAL_TEXT: CATEGORY_GENERAL.find(item => item.id == Number(categoryGeneral))?.description,
             CATEGORIA_ESPECIFICA: categorySpecify,
@@ -232,7 +232,7 @@ export default function FormGoods() {
     }
 
     const deleteItem = async (item: GoodsDto, index: number) => {
-        const newDataList = await data.PROY_BIENES_SERVICIOS?.filter((object: GoodsDto) => object.INDEX != item.INDEX);
+        const newDataList = await data.PROY_BIENES_SERVICIOS?.filter((object: GoodsDto) => object.ID != item.ID);
         dispatch(addGoods(newDataList))
     }
 

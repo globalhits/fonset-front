@@ -98,7 +98,7 @@ export default function FormInvertion() {
 							</Tab>
 
 							<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-								<GeneralSpecific type={"invertion"} />
+								<GeneralSpecific valueItem={{}} type={"invertion"} viewDetail={false} />
 							</Tab>
 
 							<Tab eventKey="documents" title="DOCUMENTOS">

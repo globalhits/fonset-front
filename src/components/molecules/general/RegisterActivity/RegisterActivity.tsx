@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Col, Row, Tab, Tabs } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-import InputFloating from "../../../../../atoms/input/Input";
-import InputSelected from "../../../../../atoms/selected/InputSelected";
+import InputFloating from "../../../atoms/input/Input";
+import InputSelected from "../../../atoms/selected/InputSelected";
 import { BsTrash3 } from "react-icons/bs";
-import { useAppDispatch, useAppSelector } from "../../../../../../redux/hooks";
-import { GeneralSelector, addActivities, addActivitiesFilters, filterActivitiesByParentId } from "../../../../../../redux/states/generals/general.slice";
-import { ActivityDto } from "../../../../../../models/general/ActivityDto";
-import helper from "../../../../../../utils/helper";
-import { DependencySelector } from "../../../../../../redux/states/generals/dependency.slice";
-import { TypeActivitySelector, fetchApiTypeActivity } from "../../../../../../redux/states/generals/activity.slice";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { GeneralSelector, addActivities, addActivitiesFilters, filterActivitiesByParentId } from "../../../../redux/states/generals/general.slice";
+import { ActivityDto } from "../../../../models/general/ActivityDto";
+import helper from "../../../../utils/helper";
+import { DependencySelector } from "../../../../redux/states/generals/dependency.slice";
+import { TypeActivitySelector, fetchApiTypeActivity } from "../../../../redux/states/generals/activity.slice";
 
 interface ModalProps {
     type?: string,
@@ -64,63 +64,90 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
 
     const addItemTable = () => {
 
+        let newObject: ActivityDto = {};
+
         if (type !== "cooperative") {
+
             if (objSpecify === "") {
-                setError("");
+                setError("Objetivo especifico requerido");
                 return
             }
 
             if (activity === "") {
-                setError("");
+                setError("Actividad requerida");
                 return
             }
 
             if (description === "") {
-                setError("");
+                setError("descripcion de la actividad requerida");
                 return
             }
 
             if (indicador === "") {
-                setError("");
+                setError("Indicador requerido");
                 return
             }
 
             if (meta === "") {
-                setError("");
+                setError("Meta requerida");
                 return
             }
 
             if (inicio === "") {
-                setError("");
+                setError("Fecha Inicio requerida");
                 return
             }
 
             if (fin === "") {
-                setError("");
+                setError("Fecha final requerida");
                 return
             }
 
             if (hito === "") {
-                setError("");
+                setError("Hito requerido");
                 return
             }
 
             if (presupuesto === 0) {
-                setError("");
+                setError("Presupuesto requerido");
                 return
             }
 
             if (entregable === "") {
-                setError("");
+                setError("Entregable requerido");
                 return
             }
 
             if (descriptionEntregable === "") {
-                setError("");
+                setError("Descripcion entregable requerido");
                 return
+            }
+
+            newObject = {
+                INDEX: helper.getRandomInt(),
+                parentId: objetivoId,
+                id: helper.getRandomInt(),
+                objectivo_especifico: objSpecify,
+                tipo_actividad: typeActivity,
+                actividad: activity,
+                descripcion: description,
+                indicador: indicador,
+                meta: meta,
+                mes_inicio: inicio,
+                mes_final: fin,
+                hito: hito,
+                entregable: entregable,
+                descripcion_entregable: descriptionEntregable,
+                unidad_responsable: unidadResponsable,
+                presupuesto: presupuesto
             }
         } else {
             if (objSpecify === "") {
+                setError("Objetivo especifico requerido");
+                return
+            }
+
+            if (typeActivity === "") {
                 setError("");
                 return
             }
@@ -130,49 +157,25 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
                 return
             }
 
-            if (description === "") {
-                setError("");
-                return
-            }
-
-            if (indicador === "") {
-                setError("");
-                return
-            }
-
-            if (meta === "") {
-                setError("");
-                return
-            }
-
-            if (inicio === "") {
-                setError("");
-                return
-            }
-
-            if (fin === "") {
-                setError("");
-                return
-            }
-
-            if (hito === "") {
-                setError("");
-                return
-            }
-
             if (presupuesto === 0) {
-                setError("");
+                setError("Presupuesto requerido");
                 return
             }
 
-            if (entregable === "") {
-                setError("");
+            if (unidadResponsable === "") {
+                setError("Entregable requerido");
                 return
             }
 
-            if (descriptionEntregable === "") {
-                setError("");
-                return
+            newObject = {
+                INDEX: helper.getRandomInt(),
+                parentId: objetivoId,
+                id: helper.getRandomInt(),
+                objectivo_especifico: objSpecify,
+                tipo_actividad: typeActivity,
+                actividad: activity,
+                unidad_responsable: unidadResponsable,
+                presupuesto: presupuesto
             }
         }
 
@@ -182,24 +185,7 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
 
         console.log("objetivoId", objetivoId);
 
-        let newList = [...activities, {
-            INDEX: helper.getRandomInt(),
-            parentId: objetivoId,
-            id: helper.getRandomInt(),
-            objectivo_especifico: objSpecify,
-            tipo_actividad: typeActivity,
-            actividad: activity,
-            descripcion: description,
-            indicador: indicador,
-            meta: meta,
-            mes_inicio: inicio,
-            mes_final: fin,
-            hito: hito,
-            entregable: entregable,
-            descripcion_entregable: descriptionEntregable,
-            unidad_responsable: unidadResponsable,
-            presupuesto: presupuesto
-        }];
+        let newList = [...activities, newObject];
 
         let activitiesFilters: ActivityDto[] = data.PROY_ACTIVIDADES_FILTERS ? data.PROY_ACTIVIDADES_FILTERS : [];
 
@@ -225,6 +211,20 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
         dispatch(addActivities(newList));
 
         dispatch(addActivitiesFilters(newListFilter));
+
+        setObjSpecify("");
+        setTypeActivity("");
+        setActivity("");
+        setDescription("");
+        setIndicador("");
+        setMeta("");
+        setInicio(helper.getDateNow());
+        setFin(helper.getDateNow());
+        setHito("");
+        setPresupuesto(0);
+        setEntregable("");
+        setDescriptionEntregable("");
+        setUnidadResponsable("");
     }
 
     const deleteItem = (item: ActivityDto) => {

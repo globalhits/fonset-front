@@ -3,12 +3,13 @@ import { useAppDispatch, useAppSelector } from "../../../../../../redux/hooks";
 import { GeneralSelector, addObjetiveSpecifies, filterActivitiesByParentId } from "../../../../../../redux/states/generals/general.slice";
 import { SpecificObjetiveDto } from "../../../../../../models/general/SpecificObjetiveDto";
 import Buttons from "../../../../../atoms/button/Buttons";
-import RegisterActivities from "../../../../cooperation/objEspecificoCoop/modals/RegisterActivity/RegisterActivity";
+import RegisterActivities from "../../../../general/RegisterActivity/RegisterActivity";
 import { useState } from "react";
+import ModalDetailsObjEspecific from "../../../../cooperation/objEspecificoCoop/modals/viewDetailObjCoop/DetailsObjEspecific";
 
 
 interface TableObjectiveSpecificInterface {
-    type?: string;
+    type: string;
 }
 
 export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface) => {
@@ -19,6 +20,10 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
 
     const [showModalActivities, setShowModalActivities] = useState(false);
 
+    const [modalDetail, setModalDetail] = useState(false);
+
+    const [objetive, setObjetive] = useState({});
+
     const [objetiveId, setObjetiveId] = useState(0);
 
     const addActivities = (id: number) => {
@@ -26,6 +31,11 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
         setObjetiveId(id);
         dispatch(filterActivitiesByParentId(id));
         setShowModalActivities(true);
+    }
+
+    const seeObjetiveSpecifies = (objetive: SpecificObjetiveDto) => {
+        setObjetive(objetive);
+        setModalDetail(true);
     }
 
     const deleteItem = (id: any) => {
@@ -36,6 +46,8 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
     return (
         <>
             <RegisterActivities type={type} objetivoId={objetiveId} show={showModalActivities} onHide={() => setShowModalActivities(false)} />
+            <ModalDetailsObjEspecific show={modalDetail} objetive={objetive} type={type} onHide={() => setModalDetail(false)} />
+            {/* <RegisterActivities type={type} objetivoId={objetiveId} show={showModalActivities} onHide={() => setShowModalActivities(false)} /> */}
             <div className="row mt-5">
                 <div className="col-lg-12">
                     <Table className="table table-bordered table-condensed table-striped" style={{ zoom: "0.7" }}>
@@ -87,7 +99,7 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
                                         <td className="text-right">{item.PRESUPUESTO ?? 0}</td>
                                         <td>
                                             <Buttons size="xs" variant="primary" label="" icon="plus" onClick={() => addActivities(item.ID ? item.ID : 0)} />
-                                            <Buttons size="xs" variant="light" label="" icon="search" onClick={() => { }} />
+                                            <Buttons size="xs" variant="light" label="" icon="search" onClick={() => seeObjetiveSpecifies(item)} />
                                             <Buttons size="xs" variant="light" label="" icon="search" onClick={() => { }} />
                                             <Buttons size="xs" variant="warning" label="" icon="file-zip" onClick={() => { }} />
                                             <Buttons size="xs" variant="danger" label="" icon="trash" onClick={() => deleteItem(item.ID)} />
@@ -104,7 +116,7 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
                                         <td className="text-right">{item.PRESUPUESTO ?? 0}</td>
                                         <td>
                                             <Buttons size="xs" variant="primary" label="" icon="plus" onClick={() => addActivities(item.ID ? item.ID : 0)} />
-                                            <Buttons size="xs" variant="light" label="" icon="search" onClick={() => { }} />
+                                            <Buttons size="xs" variant="light" label="" icon="search" onClick={() => seeObjetiveSpecifies(item)} />
                                             <Buttons size="xs" variant="light" label="" icon="search" onClick={() => { }} />
                                             <Buttons size="xs" variant="warning" label="" icon="file-zip" onClick={() => { }} />
                                             <Buttons size="xs" variant="danger" label="" icon="trash" onClick={() => deleteItem(item.ID)} />

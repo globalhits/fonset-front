@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import { Table, Button, Accordion, Row, Col } from "react-bootstrap";
+import { Table, Row, Col } from "react-bootstrap";
 import InputFloating from "../../atoms/input/Input";
 import FileUploader from "./FileUploader";
 import Swal from "sweetalert2";
-import { BsPencilSquare, BsTrash3, BsDownload } from 'react-icons/bs'
 import { useAppSelector } from "../../../redux/hooks";
 import { GeneralSelector } from "../../../redux/states/generals/general.slice";
 
@@ -15,9 +14,8 @@ export default function DocumentUpload() {
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
     useEffect(() => {
-        console.log("data", data);
-
-    }, [])
+        console.log("All Files", uploadedFiles)
+    }, [uploadedFiles])
 
     const showConfirmationAlert = () => {
         Swal.fire({
@@ -39,11 +37,8 @@ export default function DocumentUpload() {
 
     return (
         <div>
-            <Row sm={12}>
-                <Col>
-                    <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
-                </Col>
-                <Col>
+            <Row className="mt-5 mb-5">
+                <Col sm={12}>
                     <FileUploader setUploadedFiles={setUploadedFiles} />
                 </Col>
             </Row>

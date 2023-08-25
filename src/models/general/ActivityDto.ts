@@ -16,5 +16,5 @@ export interface ActivityDto {
     entregable?: string,
     descripcion_entregable?: string,
     unidad_responsable?: string,
-    presupuesto?: string
+    presupuesto?: number
 }
