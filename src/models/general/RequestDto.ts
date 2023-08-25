@@ -9,6 +9,8 @@ import { TypeProjectDto } from "./TypeProjectDto";
 export interface RequestDto {
 
     //GENERALmeses
+    PROY_TIPO_GUARDAR?: string;
+    PROY_MOSTRAR_BTN?: string;
     PROY_TIPO_FORM?: string;
     PROY_CODIGO?: string;
     PROY_NOMBRE?: string;

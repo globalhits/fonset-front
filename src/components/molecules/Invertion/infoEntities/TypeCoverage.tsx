@@ -24,7 +24,7 @@ const TypeCoverage = () => {
     const [error, setError] = useState("");
 
     const { data, errorInputs } = useAppSelector(GeneralSelector);
- 
+
     const { departaments } = useAppSelector(DepartamentSelector);
 
     const { filters } = useAppSelector(MunicipalitySelector);
@@ -197,7 +197,7 @@ const TypeCoverage = () => {
                                 ))
                             }
                             {
-                                errorInputs && data.PROY_COBERTURA?.COBERTURA?.length == 0
+                                errorInputs && (data.PROY_COBERTURA?.TIPO == "focalizada" && data.PROY_COBERTURA?.COBERTURA?.length == 0)
                                     ? (<tr><td colSpan={3} className="text-center"><h5 className="text-danger">¡Coberturas requeridas!</h5></td></tr>)
                                     : null
                             }

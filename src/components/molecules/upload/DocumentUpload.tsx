@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { Table, Row, Col } from "react-bootstrap";
-import InputFloating from "../../atoms/input/Input";
 import FileUploader from "./FileUploader";
 import Swal from "sweetalert2";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
@@ -11,7 +10,7 @@ import helper from "../../../utils/helper";
 
 export default function DocumentUpload() {
 
-    const { data } = useAppSelector(GeneralSelector);
+    const { data, errorInputs } = useAppSelector(GeneralSelector);
 
     const dispatch = useAppDispatch();
 
@@ -67,6 +66,11 @@ export default function DocumentUpload() {
                                     </td>
                                 </tr>)
                             })}
+                            {
+                                errorInputs && data.PROY_DOCUMENTOS_ANEXOS?.length == 0
+                                    ? (<tr><td colSpan={3} className="text-center"><h5 className="text-danger">¡Documentos requeridos!</h5></td></tr>)
+                                    : null
+                            }
                         </tbody>
                     </Table>
                 </Col>

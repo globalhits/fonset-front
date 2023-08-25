@@ -13,12 +13,13 @@ interface TextAreaInterface {
 	value?: string;
 	disabled?: boolean;
 	setValueChange: Function;
-
+	isInvalid?: boolean;
 }
-export default function TextArea({ label, classStyle, styles, placeholder, rows, cols, value, disabled = false, setValueChange }: TextAreaInterface) {
+export default function TextArea({ label, classStyle, styles, placeholder, rows, cols, value, disabled = false, setValueChange, isInvalid }: TextAreaInterface) {
 	return (
 		<FloatingLabel controlId="floatingTextarea2" label={label} className={classStyle}>
-			<Form.Control as="textarea" placeholder={placeholder} className='form-control-lg' style={styles} rows={rows} cols={cols} value={value} disabled={disabled} onChange={(e) => setValueChange(e.target.value)} />
+			<Form.Control as="textarea" placeholder={placeholder} className='form-control-lg' style={styles} rows={rows} cols={cols} value={value} disabled={disabled} onChange={(e) => setValueChange(e.target.value)} isInvalid={isInvalid} />
+			<Form.Control.Feedback type="invalid">{label} es requerid@.</Form.Control.Feedback>
 		</FloatingLabel>
 	);
 }

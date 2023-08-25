@@ -14,6 +14,7 @@ const covergateState: TypeCoverageDto = {
 }
 
 export const initialStateFormGeneral: RequestDto = {
+    PROY_TIPO_GUARDAR: "",
     PROY_CODIGO: "FI-0001",
     PROY_NOMBRE: "",
     PROY_FECHA: helper.getDateNow(),
@@ -98,6 +99,7 @@ export interface GeneralState {
     status: string;
     error: any;
     errorInputs: boolean;
+    typeBtnToSave: string;
 }
 
 export const initialState: GeneralState = {
@@ -105,7 +107,8 @@ export const initialState: GeneralState = {
     response: null,
     error: "",
     status: "",
-    errorInputs: false
+    errorInputs: false,
+    typeBtnToSave: "direct"
 }
 
 //API
@@ -133,6 +136,12 @@ const GeneralSlice = createSlice({
     reducers: {
         setDataGeneral: (state, { payload }: PayloadAction<any>) => {
             state.data = payload;
+        },
+        setTypeFormToSave: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_TIPO_GUARDAR = payload;
+        },
+        showTypeBtnToSave: (state, { payload }: PayloadAction<any>) => {
+            state.typeBtnToSave = payload;
         },
         setDataTypeForm: (state, { payload }: PayloadAction<any>) => {
             state.data.PROY_TIPO_FORM = payload;
@@ -204,7 +213,8 @@ const GeneralSlice = createSlice({
             state.data.PROY_MES_FINAL_GENERAL_SPECIFY = "";
             state.data.PROY_DESCRIPCION_ENTREGABLE_GENERAL_SPECIFY = "";
             state.data.PROY_RESULTADO_ESPERADO_SPECIFY = "";
-        }
+        },
+
     },
     extraReducers(builder) {
         builder.addCase(saveFormInvertionApi.pending, state => {
@@ -214,6 +224,7 @@ const GeneralSlice = createSlice({
             state.response = action.payload;
         }).addCase(saveFormInvertionApi.rejected, (state, action) => {
             state.status = 'failed';
+            state.response = action.error;
             state.error = action.error.message;
         }).addCase(saveFormFonsetApi.pending, state => {
             state.status = 'loading';
@@ -222,14 +233,17 @@ const GeneralSlice = createSlice({
             state.response = action.payload;
         }).addCase(saveFormFonsetApi.rejected, (state, action) => {
             state.status = 'failed';
+            state.response = action.error;
             state.error = action.error.message;
         }).addCase(saveFormCooperativeApi.pending, state => {
             state.status = 'loading';
         }).addCase(saveFormCooperativeApi.fulfilled, (state, action) => {
+            console.log("action", action);
             state.status = 'succeeded';
             state.response = action.payload;
         }).addCase(saveFormCooperativeApi.rejected, (state, action) => {
             state.status = 'failed';
+            state.response = action.error;
             state.error = action.error.message;
         })
     },
@@ -237,6 +251,8 @@ const GeneralSlice = createSlice({
 
 export const {
     setDataGeneral,
+    setTypeFormToSave,
+    showTypeBtnToSave,
     setDataTypeForm,
     setEntityRelation,
     setDependencyInvolved,

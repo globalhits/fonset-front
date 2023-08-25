@@ -11,18 +11,16 @@ import FormDescription from "../../molecules/fonset/description/FormDescription"
 import FormGoods from "../../molecules/fonset/goods/FormGoods";
 import Buttons from "../../atoms/button/Buttons";
 
-import Loader from "../../atoms/loader";
-
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
-import { RequestDto } from "../../../models/general/RequestDto";
-import { GeneralSelector, saveFormFonsetApi, setDataTypeForm, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { setLoading } from "../../../redux/states/generals/loading.slice";
+import { GeneralSelector, saveFormFonsetApi, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 import DocumentUpload from "../../molecules/upload/DocumentUpload";
+import alertService from "../../../services/generals/alert.service";
 
 
 export default function FormFonset() {
 
-	const { data, error, errorInputs, response } = useAppSelector(GeneralSelector);
+	const { data, error, status, typeBtnToSave, response } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 
@@ -30,38 +28,148 @@ export default function FormFonset() {
 		dispatch(setLoading(false))
 	}, [])
 
-	const saveForm = () => {
-		dispatch(setDataTypeForm("fonset"))
+	const saveForm = async () => {
+		await dispatch(setDataTypeForm("fonset_temp"));
+
+		await dispatch(setTypeFormToSave("TEMPFONSET"))
+
+		await dispatch(setLoading(true));
+
+		if (data.PROY_CODIGO != "") {
+			alertService.showAlert("Error", "Codigo temporal es requerido", "error", "OK", false);
+		}
+
+		await dispatch(saveFormFonsetApi(data));
+
+		if (status == "succeeded") {
+			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
+		} else if (status == "failed") {
+			alertService.showAlert("Error", error, "error", "OK", false);
+		}
+
+		await dispatch(setLoading(false));
 		console.log("guardar form", data);
 	}
 
 	const finishForm = async () => {
 
-		dispatch(setDataTypeForm("fonset"))
+		await dispatch(setDataTypeForm("fonset"));
 
-		showAlertsForInputsRequired();
+		await dispatch(setTypeFormToSave("FONSET"))
 
-		if (data.PROY_CODIGO != "") {
-			//ALERT ARROJAR ERROR
-		}
+		await dispatch(setLoading(true));
 
-		if (data.PROY_NOMBRE != "") {
-			//ALERT ARROJAR ERROR
-		}
-
-		if (data.PROY_FECHA != "") {
-			//ALERT ARROJAR ERROR
+		if (validationsInputsToFinish() > 0) {
+			showAlertsForInputsRequired();
+			alertService.showAlert("Error", "Verificar los campos requeridos", "error", "OK", false);
+			dispatch(setLoading(false))
+			return;
 		}
 
 		await dispatch(saveFormFonsetApi(data));
 
+		if (response !== undefined) {
+			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
+		} else if (status == "failed") {
+			alertService.showAlert("Error", error, "error", "OK", false);
+		}
+
 		await dispatch(setLoading(false))
 
 		console.log("guardar form", data);
+
+		console.log("res", response);
+
+		console.log("error", error);
+
 	}
 
 	const showAlertsForInputsRequired = () => {
 		dispatch(showAlertForInputs(true));
+	}
+
+	const validationsInputsToFinish = () => {
+		let errorsCount = 0;
+
+		//TAB INFORMACIÓN BASICA
+
+		if (data.PROY_CODIGO == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_NOMBRE == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_FECHA == "") {
+			errorsCount++;
+		}
+
+		// TAB DATOS GENERALES
+
+		if (data.PROY_SUB_REGIONAL_APOYO == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_DEPARTAMENTO == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_MUNICIPIO_ORIGEN == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_SECCIONAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_ENTIDAD_DEPENDENCIA_RESPONSABLE == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_DISTRITO_JUDICIAL == "") {
+			errorsCount++;
+		}
+
+		//TAB DESCRIPCION
+
+		if (data.PROY_OBJETIVO_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_OBJETIVO_ESPECIFICO == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_POBLACION_OBJETIVO == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_DESCRIPCION_BIENES_SERVICIOS == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_JUSTIFICACION == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_DESCRIPCION_PROBLEMA == "") {
+			errorsCount++;
+		}
+
+		// TAB BIENES Y SERVICIOS
+
+		if (data.PROY_BIENES_SERVICIOS?.length == 0) {
+			errorsCount++;
+		}
+
+		// 'DOCUMENTOS
+
+		if (data.PROY_DOCUMENTOS_ANEXOS?.length == 0) {
+			errorsCount++;
+		}
+
+		return errorsCount;
 	}
 
 	return (
@@ -104,8 +212,10 @@ export default function FormFonset() {
 								<Buttons variant="light" label="Cancelar" onClick={() => { }} />
 							</div>
 							<div className="col-lg-6 text-right">
-								<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => saveForm()} />
-								<Buttons variant="outline-success" label="Finalizar" onClick={() => finishForm()} />
+								{typeBtnToSave == "temp"
+									? (<Buttons variant="primary" label="Guardar" classStyle="mr-3" icon="clock-history" onClick={() => saveForm()} />)
+									: (<Buttons variant="outline-success" label="Finalizar" icon="save-fill" onClick={() => finishForm()} />)
+								}
 							</div>
 						</div>
 					</Card.Body>

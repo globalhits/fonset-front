@@ -123,6 +123,16 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
                                         </td>
                                     </tr>)
                             ))}
+                            {
+
+                                errorInputs && data.PROY_OBJETIVOS_ESPECIFICOS?.length == 0
+                                    ? (
+                                        type !== "cooperative" ? (
+                                            <tr><td colSpan={11} className="text-center"><h5 className="text-danger">¡Objetivos especificos requeridos!</h5></td></tr>
+                                        ) : (<tr><td colSpan={9} className="text-center"><h5 className="text-danger">¡Objetivos especificos requeridos!</h5></td></tr>)
+                                    )
+                                    : null
+                            }
                         </tbody>
                     </Table>
                 </div>

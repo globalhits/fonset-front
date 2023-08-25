@@ -17,8 +17,8 @@ export default function Buttons({ href, target, variant, label, classStyle, icon
 	return (
 		<>
 			<Button href={href} target={target} variant={variant} className={classStyle} onClick={() => onClick()}>
-				{label}
 				{icon !== "" ? (<i className={'bi bi-' + icon + ' pl-1 pr-1'}></i>) : null}
+				{label}
 			</Button>
 		</>
 	);
