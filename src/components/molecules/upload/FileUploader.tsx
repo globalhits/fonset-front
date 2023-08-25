@@ -5,10 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { GeneralSelector, addDocuments } from '../../../redux/states/generals/general.slice';
 import helper from '../../../utils/helper';
 
-interface FileUploaderInterface {
-	setUploadedFiles: Function
-}
-const FileUploader: React.FC<FileUploaderInterface> = ({ setUploadedFiles }) => {
+
+const FileUploader = ({ }) => {
 
 	const { data } = useAppSelector(GeneralSelector);
 
@@ -55,20 +53,19 @@ const FileUploader: React.FC<FileUploaderInterface> = ({ setUploadedFiles }) => 
 		let documents = data.PROY_DOCUMENTOS_ANEXOS ? data.PROY_DOCUMENTOS_ANEXOS : [];
 
 		let newList = [...documents, {
+			INDEX: helper.getRandomInt(),
+			id: helper.getRandomInt(),
 			name: updatedFiles[0].name,
 			extension: updatedFiles[0].extension,
 			base64: base64
 		}]
 
-		console.log("DOCUMENT", newList);
-
 		dispatch(addDocuments(newList))
-		setUploadedFiles((prevFiles: any) => [...prevFiles, ...updatedFiles]); //almacenamos el file en el estado para luego cargarlo al redux general
 	};
 
 	return (
 		<div className="file-dropzone" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
-			<p>Arrastra un archivo PDF aquí</p>
+			<p>Arrastra un archivo (Imagenes y documentos) aquí</p>
 		</div>
 	);
 };
