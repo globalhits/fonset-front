@@ -17,7 +17,7 @@ export default function DocumentUpload() {
 
     const deleteFile = (file: any) => {
         Swal.fire({
-            title: 'Una pregunta',
+            title: '¡Alerta!',
             text: '¿Está seguro de eliminar el archivo? ',
             icon: 'question',
             showCancelButton: true,
@@ -25,9 +25,10 @@ export default function DocumentUpload() {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Si',
             cancelButtonText: 'Cerrar',
+            allowOutsideClick: false,
         }).then((result) => {
             if (result.isConfirmed) {
-                let newList = data.PROY_DOCUMENTOS_ANEXOS?.filter(item => item.ID !== item.ID)
+                let newList = data.PROY_DOCUMENTOS_ANEXOS?.filter((item: any) => item.id != file.id)
                 dispatch(addDocuments(newList));
             }
         });
