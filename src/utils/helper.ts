@@ -1,7 +1,7 @@
 class Helper {
 
     convertToBase(image: string) {
-
+        return this.blobToBase64(image);
     }
 
     getItemLocalStorage(item: string) {
@@ -32,6 +32,16 @@ class Helper {
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
+
+    blobToBase64(blob: any) {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        return new Promise(resolve => {
+            reader.onloadend = () => {
+                resolve(reader.result);
+            };
+        });
+    };
 }
 
 

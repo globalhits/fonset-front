@@ -1,5 +1,5 @@
 import { PeopleDto } from "./PeopleDto";
-import { Activity } from "./ActivityDto";
+import { ActivityDto } from "./ActivityDto";
 import { DependencyInvolvedDto } from "./DependencyInvolvedDto";
 import { NationalEntityInvolvedDto } from "./NationalEntityInvolvedDto";
 import { SpecificObjetiveDto } from "./SpecificObjetiveDto";
@@ -46,7 +46,8 @@ export interface RequestDto {
     PROY_FECHA_ESPERADA_TERMINADA?: string; //INVERTION
 
     PROY_OBJETIVOS_ESPECIFICOS?: SpecificObjetiveDto[]; //INVERTION
-    PROY_ACTIVIDADES?: Activity[]; //INVERTION
+    PROY_ACTIVIDADES?: ActivityDto[]; //INVERTION
+    PROY_ACTIVIDADES_FILTERS?: ActivityDto[]; //INVERTION
 
     PROY_SUB_REGIONAL_APOYO?: string;
     PROY_SECCIONAL?: string;

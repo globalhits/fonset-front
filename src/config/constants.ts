@@ -1,5 +1,6 @@
 
 import { ActionStrategyObjetiveDto } from "../models/general/ActionStrategyObjetiveDto";
+import { BaseDto } from "../models/general/BaseDto";
 import { DependencyInvolvedDto } from "../models/general/DependencyInvolvedDto";
 import { LineProgramDto, ProgramDto } from "../models/general/LineProgramDto";
 import { ObjetiveStrategyDirectionDto, SubObjetive } from "../models/general/ObjetiveStrategyDirectionDto";
@@ -1473,49 +1474,49 @@ export const LIST_FGN_DEPENDENCY: DependencyInvolvedDto[] = [
     },
 ];
 
-export const UNID_MEASUREMENT = [
-    { id: 0, NAME: 'Porcentaje', description: "Porcentaje" },
-    { id: 1, NAME: 'Capacidad', descripcion: "Capacidad" },
-    { id: 2, NAME: 'Frecuencia', descripcion: "Frecuencia" },
-    { id: 3, NAME: 'Longitud', descripcion: "Longitud" },
-    { id: 4, NAME: 'Masa y peso', descripcion: "Masa y peso" },
+export const UNID_MEASUREMENT: BaseDto[] = [
+    { INDEX: 1, id: 1, name: "Porcentaje", description: "Porcentaje" },
+    { INDEX: 2, id: 2, name: "Capacidad", description: "Capacidad" },
+    { INDEX: 3, id: 3, name: "Frecuencia", description: "Frecuencia" },
+    { INDEX: 4, id: 4, name: "Longitud", description: "Longitud" },
+    { INDEX: 5, id: 5, name: "Masa y peso", description: "Masa y peso" },
 ];
 
-export const SUB_UNID_MEASUREMENT = [
+export const SUB_UNID_MEASUREMENT: BaseDto[] = [
     // Porcentaje
-    { id: 1, NAME: 'Porcentaje', simbolo: '%', description: "Porcentaje" },
+    { INDEX: 1, id: 1, parentId: 1, name: "Porcentaje", description: "Porcentaje" },
 
     // Unidades de Capacidad
-    { id: 2, NAME: 'Litro', simbolo: 'L', description: "Litro" },
-    { id: 3, NAME: 'Mililitro', simbolo: 'mL', description: "Mililitro" },
-    { id: 4, NAME: 'Metro Cúbico', simbolo: 'm³', description: "Metro Cúbico" },
-    { id: 5, NAME: 'Galon', simbolo: 'gal', description: "Galon" },
+    { INDEX: 2, id: 2, parentId: 2, name: "Litro", description: "Litro" },
+    { INDEX: 3, id: 3, parentId: 2, name: "Mililitro", description: "Mililitro" },
+    { INDEX: 4, id: 4, parentId: 2, name: "Metro Cúbico", description: "Metro Cúbico" },
+    { INDEX: 5, id: 5, parentId: 2, name: "Galon", description: "Galon" },
 
     // Unidad de Frecuencia
-    { id: 6, NAME: 'Hertz', simbolo: 'Hz', description: "Hertz" },
-    { id: 7, NAME: 'Kilohertz', simbolo: 'kHz', description: "Kilohertz" },
-    { id: 8, NAME: 'Megahertz', simbolo: 'MHz', description: "Megahertz" },
+    { INDEX: 6, id: 6, parentId: 3, name: "Hertz", description: "Hertz" },
+    { INDEX: 7, id: 7, parentId: 3, name: "Kilohertz", description: "Kilohertz" },
+    { INDEX: 8, id: 8, parentId: 3, name: "Megahertz", description: "Megahertz" },
 
     // Longitud
-    { id: 9, NAME: 'Metro', simbolo: 'm', description: "Metro" },
-    { id: 10, NAME: 'Kilómetro', simbolo: 'km', description: "Kilómetro" },
-    { id: 11, NAME: 'Centímetro', simbolo: 'cm', description: "Centímetro" },
-    { id: 12, NAME: 'Pulgada', simbolo: 'in', description: "Pulgada" },
+    { INDEX: 9, id: 9, parentId: 4, name: "Metro", description: "Metro" },
+    { INDEX: 10, id: 10, parentId: 4, name: "Kilómetro", description: "Kilómetro" },
+    { INDEX: 11, id: 11, parentId: 4, name: "Centímetro", description: "Centímetro" },
+    { INDEX: 12, id: 12, parentId: 4, name: "Pulgada", description: "Pulgada" },
 
     // Masa y Peso
-    { id: 13, NAME: 'Gramo', simbolo: 'g', description: "Gramo" },
-    { id: 14, NAME: 'Kilogramo', simbolo: 'kg', description: "Kilogramo" },
-    { id: 15, NAME: 'Tonelada', simbolo: 't', description: "Tonelada" },
-    { id: 16, NAME: 'Libra', simbolo: 'lb', description: "Libra" },
+    { INDEX: 13, id: 13, parentId: 5, name: "Gramo", description: "Gramo" },
+    { INDEX: 14, id: 14, parentId: 5, name: "Kilogramo", description: "Kilogramo" },
+    { INDEX: 15, id: 15, parentId: 5, name: "Tonelada", description: "Tonelada" },
+    { INDEX: 16, id: 16, parentId: 5, name: "Libra", description: "Libra" },
 ];
 
 export const TIPE_PRESENTATION = [
-    { id: 1, NAME: "caja", description: "caja" },
-    { id: 2, NAME: "Carpeta", description: "Carpeta" },
-    { id: 3, NAME: "Folder", description: "Folder" },
-    { id: 4, NAME: "Resma", description: "Resma" },
-    { id: 3, NAME: "Galon", description: "Galon" },
-    { id: 4, NAME: "Garrafa", description: "Garrafa" },
+    { id: 1, name: "caja", description: "caja" },
+    { id: 2, name: "Carpeta", description: "Carpeta" },
+    { id: 3, name: "Folder", description: "Folder" },
+    { id: 4, name: "Resma", description: "Resma" },
+    { id: 3, name: "Galon", description: "Galon" },
+    { id: 4, name: "Garrafa", description: "Garrafa" },
 ]
 
 export const LIST_OBJETIVES_STRATEGIES_DIRECTIONS: ObjetiveStrategyDirectionDto[] = [
@@ -1779,7 +1780,24 @@ export const LIST_PROGRAMS: ProgramDto[] = [
     }
 ];
 
-
+export const LIST_TYPE_ACTIVITIES: BaseDto[] = [
+    {
+        INDEX: 1,
+        id: 1,
+        name: "Fortalecimiento de capacidades humanas",
+        description: "Fortalecimiento de capacidades humanas"
+    }, {
+        INDEX: 2,
+        id: 2,
+        name: "Fortalecimiento de capacidades técnicas",
+        description: "Fortalecimiento de capacidades técnicas"
+    }, {
+        INDEX: 1,
+        id: 1,
+        name: "Fortalecimiento de capacidades tecnológicas",
+        description: "Fortalecimiento de capacidades tecnológicas"
+    }
+]
 
 
 

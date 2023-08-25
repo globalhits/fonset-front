@@ -8,7 +8,6 @@ class SubUnitService {
 
     async getAll() {
         try {
-            console.log("sub-units", `${this.apiGenerals}/${this.pathListSubUnities}`);
             const response = await fetch(`${this.apiGenerals}/${this.pathListSubUnities}`);
             const data = await response.json();
             return data;

@@ -15,6 +15,7 @@ import { loadingSelector, setLoading } from "../../../redux/states/generals/load
 import { GeneralSelector, saveFormInvertionApi, setDataGeneral, setDataTypeForm, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
 import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
+import DocumentUpload from "../../molecules/upload/DocumentUpload";
 
 
 export default function FormInvertion() {
@@ -76,7 +77,7 @@ export default function FormInvertion() {
 							PROYECTO DE INVERSIÓN
 						</Card.Title>
 					</Card.Header>
-					<Card.Body className="pt-3">
+					<Card.Body className="pt-3" >
 						<OriginProject />
 						<Tabs
 							defaultActiveKey="infoBasic"
@@ -97,11 +98,12 @@ export default function FormInvertion() {
 							</Tab>
 
 							<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-								<GeneralSpecific type={"invertion"} />
+								<GeneralSpecific valueItem={{}} type={"invertion"} viewDetail={false} />
 							</Tab>
 
-							{/* <Tab eventKey="documents" title="DOCUMENTOS">
-							</Tab> */}
+							<Tab eventKey="documents" title="DOCUMENTOS">
+								<DocumentUpload />
+							</Tab>
 						</Tabs>
 						<hr />
 						<div className="row">

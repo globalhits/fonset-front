@@ -13,6 +13,7 @@ import categoryReducer from "./states/generals/category.slice";
 import unitReducer from "./states/generals/unit.slice";
 import goodReducer from "./states/generals/good.slice";
 import districtReducer from "./states/generals/district.slice";
+import activityReducer from "./states/generals/activity.slice";
 
 export const store = configureStore({
 	reducer: {
@@ -27,6 +28,7 @@ export const store = configureStore({
 		objetive: objetiveReducer,
 		category: categoryReducer,
 		district: districtReducer,
+		typeActivity: activityReducer,
 		general: GeneralReducer,
 	}
 })

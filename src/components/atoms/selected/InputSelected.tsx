@@ -25,7 +25,7 @@ export default function InputSelected({ label, name, className, options, value, 
                             {
                                 option.name ? option.name : (option.NAME ? option.NAME : (option.descripcion ? option.descripcion : (option.DESCRIPCION ? option.DESCRIPCION : option.description)))
                             }
-                        </option>)
+                        </option>)
                     )
                 }
             </Form.Select>

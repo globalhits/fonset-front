@@ -7,9 +7,13 @@ class FonsetService {
 
     async save(request: RequestDto) {
         try {
-            const response = await fetch(`${this.urlApi}/proyeto-fonset`);
-            const data = await response.json();
-            return data;
+            const response = await fetch(`${this.urlApi}/proyecto-fonset`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(request)
+            });
         } catch (error) {
             console.error('Error save data invertion:', error);
             throw error;

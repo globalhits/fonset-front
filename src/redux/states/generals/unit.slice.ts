@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
-import { LineProgramDto, ProgramDto } from "../../../models/general/LineProgramDto";
-import programService from "../../../services/generals/program.service";
-import lineProgramService from "../../../services/generals/line-program.service";
+import { BaseDto } from "../../../models/general/BaseDto";
+import unitService from "../../../services/generals/unit.service";
+import subUnitService from "../../../services/generals/sub-unit.service";
 
 export interface UnitState {
-    unities: ProgramDto[];
-    sub_unities: LineProgramDto[];
-    sub_unities_filters: LineProgramDto[];
+    unities: BaseDto[];
+    sub_unities: BaseDto[];
+    sub_unities_filters: BaseDto[];
     status: string;
     error: any;
 }
@@ -21,23 +21,23 @@ export const initialState: UnitState = {
 }
 
 export const fetchApiUnits = createAsyncThunk('data/units', async () => {
-    const response = await programService.getAll(); // Llamar al servicio
+    const response = await unitService.getAll(); // Llamar al servicio
     console.log("response", response);
     return response;
 });
 
 export const fetchApiSubUnits = createAsyncThunk('data/sub-units', async () => {
-    const response = await lineProgramService.getAll(); // Llamar al servicio
-    console.log("response", response);
+    const response = await subUnitService.getAll(); // Llamar al servicio
+    console.log("response-sub-units", response);
     return response;
 });
 
 const UnitSlice = createSlice({
-    name: "program",
+    name: "unit",
     initialState,
     reducers: {
-        filterByUnitId: (state, { payload }: PayloadAction<number>) => {
-            state.sub_unities_filters = state.sub_unities.filter(item => item.parentId == payload);
+        filterByUnitId: (state, { payload }: PayloadAction<any>) => {
+            state.sub_unities_filters = state.sub_unities.filter(item => item.parentId == Number(payload));
         },
         listAllSubUnits: (state) => {
             state.sub_unities_filters = state.sub_unities;

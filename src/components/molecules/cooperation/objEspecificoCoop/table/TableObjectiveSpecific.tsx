@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Col, Row, Table, Button } from "react-bootstrap";
-import RegisterActivities from "../modals/RegisterActivity/RegisterActivity";
+import RegisterActivities from "../../../general/RegisterActivity/RegisterActivity";
 import DetailsObjEspecific from "../modals/viewDetailObjCoop/DetailsObjEspecific";
 import ViewRegisterActivities from "../modals/ViewRegisterActivities/ViewRegisterActivities";
 import ViewUpload from "../modals/Adjuntos/ViewUpload";
-import {BsTrash3} from 'react-icons/bs'
+import { BsTrash3 } from 'react-icons/bs'
 
 
 export const TableObjectiveSpecific = () => {
@@ -65,15 +65,15 @@ export const TableObjectiveSpecific = () => {
                             <Button className="mb-8 col-lg-2" size="sm" variant="primary" onClick={() => setModalDetail(true)}>Ver detalle obj especifico</Button>
                             <Button className="mb-8 col-lg-2" size="sm" variant="primary" onClick={() => setModalActivities(true)}>Ver registro actividades</Button>
                             <Button className="mb-8 col-lg-2" size="sm" variant="primary" onClick={() => setModalAdjuntos(true)}>Ver doc. adjuntos</Button>
-                            <Button className="mb-8 col-lg-2" size="sm" variant="danger"><BsTrash3/></Button>
+                            <Button className="mb-8 col-lg-2" size="sm" variant="danger"><BsTrash3 /></Button>
                         </td>
                     </tbody>
                 </Table>
             </Col>
-            <RegisterActivities show={modalRegisterActivity} onHide={() => setModalRegisterActivity(false)}/>
-            <DetailsObjEspecific show={modalDetail} onHide={() => setModalDetail(false)}/>
-            <ViewRegisterActivities show={modalActivities} onHide={() => setModalActivities(false)}/>
-            <ViewUpload show={modalAdjuntos} onHide={() => setModalAdjuntos(false)}/>
+            <RegisterActivities show={modalRegisterActivity} onHide={() => setModalRegisterActivity(false)} />
+
+            <ViewRegisterActivities show={modalActivities} onHide={() => setModalActivities(false)} />
+
         </Row>
 
     )
