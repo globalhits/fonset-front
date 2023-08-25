@@ -20,6 +20,7 @@ import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalO
 import { CountrySelector, fetchApiCountry } from "../../../redux/states/generals/country.slice";
 import { RequestDto } from "../../../models/general/RequestDto";
 import alertService from "../../../services/generals/alert.service";
+import DocumentUpload from "../../molecules/upload/DocumentUpload";
 
 
 export default function FormCooperative() {
@@ -67,25 +68,7 @@ export default function FormCooperative() {
 
 		await dispatch(setLoading(true));
 
-		let errorsCount = 0;
-
-		if (data.PROY_CODIGO != "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_NOMBRE != "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_FECHA != "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_COBERTURA?.TIPO == "focalizada" && data.PROY_COBERTURA.COBERTURA?.length == 0) {
-			errorsCount++;
-		}
-
-		if (errorsCount > 0) {
+		if (validationsInputsToFinish() > 0) {
 			showAlertsForInputsRequired();
 			alertService.showAlert("Error", "Verificar los campos requeridos", "error", "OK", false);
 			dispatch(setLoading(false))
@@ -136,6 +119,96 @@ export default function FormCooperative() {
 		dispatch(setDataGeneral(updatedRequest));
 	}
 
+	const validationsInputsToFinish = () => {
+		let errorsCount = 0;
+
+		//TAB INFORMACIÓN BASICA
+
+		if (data.PROY_CODIGO == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_NOMBRE == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_FECHA == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_TIPO?.length == 0) {
+			errorsCount++;
+		}
+
+		if (data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_COBERTURA?.TIPO == "focalizada" && data.PROY_COBERTURA.COBERTURA?.length == 0) {
+			errorsCount++;
+		}
+
+		if (data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.length == 0) {
+			errorsCount++;
+		}
+
+		if (data.PROY_DEPENDENCIAS_INVOLUCRADAS?.length == 0) {
+			errorsCount++;
+		}
+
+
+		// TAB OBJETIVO GENERAL
+
+		if (data.PROY_OBJETIVO_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_DESCRIPCION_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_INDICADOR_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_LINEA_BASE_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_META_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_ENTREGABLE_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_MES_INICIO_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_MES_FINAL_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_DESCRIPCION_ENTREGABLE_GENERAL == "") {
+			errorsCount++;
+		}
+
+		// Objetivos especificos
+
+		if (data.PROY_OBJETIVOS_ESPECIFICOS?.length == 0) {
+			errorsCount++;
+		}
+
+		// Documentos
+		if (data.PROY_DOCUMENTOS_ANEXOS?.length == 0) {
+			errorsCount++;
+		}
+
+		return errorsCount;
+	}
+
 	return (
 		<>
 			<div className="content container-fluid">
@@ -173,6 +246,10 @@ export default function FormCooperative() {
 
 								<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
 									<GeneralSpecific type={"cooperative"} />
+								</Tab>
+
+								<Tab eventKey="documents" title="DOCUMENTOS ANEXOS">
+									<DocumentUpload />
 								</Tab>
 							</Tabs>
 
