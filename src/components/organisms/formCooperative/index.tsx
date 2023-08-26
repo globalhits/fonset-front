@@ -14,7 +14,7 @@ import Buttons from "../../atoms/button/Buttons";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setLoading } from "../../../redux/states/generals/loading.slice";
 import InfoBasic from "../../molecules/general/infoBasic";
-import { GeneralSelector, saveFormCooperativeApi, setDataGeneral, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, consecutiveApi, saveFormCooperativeApi, setDataGeneral, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
 import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
 import { CountrySelector, fetchApiCountry } from "../../../redux/states/generals/country.slice";
@@ -32,6 +32,7 @@ export default function FormCooperative() {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
+		dispatch(consecutiveApi("CTI"));
 		dispatch(setLoading(false));
 		dispatch(fetchApiCountry());
 	}, []);
@@ -156,42 +157,34 @@ export default function FormCooperative() {
 			errorsCount++;
 		}
 
+		if (data.PROY_PAIS_COOPERANTE == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_IMPLEMENTADOR == "") {
+			errorsCount++;
+		}
+
 
 		// TAB OBJETIVO GENERAL
 
+		if (data.PROY_JUSTIFICACION == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_FECHA_ESPERADA_INICIO == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_FECHA_ESPERADA_TERMINADA == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_DURACION_ESTIMADA_MESES == 0) {
+			errorsCount++;
+		}
+
 		if (data.PROY_OBJETIVO_GENERAL == "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_DESCRIPCION_GENERAL == "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_INDICADOR_GENERAL == "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_LINEA_BASE_GENERAL == "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_META_GENERAL == "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_ENTREGABLE_GENERAL == "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_MES_INICIO_GENERAL == "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_MES_FINAL_GENERAL == "") {
-			errorsCount++;
-		}
-
-		if (data.PROY_DESCRIPCION_ENTREGABLE_GENERAL == "") {
 			errorsCount++;
 		}
 
@@ -255,9 +248,9 @@ export default function FormCooperative() {
 
 							<hr className="" />
 							<Row sm={12}>
-								<Col sm={6}>
-									<Button variant="light" onClick={showConfirmationAlert}>Cancelar</Button>
-								</Col>
+								<div className="col-lg-6">
+									<Buttons variant="light" label="Cancelar" onClick={() => showConfirmationAlert()} />
+								</div>
 								<Col sm={6} className="text-right">
 									{typeBtnToSave == "temp"
 										? (<Buttons variant="primary" label="Guardar" classStyle="mr-3" icon="clock-history" onClick={() => saveForm()} />)

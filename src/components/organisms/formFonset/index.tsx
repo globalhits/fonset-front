@@ -13,9 +13,10 @@ import Buttons from "../../atoms/button/Buttons";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setLoading } from "../../../redux/states/generals/loading.slice";
-import { GeneralSelector, saveFormFonsetApi, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, consecutiveApi, saveFormFonsetApi, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 import DocumentUpload from "../../molecules/upload/DocumentUpload";
 import alertService from "../../../services/generals/alert.service";
+import Swal from "sweetalert2";
 
 
 export default function FormFonset() {
@@ -25,8 +26,27 @@ export default function FormFonset() {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
+		dispatch(consecutiveApi("FONSET"));
 		dispatch(setLoading(false))
 	}, [])
+
+	const showConfirmationAlert = () => {
+		Swal.fire({
+			title: 'Una pregunta',
+			text: '¿Seguro que no desea continuar?',
+			icon: 'question',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Cerrar',
+			cancelButtonText: 'Si, seguro',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				// Aquí puedes agregar el código para cerrar la ventana o realizar alguna acción adicional
+				console.log('La ventana se cerrará');
+			}
+		});
+	};
 
 	const saveForm = async () => {
 		await dispatch(setDataTypeForm("fonset_temp"));
@@ -209,7 +229,7 @@ export default function FormFonset() {
 						<hr />
 						<div className="row">
 							<div className="col-lg-6">
-								<Buttons variant="light" label="Cancelar" onClick={() => { }} />
+								<Buttons variant="light" label="Cancelar" onClick={() => showConfirmationAlert()} />
 							</div>
 							<div className="col-lg-6 text-right">
 								{typeBtnToSave == "temp"

@@ -6,6 +6,7 @@ import { RequestDto } from "../../../models/general/RequestDto";
 import invertionService from "../../../services/invertion/invertion.service";
 import cooperativeService from "../../../services/cooperative/cooperative.service";
 import fonsetService from "../../../services/fonset/fonset.service";
+import consecutiveService from "../../../services/generals/consecutive.service";
 
 
 const covergateState: TypeCoverageDto = {
@@ -15,7 +16,7 @@ const covergateState: TypeCoverageDto = {
 
 export const initialStateFormGeneral: RequestDto = {
     PROY_TIPO_GUARDAR: "",
-    PROY_CODIGO: "FI-0001",
+    PROY_CODIGO: "",
     PROY_NOMBRE: "",
     PROY_FECHA: helper.getDateNow(),
     PROY_TIPO: [],
@@ -112,6 +113,12 @@ export const initialState: GeneralState = {
 }
 
 //API
+export const consecutiveApi = createAsyncThunk('data/consecutive', async (request: string) => {
+    const response = await consecutiveService.getConsecutive(request); // Llamar al servicio
+    console.log("response", response);
+    return response;
+});
+
 export const saveFormInvertionApi = createAsyncThunk('data/invertion', async (request: RequestDto) => {
     const response = await invertionService.save(request); // Llamar al servicio
     console.log("response", response);
@@ -214,7 +221,6 @@ const GeneralSlice = createSlice({
             state.data.PROY_DESCRIPCION_ENTREGABLE_GENERAL_SPECIFY = "";
             state.data.PROY_RESULTADO_ESPERADO_SPECIFY = "";
         },
-
     },
     extraReducers(builder) {
         builder.addCase(saveFormInvertionApi.pending, state => {
@@ -244,6 +250,14 @@ const GeneralSlice = createSlice({
         }).addCase(saveFormCooperativeApi.rejected, (state, action) => {
             state.status = 'failed';
             state.response = action.error;
+            state.error = action.error.message;
+        }).addCase(consecutiveApi.pending, state => {
+            state.status = 'loading';
+        }).addCase(consecutiveApi.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.data.PROY_CODIGO = action.payload.consecutive ? action.payload.consecutive : "";
+        }).addCase(consecutiveApi.rejected, (state, action) => {
+            state.status = 'failed';
             state.error = action.error.message;
         })
     },

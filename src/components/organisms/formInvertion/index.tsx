@@ -12,12 +12,12 @@ import Buttons from "../../atoms/button/Buttons";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
-import { GeneralSelector, saveFormInvertionApi, setDataGeneral, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, consecutiveApi, saveFormInvertionApi, setDataGeneral, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
 import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
 import DocumentUpload from "../../molecules/upload/DocumentUpload";
 import alertService from "../../../services/generals/alert.service";
-
+import Swal from "sweetalert2";
 
 export default function FormInvertion() {
 
@@ -26,8 +26,27 @@ export default function FormInvertion() {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(setLoading(false))
+		dispatch(consecutiveApi("PGN"));
+		dispatch(setLoading(false));
 	}, [])
+
+	const showConfirmationAlert = () => {
+		Swal.fire({
+			title: 'Una pregunta',
+			text: '¿Seguro que no desea continuar?',
+			icon: 'question',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Cerrar',
+			cancelButtonText: 'Si, seguro',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				// Aquí puedes agregar el código para cerrar la ventana o realizar alguna acción adicional
+				console.log('La ventana se cerrará');
+			}
+		});
+	};
 
 	const saveForm = async () => {
 
@@ -239,7 +258,7 @@ export default function FormInvertion() {
 						<hr />
 						<div className="row">
 							<div className="col-lg-6">
-								<Buttons variant="light" label="Cancelar" onClick={() => { }} />
+								<Buttons variant="light" label="Cancelar" onClick={() => showConfirmationAlert()} />
 							</div>
 							<div className="col-lg-6 text-right">
 								{typeBtnToSave == "temp"

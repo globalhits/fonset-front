@@ -8,7 +8,6 @@ class CategorySpecificService {
 
     async getAll() {
         try {
-            console.log("category-specific", `${this.apiGenerals}${this.pathListCategorySpecify}`);
             const response = await fetch(`${this.apiGenerals}/${this.pathListCategorySpecify}`);
             const data = await response.json();
             return data;
