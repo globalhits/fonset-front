@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { Table, Button, Col, Row, Tab } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-import InputFloating from "../../../../../atoms/input/Input";
-import EditActivity from "../../../../general/RegisterActivity/EditActivity";
+import InputFloating from "../../../../atoms/input/Input";
+import EditActivity from "../../RegisterActivity/EditActivity";
 import { BsTrash3, BsPencilSquare } from 'react-icons/bs'
+import { GeneralSelector } from "../../../../../redux/states/generals/general.slice";
+import { useAppSelector } from "../../../../../redux/hooks";
+import { ActivityDto } from "../../../../../models/general/ActivityDto";
 
 type ModalProps = {
+    type?: string;
+    objetivoId?: number;
     show: boolean;
     onHide: () => void;
 };
 
-const ViewRegisterActivities: React.FC<ModalProps> = ({ show, onHide }) => {
-    const [modalEditActivity, setModalEditActivity] = useState(false);
+const ViewRegisterActivities: React.FC<ModalProps> = ({ type, objetivoId, show, onHide }) => {
+
+    const { data } = useAppSelector(GeneralSelector);
 
     return (
         <div>
@@ -22,9 +28,6 @@ const ViewRegisterActivities: React.FC<ModalProps> = ({ show, onHide }) => {
                 <Modal.Body>
                     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                         <Row className="mt-3">
-                            <Col sm={12}>
-                                <InputFloating label="Objetivo especifico." className="mb-3 inputFloating" type="text" setValueChange={(value: string) => { }} value="" readOnly />
-                            </Col>
                             <Col sm={12}>
                                 <Table className="table table-bordered table-condensed table-striped" style={{ zoom: "0.7" }}>
                                     <thead>
@@ -39,28 +42,31 @@ const ViewRegisterActivities: React.FC<ModalProps> = ({ show, onHide }) => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <Button className="mb-8 col-lg-6" size="sm" variant="success" onClick={() => setModalEditActivity(true)}> <BsPencilSquare /> </Button>
-                                            <Button className="mb-8 col-lg-6" size="sm" variant="danger"> <BsTrash3 /> </Button>
-                                        </td>
+                                        {data.PROY_ACTIVIDADES_FILTERS?.map((item: ActivityDto, index: number) => (
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <Button className="mb-8 col-lg-6" size="sm" variant="success" onClick={() => { }}> <BsPencilSquare /> </Button>
+                                                    <Button className="mb-8 col-lg-6" size="sm" variant="danger"> <BsTrash3 /> </Button>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </Table>
                             </Col>
                         </Row>
                     </Tab.Container >
-                    <EditActivity show={modalEditActivity} onHide={() => setModalEditActivity(false)} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="mb-8" variant="primary" size="sm">Finalizar</Button>
                 </Modal.Footer>
             </Modal>
-        </div>
+        </div >
     )
 }
 

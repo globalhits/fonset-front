@@ -1,4 +1,5 @@
 import config from "../../config/config";
+import { CATEGORY_GENERAL } from "../../config/constants";
 
 class CategoryGeneralService {
 
@@ -8,10 +9,11 @@ class CategoryGeneralService {
 
     async getAll() {
         try {
-            console.log("category-general", `${this.apiGenerals}/${this.pathListCategoryGeneral}`);
-            const response = await fetch(`${this.apiGenerals}/${this.pathListCategoryGeneral}`);
-            const data = await response.json();
-            return data;
+            // console.log("category-general", `${this.apiGenerals}/${this.pathListCategoryGeneral}`);
+            // const response = await fetch(`${this.apiGenerals}/${this.pathListCategoryGeneral}`);
+            // const data = await response.json();
+            // return data;
+            return CATEGORY_GENERAL;
         } catch (error) {
             console.error('Error fetching data:', error);
             throw error;

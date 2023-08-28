@@ -160,10 +160,10 @@ const TypeCoverage = () => {
 
             <div className="row mt-2">
                 <div className="col-lg-5 mb-2">
-                    <InputSelected label="Departamentos*" className="mb-2 inputFloating" options={departaments} onChange={(value: any) => changeDepartament(value)} value={departamentSelected} disabled={disabledTable} />
+                    <InputSelected label="Departamentos*" className="mb-2 inputFloating" options={departaments ? departaments : []} onChange={(value: any) => changeDepartament(value)} value={departamentSelected} disabled={disabledTable} />
                 </div>
                 <div className="col-lg-5 mb-2">
-                    <InputSelected label="Municipios*" className="mb-3 inputFloating" options={filters} onChange={(value: any) => setMunicipalitySelected(value)} value={municipalitySelected} disabled={disabledMunicipalities} />
+                    <InputSelected label="Municipios*" className="mb-3 inputFloating" options={filters ? filters : []} onChange={(value: any) => setMunicipalitySelected(value)} value={municipalitySelected} disabled={disabledMunicipalities} />
                 </div>
                 <div className="col-lg-2">
                     <Button disabled={(departamentSelected !== "" && municipalitySelected !== "") ? false : true} className="mt-4 mb-2" variant="warning" onClick={() => addItem()}>+</Button>

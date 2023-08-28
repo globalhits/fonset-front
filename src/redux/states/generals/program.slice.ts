@@ -51,18 +51,21 @@ const ProgramSlice = createSlice({
             state.status = 'loading';
         }).addCase(fetchApiPrograms.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.programs = action.payload;
+            state.programs = action.payload ? action.payload : [];
         }).addCase(fetchApiPrograms.rejected, (state, action) => {
             state.status = 'failed';
+            state.programs = [];
             state.error = action.error.message;
         }).addCase(fetchApiLinePrograms.pending, state => {
             state.status = 'loading';
         }).addCase(fetchApiLinePrograms.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.line_programs = action.payload;
-            state.line_programs_filters = action.payload;
+            state.line_programs = action.payload ? action.payload : [];
+            state.line_programs_filters = action.payload ? action.payload : [];
         }).addCase(fetchApiLinePrograms.rejected, (state, action) => {
             state.status = 'failed';
+            state.line_programs = [];
+            state.line_programs_filters = [];
             state.error = action.error.message;
         });
     }

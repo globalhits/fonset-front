@@ -31,9 +31,10 @@ const TypeActivitySlice = createSlice({
             state.status = 'loading';
         }).addCase(fetchApiTypeActivity.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.typeActivities = action.payload;
+            state.typeActivities = action.payload ? action.payload : [];
         }).addCase(fetchApiTypeActivity.rejected, (state, action) => {
             state.status = 'failed';
+            state.typeActivities = [];
             state.error = action.error.message;
         })
     }

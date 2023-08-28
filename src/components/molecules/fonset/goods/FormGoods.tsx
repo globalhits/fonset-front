@@ -301,21 +301,21 @@ export default function FormGoods() {
         <>
             <Row className="mt-3">
                 <Col lg="4">
-                    <InputSelected label="Categoria general*" options={generals} onChange={(value: any) => changeCategoryGeneral(value)} value={categoryGeneral} />
+                    <InputSelected label="Categoria general*" options={generals ? generals : []} onChange={(value: any) => changeCategoryGeneral(value)} value={categoryGeneral} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Categoria especifica*" options={specifies_filter} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} disabled={disabledCategorySpecific} />
+                    <InputSelected label="Categoria especifica*" options={specifies_filter ? specifies_filter : []} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} disabled={disabledCategorySpecific} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Nombre bien/Servicio*" options={goods} onChange={(value: any) => setService(value)} value={service} />
+                    <InputSelected label="Nombre bien/Servicio*" options={goods ? goods : []} onChange={(value: any) => setService(value)} value={service} />
                 </Col>
             </Row>
             <Row className="mt-3">
                 <Col lg="2">
-                    <InputSelected label="Unidad de medida*" options={unities} onChange={(value: any) => changeUnit(value)} value={unit} />
+                    <InputSelected label="Unidad de medida*" options={unities ? unities : []} onChange={(value: any) => changeUnit(value)} value={unit} />
                 </Col>
                 <Col lg="2">
-                    <InputSelected label="Subuni. de medida*" options={sub_unities_filters} onChange={(value: any) => setSubUnit(value)} value={subUnit} disabled={disabledSubUnit} />
+                    <InputSelected label="Subuni. de medida*" options={sub_unities_filters ? sub_unities_filters : []} onChange={(value: any) => setSubUnit(value)} value={subUnit} disabled={disabledSubUnit} />
                 </Col>
                 <Col lg="4">
                     <InputSelected label="Presentacion*" options={TIPE_PRESENTATION} onChange={(value: any) => SetPresentation(value)} value={presentation} />
@@ -329,21 +329,21 @@ export default function FormGoods() {
             </Row>
             <Row className="mt-3">
                 <Col lg="4">
-                    <InputSelected label="Obj. estrategico del direccionamiento*" options={strategies} onChange={(value: any) => changeObjetiveDirection(value)} value={objetiveStrategy} />
+                    <InputSelected label="Obj. estrategico del direccionamiento*" options={strategies ? strategies : []} onChange={(value: any) => changeObjetiveDirection(value)} value={objetiveStrategy} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Sub tema del Obj. estrategico*" options={sub_strategies_filters} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} disabled={disabledSubObjetive} />
+                    <InputSelected label="Sub tema del Obj. estrategico*" options={sub_strategies_filters ? sub_strategies_filters : []} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} disabled={disabledSubObjetive} />
                 </Col>
                 <Col lg="4">
-                    <InputSelected label="Acciones Objs. estrategicos*" options={actions} onChange={(value: any) => setActionObjective(value)} value={actionObjetive} />
+                    <InputSelected label="Acciones Objs. estrategicos*" options={actions ? actions : []} onChange={(value: any) => setActionObjective(value)} value={actionObjetive} />
                 </Col>
             </Row>
             <Row className="mt-3">
                 <Col sm={4}>
-                    <InputSelected label="Programa*" options={programs} onChange={(value: any) => changeProgram(value)} value={program} />
+                    <InputSelected label="Programa*" options={programs ? programs : []} onChange={(value: any) => changeProgram(value)} value={program} />
                 </Col>
                 <Col sm={4}>
-                    <InputSelected label="Lineas del programa*" options={line_programs_filters} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} disabled={disabledLinesProgram} />
+                    <InputSelected label="Lineas del programa*" options={line_programs_filters ? line_programs_filters : []} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} disabled={disabledLinesProgram} />
                 </Col>
                 <Col className="col-lg-4 text-center">
                     <Buttons variant="outline-info" label="Agregar bien/servicio" classStyle="mt-4 " onClick={() => addItem()} />

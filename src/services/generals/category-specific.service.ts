@@ -1,4 +1,5 @@
 import config from "../../config/config";
+import { CATEGORY_SPECIFYC } from "../../config/constants";
 
 class CategorySpecificService {
 
@@ -8,10 +9,10 @@ class CategorySpecificService {
 
     async getAll() {
         try {
-            console.log("category-specific", `${this.apiGenerals}${this.pathListCategorySpecify}`);
-            const response = await fetch(`${this.apiGenerals}/${this.pathListCategorySpecify}`);
-            const data = await response.json();
-            return data;
+            // const response = await fetch(`${this.apiGenerals}/${this.pathListCategorySpecify}`);
+            // const data = await response.json();
+            // return data;
+            return CATEGORY_SPECIFYC;
         } catch (error) {
             console.error('Error fetching data:', error);
             throw error;

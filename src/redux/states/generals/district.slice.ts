@@ -30,9 +30,10 @@ const Districlice = createSlice({
             state.status = 'loading';
         }).addCase(fetchApiDistricts.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.districts = action.payload;
+            state.districts = action.payload ? action.payload : [];
         }).addCase(fetchApiDistricts.rejected, (state, action) => {
             state.status = 'failed';
+            state.districts = [];
             state.error = action.error.message;
         });
     }

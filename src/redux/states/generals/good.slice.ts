@@ -30,9 +30,10 @@ const GoodSlice = createSlice({
             state.status = 'loading';
         }).addCase(fetchApiGood.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.goods = action.payload;
+            state.goods = action.payload ? action.payload : [];
         }).addCase(fetchApiGood.rejected, (state, action) => {
             state.status = 'failed';
+            state.goods = [];
             state.error = action.error.message;
         });
     }

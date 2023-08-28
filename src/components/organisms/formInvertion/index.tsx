@@ -11,13 +11,13 @@ import InfoBasicProject from "./../../molecules/Invertion/infoProject/infoBasicP
 import Buttons from "../../atoms/button/Buttons";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
-import { GeneralSelector, saveFormInvertionApi, setDataGeneral, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
-import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
-import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
+import { setLoading } from "../../../redux/states/generals/loading.slice";
+import { GeneralSelector, consecutiveApi, saveFormInvertionApi, setDataGeneral, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { GeneralObjective } from "../../molecules/general/objective/generalObjective/GeneralObjective";
 import DocumentUpload from "../../molecules/upload/DocumentUpload";
 import alertService from "../../../services/generals/alert.service";
-
+import Swal from "sweetalert2";
+import { GeneralSpecific } from "../../molecules/general/objective/generalSpecific/GeneralSpecific";
 
 export default function FormInvertion() {
 
@@ -26,8 +26,27 @@ export default function FormInvertion() {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(setLoading(false))
+		dispatch(consecutiveApi("PGN"));
+		dispatch(setLoading(false));
 	}, [])
+
+	const showConfirmationAlert = () => {
+		Swal.fire({
+			title: 'Una pregunta',
+			text: '¿Seguro que no desea continuar?',
+			icon: 'question',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Cerrar',
+			cancelButtonText: 'Si, seguro',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				// Aquí puedes agregar el código para cerrar la ventana o realizar alguna acción adicional
+				console.log('La ventana se cerrará');
+			}
+		});
+	};
 
 	const saveForm = async () => {
 
@@ -201,56 +220,54 @@ export default function FormInvertion() {
 
 	return (
 		<div className="content container-fluid">
-			<Container>
-				<Card>
-					<Card.Header>
-						<Card.Title as={"h4"}>
-							PROYECTO DE INVERSIÓN
-						</Card.Title>
-					</Card.Header>
-					<Card.Body className="pt-3" >
-						<OriginProject />
-						<Tabs
-							defaultActiveKey="infoBasic"
-							transition={false}
-							id="info-project"
-							className="mt-4 mb-3"
-						>
-							<Tab eventKey="infoBasic" title="INFORMACIÓN BÁSICA">
-								<InfoBasic />
-							</Tab>
+			<Card>
+				<Card.Header>
+					<Card.Title as={"h4"}>
+						PROYECTO DE INVERSIÓN
+					</Card.Title>
+				</Card.Header>
+				<Card.Body className="pt-3" >
+					<OriginProject />
+					<Tabs
+						defaultActiveKey="infoBasic"
+						transition={false}
+						id="info-project"
+						className="mt-4 mb-3"
+					>
+						<Tab eventKey="infoBasic" title="INFORMACIÓN BÁSICA">
+							<InfoBasic />
+						</Tab>
 
-							<Tab eventKey="infoGeneral" title="INFORMACIÓN GENERAL">
-								<InfoBasicProject />
-							</Tab>
+						<Tab eventKey="infoGeneral" title="INFORMACIÓN GENERAL">
+							<InfoBasicProject />
+						</Tab>
 
-							<Tab eventKey="objGeneral" title="OBJ. GENERAL">
-								<GeneralObjective type={"invertion"} />
-							</Tab>
+						<Tab eventKey="objGeneral" title="OBJ. GENERAL">
+							<GeneralObjective type={"invertion"} />
+						</Tab>
 
-							<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-								<GeneralSpecific valueItem={{}} type={"invertion"} viewDetail={false} />
-							</Tab>
+						<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
+							<GeneralSpecific type={"invertion"} viewDetail={false} />
+						</Tab>
 
-							<Tab eventKey="documents" title="DOCUMENTOS">
-								<DocumentUpload />
-							</Tab>
-						</Tabs>
-						<hr />
-						<div className="row">
-							<div className="col-lg-6">
-								<Buttons variant="light" label="Cancelar" onClick={() => { }} />
-							</div>
-							<div className="col-lg-6 text-right">
-								{typeBtnToSave == "temp"
-									? (<Buttons variant="primary" label="Guardar" classStyle="mr-3" icon="clock-history" onClick={() => saveForm()} />)
-									: (<Buttons variant="outline-success" label="Finalizar" icon="save-fill" onClick={() => finishForm()} />)
-								}
-							</div>
+						<Tab eventKey="documents" title="DOCUMENTOS">
+							<DocumentUpload />
+						</Tab>
+					</Tabs>
+					<hr />
+					<div className="row">
+						<div className="col-lg-6">
+							<Buttons variant="light" label="Cancelar" onClick={() => showConfirmationAlert()} />
 						</div>
-					</Card.Body>
-				</Card>
-			</Container>
+						<div className="col-lg-6 text-right">
+							{typeBtnToSave == "temp"
+								? (<Buttons variant="primary" label="Guardar" classStyle="mr-3" icon="clock-history" onClick={() => saveForm()} />)
+								: (<Buttons variant="outline-success" label="Finalizar" icon="save-fill" onClick={() => finishForm()} />)
+							}
+						</div>
+					</div>
+				</Card.Body>
+			</Card>
 		</div>
 	);
 }

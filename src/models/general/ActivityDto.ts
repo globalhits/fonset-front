@@ -6,6 +6,7 @@ export interface ActivityDto {
     parentId?: number,
     objectivo_especifico?: string,
     tipo_actividad?: string,
+    tipo_actividad_name?: string,
     actividad?: string,
     descripcion?: string,
     indicador?: string,
@@ -16,5 +17,7 @@ export interface ActivityDto {
     entregable?: string,
     descripcion_entregable?: string,
     unidad_responsable?: string,
-    presupuesto?: number
+    unidad_responsable_name?: string,
+    presupuesto?: number,
+    total_presupuesto?: number,
 }

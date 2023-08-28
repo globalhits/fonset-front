@@ -17,7 +17,10 @@ let config: any = {
     pathListCategorySpecify: process.env.REACT_APP_PATH_LIST_CATEGORY_ESP_FONSET,
     pathListGoods: process.env.REACT_APP_PATH_LIST_BIEN_FONSET,
     pathListUnities: process.env.REACT_APP_PATH_LIST_UNI_MEDIDA,
-    pathListSubUnities: process.env.REACT_APP_PATH_LIST_SUB_UNI_MEDIDA
+    pathListSubUnities: process.env.REACT_APP_PATH_LIST_SUB_UNI_MEDIDA,
+
+    //Consecutive
+    pathConsecutive: process.env.REACT_APP_PATH_CONSECUTIVE
 
 };
 

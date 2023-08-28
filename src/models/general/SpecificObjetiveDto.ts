@@ -7,7 +7,7 @@ export interface SpecificObjetiveDto {
     DESCRIPCION?: string,
     INDICADOR?: string,
     LINEA_BASE?: string,
-    PRESUPUESTO?: string,
+    PRESUPUESTO?: number,
     RESULTADO_ESPERADO?: string,
 
     META?: string,
@@ -28,5 +28,6 @@ export interface SpecificObjetiveDto {
     ACCIONES_OBJETIVO_ESTRATEGICO?: string,
     PROGRAMA?: string,
     LINEA_PROGRAMA?: string,
-    ACTIVIDADES?: ActivityDto[]
+    ACTIVIDADES?: ActivityDto[],
+    TOTAL_PRESUPUESTO?: number,
 }
