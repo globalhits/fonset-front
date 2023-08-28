@@ -29,9 +29,10 @@ const CountrySlice = createSlice({
             state.status = 'loading';
         }).addCase(fetchApiCountry.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.countries = action.payload;
+            state.countries = action.payload ? action.payload : [];
         }).addCase(fetchApiCountry.rejected, (state, action) => {
             state.status = 'failed';
+            state.countries = [];
             state.error = action.error.message;
         });
     }

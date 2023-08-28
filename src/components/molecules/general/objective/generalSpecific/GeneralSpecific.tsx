@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks"
 import Buttons from "../../../../atoms/button/Buttons"
 import InputSelected from "../../../../atoms/selected/InputSelected"
-import { GeneralObjective } from "../generalObjective/GeneralObjective"
+import { GeneralObjective } from "../../../general/objective/generalObjective/GeneralObjective"
 import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific"
 import { RequestDto } from "../../../../../models/general/RequestDto";
 import { GeneralSelector, addObjetiveSpecifies, clearSpecifiesInputs, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
@@ -17,11 +17,10 @@ import { ObjetiveSelector, fetchApiActionStrategies, fetchApiObjetives, fetchApi
 
 interface GeneralSpecificInterface {
     type: string,
-    valueItem?: SpecificObjetiveDto,
     viewDetail?: boolean,
 }
 
-export const GeneralSpecific = ({ type, valueItem, viewDetail = false }: GeneralSpecificInterface) => {
+export const GeneralSpecific = ({ type, viewDetail = false }: GeneralSpecificInterface) => {
 
     // dispath
     const dispatch = useAppDispatch();
@@ -47,25 +46,25 @@ export const GeneralSpecific = ({ type, valueItem, viewDetail = false }: General
 
     // INPUT
 
-    const [categoryGeneral, setCategoryGeneral] = useState(valueItem ? valueItem.CATEGORIA_GENERAL : "");
+    const [categoryGeneral, setCategoryGeneral] = useState(data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS ? data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS?.CATEGORIA_GENERAL : "");
 
-    const [categorySpecify, setCategorySpecify] = useState(valueItem ? valueItem.CATEGORIA_ESPECIFICA : "");
+    const [categorySpecify, setCategorySpecify] = useState(data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS ? data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS.CATEGORIA_ESPECIFICA : "");
 
     const [disabledCategorySpecific, setDisabledCategorySpecific] = useState(true);
 
-    const [service, setService] = useState("");
+    const [service, setService] = useState(data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS ? data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS.NOMBRE_BIEN : "");
 
-    const [objetiveStrategy, setObjetiveStrategy] = useState("");
+    const [objetiveStrategy, setObjetiveStrategy] = useState(data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS ? data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS.OBJETIVO_ESTRATEGICO : "");
 
-    const [subObjetiveStrategy, setSubObjetiveStrategy] = useState("");
+    const [subObjetiveStrategy, setSubObjetiveStrategy] = useState(data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS?.SUBTEMA_OBJETIVO_ESTRATEGICO ?? "");
 
     const [disabledSubObjetive, setDisableSubObjetive] = useState(true)
 
-    const [actionObjetiveStrategy, setActionObjetiveStrategy] = useState("");
+    const [actionObjetiveStrategy, setActionObjetiveStrategy] = useState(data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS?.ACCIONES_OBJETIVO_ESTRATEGICO ?? "");
 
-    const [program, setProgram] = useState("");
+    const [program, setProgram] = useState(data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS?.PROGRAMA ?? "");
 
-    const [linesProgram, setLinesProgram] = useState("");
+    const [linesProgram, setLinesProgram] = useState(data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS?.LINEA_PROGRAMA ?? "");
 
     const [disabledLinesProgram, setDisabledLinesProgram] = useState(true);
 
@@ -127,12 +126,12 @@ export const GeneralSpecific = ({ type, valueItem, viewDetail = false }: General
             }
 
             if (data.PROY_ENTREGABLE_GENERAL_SPECIFY == "") {
-                setError('Indicador general vacio.');
+                setError('Entregable general vacio.');
                 return false;
             }
 
             if (data.PROY_DESCRIPCION_ENTREGABLE_GENERAL_SPECIFY == "") {
-                setError('Indicador general vacio.');
+                setError('Descripción entregable general vacio.');
                 return false;
             }
 
@@ -315,32 +314,32 @@ export const GeneralSpecific = ({ type, valueItem, viewDetail = false }: General
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria general / eje Tematico" options={generals} onChange={(value: any) => changeCategoryGeneral(value)} value={categoryGeneral} disabled={viewDetail} />
+                    <InputSelected label="Categoria general / eje Tematico" options={generals ? generals : []} onChange={(value: any) => changeCategoryGeneral(value)} value={categoryGeneral} disabled={viewDetail} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria Especifica" options={specifies_filter} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} disabled={disabledCategorySpecific || viewDetail} />
+                    <InputSelected label="Categoria Especifica" options={specifies_filter ? specifies_filter : []} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} disabled={disabledCategorySpecific || viewDetail} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Nombre Bien / Servicio" options={goods} onChange={(value: any) => setService(value)} value={service} disabled={viewDetail} />
-                </div>
-            </div>
-            <div className="row mt-3">
-                <div className="col-lg-4">
-                    <InputSelected label="Objetivo estratégico direccionamiento" options={strategies} onChange={(value: any) => changeObjetiveDirection(value)} value={objetiveStrategy} disabled={viewDetail} />
-                </div>
-                <div className="col-lg-4">
-                    <InputSelected label="Subtema del objetivo estratégico" options={sub_strategies_filters} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} disabled={disabledSubObjetive || viewDetail} />
-                </div>
-                <div className="col-lg-4">
-                    <InputSelected label="Acciones Objetivo estratégico" options={actions} onChange={(value: any) => setActionObjetiveStrategy(value)} value={actionObjetiveStrategy} disabled={viewDetail} />
+                    <InputSelected label="Nombre Bien / Servicio" options={goods ? goods : []} onChange={(value: any) => setService(value)} value={service} disabled={viewDetail} />
                 </div>
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputSelected label="Programa" options={programs} onChange={(value: any) => changeProgram(value)} value={program} disabled={viewDetail} />
+                    <InputSelected label="Objetivo estratégico direccionamiento" options={strategies ? strategies : []} onChange={(value: any) => changeObjetiveDirection(value)} value={objetiveStrategy} disabled={viewDetail} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Lineas del programa" options={line_programs_filters} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} disabled={disabledLinesProgram || viewDetail} />
+                    <InputSelected label="Subtema del objetivo estratégico" options={sub_strategies_filters ? sub_strategies_filters : []} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} disabled={disabledSubObjetive || viewDetail} />
+                </div>
+                <div className="col-lg-4">
+                    <InputSelected label="Acciones Objetivo estratégico" options={actions ? actions : []} onChange={(value: any) => setActionObjetiveStrategy(value)} value={actionObjetiveStrategy} disabled={viewDetail} />
+                </div>
+            </div>
+            <div className="row mt-3">
+                <div className="col-lg-4">
+                    <InputSelected label="Programa" options={programs ? programs : []} onChange={(value: any) => changeProgram(value)} value={program} disabled={viewDetail} />
+                </div>
+                <div className="col-lg-4">
+                    <InputSelected label="Lineas del programa" options={line_programs_filters ? line_programs_filters : []} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} disabled={disabledLinesProgram || viewDetail} />
                 </div>
                 <div className="col-lg-4 text-center">
                     {!viewDetail ? (<Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " onClick={() => addItem()} />) : <></>}

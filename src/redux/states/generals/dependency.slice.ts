@@ -30,9 +30,10 @@ const DependencySlice = createSlice({
             state.status = 'loading';
         }).addCase(fetchApiDependencies.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.dependencies = action.payload;
+            state.dependencies = action.payload ? action.payload : [];
         }).addCase(fetchApiDependencies.rejected, (state, action) => {
             state.status = 'failed';
+            state.dependencies = [];
             state.error = action.error.message;
         });
     }

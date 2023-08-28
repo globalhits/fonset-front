@@ -134,10 +134,10 @@ const InfoBasic: React.FC<infoBasicInterface> = ({ type }) => {
                     {type !== "cooperative" ? (
                         <>
                             <InputFloating name="dependencia-responsable" label="Entidad / dependencia responsable *" className="mb-3 inputFloating" type="text" setValueChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_RESPONSABLE} isInvalid={!data.PROY_DEPENDENCIA_RESPONSABLE && errorInputs} />
-                            <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} isInvalid={!data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE && errorInputs} />
+                            <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies ? dependencies : []} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} isInvalid={!data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE && errorInputs} />
                         </>
                     ) : (
-                        <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} isInvalid={!data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE && errorInputs} />
+                        <InputSelected name="dependencia-funcional-responsable" label="Dependencia funcional responsable *" className="mt-2 mb-3 inputFloating" options={dependencies ? dependencies : []} onChange={(value: any) => setValueByIndex("PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE", value)} value={data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE} isInvalid={!data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE && errorInputs} />
                     )}
                 </Col>
             </Row>

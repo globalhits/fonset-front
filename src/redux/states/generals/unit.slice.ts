@@ -51,18 +51,21 @@ const UnitSlice = createSlice({
             state.status = 'loading';
         }).addCase(fetchApiUnits.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.unities = action.payload;
+            state.unities = action.payload ? action.payload : [];
         }).addCase(fetchApiUnits.rejected, (state, action) => {
             state.status = 'failed';
+            state.unities = [];
             state.error = action.error.message;
         }).addCase(fetchApiSubUnits.pending, state => {
             state.status = 'loading';
         }).addCase(fetchApiSubUnits.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.sub_unities = action.payload;
-            state.sub_unities_filters = action.payload;
+            state.sub_unities = action.payload ? action.payload : [];
+            state.sub_unities_filters = action.payload ? action.payload : [];
         }).addCase(fetchApiSubUnits.rejected, (state, action) => {
             state.status = 'failed';
+            state.sub_unities = [];
+            state.sub_unities_filters = [];
             state.error = action.error.message;
         });
     }

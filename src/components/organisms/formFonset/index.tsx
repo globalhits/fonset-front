@@ -194,53 +194,51 @@ export default function FormFonset() {
 
 	return (
 		<div className="content container-fluid">
-			<Container>
-				<Card>
-					<Card.Header>
-						<Card.Title as={"h4"}>
-							FORMULARIO FONSET
-						</Card.Title>
-					</Card.Header>
-					<Card.Body className="pt-3">
-						<OriginProject />
-						<Tabs
-							defaultActiveKey="general"
-							transition={false}
-							id="info-project"
-							className="mt-4 mb-3"
-						>
-							<Tab eventKey="general" title="DATOS GENERALES">
-								<FormDataGeneral />
-							</Tab>
+			<Card>
+				<Card.Header>
+					<Card.Title as={"h4"}>
+						FORMULARIO FONSET
+					</Card.Title>
+				</Card.Header>
+				<Card.Body className="pt-3">
+					<OriginProject />
+					<Tabs
+						defaultActiveKey="general"
+						transition={false}
+						id="info-project"
+						className="mt-4 mb-3"
+					>
+						<Tab eventKey="general" title="DATOS GENERALES">
+							<FormDataGeneral />
+						</Tab>
 
-							<Tab eventKey="description" title="DESCRIPCION">
-								<FormDescription />
-							</Tab>
+						<Tab eventKey="description" title="DESCRIPCION">
+							<FormDescription />
+						</Tab>
 
-							<Tab eventKey="goods" title="BIENES Y/O SERVICIOS">
-								<FormGoods />
-							</Tab>
+						<Tab eventKey="goods" title="BIENES Y/O SERVICIOS">
+							<FormGoods />
+						</Tab>
 
-							<Tab eventKey="documents" title="DOCUMENTOS ANEXOS">
-								<DocumentUpload />
-							</Tab>
+						<Tab eventKey="documents" title="DOCUMENTOS ANEXOS">
+							<DocumentUpload />
+						</Tab>
 
-						</Tabs>
-						<hr />
-						<div className="row">
-							<div className="col-lg-6">
-								<Buttons variant="light" label="Cancelar" onClick={() => showConfirmationAlert()} />
-							</div>
-							<div className="col-lg-6 text-right">
-								{typeBtnToSave == "temp"
-									? (<Buttons variant="primary" label="Guardar" classStyle="mr-3" icon="clock-history" onClick={() => saveForm()} />)
-									: (<Buttons variant="outline-success" label="Finalizar" icon="save-fill" onClick={() => finishForm()} />)
-								}
-							</div>
+					</Tabs>
+					<hr />
+					<div className="row">
+						<div className="col-lg-6">
+							<Buttons variant="light" label="Cancelar" onClick={() => showConfirmationAlert()} />
 						</div>
-					</Card.Body>
-				</Card>
-			</Container>
-		</div>
+						<div className="col-lg-6 text-right">
+							{typeBtnToSave == "temp"
+								? (<Buttons variant="primary" label="Guardar" classStyle="mr-3" icon="clock-history" onClick={() => saveForm()} />)
+								: (<Buttons variant="outline-success" label="Finalizar" icon="save-fill" onClick={() => finishForm()} />)
+							}
+						</div>
+					</div>
+				</Card.Body>
+			</Card>
+		</div >
 	);
 }

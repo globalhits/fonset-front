@@ -1,4 +1,5 @@
 import config from "../../config/config";
+import { UNID_MEASUREMENT } from "../../config/constants";
 
 class UnitService {
 
@@ -8,10 +9,10 @@ class UnitService {
 
     async getAll() {
         try {
-            console.log("units", `${this.apiGenerals}/${this.pathListUnities}`);
-            const response = await fetch(`${this.apiGenerals}/${this.pathListUnities}`);
-            const data = await response.json();
-            return data;
+            // const response = await fetch(`${this.apiGenerals}/${this.pathListUnities}`);
+            // const data = await response.json();
+            // return data;
+            return UNID_MEASUREMENT;
         } catch (error) {
             console.error('Error fetching data:', error);
             throw error;

@@ -45,18 +45,20 @@ const CategorySlice = createSlice({
             state.status = 'loading';
         }).addCase(fetchApiCategoriesSpecifies.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.specifies = action.payload;
-            state.specifies_filter = action.payload;
+            state.specifies = action.payload ? action.payload : [];
+            state.specifies_filter = action.payload ? action.payload : [];
         }).addCase(fetchApiCategoriesSpecifies.rejected, (state, action) => {
             state.status = 'failed';
+            state.specifies_filter = [];
             state.error = action.error.message;
         }).addCase(fetchApiCategoriesGenerals.pending, state => {
             state.status = 'loading';
         }).addCase(fetchApiCategoriesGenerals.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.generals = action.payload;
+            state.generals = action.payload ? action.payload : [];
         }).addCase(fetchApiCategoriesGenerals.rejected, (state, action) => {
             state.status = 'failed';
+            state.generals = [];
             state.error = action.error.message;
         })
     }

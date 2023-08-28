@@ -1459,18 +1459,26 @@ export const SERVICES = [
 
 export const LIST_FGN_DEPENDENCY: DependencyInvolvedDto[] = [
     {
+        INDEX: 1,
         id: 1,
-        description: "dependencia 1"
+        description: "dependencia 1",
+        name: "dependencia 1"
     },
     {
+        INDEX: 2,
         id: 2,
-        description: "dependencia 2"
+        description: "dependencia 2",
+        name: "dependencia 2"
     }, {
+        INDEX: 3,
         id: 3,
-        description: "dependencia 3"
+        description: "dependencia 3",
+        name: "dependencia 3"
     }, {
+        INDEX: 4,
         id: 4,
-        description: "dependencia 3"
+        description: "dependencia 4",
+        name: "dependencia 4"
     },
 ];
 
@@ -1797,7 +1805,7 @@ export const LIST_TYPE_ACTIVITIES: BaseDto[] = [
         name: "Fortalecimiento de capacidades tecnológicas",
         description: "Fortalecimiento de capacidades tecnológicas"
     }
-]
+];
 
 
 

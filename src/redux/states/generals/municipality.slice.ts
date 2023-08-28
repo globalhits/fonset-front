@@ -41,10 +41,12 @@ const MunicipalitySlice = createSlice({
             state.status = 'loading';
         }).addCase(fetchApiMunicipality.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.filters = action.payload;
-            state.municipalities = action.payload;
+            state.filters = action.payload ? action.payload : [];
+            state.municipalities = action.payload ? action.payload : [];
         }).addCase(fetchApiMunicipality.rejected, (state, action) => {
             state.status = 'failed';
+            state.filters = [];
+            state.municipalities = []
             state.error = action.error.message;
         });
     }

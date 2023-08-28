@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Col, Row, Tab, Tabs } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-import InputFloating from "../../../atoms/input/Input";
-import InputSelected from "../../../atoms/selected/InputSelected";
-import { BsTrash3 } from "react-icons/bs";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import { GeneralSelector, addActivities, addActivitiesFilters, filterActivitiesByParentId } from "../../../../redux/states/generals/general.slice";
-import { ActivityDto } from "../../../../models/general/ActivityDto";
-import helper from "../../../../utils/helper";
-import { DependencySelector } from "../../../../redux/states/generals/dependency.slice";
-import { TypeActivitySelector, fetchApiTypeActivity } from "../../../../redux/states/generals/activity.slice";
+import InputFloating from "../../../../atoms/input/Input";
+import InputSelected from "../../../../atoms/selected/InputSelected";
+import { BsTrash3, BsPencilFill } from "react-icons/bs";
+import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
+import { GeneralSelector, addActivities, addActivitiesFilters, addValueToActivities, filterActivitiesByParentId } from "../../../../../redux/states/generals/general.slice";
+import { ActivityDto } from "../../../../../models/general/ActivityDto";
+import helper from "../../../../../utils/helper";
+import { DependencySelector } from "../../../../../redux/states/generals/dependency.slice";
+import { TypeActivitySelector, fetchApiTypeActivity } from "../../../../../redux/states/generals/activity.slice";
 
 interface ModalProps {
     type?: string,
@@ -30,9 +30,11 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
 
     useEffect(() => {
         dispatch(fetchApiTypeActivity())
-    }, [])
+    }, []);
 
-    const [activities, setActivities] = useState<any>([]);
+    const [activityId, setActivityId] = useState(0);
+
+    const [typeBtnSave, setTypeBtnSave] = useState("add");
 
     const [objSpecify, setObjSpecify] = useState("");
 
@@ -59,6 +61,8 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
     const [descriptionEntregable, setDescriptionEntregable] = useState("");
 
     const [unidadResponsable, setUnidadResponsable] = useState("");
+
+    const [totalPresupuesto, setTotalPresupuesto] = useState(0);
 
     const [error, setError] = useState("");
 
@@ -128,7 +132,7 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
                 parentId: objetivoId,
                 id: helper.getRandomInt(),
                 objectivo_especifico: objSpecify,
-                tipo_actividad: typeActivity,
+                tipo_actividad: "",
                 actividad: activity,
                 descripcion: description,
                 indicador: indicador,
@@ -138,7 +142,7 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
                 hito: hito,
                 entregable: entregable,
                 descripcion_entregable: descriptionEntregable,
-                unidad_responsable: unidadResponsable,
+                unidad_responsable: "",
                 presupuesto: presupuesto
             }
         } else {
@@ -167,46 +171,29 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
                 return
             }
 
+            let unitResp = dependencies.find(unit => unit.id == Number(unidadResponsable))?.name
+
             newObject = {
                 INDEX: helper.getRandomInt(),
                 parentId: objetivoId,
                 id: helper.getRandomInt(),
                 objectivo_especifico: objSpecify,
                 tipo_actividad: typeActivity,
+                tipo_actividad_name: typeActivities.find(typeActivi => typeActivi.id == Number(typeActivity))?.name,
                 actividad: activity,
                 unidad_responsable: unidadResponsable,
+                unidad_responsable_name: dependencies.find(unit => unit.id == Number(unidadResponsable))?.name,
                 presupuesto: presupuesto
             }
         }
 
         let activities: ActivityDto[] = data.PROY_ACTIVIDADES ? data.PROY_ACTIVIDADES : [];
 
-        console.log("activities", activities);
-
-        console.log("objetivoId", objetivoId);
-
         let newList = [...activities, newObject];
 
         let activitiesFilters: ActivityDto[] = data.PROY_ACTIVIDADES_FILTERS ? data.PROY_ACTIVIDADES_FILTERS : [];
 
-        let newListFilter = [...activitiesFilters, {
-            INDEX: helper.getRandomInt(),
-            parentId: objetivoId,
-            id: helper.getRandomInt(),
-            objectivo_especifico: objSpecify,
-            tipo_actividad: typeActivity,
-            actividad: activity,
-            descripcion: description,
-            indicador: indicador,
-            meta: meta,
-            mes_inicio: inicio,
-            mes_final: fin,
-            hito: hito,
-            entregable: entregable,
-            descripcion_entregable: descriptionEntregable,
-            unidad_responsable: unidadResponsable,
-            presupuesto: presupuesto
-        }]
+        let newListFilter = [...activitiesFilters, newObject]
 
         dispatch(addActivities(newList));
 
@@ -225,11 +212,55 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
         setEntregable("");
         setDescriptionEntregable("");
         setUnidadResponsable("");
+        setActivityId(0);
+        setError("");
+    }
+
+    const editItem = (item: ActivityDto) => {
+
+        if (activityId == 0) {
+
+            setActivityId(item.id ? item.id : 0);
+
+            if (item) {
+                if (type !== "cooperative") {
+                    setObjSpecify(item.objectivo_especifico ? item.objectivo_especifico : "");
+                    setActivity(item.actividad ? item.actividad : "");
+                    setDescription(item.descripcion ? item.descripcion : "");
+                    setIndicador(item.indicador ? item.indicador : "");
+                    setMeta(item.meta ? item.meta : "");
+                    setInicio(item.mes_inicio ? item.mes_inicio : "")
+                    setFin(item.mes_final ? item.mes_final : "");
+                    setHito(item.hito ? item.hito : "");
+                    setPresupuesto(item.presupuesto ? item.presupuesto : 0);
+                    setEntregable(item.entregable ? item.entregable : "");
+                    setDescriptionEntregable(item.descripcion_entregable ? item.descripcion_entregable : "");
+                } else {
+                    setObjSpecify(item.objectivo_especifico ? item.objectivo_especifico : "");
+                    setTypeActivity(item.tipo_actividad ? item.tipo_actividad : "");
+                    setActivity(item.actividad ? item.actividad : "")
+                    setPresupuesto(item.presupuesto ? item.presupuesto : 0);
+                    setUnidadResponsable(item.unidad_responsable ? item.unidad_responsable : "");
+                }
+            }
+
+            let newList = data.PROY_ACTIVIDADES?.filter((activ: ActivityDto) => activ.id !== item.id);
+
+            let newListFilter = data.PROY_ACTIVIDADES_FILTERS?.filter((activ: ActivityDto) => activ.id !== item.id);
+
+            dispatch(addActivities(newList));
+
+            dispatch(addActivitiesFilters(newListFilter));
+        }
+        setError("");
     }
 
     const deleteItem = (item: ActivityDto) => {
+        setTypeBtnSave("add");
         let newList = data.PROY_ACTIVIDADES?.filter(object => object.id !== item.id);
+        let newListFilter = data.PROY_ACTIVIDADES_FILTERS?.filter(object => object.id !== item.id);
         dispatch(addActivities(newList));
+        dispatch(addActivitiesFilters(newListFilter));
     }
 
     return (
@@ -301,7 +332,7 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
                                     </Row>
                                     <Row>
                                         <Col sm={6}>
-                                            <InputSelected label="Tipo de actividad*" className="mb-3 inputFloatingModal" options={typeActivities} onChange={(value: string) => setTypeActivity(value)} value={typeActivity} />
+                                            <InputSelected label="Tipo de actividad*" className="mb-3 inputFloatingModal" options={typeActivities ? typeActivities : []} onChange={(value: string) => setTypeActivity(value)} value={typeActivity} />
                                         </Col>
                                         <Col sm={6}>
                                             <InputFloating label="Actividad*" type="text" className="mb-3 inputFloatingModal " setValueChange={(value: string) => setActivity(value)} value={activity} />
@@ -312,14 +343,18 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
                                             <InputFloating label="Valor estimado*" type="number" className="mb-3 inputFloatingModal " setValueChange={(value: number) => setPresupuesto(value)} value={presupuesto} />
                                         </Col>
                                         <Col sm={6}>
-                                            <InputSelected label="Unidad responsable*" className="mb-3 inputFloatingModal " options={dependencies} onChange={(value: string) => setUnidadResponsable(value)} value={unidadResponsable} />
+                                            <InputSelected label="Unidad responsable*" className="mb-3 inputFloatingModal " options={dependencies ? dependencies : []} onChange={(value: string) => setUnidadResponsable(value)} value={unidadResponsable} />
                                         </Col>
                                     </Row>
                                 </>
                             )}
 
                             <Row style={{ marginLeft: "10px" }}>
-                                <Button className="mb-12" variant="outline-primary" size="lg" onClick={() => addItemTable()}>AGREGAR ACTIVIDAD</Button>
+                                <h4 className="text-danger">{error}</h4>
+                            </Row>
+
+                            <Row className="mt-4 mb-4">
+                                <Button className="mb-12" variant="outline-success" size="lg" onClick={() => addItemTable()}>AGREGAR ACTIVIDAD</Button>
                             </Row>
 
                             <Row className="mt-5">
@@ -354,9 +389,10 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
                                         )}
                                     </thead>
                                     <tbody>
-                                        {data.PROY_ACTIVIDADES_FILTERS?.map((activityItem: ActivityDto, index: number) => (
-                                            type !== "cooperative" ?
-                                                (
+                                        {data.PROY_ACTIVIDADES_FILTERS?.map((activityItem: ActivityDto, index: number) => {
+                                            let TOTAL_PRESUPUESTO = 0;
+                                            if (type !== "cooperative") {
+                                                return (
                                                     <tr key={index} className="campos" style={{ fontSize: "13px" }}>
                                                         <td>{index++}</td>
                                                         <td>{activityItem.objectivo_especifico}</td>
@@ -371,28 +407,53 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
                                                         <td>{activityItem.descripcion_entregable}</td>
                                                         <td>{activityItem.presupuesto}</td>
                                                         <td>
-                                                            <Button onClick={() => deleteItem(activityItem)} className="mb-8" size="sm" variant="danger">
-                                                                <BsTrash3 />
+                                                            <Button onClick={() => editItem(activityItem)} className="mb-8" size="sm" variant="primary">
+                                                                <BsPencilFill />
                                                             </Button>
-                                                        </td>
-                                                    </tr>
-                                                ) : (
-                                                    <tr key={index} className="campos" style={{ fontSize: "13px" }}>
-                                                        <td>{index++}</td>
-                                                        <td>{activityItem.objectivo_especifico}</td>
-                                                        <td>{activityItem.tipo_actividad}</td>
-                                                        <td>{activityItem.actividad}</td>
-                                                        <td>{activityItem.presupuesto}</td>
-                                                        <td>{activityItem.unidad_responsable}</td>
-                                                        <td>
                                                             <Button onClick={() => deleteItem(activityItem)} className="mb-8" size="sm" variant="danger">
                                                                 <BsTrash3 />
                                                             </Button>
                                                         </td>
                                                     </tr>
                                                 )
-                                        ))}
+                                            } else {
+                                                return (<tr key={index} className="campos" style={{ fontSize: "13px" }}>
+                                                    <td>{index++}</td>
+                                                    <td>{activityItem.objectivo_especifico}</td>
+                                                    <td>{activityItem.tipo_actividad_name}</td>
+                                                    <td>{activityItem.actividad}</td>
+                                                    <td>{activityItem.presupuesto}</td>
+                                                    <td>{activityItem.unidad_responsable_name}</td>
+                                                    <td>
+                                                        <Button onClick={() => editItem(activityItem)} className="mb-8" size="sm" variant="primary">
+                                                            <BsPencilFill />
+                                                        </Button>
+                                                        <Button onClick={() => deleteItem(activityItem)} className="mb-8" size="sm" variant="danger">
+                                                            <BsTrash3 />
+                                                        </Button>
+                                                    </td>
+                                                </tr>)
+                                            }
+                                            TOTAL_PRESUPUESTO += Number(activityItem.presupuesto) ?? 0;
+                                            console.log("total", TOTAL_PRESUPUESTO);
+
+                                            setTotalPresupuesto(TOTAL_PRESUPUESTO)
+                                            // dispatch(addValueToActivities(TOTAL_PRESUPUESTO))
+                                        })}
                                     </tbody>
+                                    <tfoot>
+                                        {type != "cooperative" ?
+                                            (<tr>
+                                                <td colSpan={12} className="text-right">TOTAL PRESUPUESTO: {totalPresupuesto}</td>
+                                                <td>
+                                                </td>
+                                            </tr>)
+                                            : (<tr>
+                                                <td colSpan={5} className="text-right">{totalPresupuesto}</td>
+                                                <td colSpan={2} className="text-center"></td>
+                                            </tr>)
+                                        }
+                                    </tfoot>
                                 </Table>
                             </Row>
                         </Tab>

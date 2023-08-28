@@ -29,9 +29,10 @@ const DepartamentSlice = createSlice({
             state.status = 'loading';
         }).addCase(fetchApiDepartament.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.departaments = action.payload;
+            state.departaments = action.payload ? action.payload : [];
         }).addCase(fetchApiDepartament.rejected, (state, action) => {
             state.status = 'failed';
+            state.departaments = [];
             state.error = action.error.message;
         });
     }

@@ -20,7 +20,7 @@ export default function InputSelected({ label, name, className, options, value, 
             <Form.Select name={name} aria-label="Floating label select example" value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled} isInvalid={isInvalid}>
                 <option value={""}>Seleccionar...</option>
                 {
-                    options?.map((option, i) => (
+                    options && Array.isArray(options) && options?.map((option, i) => (
                         <option key={i} value={option.id || option.ID}>
                             {
                                 option.name ? option.name : (option.NAME ? option.NAME : (option.descripcion ? option.descripcion : (option.DESCRIPCION ? option.DESCRIPCION : option.description)))

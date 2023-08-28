@@ -91,7 +91,9 @@ export const initialStateFormGeneral: RequestDto = {
     PROY_SUB_TEMA_OBJETIVO_ESTRATEGICO_SPECIFY: "",
     PROY_ACCIONES_OBJETIVO_ESTRATEGICO: "",
     PROY_PROGRAMA_SPECIFY: "",
-    PROY_LINEA_PROGRAMA: ""
+    PROY_LINEA_PROGRAMA: "",
+    PROY_OBJETIVOS_ESPECIFICOS_TOTAL: 0,
+    PROY_ACTIVIDADES_TOTAL: 0
 }
 
 export interface GeneralState {
@@ -194,6 +196,9 @@ const GeneralSlice = createSlice({
                 state.data.PROY_DOCUMENTOS_ANEXOS = payload;
             }
         },
+        filterObjetiveSpecify: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_OBJETIVOS_ESPECIFICOS_FILTERS = payload;
+        },
         addActivitiesFilters: (state, { payload }: PayloadAction<any>) => {
             if (state.data.PROY_ACTIVIDADES_FILTERS) {
                 state.data.PROY_ACTIVIDADES_FILTERS = payload;
@@ -221,6 +226,12 @@ const GeneralSlice = createSlice({
             state.data.PROY_DESCRIPCION_ENTREGABLE_GENERAL_SPECIFY = "";
             state.data.PROY_RESULTADO_ESPERADO_SPECIFY = "";
         },
+        addValueToObjetive: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_OBJETIVOS_ESPECIFICOS_TOTAL = payload;
+        },
+        addValueToActivities: (state, { payload }: PayloadAction<any>) => {
+            state.data.PROY_ACTIVIDADES_TOTAL = payload;
+        }
     },
     extraReducers(builder) {
         builder.addCase(saveFormInvertionApi.pending, state => {
@@ -277,10 +288,13 @@ export const {
     addObjetiveSpecifies,
     addActivities,
     addActivitiesFilters,
+    filterObjetiveSpecify,
     filterActivitiesByParentId,
     addDocuments,
     showAlertForInputs,
-    clearSpecifiesInputs
+    clearSpecifiesInputs,
+    addValueToObjetive,
+    addValueToActivities
 } = GeneralSlice.actions
 
 export const GeneralSelector = (state: RootState) => state.general;
