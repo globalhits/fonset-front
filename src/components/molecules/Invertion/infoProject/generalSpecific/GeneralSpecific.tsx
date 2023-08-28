@@ -6,7 +6,7 @@ import InputSelected from "../../../../atoms/selected/InputSelected"
 import { GeneralObjective } from "../generalObjective/GeneralObjective"
 import { TableObjectiveSpecific } from "./table/TableObjectiveSpecific"
 import { RequestDto } from "../../../../../models/general/RequestDto";
-import { GeneralSelector, addObjetiveSpecifies, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
+import { GeneralSelector, addObjetiveSpecifies, clearSpecifiesInputs, setDataGeneral } from "../../../../../redux/states/generals/general.slice";
 import { ProgramSelector, fetchApiLinePrograms, fetchApiPrograms, filterByProgramId, } from "../../../../../redux/states/generals/program.slice";
 import { CategorySelector, fetchApiCategoriesGenerals, fetchApiCategoriesSpecifies, filterByCategoryGeneralId } from "../../../../../redux/states/generals/category.slice";
 import { SpecificObjetiveDto } from "../../../../../models/general/SpecificObjetiveDto";
@@ -16,10 +16,12 @@ import { GoodSelector, fetchApiGood } from "../../../../../redux/states/generals
 import { ObjetiveSelector, fetchApiActionStrategies, fetchApiObjetives, fetchApiSubObjetives, filterBySubObjetiveByParentId } from "../../../../../redux/states/generals/objetive.slice";
 
 interface GeneralSpecificInterface {
-    type?: string
+    type: string,
+    valueItem?: SpecificObjetiveDto,
+    viewDetail?: boolean,
 }
 
-export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
+export const GeneralSpecific = ({ type, valueItem, viewDetail = false }: GeneralSpecificInterface) => {
 
     // dispath
     const dispatch = useAppDispatch();
@@ -27,7 +29,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
     // state basics
     const [error, setError] = useState("");
     const { data, errorInputs } = useAppSelector(GeneralSelector);
-    const { generals, specifies, specifies_filter } = useAppSelector(CategorySelector);
+    const { generals, specifies_filter } = useAppSelector(CategorySelector);
     const { programs, line_programs_filters } = useAppSelector(ProgramSelector);
     const { strategies, sub_strategies_filters, actions } = useAppSelector(ObjetiveSelector)
     const { goods } = useAppSelector(GoodSelector)
@@ -45,9 +47,9 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
 
     // INPUT
 
-    const [categoryGeneral, setCategoryGeneral] = useState("");
+    const [categoryGeneral, setCategoryGeneral] = useState(valueItem ? valueItem.CATEGORIA_GENERAL : "");
 
-    const [categorySpecify, setCategorySpecify] = useState("");
+    const [categorySpecify, setCategorySpecify] = useState(valueItem ? valueItem.CATEGORIA_ESPECIFICA : "");
 
     const [disabledCategorySpecific, setDisabledCategorySpecific] = useState(true);
 
@@ -75,6 +77,12 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             [index]: value
         }
 
+        console.log("index request by clear", index);
+
+        console.log("value request by clear", value);
+
+        console.log("update request by clear", updatedRequest);
+
         dispatch(setDataGeneral(updatedRequest));
     }
 
@@ -83,7 +91,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
         let objetives: SpecificObjetiveDto[] = data.PROY_OBJETIVOS_ESPECIFICOS ? data.PROY_OBJETIVOS_ESPECIFICOS : [];
 
         if (type !== "cooperative") {
-            if (data.PROY_OBJETIVO_ESPECIFICO == "") {
+            if (data.PROY_OBJETIVO_GENERAL_SPECIFY == "") {
                 setError('Objetivo especifico vacio.');
                 return false;
             }
@@ -129,7 +137,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             }
 
         } else {
-            if (data.PROY_OBJETIVO_ESPECIFICO == "") {
+            if (data.PROY_OBJETIVO_GENERAL_SPECIFY == "") {
                 setError('Objetivo especifico vacio.');
                 return false;
             }
@@ -201,18 +209,28 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
             return false;
         }
 
+        let OBJETIVO = data.PROY_OBJETIVO_GENERAL_SPECIFY;
+        let DESCRIPCION = data.PROY_DESCRIPCION_GENERAL_SPECIFY;
+        let INDICADOR = data.PROY_INDICADOR_GENERAL_SPECIFY;
+        let LINEA_BASE = data.PROY_LINEA_BASE_GENERAL_SPECIFY;
+        let META = data.PROY_META_GENERAL_SPECIFY;
+        let MES_INICIAL = data.PROY_MES_INICIO_GENERAL_SPECIFY;
+        let MES_FINAL = data.PROY_MES_FINAL_GENERAL_SPECIFY;
+        let ENTREGABLE = data.PROY_ENTREGABLE_GENERAL_SPECIFY;
+        let DESCRIPCION_ENTREGABLE = data.PROY_DESCRIPCION_ENTREGABLE_GENERAL_SPECIFY;
+
         const newItem = [...objetives, {
             INDEX: helper.getRandomInt(),
-            ID: null,
-            OBJETIVO: data.PROY_OBJETIVO_GENERAL_SPECIFY,
-            DESCRIPCION: data.PROY_DESCRIPCION_GENERAL_SPECIFY,
-            INDICADOR: data.PROY_INDICADOR_GENERAL_SPECIFY,
-            LINEA_BASE: data.PROY_LINEA_BASE_GENERAL_SPECIFY,
-            META: data.PROY_META_GENERAL_SPECIFY,
-            MES_INICIAL: data.PROY_MES_INICIO_GENERAL_SPECIFY,
-            MES_FINAL: data.PROY_MES_FINAL_GENERAL_SPECIFY,
-            ENTREGABLE: data.PROY_ENTREGABLE_GENERAL_SPECIFY,
-            DESCRIPCION_ENTREGABLE: data.PROY_DESCRIPCION_ENTREGABLE_GENERAL_SPECIFY,
+            ID: helper.getRandomInt(),
+            OBJETIVO: OBJETIVO,
+            DESCRIPCION: DESCRIPCION,
+            INDICADOR: INDICADOR,
+            LINEA_BASE: LINEA_BASE,
+            META: META,
+            MES_INICIAL: MES_INICIAL,
+            MES_FINAL: MES_FINAL,
+            ENTREGABLE: ENTREGABLE,
+            DESCRIPCION_ENTREGABLE: DESCRIPCION_ENTREGABLE,
             CATEGORIA_GENERAL: categoryGeneral,
             CATEGORIA_ESPECIFICA: categorySpecify,
             NOMBRE_BIEN: service,
@@ -226,6 +244,7 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
         dispatch(addObjetiveSpecifies(newItem));
 
         setError("");
+        clearInputs()
     }
 
     const changeProgram = (value: any) => {
@@ -271,43 +290,61 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
         setDisableSubObjetive(false)
     }
 
+    const clearInputs = () => {
+
+        dispatch(clearSpecifiesInputs(true))
+
+        setCategoryGeneral("")
+        setCategorySpecify("")
+        setDisabledCategorySpecific(true)
+        setService("")
+        setObjetiveStrategy("")
+        setSubObjetiveStrategy("")
+        setDisableSubObjetive(true)
+        setActionObjetiveStrategy("")
+        setProgram("")
+        setLinesProgram("")
+        setDisabledLinesProgram(true)
+    }
+
     return (
-        <>
-            <GeneralObjective type={type} isSpecify={true} />
+        <div>
+            <GeneralObjective type={type} isSpecify={true} viewDetail={viewDetail} />
             <div className="row mt-3 mb-2">
                 <h5>Información detallada <span className="text-danger">*</span></h5>
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria general / eje Tematico" options={generals} onChange={(value: any) => changeCategoryGeneral(value)} value={categoryGeneral} />
+                    <InputSelected label="Categoria general / eje Tematico" options={generals} onChange={(value: any) => changeCategoryGeneral(value)} value={categoryGeneral} disabled={viewDetail} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Categoria Especifica" options={specifies_filter} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} disabled={disabledCategorySpecific} />
+                    <InputSelected label="Categoria Especifica" options={specifies_filter} onChange={(value: any) => setCategorySpecify(value)} value={categorySpecify} disabled={disabledCategorySpecific || viewDetail} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Nombre Bien / Servicio" options={goods} onChange={(value: any) => setService(value)} value={service} />
-                </div>
-            </div>
-            <div className="row mt-3">
-                <div className="col-lg-4">
-                    <InputSelected label="Objetivo estratégico direccionamiento" options={strategies} onChange={(value: any) => changeObjetiveDirection(value)} value={objetiveStrategy} />
-                </div>
-                <div className="col-lg-4">
-                    <InputSelected label="Subtema del objetivo estratégico" options={sub_strategies_filters} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} disabled={disabledSubObjetive} />
-                </div>
-                <div className="col-lg-4">
-                    <InputSelected label="Acciones Objetivo estratégico" options={actions} onChange={(value: any) => setActionObjetiveStrategy(value)} value={actionObjetiveStrategy} />
+                    <InputSelected label="Nombre Bien / Servicio" options={goods} onChange={(value: any) => setService(value)} value={service} disabled={viewDetail} />
                 </div>
             </div>
             <div className="row mt-3">
                 <div className="col-lg-4">
-                    <InputSelected label="Programa" options={programs} onChange={(value: any) => changeProgram(value)} value={program} />
+                    <InputSelected label="Objetivo estratégico direccionamiento" options={strategies} onChange={(value: any) => changeObjetiveDirection(value)} value={objetiveStrategy} disabled={viewDetail} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Lineas del programa" options={line_programs_filters} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} disabled={disabledLinesProgram} />
+                    <InputSelected label="Subtema del objetivo estratégico" options={sub_strategies_filters} onChange={(value: any) => setSubObjetiveStrategy(value)} value={subObjetiveStrategy} disabled={disabledSubObjetive || viewDetail} />
+                </div>
+                <div className="col-lg-4">
+                    <InputSelected label="Acciones Objetivo estratégico" options={actions} onChange={(value: any) => setActionObjetiveStrategy(value)} value={actionObjetiveStrategy} disabled={viewDetail} />
+                </div>
+            </div>
+            <div className="row mt-3">
+                <div className="col-lg-4">
+                    <InputSelected label="Programa" options={programs} onChange={(value: any) => changeProgram(value)} value={program} disabled={viewDetail} />
+                </div>
+                <div className="col-lg-4">
+                    <InputSelected label="Lineas del programa" options={line_programs_filters} onChange={(value: any) => setLinesProgram(value)} value={linesProgram} disabled={disabledLinesProgram || viewDetail} />
                 </div>
                 <div className="col-lg-4 text-center">
-                    <Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " onClick={() => addItem()} />
+                    {!viewDetail ? (<Buttons variant="outline-info" label="Agregar objetivo especifico" classStyle="mt-4 " onClick={() => addItem()} />) : <></>}
+
                 </div>
             </div>
             <div className="row">
@@ -315,7 +352,10 @@ export const GeneralSpecific = ({ type }: GeneralSpecificInterface) => {
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                 </div>
             </div>
-            <TableObjectiveSpecific type={type} />
-        </>
+            {!viewDetail ? (
+                <TableObjectiveSpecific type={type} />
+            ) : <></>}
+
+        </div>
     )
 }

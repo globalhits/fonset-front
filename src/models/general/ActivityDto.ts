@@ -1,16 +1,20 @@
 import { SpecificObjetiveDto } from "./SpecificObjetiveDto";
 
-export interface Activity {
-    index?: number;
+export interface ActivityDto {
+    INDEX?: number;
     id?: number;
-    objectivo_especifico: SpecificObjetiveDto,
-    actividad: string,
-    descripcion: string,
-    indicador: string,
-    meta: string,
-    mes_inicio: Date,
-    mes_final: Date,
-    hito: string,
-    entregable: string,
-    presupuesto: string
+    parentId?: number,
+    objectivo_especifico?: string,
+    tipo_actividad?: string,
+    actividad?: string,
+    descripcion?: string,
+    indicador?: string,
+    meta?: string,
+    mes_inicio?: string,
+    mes_final?: string,
+    hito?: string,
+    entregable?: string,
+    descripcion_entregable?: string,
+    unidad_responsable?: string,
+    presupuesto?: number
 }

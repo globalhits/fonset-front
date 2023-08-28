@@ -12,14 +12,16 @@ import Buttons from "../../atoms/button/Buttons";
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { loadingSelector, setLoading } from "../../../redux/states/generals/loading.slice";
-import { GeneralSelector, saveFormInvertionApi, setDataGeneral, setDataTypeForm, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, saveFormInvertionApi, setDataGeneral, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
 import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
+import DocumentUpload from "../../molecules/upload/DocumentUpload";
+import alertService from "../../../services/generals/alert.service";
 
 
 export default function FormInvertion() {
 
-	const { data, error, errorInputs, response } = useAppSelector(GeneralSelector);
+	const { data, error, status, typeBtnToSave } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 
@@ -27,44 +29,174 @@ export default function FormInvertion() {
 		dispatch(setLoading(false))
 	}, [])
 
-	const saveForm = () => {
-		dispatch(setDataTypeForm("inversion_temp"))
-		console.log("guardar form", data);
-	}
+	const saveForm = async () => {
 
-	const finishForm = () => {
+		await dispatch(setDataTypeForm("inversion_temp"));
 
-		dispatch(setDataTypeForm("inversion"))
+		await dispatch(setTypeFormToSave("TEMPPGN"))
 
-		dispatch(setLoading(true))
-
-		showAlertsForInputsRequired();
+		await dispatch(setLoading(true));
 
 		if (data.PROY_CODIGO != "") {
-			//ALERT ARROJAR ERROR
+			alertService.showAlert("Error", "Codigo temporal es requerido", "error", "OK", false);
 		}
 
-		if (data.PROY_NOMBRE != "") {
-			//ALERT ARROJAR ERROR
+		await dispatch(saveFormInvertionApi(data));
+
+		if (status == "succeeded") {
+			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
+		} else if (status == "failed") {
+			alertService.showAlert("Error", error, "error", "OK", false);
 		}
 
-		if (data.PROY_FECHA != "") {
-			//ALERT ARROJAR ERROR
-		}
-
-		if (data.PROY_COBERTURA?.TIPO == "focalizada" && data.PROY_COBERTURA.COBERTURA?.length == 0) {
-			//Arrojar error
-			alert("error")
-		}
+		await dispatch(setLoading(false));
 		console.log("guardar form", data);
 
-		dispatch(saveFormInvertionApi(data));
+	}
 
-		dispatch(setLoading(false))
+	const finishForm = async () => {
+
+		await dispatch(setDataTypeForm("inversion"))
+
+		await dispatch(setTypeFormToSave("PGN"))
+
+		await dispatch(setLoading(true))
+
+		if (validationsInputsToFinish() > 0) {
+			showAlertsForInputsRequired();
+			alertService.showAlert("Error", "Verificar los campos requeridos", "error", "OK", false);
+			dispatch(setLoading(false))
+			return;
+		}
+
+		await dispatch(saveFormInvertionApi(data));
+
+		if (status == "succeeded") {
+			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
+		} else if (status == "failed") {
+			alertService.showAlert("Error", error, "error", "OK", false);
+		}
+
+		await dispatch(setLoading(false))
 	}
 
 	const showAlertsForInputsRequired = () => {
 		dispatch(showAlertForInputs(true));
+	}
+
+	const validationsInputsToFinish = () => {
+		let errorsCount = 0;
+
+		//TAB INFORMACIÓN BASICA
+
+		if (data.PROY_CODIGO == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_NOMBRE == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_FECHA == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_TIPO?.length == 0) {
+			errorsCount++;
+		}
+
+		if (data.PROY_DEPENDENCIA_RESPONSABLE == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_DEPENDENCIA_FUNCIONAL_RESPONSABLE == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_COBERTURA?.TIPO == "focalizada" && data.PROY_COBERTURA.COBERTURA?.length == 0) {
+			errorsCount++;
+		}
+
+		if (data.PROY_ENTIDAD_NACIONAL_INVOLUCRADA?.length == 0) {
+			errorsCount++;
+		}
+
+		if (data.PROY_DEPENDENCIAS_INVOLUCRADAS?.length == 0) {
+			errorsCount++;
+		}
+
+		//TAB INFORMACIÓN GENERAL
+
+		if (data.PROY_JUSTIFICACION_ANTECEDENTES == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_POBLACION_AFECTADA == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_POBLACION_OBJETO == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_CARACTERISTICAS_DEMOGRAFICAS == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_ANALISIS_PARTICIPANTES?.length == 0) {
+			errorsCount++;
+		}
+
+		// TAB OBJETIVO GENERAL
+
+		if (data.PROY_OBJETIVO_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_DESCRIPCION_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_INDICADOR_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_LINEA_BASE_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_META_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_ENTREGABLE_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_MES_INICIO_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_MES_FINAL_GENERAL == "") {
+			errorsCount++;
+		}
+
+		if (data.PROY_DESCRIPCION_ENTREGABLE_GENERAL == "") {
+			errorsCount++;
+		}
+
+		// Objetivos especificos
+
+		if (data.PROY_OBJETIVOS_ESPECIFICOS?.length == 0) {
+			errorsCount++;
+		}
+
+		// Documentos
+		if (data.PROY_DOCUMENTOS_ANEXOS?.length == 0) {
+			errorsCount++;
+		}
+
+		return errorsCount;
 	}
 
 	return (
@@ -76,7 +208,7 @@ export default function FormInvertion() {
 							PROYECTO DE INVERSIÓN
 						</Card.Title>
 					</Card.Header>
-					<Card.Body className="pt-3">
+					<Card.Body className="pt-3" >
 						<OriginProject />
 						<Tabs
 							defaultActiveKey="infoBasic"
@@ -97,11 +229,12 @@ export default function FormInvertion() {
 							</Tab>
 
 							<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-								<GeneralSpecific type={"invertion"} />
+								<GeneralSpecific valueItem={{}} type={"invertion"} viewDetail={false} />
 							</Tab>
 
-							{/* <Tab eventKey="documents" title="DOCUMENTOS">
-							</Tab> */}
+							<Tab eventKey="documents" title="DOCUMENTOS">
+								<DocumentUpload />
+							</Tab>
 						</Tabs>
 						<hr />
 						<div className="row">
@@ -109,8 +242,10 @@ export default function FormInvertion() {
 								<Buttons variant="light" label="Cancelar" onClick={() => { }} />
 							</div>
 							<div className="col-lg-6 text-right">
-								<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => saveForm()} />
-								<Buttons variant="outline-success" label="Finalizar" onClick={() => finishForm()} />
+								{typeBtnToSave == "temp"
+									? (<Buttons variant="primary" label="Guardar" classStyle="mr-3" icon="clock-history" onClick={() => saveForm()} />)
+									: (<Buttons variant="outline-success" label="Finalizar" icon="save-fill" onClick={() => finishForm()} />)
+								}
 							</div>
 						</div>
 					</Card.Body>

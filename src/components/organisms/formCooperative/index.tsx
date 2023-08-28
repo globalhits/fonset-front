@@ -14,16 +14,17 @@ import Buttons from "../../atoms/button/Buttons";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setLoading } from "../../../redux/states/generals/loading.slice";
 import InfoBasic from "../../molecules/general/infoBasic";
-import { GeneralSelector, saveFormCooperativeApi, setDataGeneral, setDataTypeForm, showAlertForInputs } from "../../../redux/states/generals/general.slice";
+import { GeneralSelector, saveFormCooperativeApi, setDataGeneral, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
 import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
 import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
 import { CountrySelector, fetchApiCountry } from "../../../redux/states/generals/country.slice";
 import { RequestDto } from "../../../models/general/RequestDto";
+import alertService from "../../../services/generals/alert.service";
 
 
 export default function FormCooperative() {
 
-	const { data, errorInputs } = useAppSelector(GeneralSelector);
+	const { data, errorInputs, typeBtnToSave, status, error } = useAppSelector(GeneralSelector);
 
 	const { countries } = useAppSelector(CountrySelector);
 
@@ -34,38 +35,70 @@ export default function FormCooperative() {
 		dispatch(fetchApiCountry());
 	}, []);
 
-	const saveForm = () => {
-		dispatch(setDataTypeForm("cooperacion_temp"))
+	const saveForm = async () => {
+
+		await dispatch(setDataTypeForm("cooperacion_temp"));
+
+		await dispatch(setTypeFormToSave("TEMPCTI"));
+
+		await dispatch(setLoading(true));
+
+		if (data.PROY_CODIGO != "") {
+			alertService.showAlert("Error", "Codigo temporal es requerido", "error", "OK", false);
+		}
+
+		await dispatch(saveFormCooperativeApi(data));
+
+		if (status == "succeeded") {
+			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
+		} else if (status == "failed") {
+			alertService.showAlert("Error", error, "error", "OK", false);
+		}
+
+		await dispatch(setLoading(false));
 		console.log("guardar form", data);
 	}
 
 	const finishForm = async () => {
 
-		await dispatch(setDataTypeForm("inversion"))
+		await dispatch(setDataTypeForm("cooperacion"));
 
-		await dispatch(setLoading(true))
+		await dispatch(setTypeFormToSave("CTI"));
 
-		await showAlertsForInputsRequired();
+		await dispatch(setLoading(true));
+
+		let errorsCount = 0;
 
 		if (data.PROY_CODIGO != "") {
-			//ALERT ARROJAR ERROR
+			errorsCount++;
 		}
 
 		if (data.PROY_NOMBRE != "") {
-			//ALERT ARROJAR ERROR
+			errorsCount++;
 		}
 
 		if (data.PROY_FECHA != "") {
-			//ALERT ARROJAR ERROR
+			errorsCount++;
 		}
 
 		if (data.PROY_COBERTURA?.TIPO == "focalizada" && data.PROY_COBERTURA.COBERTURA?.length == 0) {
-			//Arrojar error
-			alert("error")
+			errorsCount++;
 		}
-		console.log("guardar form", data);
+
+		if (errorsCount > 0) {
+			showAlertsForInputsRequired();
+			alertService.showAlert("Error", "Verificar los campos requeridos", "error", "OK", false);
+			dispatch(setLoading(false))
+			return;
+		}
 
 		await dispatch(saveFormCooperativeApi(data));
+
+		if (status == "succeeded") {
+			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
+		} else if (status == "failed") {
+			alertService.showAlert("Error", error, "error", "OK", false);
+		}
 
 		await dispatch(setLoading(false))
 	}
@@ -149,8 +182,10 @@ export default function FormCooperative() {
 									<Button variant="light" onClick={showConfirmationAlert}>Cancelar</Button>
 								</Col>
 								<Col sm={6} className="text-right">
-									<Buttons variant="primary" label="Guardar" classStyle="mr-3" onClick={() => saveForm()} />
-									<Buttons variant="outline-success" label="Finalizar" onClick={() => finishForm()} />
+									{typeBtnToSave == "temp"
+										? (<Buttons variant="primary" label="Guardar" classStyle="mr-3" icon="clock-history" onClick={() => saveForm()} />)
+										: (<Buttons variant="outline-success" label="Finalizar" icon="save-fill" onClick={() => finishForm()} />)
+									}
 								</Col>
 							</Row>
 						</Card.Body>

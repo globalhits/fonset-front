@@ -1,11 +1,16 @@
 import React, { useRef, useState } from 'react';
 
 import "./uploadFile.scss";
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { GeneralSelector, addDocuments } from '../../../redux/states/generals/general.slice';
+import helper from '../../../utils/helper';
 
-interface FileUploaderInterface {
-	setUploadedFiles: Function
-}
-const FileUploader: React.FC<FileUploaderInterface> = ({ setUploadedFiles }) => {
+
+const FileUploader = ({ }) => {
+
+	const { data } = useAppSelector(GeneralSelector);
+
+	const dispatch = useAppDispatch();
 
 	const validExtensions = ['pdf', 'png', 'jpg', 'jpeg', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'txt'];
 	const maxFileSize = 10 * 1024 * 1024; // 10 MB en bytes
@@ -23,7 +28,6 @@ const FileUploader: React.FC<FileUploaderInterface> = ({ setUploadedFiles }) => 
 		return validExtensions.includes(extension) && file.size <= maxFileSize;
 	};
 
-
 	const handleDrop = async (e: any) => {
 		e.preventDefault();
 
@@ -32,42 +36,36 @@ const FileUploader: React.FC<FileUploaderInterface> = ({ setUploadedFiles }) => 
 		const validFiles = acceptedFiles.filter(isValidFile);
 
 		if (validFiles.length === 0) {
-			alert('Los archivos no cumplen con los requisitos (formato o tamaño).');
+			// alert('Los archivos no cumplen con los requisitos (formato o tamaño).');
+
 			return;
 		}
+
+		let base64 = await helper.blobToBase64(validFiles[0])
 
 		const updatedFiles = validFiles.map((file: any) => ({
 			name: file.name,
 			extension: file.name.split('.').pop(),
+			base64: base64,
 			file
 		}));
 
-		setUploadedFiles((prevFiles: any) => [...prevFiles, ...updatedFiles]); //almacenamos el file en el estado para luego cargarlo al redux general
+		let documents = data.PROY_DOCUMENTOS_ANEXOS ? data.PROY_DOCUMENTOS_ANEXOS : [];
 
+		let newList = [...documents, {
+			INDEX: helper.getRandomInt(),
+			id: helper.getRandomInt(),
+			name: updatedFiles[0].name,
+			extension: updatedFiles[0].extension,
+			base64: base64
+		}]
 
-		// este trycatch es de prueba para enviar los archivos al backen
-		/*  
-		
-		 const formData = new FormData();
-		  formData.append('files', validFiles[0]);
-		
-		try {
-			const response = await authAxios.post('/api/jordan/upload', formData);
-		
-			if (!response || response.status !== 200) {
-			  alert('Error al guardar el archivo en el backend');
-			  return;
-			}
-		
-			setUploadedFiles(prevFiles => [...prevFiles, ...updatedFiles]);
-		  } catch (error) {
-			console.error('Error al subir el archivo:', error);
-		  } */
+		dispatch(addDocuments(newList))
 	};
 
 	return (
 		<div className="file-dropzone" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
-			<p>Arrastra un archivo PDF aquí</p>
+			<p>Arrastra un archivo (Imagenes y documentos) aquí</p>
 		</div>
 	);
 };

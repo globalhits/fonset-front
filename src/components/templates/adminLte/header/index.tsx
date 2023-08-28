@@ -1,8 +1,21 @@
 import React from "react";
-/* import { Navbar, Container, Nav } from "react-bootstrap"; */
 import './header.scss'
+import Buttons from "../../../atoms/button/Buttons";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { GeneralSelector, showTypeBtnToSave } from "../../../../redux/states/generals/general.slice";
+
+
 
 export default function Header() {
+
+	const { typeBtnToSave } = useAppSelector(GeneralSelector);
+
+	const dispatch = useAppDispatch();
+
+	const setTypeSaveForm = (type: string) => {
+		dispatch(showTypeBtnToSave(type));
+	}
+
 	return (
 		<nav className="main-header navbar navbar-expand navbar-white navbar-light header-position">
 			{/* Left navbar links */}
@@ -12,17 +25,11 @@ export default function Header() {
 						<i className="fas fa-bars " />
 					</a>
 				</li>
-				<li className="nav-item d-none d-sm-inline-block">
-					<a href="#" className="nav-link">
-						<i className="bi bi-clock-history mr-1"></i>
-						Guardado temporal
-					</a>
+				<li className="nav-item menu d-flex d-sm-inline-block" style={{ background: typeBtnToSave === "temp" ? "#e9ecef" : "white", borderRadius: "10px" }}>
+					<Buttons label="Guardado temporal" classStyle="nav-link" variant="" icon="clock-history" onClick={() => setTypeSaveForm("temp")} />
 				</li>
-				<li className="nav-item d-none d-sm-inline-block">
-					<a href="#" className="nav-link">
-						<i className="bi bi-save-fill mr-1"></i>
-						Guardado directo
-					</a>
+				<li className="nav-item menu d-flex d-sm-inline-block" style={{ background: typeBtnToSave === "direct" ? "#e9ecef" : "white", borderRadius: "10px" }}>
+					<Buttons label="Guardado directo" classStyle="nav-link" variant="" icon="save-fill" onClick={() => setTypeSaveForm("direct")} />
 				</li>
 			</ul>
 			{/* Right navbar links */}

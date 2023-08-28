@@ -15,17 +15,6 @@ const FormDataGeneral: React.FC<any> = ({ }) => {
     // INPUT
     const [disabledMunicipalities, setDisabledMunicipalities] = useState<boolean>(true);
 
-    const [departament, setDepartament] = useState("");
-
-    const [municipalityOrigin, setMunicipalityOrigin] = useState("");
-
-    const [entityDependencyResponsible, setEntityDependencyResponsible] = useState("");
-
-    const [judicialDistrict, setJudicialDistrict] = useState("");
-
-
-    const [error, setError] = useState("");
-
     const { data, errorInputs } = useAppSelector(GeneralSelector);
 
     const { departaments } = useAppSelector(DepartamentSelector);
@@ -35,8 +24,6 @@ const FormDataGeneral: React.FC<any> = ({ }) => {
     const { dependencies } = useAppSelector(DependencySelector);
 
     const { districts } = useAppSelector(DistrictSelector);
-
-
 
     useEffect(() => {
         // Disparar la acción para obtener los datos
@@ -64,7 +51,8 @@ const FormDataGeneral: React.FC<any> = ({ }) => {
 
     const changeDepartament = (departament: any) => {
         if (departament != null) {
-            setDepartament(departament);
+
+            setValueByIndex("PROY_DEPARTAMENTO", departament);
 
             dispatch(findByDepartamentId(departament));
 
@@ -79,10 +67,10 @@ const FormDataGeneral: React.FC<any> = ({ }) => {
                     <InputFloating name="sub-regional-apoyo" label="Sub. regional apoyo*" className="mb-3 InputSelected" type="text" setValueChange={(value: any) => setValueByIndex("PROY_SUB_REGIONAL_APOYO", value)} value={data.PROY_SUB_REGIONAL_APOYO} isInvalid={!data.PROY_SUB_REGIONAL_APOYO && errorInputs} />
                 </div>
                 <div className="col-lg-4 ">
-                    <InputSelected label="Departamento*" options={departaments} onChange={(value: any) => changeDepartament(value)} value={departament} />
+                    <InputSelected label="Departamento*" options={departaments} onChange={(value: any) => changeDepartament(value)} value={data.PROY_DEPARTAMENTO} isInvalid={!data.PROY_DEPARTAMENTO && errorInputs} />
                 </div>
                 <div className="col-lg-4">
-                    <InputSelected label="Municipios*" className="mb-3 inputFloating" options={filters} onChange={(value: any) => setMunicipalityOrigin(value)} value={municipalityOrigin} disabled={disabledMunicipalities} />
+                    <InputSelected label="Municipios*" className="mb-3 inputFloating" options={filters} onChange={(value: any) => setValueByIndex("PROY_MUNICIPIO_ORIGEN", value)} value={data.PROY_MUNICIPIO_ORIGEN} disabled={disabledMunicipalities} isInvalid={!data.PROY_MUNICIPIO_ORIGEN && errorInputs} />
                 </div>
             </div>
             <div className="row">
@@ -90,10 +78,10 @@ const FormDataGeneral: React.FC<any> = ({ }) => {
                     <InputFloating name="seccional" label="Seccional*" className="mb-3 inputFloating" type="text" setValueChange={(value: any) => setValueByIndex("PROY_SECCIONAL", value)} value={data.PROY_SECCIONAL} isInvalid={!data.PROY_SECCIONAL && errorInputs} />
                 </div>
                 <div className="col-lg-4 ">
-                    <InputSelected label="Entidad dependencia responsable*" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_ENTIDAD_DEPENDENCIA_RESPONSABLE", value)} value={data.PROY_ENTIDAD_DEPENDENCIA_RESPONSABLE} />
+                    <InputSelected label="Entidad dependencia responsable*" options={dependencies} onChange={(value: any) => setValueByIndex("PROY_ENTIDAD_DEPENDENCIA_RESPONSABLE", value)} value={data.PROY_ENTIDAD_DEPENDENCIA_RESPONSABLE} isInvalid={!data.PROY_ENTIDAD_DEPENDENCIA_RESPONSABLE && errorInputs} />
                 </div>
                 <div className="col-lg-4 ">
-                    <InputSelected label="Distrito judicial*" className="mb-3 inputFloating" options={districts} onChange={(value: any) => setJudicialDistrict(value)} value={judicialDistrict} />
+                    <InputSelected label="Distrito judicial*" className="mb-3 inputFloating" options={districts} onChange={(value: any) => setValueByIndex("PROY_DISTRITO_JUDICIAL", value)} value={data.PROY_DISTRITO_JUDICIAL} isInvalid={!data.PROY_DISTRITO_JUDICIAL && errorInputs} />
                 </div>
             </div>
         </>

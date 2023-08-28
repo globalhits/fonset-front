@@ -1,9 +1,9 @@
 import React from "react";
 import { Tabs, Table, Button, Col, Row, Tab } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-import InputFloating from "../../../../../atoms/input/Input";
-import InputSelected from "../../../../../atoms/selected/InputSelected";
-import FileUploader from "../../../../upload/FileUploader";
+import InputFloating from "../../../atoms/input/Input";
+import InputSelected from "../../../atoms/selected/InputSelected";
+import FileUploader from "../../upload/FileUploader";
 
 type ModalProps = {
     show: boolean;
@@ -43,13 +43,6 @@ const EditActivity: React.FC<ModalProps> = ({ show, onHide }) => {
 
                                 </Col>
                             </Row>
-                        </Tab>
-
-                        <Tab eventKey="documentos" title="DOCUMENTOS">
-                            <Col sm={12}>
-                                <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
-                                <FileUploader setUploadedFiles={() => { }} />
-                            </Col>
                         </Tab>
                     </Tabs>
                 </Modal.Body>

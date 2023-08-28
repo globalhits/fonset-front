@@ -1,50 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import { Table, Button, Accordion, Row, Col } from "react-bootstrap";
-import InputFloating from "../../atoms/input/Input";
+import { Table, Row, Col } from "react-bootstrap";
 import FileUploader from "./FileUploader";
 import Swal from "sweetalert2";
-import { BsPencilSquare, BsTrash3, BsDownload } from 'react-icons/bs'
-import { useAppSelector } from "../../../redux/hooks";
-import { GeneralSelector } from "../../../redux/states/generals/general.slice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { GeneralSelector, addDocuments } from "../../../redux/states/generals/general.slice";
+import Buttons from "../../atoms/button/Buttons";
+import helper from "../../../utils/helper";
 
 export default function DocumentUpload() {
 
-    const { data } = useAppSelector(GeneralSelector)
+    const { data, errorInputs } = useAppSelector(GeneralSelector);
 
-    const [uploadedFiles, setUploadedFiles] = useState([]);
+    const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        console.log("data", data);
-
-    }, [])
-
-    const showConfirmationAlert = () => {
+    const deleteFile = (file: any) => {
         Swal.fire({
-            title: 'Una pregunta',
-            text: '¿Está seguro de eliminar el registro? ',
+            title: '¡Alerta!',
+            text: '¿Está seguro de eliminar el archivo? ',
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Cerrar',
-            cancelButtonText: 'Si, seguro',
+            confirmButtonText: 'Si',
+            cancelButtonText: 'Cerrar',
+            allowOutsideClick: false,
         }).then((result) => {
             if (result.isConfirmed) {
-                // Aquí puedes agregar el código para cerrar la ventana o realizar alguna acción adicional
-                console.log('La ventana se cerrará');
+                let newList = data.PROY_DOCUMENTOS_ANEXOS?.filter((item: any) => item.id != file.id)
+                dispatch(addDocuments(newList));
             }
         });
     };
 
     return (
         <div>
-            <Row sm={12}>
-                <Col>
-                    <InputFloating label="Descripcion*" type="text" placeholder="" className="mb-3 inputFloating" setValueChange={(value: string) => { }} value="" />
-                </Col>
-                <Col>
-                    <FileUploader setUploadedFiles={setUploadedFiles} />
+            <Row className="mt-5 mb-5">
+                <Col sm={12}>
+                    <FileUploader />
                 </Col>
             </Row>
 
@@ -55,19 +48,29 @@ export default function DocumentUpload() {
                             <tr className="campos" style={{ fontSize: "13px" }}>
                                 <th>Archivo</th>
                                 <th>Extensión</th>
-                                <th>Acciones</th>
+                                <th className="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {uploadedFiles.map((file: any, index: number) => (
-                                <tr key={index}>
+                            {data.PROY_DOCUMENTOS_ANEXOS?.map((file: any, index: number) => {
+                                let blob = helper.b64toBlob(file.base64);
+                                let url = URL.createObjectURL(blob);
+                                return (<tr key={index}>
                                     <td>{file.name}</td>
                                     <td>{file.extension}</td>
-                                    <td>
-                                        <button onClick={() => showConfirmationAlert()}>Borrar</button>
+                                    <td className="text-center">
+                                        <a className="btn btn-info" href={url} download={file.name}>
+                                            <i className="bi bi-file-earmark-arrow-down"></i>
+                                        </a>
+                                        <Buttons variant="danger" icon="trash-fill" onClick={() => deleteFile(file)} />
                                     </td>
-                                </tr>
-                            ))}
+                                </tr>)
+                            })}
+                            {
+                                errorInputs && data.PROY_DOCUMENTOS_ANEXOS?.length == 0
+                                    ? (<tr><td colSpan={3} className="text-center"><h5 className="text-danger">¡Documentos requeridos!</h5></td></tr>)
+                                    : null
+                            }
                         </tbody>
                     </Table>
                 </Col>

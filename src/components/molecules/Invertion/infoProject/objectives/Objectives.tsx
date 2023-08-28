@@ -7,7 +7,7 @@ import { GeneralSpecific } from "../generalSpecific/GeneralSpecific";
 
 
 interface ObjetivesInterface {
-    type?: string
+    type: string
 }
 export default function Objectives({ type }: ObjetivesInterface) {
 
