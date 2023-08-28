@@ -152,7 +152,7 @@ const GeneralSlice = createSlice({
         showTypeBtnToSave: (state, { payload }: PayloadAction<any>) => {
             state.typeBtnToSave = payload;
         },
-        setDataTypeForm: (state, { payload }: PayloadAction<any>) => {
+        setDataTypeForm: (state, { payload }: PayloadAction<string>) => {
             state.data.PROY_TIPO_FORM = payload;
         },
         setEntityRelation: (state, { payload }: PayloadAction<any>) => {

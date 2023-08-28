@@ -41,7 +41,10 @@ const FileUploader = ({ }) => {
 			return;
 		}
 
-		let base64 = await helper.blobToBase64(validFiles[0])
+		console.log("validFiles", validFiles);
+
+		let base64: any = await helper.blobToBase64(validFiles[0]);
+
 
 		const updatedFiles = validFiles.map((file: any) => ({
 			name: file.name,
