@@ -4,6 +4,7 @@ import "./index.scss";
 // --- Components libraries ---
 import { Tab, Tabs, Card, Container, Button, Col, Row } from "react-bootstrap";
 import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
 
 // --- Components project ---
 import OriginProject from "../../molecules/originProject";
@@ -15,12 +16,12 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setLoading } from "../../../redux/states/generals/loading.slice";
 import InfoBasic from "../../molecules/general/infoBasic";
 import { GeneralSelector, consecutiveApi, saveFormCooperativeApi, setDataGeneral, setDataTypeForm, setTypeFormToSave, showAlertForInputs } from "../../../redux/states/generals/general.slice";
-import { GeneralSpecific } from "../../molecules/Invertion/infoProject/generalSpecific/GeneralSpecific";
-import { GeneralObjective } from "../../molecules/Invertion/infoProject/generalObjective/GeneralObjective";
 import { CountrySelector, fetchApiCountry } from "../../../redux/states/generals/country.slice";
 import { RequestDto } from "../../../models/general/RequestDto";
 import alertService from "../../../services/generals/alert.service";
 import DocumentUpload from "../../molecules/upload/DocumentUpload";
+import { GeneralObjective } from "../../molecules/general/objective/generalObjective/GeneralObjective";
+import { GeneralSpecific } from "../../molecules/general/objective/generalSpecific/GeneralSpecific";
 
 
 export default function FormCooperative() {
@@ -30,6 +31,8 @@ export default function FormCooperative() {
 	const { countries } = useAppSelector(CountrySelector);
 
 	const dispatch = useAppDispatch();
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(consecutiveApi("CTI"));
@@ -92,21 +95,25 @@ export default function FormCooperative() {
 	}
 
 	const showConfirmationAlert = () => {
-		Swal.fire({
-			title: 'Una pregunta',
-			text: '¿Seguro que no desea continuar?',
-			icon: 'question',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Cerrar',
-			cancelButtonText: 'Si, seguro',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				// Aquí puedes agregar el código para cerrar la ventana o realizar alguna acción adicional
-				console.log('La ventana se cerrará');
-			}
-		});
+		if (data != null) {
+			Swal.fire({
+				title: 'Una pregunta',
+				text: '¿Seguro que no desea continuar?',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Cerrar',
+				cancelButtonText: 'Si, seguro',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					navigate("/cooperative");
+				}
+			});
+		} else {
+
+		}
+
 	};
 
 	const setValueByIndex = (index: any, value: any) => {
@@ -205,63 +212,60 @@ export default function FormCooperative() {
 	return (
 		<>
 			<div className="content container-fluid">
-				<Container>
-					<Card>
-						<Card.Header>
-							<Card.Title as={"h4"}>
-								REGISTRO DE COOPERACION INTERNACIONAL
-							</Card.Title>
-						</Card.Header>
-						<Card.Body className="pt-3">
-							<OriginProject />
-							<Tabs
-								defaultActiveKey="general"
-								transition={false}
-								id="info-project"
-								className="mt-4 mb-3"
-							>
-								<Tab eventKey="general" title="DATOS GENERALES">
-									{/* <FormDataGeneralCoop formData={dataForm} setFormData={(data: RequestCooperativeDto) => setDataForm(data)}/> */}
-									<InfoBasic type="cooperative" />
-									<Row>
-										<Col lg={6}>
-											<InputSelected label="Pais coperante que podria financiar el proyecto" className="inputFloating" options={countries} onChange={(value: any) => setValueByIndex("PROY_PAIS_COOPERANTE", value)} value={data.PROY_PAIS_COOPERANTE} isInvalid={!data.PROY_PAIS_COOPERANTE && errorInputs} />
-										</Col>
-										<Col lg={6}>
-											<InputFloating label="Implementador (es)" className="inputFloating" type="text" placeholder="Indique el operador que podria ejecutar el proyecto." setValueChange={(value: string) => setValueByIndex("PROY_IMPLEMENTADOR", value)} value={data.PROY_IMPLEMENTADOR} isInvalid={!data.PROY_IMPLEMENTADOR && errorInputs} />
-										</Col>
-									</Row>
-								</Tab>
+				<Card>
+					<Card.Header>
+						<Card.Title as={"h4"}>
+							REGISTRO DE COOPERACION INTERNACIONAL
+						</Card.Title>
+					</Card.Header>
+					<Card.Body className="pt-3">
+						<OriginProject />
+						<Tabs
+							defaultActiveKey="general"
+							transition={false}
+							id="info-project"
+							className="mt-4 mb-3"
+						>
+							<Tab eventKey="general" title="DATOS GENERALES">
+								<InfoBasic type="cooperative" />
+								<Row>
+									<Col lg={6}>
+										<InputSelected label="Pais coperante que podria financiar el proyecto" className="inputFloating" options={countries ? countries : []} onChange={(value: any) => setValueByIndex("PROY_PAIS_COOPERANTE", value)} value={data.PROY_PAIS_COOPERANTE} isInvalid={!data.PROY_PAIS_COOPERANTE && errorInputs} />
+									</Col>
+									<Col lg={6}>
+										<InputFloating label="Implementador (es)" className="inputFloating" type="text" placeholder="Indique el operador que podria ejecutar el proyecto." setValueChange={(value: string) => setValueByIndex("PROY_IMPLEMENTADOR", value)} value={data.PROY_IMPLEMENTADOR} isInvalid={!data.PROY_IMPLEMENTADOR && errorInputs} />
+									</Col>
+								</Row>
+							</Tab>
 
-								<Tab eventKey="obj_general" title="OBJ. GENERAL">
-									<GeneralObjective type={"cooperative"} />
-								</Tab>
+							<Tab eventKey="obj_general" title="OBJ. GENERAL">
+								<GeneralObjective type={"cooperative"} />
+							</Tab>
 
-								<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
-									<GeneralSpecific type={"cooperative"} />
-								</Tab>
+							<Tab eventKey="obj_especifico" title="OBJ. ESPECIFICO">
+								<GeneralSpecific type={"cooperative"} />
+							</Tab>
 
-								<Tab eventKey="documents" title="DOCUMENTOS ANEXOS">
-									<DocumentUpload />
-								</Tab>
-							</Tabs>
+							<Tab eventKey="documents" title="DOCUMENTOS ANEXOS">
+								<DocumentUpload />
+							</Tab>
+						</Tabs>
 
-							<hr className="" />
-							<Row sm={12}>
-								<div className="col-lg-6">
-									<Buttons variant="light" label="Cancelar" onClick={() => showConfirmationAlert()} />
-								</div>
-								<Col sm={6} className="text-right">
-									{typeBtnToSave == "temp"
-										? (<Buttons variant="primary" label="Guardar" classStyle="mr-3" icon="clock-history" onClick={() => saveForm()} />)
-										: (<Buttons variant="outline-success" label="Finalizar" icon="save-fill" onClick={() => finishForm()} />)
-									}
-								</Col>
-							</Row>
-						</Card.Body>
-					</Card>
-				</Container>
-			</div>
+						<hr className="" />
+						<Row sm={12}>
+							<div className="col-lg-6">
+								<Buttons variant="light" label="Cancelar" onClick={() => showConfirmationAlert()} />
+							</div>
+							<Col sm={6} className="text-right">
+								{typeBtnToSave == "temp"
+									? (<Buttons variant="primary" label="Guardar" classStyle="mr-3" icon="clock-history" onClick={() => saveForm()} />)
+									: (<Buttons variant="outline-success" label="Finalizar" icon="save-fill" onClick={() => finishForm()} />)
+								}
+							</Col>
+						</Row>
+					</Card.Body>
+				</Card>
+			</div >
 		</>
 	);
 }
