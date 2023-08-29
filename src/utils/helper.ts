@@ -46,6 +46,10 @@ class Helper {
     b64toBlob(base64Data: string) {
         const contentType = base64Data.split(';')[0].split(':')[1];
         const byteCharacters = atob(base64Data.split(',')[1]);
+
+        console.log("contentType", contentType);
+        console.log("byteCharacters", byteCharacters);
+
         const byteArrays = [];
 
         for (let offset = 0; offset < byteCharacters.length; offset += 512) {
@@ -59,6 +63,10 @@ class Helper {
         }
 
         return new Blob(byteArrays, { type: contentType });
+    }
+
+    divideBase64(base64Data: string) {
+        return base64Data.split(',')[1];
     }
 }
 

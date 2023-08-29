@@ -17,6 +17,7 @@ import { GeneralSelector, consecutiveApi, saveFormFonsetApi, setDataTypeForm, se
 import DocumentUpload from "../../molecules/upload/DocumentUpload";
 import alertService from "../../../services/generals/alert.service";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 export default function FormFonset() {
@@ -25,27 +26,31 @@ export default function FormFonset() {
 
 	const dispatch = useAppDispatch();
 
+	const navigate = useNavigate();
+
 	useEffect(() => {
 		dispatch(consecutiveApi("FONSET"));
 		dispatch(setLoading(false))
 	}, [])
 
 	const showConfirmationAlert = () => {
-		Swal.fire({
-			title: 'Una pregunta',
-			text: '¿Seguro que no desea continuar?',
-			icon: 'question',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Cerrar',
-			cancelButtonText: 'Si, seguro',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				// Aquí puedes agregar el código para cerrar la ventana o realizar alguna acción adicional
-				console.log('La ventana se cerrará');
-			}
-		});
+		if (data != null) {
+			Swal.fire({
+				title: 'Una pregunta',
+				text: '¿Seguro que no desea continuar?',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Si, seguro',
+				cancelButtonText: 'Cerrar',
+				allowOutsideClick: false
+			}).then((result) => {
+				if (result.isConfirmed) {
+					navigate("/fonset");
+				}
+			});
+		}
 	};
 
 	const saveForm = async () => {

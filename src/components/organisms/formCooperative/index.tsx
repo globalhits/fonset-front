@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./index.scss";
 
 // --- Components libraries ---
-import { Tab, Tabs, Card, Container, Button, Col, Row } from "react-bootstrap";
+import { Tab, Tabs, Card, Col, Row } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 
@@ -103,17 +103,15 @@ export default function FormCooperative() {
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Cerrar',
-				cancelButtonText: 'Si, seguro',
+				confirmButtonText: 'Si, seguro',
+				cancelButtonText: 'Cerrar',
+				allowOutsideClick: false
 			}).then((result) => {
 				if (result.isConfirmed) {
-					navigate("/cooperative");
+					navigate("/cooperation");
 				}
 			});
-		} else {
-
 		}
-
 	};
 
 	const setValueByIndex = (index: any, value: any) => {
