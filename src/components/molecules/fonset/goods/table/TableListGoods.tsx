@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row, Table } from "react-bootstrap";
 import Buttons from "../../../../atoms/button/Buttons";
 import { GoodsDto } from "../../../../../models/general/GoodDto";
@@ -10,10 +10,24 @@ const TableListGoods: React.FC<any> = () => {
     const { data, errorInputs } = useAppSelector(GeneralSelector);
     const dispatch = useAppDispatch();
 
+    const [total, setTotal] = useState(0);
+
     const deleteItem = async (item: GoodsDto, index: number) => {
         const newDataList = await data.PROY_BIENES_SERVICIOS?.filter((object: GoodsDto) => object.INDEX != item.INDEX);
         dispatch(addGoods(newDataList))
     }
+
+
+    useEffect(() => {
+      let sum = 0;
+      data.PROY_BIENES_SERVICIOS?.forEach((item: GoodsDto) => {
+        let cant = item.CANTIDAD ? item.CANTIDAD : 0;
+        let valor = item.VALOR_UNITARIO ? item.VALOR_UNITARIO : 0;
+        let subtotal = cant * valor;
+        sum += subtotal;
+      });
+      setTotal(sum);
+    }, [data.PROY_BIENES_SERVICIOS]);
 
     return (
         <Row className="mt-3 mb-3">
@@ -67,11 +81,15 @@ const TableListGoods: React.FC<any> = () => {
                                 </tr>
                             );
                         })}
+
                     </tbody>
+
                 </Table>
 
                 <Row>
-                    <input type="text" />
+                    <Col sm={12} style={{color: "gray", textAlign:"center", fontSize:"15px"}}>
+                        <div>Total: {total}</div>
+                    </Col>
                 </Row>
             </Col>
         </Row>

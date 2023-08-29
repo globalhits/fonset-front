@@ -1,12 +1,13 @@
-import { Table } from "react-bootstrap"
+import { Table, Row, Col } from "react-bootstrap"
 import { useAppDispatch, useAppSelector } from "../../../../../../redux/hooks";
 import { GeneralSelector, addActivitiesFilters, addObjetiveSpecifies, addValueToObjetive, filterActivitiesByParentId, filterObjetiveSpecify } from "../../../../../../redux/states/generals/general.slice";
 import { SpecificObjetiveDto } from "../../../../../../models/general/SpecificObjetiveDto";
 import Buttons from "../../../../../atoms/button/Buttons";
 import RegisterActivities from "../../../modal/activity/RegisterActivity";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalDetailsObjEspecific from "../../../modal/objetive/DetailsObjEspecific";
 import ViewRegisterActivities from "../../../modal/activity/ViewRegisterActivities";
+import { GoodsDto } from "../../../../../../models/general/GoodDto";
 
 
 interface TableObjectiveSpecificInterface {
@@ -27,6 +28,8 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
 
     const [objetiveId, setObjetiveId] = useState(0);
 
+    const [total, setTotal] = useState(0);
+
     const addActivities = (id: number) => {
         setObjetiveId(id);
         dispatch(filterActivitiesByParentId(id));
@@ -42,6 +45,18 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
         let newList = data.PROY_OBJETIVOS_ESPECIFICOS?.filter((objetc: SpecificObjetiveDto) => objetc.ID != id);
         dispatch(addObjetiveSpecifies(newList))
     }
+
+    useEffect(() => {
+        let sum = 0;
+        data.PROY_BIENES_SERVICIOS?.forEach((item: GoodsDto) => {
+            let cant = item.CANTIDAD ? item.CANTIDAD : 0;
+            let valor = item.VALOR_UNITARIO ? item.VALOR_UNITARIO : 0;
+            let subtotal = cant * valor;
+            sum += subtotal;
+        });
+        setTotal(sum);
+    }, [data.PROY_BIENES_SERVICIOS]);
+
 
     return (
         <>
@@ -151,6 +166,11 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
                             }
                         </tfoot>
                     </Table>
+                    <Row>
+                        <Col sm={12} style={{ color: "gray", textAlign: "center", fontSize: "15px" }}>
+                            <div>Total: {total}</div>
+                        </Col>
+                    </Row>
                 </div>
             </div>
         </>
