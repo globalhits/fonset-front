@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function FormInvertion() {
 
-	const { data, error, status, typeBtnToSave } = useAppSelector(GeneralSelector);
+	const { data, error, response, status, typeBtnToSave } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 
@@ -67,10 +67,10 @@ export default function FormInvertion() {
 
 		await dispatch(saveFormInvertionApi(data));
 
-		if (status == "succeeded") {
+		if (response.status == 200) {
 			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
-		} else if (status == "failed") {
-			alertService.showAlert("Error", error, "error", "OK", false);
+		} else {
+			alertService.showAlert("Error", response.message || error.message, "error", "OK", false);
 		}
 
 		await dispatch(setLoading(false));
@@ -95,10 +95,10 @@ export default function FormInvertion() {
 
 		await dispatch(saveFormInvertionApi(data));
 
-		if (status == "succeeded") {
+		if (response.status == 200) {
 			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
-		} else if (status == "failed") {
-			alertService.showAlert("Error", error, "error", "OK", false);
+		} else {
+			alertService.showAlert("Error", response.message || error.message, "error", "OK", false);
 		}
 
 		await dispatch(setLoading(false))

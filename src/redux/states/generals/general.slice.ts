@@ -7,6 +7,7 @@ import invertionService from "../../../services/invertion/invertion.service";
 import cooperativeService from "../../../services/cooperative/cooperative.service";
 import fonsetService from "../../../services/fonset/fonset.service";
 import consecutiveService from "../../../services/generals/consecutive.service";
+import { ResponseDto } from "../../../models/general/ResponseDto";
 
 
 const covergateState: TypeCoverageDto = {
@@ -98,16 +99,22 @@ export const initialStateFormGeneral: RequestDto = {
 
 export interface GeneralState {
     data: RequestDto;
-    response: any;
+    response: ResponseDto;
     status: string;
     error: any;
     errorInputs: boolean;
     typeBtnToSave: string;
 }
 
+const initialResponse: ResponseDto = {
+    data: {},
+    message: "",
+    status: ""
+}
+
 export const initialState: GeneralState = {
     data: initialStateFormGeneral,
-    response: null,
+    response: initialResponse,
     error: "",
     status: "",
     errorInputs: false,
@@ -123,19 +130,16 @@ export const consecutiveApi = createAsyncThunk('data/consecutive', async (reques
 
 export const saveFormInvertionApi = createAsyncThunk('data/invertion', async (request: RequestDto) => {
     const response = await invertionService.save(request); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 
 export const saveFormFonsetApi = createAsyncThunk('data/fonset', async (request: RequestDto) => {
     const response = await fonsetService.save(request); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 
 export const saveFormCooperativeApi = createAsyncThunk('data/cooperative', async (request: RequestDto) => {
     const response = await cooperativeService.save(request); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 
@@ -205,7 +209,6 @@ const GeneralSlice = createSlice({
             }
         },
         filterActivitiesByParentId: (state, { payload }: PayloadAction<any>) => {
-            console.log("parentId-redux", payload);
             state.data.PROY_ACTIVIDADES_FILTERS = state.data.PROY_ACTIVIDADES?.filter(item => item.parentId == Number(payload))
         },
         clearSpecifiesInputs: (state, { payload }: PayloadAction<any>) => {
@@ -238,16 +241,16 @@ const GeneralSlice = createSlice({
             state.status = 'loading';
         }).addCase(saveFormInvertionApi.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.response = action.payload;
+            state.response = action.payload ?? {};
         }).addCase(saveFormInvertionApi.rejected, (state, action) => {
             state.status = 'failed';
-            state.response = action.error;
+            state.response = action.error ?? {};
             state.error = action.error.message;
         }).addCase(saveFormFonsetApi.pending, state => {
             state.status = 'loading';
         }).addCase(saveFormFonsetApi.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.response = action.payload;
+            state.response = action.payload != null ? action.payload : {};
         }).addCase(saveFormFonsetApi.rejected, (state, action) => {
             state.status = 'failed';
             state.response = action.error;
@@ -255,12 +258,11 @@ const GeneralSlice = createSlice({
         }).addCase(saveFormCooperativeApi.pending, state => {
             state.status = 'loading';
         }).addCase(saveFormCooperativeApi.fulfilled, (state, action) => {
-            console.log("action", action);
             state.status = 'succeeded';
-            state.response = action.payload;
+            state.response = action.payload != null ? action.payload : {};
         }).addCase(saveFormCooperativeApi.rejected, (state, action) => {
             state.status = 'failed';
-            state.response = action.error;
+            state.response = action.error ?? {};
             state.error = action.error.message;
         }).addCase(consecutiveApi.pending, state => {
             state.status = 'loading';
