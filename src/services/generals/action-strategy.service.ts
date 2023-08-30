@@ -1,4 +1,4 @@
-import config from "../../config/config";
+// import config from "../../config/config";
 import { LIST_ACTIONS_STRATEGIES_OBJETIVES } from "../../config/constants";
 
 class ActionStrategyService {

@@ -17,7 +17,6 @@ export const initialState: DependencyState = {
 
 export const fetchApiDependencies = createAsyncThunk('data/dependencies', async () => {
     const response = await dependencyService.getAll(); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 

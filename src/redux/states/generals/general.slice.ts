@@ -124,7 +124,6 @@ export const initialState: GeneralState = {
 //API
 export const consecutiveApi = createAsyncThunk('data/consecutive', async (request: string) => {
     const response = await consecutiveService.getConsecutive(request); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 

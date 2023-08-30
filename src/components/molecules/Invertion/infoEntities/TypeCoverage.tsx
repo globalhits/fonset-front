@@ -54,10 +54,6 @@ const TypeCoverage = () => {
 
     const addItem = async () => {
 
-        console.log("departamentSelected", departamentSelected);
-
-        console.log("municipalitySelected", municipalitySelected);
-
         if (departamentSelected.toString().trim() === "") {
             setError('El departamento no ha sido seleccionado.');
             return;
@@ -71,8 +67,6 @@ const TypeCoverage = () => {
         let listCoverage: CoverageDto[] = data.PROY_COBERTURA?.COBERTURA ? data.PROY_COBERTURA.COBERTURA : [];
 
         let findRow = listCoverage.filter((item: CoverageDto) => (parseInt(departamentSelected.trim()) == item.DEPARTAMENTO_ID && parseInt(municipalitySelected.trim()) == item.MUNICIPIO_ID));
-
-        console.log("find", findRow);
 
         if (findRow && findRow.length > 0) {
             setError("Ya se encuentra este departamento y municipio agragado.")

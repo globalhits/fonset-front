@@ -9,10 +9,10 @@ class SubUnitService {
 
     async getAll() {
         try {
-            // const response = await fetch(`${this.apiGenerals}/${this.pathListSubUnities}`);
-            // const data = await response.json();
-            // return data;
-            return SUB_UNID_MEASUREMENT;
+            const response = await fetch(`${this.apiGenerals}/${this.pathListSubUnities}`);
+            const data = await response.json();
+            return data;
+            //return SUB_UNID_MEASUREMENT;
         } catch (error) {
             console.error('Error fetching data:', error);
             throw error;

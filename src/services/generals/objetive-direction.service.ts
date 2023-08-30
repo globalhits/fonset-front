@@ -1,11 +1,11 @@
-import config from "../../config/config";
+// import config from "../../config/config";
 import { LIST_OBJETIVES_STRATEGIES_DIRECTIONS } from "../../config/constants";
 
 class ObjetiveDirectionService {
 
-    private apiGenerals = config.apiGeneralHost;
+    // private apiGenerals = config.apiGeneralHost;
 
-    private pathListObjetiveDirection = config.pathListObjetiveDirection;
+    // private pathListObjetiveDirection = config.pathListObjetiveDirection;
 
     async getAll() {
         try {

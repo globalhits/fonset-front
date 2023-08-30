@@ -1,5 +1,5 @@
 import config from "../../config/config";
-import { LIST_LINES_PROGRAMS } from "../../config/constants";
+// import { LIST_LINES_PROGRAMS } from "../../config/constants";
 
 class LineProgramService {
 
@@ -9,10 +9,10 @@ class LineProgramService {
 
     async getAll() {
         try {
-            // const response = await fetch(`${this.apiGenerals}/${this.pathListLineProgram}`);
-            // const data = await response.json();
-            // return data;
-            return LIST_LINES_PROGRAMS;
+            const response = await fetch(`${this.apiGenerals}/${this.pathListLineProgram}`);
+            const data = await response.json();
+            return data;
+            // return LIST_LINES_PROGRAMS;
         } catch (error) {
             console.error('Error fetching data:', error);
             throw error;

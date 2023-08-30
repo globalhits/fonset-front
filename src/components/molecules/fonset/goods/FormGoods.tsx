@@ -57,7 +57,6 @@ export default function FormGoods() {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Aquí puedes agregar el código para cerrar la ventana o realizar alguna acción adicional
-                console.log('La ventana se cerrará');
             }
         });
     };
@@ -179,8 +178,6 @@ export default function FormGoods() {
             return;
         }
 
-        console.log(addItem + "ESTA LLAMDO EL ADD")
-
         let newList: GoodsDto[] = data.PROY_BIENES_SERVICIOS ? data.PROY_BIENES_SERVICIOS : [];
 
         const newDataList = [...newList, {
@@ -280,9 +277,6 @@ export default function FormGoods() {
     }
 
     const changeUnit = (value: any) => {
-
-        console.log("typeof", typeof value);
-        console.log("value", value);
 
         if (value == "") {
             setError("Seleccionar una unidad de medida")

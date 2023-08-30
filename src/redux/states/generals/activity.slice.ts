@@ -17,7 +17,6 @@ export const initialState: TypeActivityState = {
 
 export const fetchApiTypeActivity = createAsyncThunk('data/type-activities', async () => {
     const response = await typeActivityService.getAll(); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 

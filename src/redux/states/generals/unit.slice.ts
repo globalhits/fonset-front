@@ -22,13 +22,11 @@ export const initialState: UnitState = {
 
 export const fetchApiUnits = createAsyncThunk('data/units', async () => {
     const response = await unitService.getAll(); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 
 export const fetchApiSubUnits = createAsyncThunk('data/sub-units', async () => {
     const response = await subUnitService.getAll(); // Llamar al servicio
-    console.log("response-sub-units", response);
     return response;
 });
 

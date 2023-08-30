@@ -1,4 +1,4 @@
-import config from "../../config/config";
+// import config from "../../config/config";
 import { LIST_SUB_OBJETIVES } from "../../config/constants";
 
 class SubObjetiveStrategyService {

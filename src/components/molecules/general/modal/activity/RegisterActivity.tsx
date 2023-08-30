@@ -435,7 +435,6 @@ const RegisterActivities: React.FC<ModalProps> = ({ type, show, objetivoId, onHi
                                                 </tr>)
                                             }
                                             TOTAL_PRESUPUESTO += Number(activityItem.presupuesto) ?? 0;
-                                            console.log("total", TOTAL_PRESUPUESTO);
 
                                             setTotalPresupuesto(TOTAL_PRESUPUESTO)
                                             // dispatch(addValueToActivities(TOTAL_PRESUPUESTO))

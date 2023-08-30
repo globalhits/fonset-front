@@ -17,7 +17,6 @@ export const initialState: DistricState = {
 
 export const fetchApiDistricts = createAsyncThunk('data/districts', async () => {
     const response = await districtService.getAll(); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 
