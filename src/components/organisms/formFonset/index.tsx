@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./index.scss";
 
 // --- Components libraries ---
-import { Card, Container, Tab, Tabs } from "react-bootstrap";
+import { Card, Tab, Tabs } from "react-bootstrap";
 
 // --- Components project ---
 import OriginProject from "../../molecules/originProject";
