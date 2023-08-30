@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function FormInvertion() {
 
-	const { data, error, response, status, typeBtnToSave } = useAppSelector(GeneralSelector);
+	const { data, error, response, typeBtnToSave } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 
@@ -74,8 +74,6 @@ export default function FormInvertion() {
 		}
 
 		await dispatch(setLoading(false));
-		console.log("guardar form", data);
-
 	}
 
 	const finishForm = async () => {

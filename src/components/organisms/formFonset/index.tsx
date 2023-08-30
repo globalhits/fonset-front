@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function FormFonset() {
 
-	const { data, error, status, typeBtnToSave, response } = useAppSelector(GeneralSelector);
+	const { data, response, error, typeBtnToSave } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 
@@ -66,14 +66,13 @@ export default function FormFonset() {
 
 		await dispatch(saveFormFonsetApi(data));
 
-		if (status == "succeeded") {
+		if (response.status == 200) {
 			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
-		} else if (status == "failed") {
-			alertService.showAlert("Error", error, "error", "OK", false);
+		} else {
+			alertService.showAlert("Error", response.message || error.message, "error", "OK", false);
 		}
 
 		await dispatch(setLoading(false));
-		console.log("guardar form", data);
 	}
 
 	const finishForm = async () => {
@@ -93,20 +92,13 @@ export default function FormFonset() {
 
 		await dispatch(saveFormFonsetApi(data));
 
-		if (response !== undefined) {
+		if (response.status == 200) {
 			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
-		} else if (status == "failed") {
-			alertService.showAlert("Error", error, "error", "OK", false);
+		} else {
+			alertService.showAlert("Error", response.message || error.message, "error", "OK", false);
 		}
 
 		await dispatch(setLoading(false))
-
-		console.log("guardar form", data);
-
-		console.log("res", response);
-
-		console.log("error", error);
-
 	}
 
 	const showAlertsForInputsRequired = () => {
