@@ -75,6 +75,7 @@ const TypeCoverage = () => {
 
         const newItem = [...listCoverage, {
             INDEX: helper.getRandomInt(),
+            ID: helper.getRandomInt(),
             DEPARTAMENT_ID: parseInt(departamentSelected),
             NOMBRE_DEPARTAMENTO: departaments.find((item: any) => item.id == departamentSelected)?.name,
             MUNICIPIO_ID: parseInt(municipalitySelected),

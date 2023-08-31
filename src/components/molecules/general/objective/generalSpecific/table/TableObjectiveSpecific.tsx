@@ -101,7 +101,6 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
                                         <td>
                                             <Buttons size="xs" variant="primary" label="" icon="plus" onClick={() => addActivities(item.ID ? item.ID : 0)} />
                                             <Buttons size="xs" variant="light" label="" icon="search" onClick={() => seeObjetiveSpecifies(item)} />
-                                            <Buttons size="xs" variant="warning" label="" icon="file-zip" onClick={() => { }} />
                                             <Buttons size="xs" variant="danger" label="" icon="trash" onClick={() => deleteItem(item.ID)} />
                                         </td>
                                     </tr>)
@@ -118,7 +117,6 @@ export const TableObjectiveSpecific = ({ type }: TableObjectiveSpecificInterface
                                         <td className="text-center">
                                             <Buttons size="xs" variant="primary" label="" icon="plus" onClick={() => addActivities(item.ID ? item.ID : 0)} />
                                             <Buttons size="xs" variant="light" label="" icon="search" onClick={() => seeObjetiveSpecifies(item)} />
-                                            <Buttons size="xs" variant="warning" label="" icon="file-zip" onClick={() => { }} />
                                             <Buttons size="xs" variant="danger" label="" icon="trash" onClick={() => deleteItem(item.ID)} />
                                         </td>
                                     </tr>)

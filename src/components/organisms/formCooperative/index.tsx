@@ -71,12 +71,12 @@ export default function FormCooperative() {
 
 		await dispatch(setLoading(true));
 
-		if (validationsInputsToFinish() > 0) {
-			showAlertsForInputsRequired();
-			alertService.showAlert("Error", "Verificar los campos requeridos", "error", "OK", false);
-			dispatch(setLoading(false))
-			return;
-		}
+		// if (validationsInputsToFinish() > 0) {
+		// 	showAlertsForInputsRequired();
+		// 	alertService.showAlert("Error", "Es necesario diligenciar los campos marcados como requeridos antes de finalizar la formulación del proyecto", "error", "OK", false);
+		// 	dispatch(setLoading(false))
+		// 	return;
+		// }
 
 		await dispatch(saveFormCooperativeApi(data));
 

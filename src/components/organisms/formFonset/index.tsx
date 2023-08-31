@@ -54,6 +54,8 @@ export default function FormFonset() {
 	};
 
 	const saveForm = async () => {
+
+
 		await dispatch(setDataTypeForm("fonset_temp"));
 
 		await dispatch(setTypeFormToSave("TEMPFONSET"))
@@ -83,12 +85,12 @@ export default function FormFonset() {
 
 		await dispatch(setLoading(true));
 
-		if (validationsInputsToFinish() > 0) {
-			showAlertsForInputsRequired();
-			alertService.showAlert("Error", "Verificar los campos requeridos", "error", "OK", false);
-			dispatch(setLoading(false))
-			return;
-		}
+		// if (validationsInputsToFinish() > 0) {
+		// 	showAlertsForInputsRequired();
+		// 	alertService.showAlert("Error", "Es necesario diligenciar los campos marcados como requeridos antes de finalizar la formulación del proyecto", "error", "OK", false);
+		// 	dispatch(setLoading(false))
+		// 	return;
+		// }
 
 		await dispatch(saveFormFonsetApi(data));
 

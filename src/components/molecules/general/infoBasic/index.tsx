@@ -85,7 +85,7 @@ const InfoBasic: React.FC<infoBasicInterface> = ({ type }) => {
         let listTipoProject = data.PROY_TIPO ? data.PROY_TIPO : [];
         if (checked) {
             // Elemento no existe, agregarlo al array
-            const newItem = [...listTipoProject, { INDEX: helper.getRandomInt(), ID: null, DESCRIPCION: value }];
+            const newItem = [...listTipoProject, { INDEX: helper.getRandomInt(), ID: helper.getRandomInt(), DESCRIPCION: value }];
             updatedRequest = {
                 ...data,
                 PROY_TIPO: newItem

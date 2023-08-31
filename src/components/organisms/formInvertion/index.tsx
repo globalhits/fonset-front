@@ -69,6 +69,7 @@ export default function FormInvertion() {
 
 		if (response.status == 200) {
 			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
+
 		} else {
 			alertService.showAlert("Error", response.message || error.message, "error", "OK", false);
 		}
@@ -86,7 +87,7 @@ export default function FormInvertion() {
 
 		if (validationsInputsToFinish() > 0) {
 			showAlertsForInputsRequired();
-			alertService.showAlert("Error", "Verificar los campos requeridos", "error", "OK", false);
+			alertService.showAlert("Error", "Es necesario diligenciar los campos marcados como requeridos antes de finalizar la formulación del proyecto", "error", "OK", false);
 			dispatch(setLoading(false))
 			return;
 		}
