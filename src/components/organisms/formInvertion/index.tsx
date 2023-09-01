@@ -214,6 +214,10 @@ export default function FormInvertion() {
 			errorsCount++;
 		}
 
+		if (data.PROY_ACTIVIDADES?.length == 0) {
+			errorsCount++;
+		}
+
 		// Documentos
 		if (data.PROY_DOCUMENTOS_ANEXOS?.length == 0) {
 			errorsCount++;

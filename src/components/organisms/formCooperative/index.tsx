@@ -172,7 +172,7 @@ export default function FormCooperative() {
 
 		// TAB OBJETIVO GENERAL
 
-		if (data.PROY_JUSTIFICACION == "") {
+		if (data.PROY_JUSTIFICACION_ANTECEDENTES == "") {
 			errorsCount++;
 		}
 

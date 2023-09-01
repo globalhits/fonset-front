@@ -176,6 +176,10 @@ export default function FormFonset() {
 			errorsCount++;
 		}
 
+		if (data.PROY_OBSERVACIONES == "") {
+			errorsCount++;
+		}
+
 		// TAB BIENES Y SERVICIOS
 
 		if (data.PROY_BIENES_SERVICIOS?.length == 0) {

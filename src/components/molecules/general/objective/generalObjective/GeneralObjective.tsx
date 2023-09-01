@@ -207,7 +207,7 @@ export const GeneralObjective = ({ type, isSpecify = false, viewDetail = false }
 
                                             <div className="row mt-4">
                                                 <div className="col-lg-12">
-                                                    <InputFloating label="Digite la justificación o antecedentes del proyecto*" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_JUSTIFICACION", value)} value={data.PROY_JUSTIFICACION} isInvalid={!data.PROY_JUSTIFICACION && errorInputs} disabled={viewDetail} />
+                                                    <InputFloating label="Digite la justificación o antecedentes del proyecto*" className="mb-3 inputFloating" type="text" setValueChange={(value: string) => setValueByIndex("PROY_JUSTIFICACION_ANTECEDENTES", value)} value={data.PROY_JUSTIFICACION_ANTECEDENTES} isInvalid={!data.PROY_JUSTIFICACION_ANTECEDENTES && errorInputs} disabled={viewDetail} />
                                                 </div>
                                             </div>
                                             <div className="row">
