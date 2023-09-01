@@ -68,23 +68,6 @@ export const GeneralSpecific = ({ type, viewDetail = false }: GeneralSpecificInt
 
     const [disabledLinesProgram, setDisabledLinesProgram] = useState(true);
 
-    const setValueByIndex = (index: any, value: any) => {
-        let updatedRequest: RequestDto = {};
-
-        updatedRequest = {
-            ...data,
-            [index]: value
-        }
-
-        console.log("index request by clear", index);
-
-        console.log("value request by clear", value);
-
-        console.log("update request by clear", updatedRequest);
-
-        dispatch(setDataGeneral(updatedRequest));
-    }
-
     const addItem = async () => {
 
         let objetives: SpecificObjetiveDto[] = data.PROY_OBJETIVOS_ESPECIFICOS ? data.PROY_OBJETIVOS_ESPECIFICOS : [];

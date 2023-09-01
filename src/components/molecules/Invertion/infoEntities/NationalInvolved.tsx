@@ -35,7 +35,7 @@ const NationalInvolved = () => {
 
         const newItem = [...listEntity, {
             INDEX: helper.getRandomInt(),
-            ID: null,
+            ID: helper.getRandomInt(),
             DESCRIPCION: itemDescription
         }]
 

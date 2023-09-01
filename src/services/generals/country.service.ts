@@ -8,15 +8,15 @@ class DepartamentService {
 
     async getAll() {
         try {
-            // const response = await fetch(`${this.apiGenerals}/${this.pathListCountry}`);
-            // const data = await response.json();
-            // return data;
-            return [{
-                INDEX: 1,
-                id: 1,
-                name: "colombia",
-                description: "colombia"
-            }]
+            const response = await fetch(`${this.apiGenerals}/${this.pathListCountry}`);
+            const data = await response.json();
+            return data;
+            // return [{
+            //     INDEX: 1,
+            //     id: 1,
+            //     name: "colombia",
+            //     description: "colombia"
+            // }]
         } catch (error) {
             console.error('Error fetching data:', error);
             throw error;

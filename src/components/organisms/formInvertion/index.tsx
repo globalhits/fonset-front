@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function FormInvertion() {
 
-	const { data, error, status, typeBtnToSave } = useAppSelector(GeneralSelector);
+	const { data, error, response, typeBtnToSave } = useAppSelector(GeneralSelector);
 
 	const dispatch = useAppDispatch();
 
@@ -67,15 +67,14 @@ export default function FormInvertion() {
 
 		await dispatch(saveFormInvertionApi(data));
 
-		if (status == "succeeded") {
+		if (response.status == 200) {
 			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
-		} else if (status == "failed") {
-			alertService.showAlert("Error", error, "error", "OK", false);
+
+		} else {
+			alertService.showAlert("Error", response.message || error.message, "error", "OK", false);
 		}
 
 		await dispatch(setLoading(false));
-		console.log("guardar form", data);
-
 	}
 
 	const finishForm = async () => {
@@ -88,17 +87,17 @@ export default function FormInvertion() {
 
 		if (validationsInputsToFinish() > 0) {
 			showAlertsForInputsRequired();
-			alertService.showAlert("Error", "Verificar los campos requeridos", "error", "OK", false);
+			alertService.showAlert("Error", "Es necesario diligenciar los campos marcados como requeridos antes de finalizar la formulación del proyecto", "error", "OK", false);
 			dispatch(setLoading(false))
 			return;
 		}
 
 		await dispatch(saveFormInvertionApi(data));
 
-		if (status == "succeeded") {
+		if (response.status == 200) {
 			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
-		} else if (status == "failed") {
-			alertService.showAlert("Error", error, "error", "OK", false);
+		} else {
+			alertService.showAlert("Error", response.message || error.message, "error", "OK", false);
 		}
 
 		await dispatch(setLoading(false))
@@ -212,6 +211,10 @@ export default function FormInvertion() {
 		// Objetivos especificos
 
 		if (data.PROY_OBJETIVOS_ESPECIFICOS?.length == 0) {
+			errorsCount++;
+		}
+
+		if (data.PROY_ACTIVIDADES?.length == 0) {
 			errorsCount++;
 		}
 

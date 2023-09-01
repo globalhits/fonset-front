@@ -9,10 +9,10 @@ class DependencyService {
 
     async getAll() {
         try {
-            // const response = await fetch(`${this.apiGenerals}/${this.pathListDependency}`);
-            // const data = await response.json();
-            // return data;
-            return LIST_FGN_DEPENDENCY;
+            const response = await fetch(`${this.apiGenerals}/${this.pathListDependency}`);
+            const data = await response.json();
+            return data;
+            // return LIST_FGN_DEPENDENCY;
         } catch (error) {
             console.error('Error fetching data:', error);
             throw error;

@@ -1,11 +1,11 @@
-import config from "../../config/config";
+// import config from "../../config/config";
 import { LIST_LINES_PROGRAMS } from "../../config/constants";
 
 class LineProgramService {
 
-    private apiGenerals = config.apiGeneralHost;
+    // private apiGenerals = config.apiGeneralHost;
 
-    private pathListLineProgram = config.pathListLineProgram;
+    // private pathListLineProgram = config.pathListLineProgram;
 
     async getAll() {
         try {

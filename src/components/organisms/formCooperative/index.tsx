@@ -26,7 +26,7 @@ import { GeneralSpecific } from "../../molecules/general/objective/generalSpecif
 
 export default function FormCooperative() {
 
-	const { data, errorInputs, typeBtnToSave, status, error } = useAppSelector(GeneralSelector);
+	const { data, errorInputs, typeBtnToSave, error, response } = useAppSelector(GeneralSelector);
 
 	const { countries } = useAppSelector(CountrySelector);
 
@@ -54,14 +54,13 @@ export default function FormCooperative() {
 
 		await dispatch(saveFormCooperativeApi(data));
 
-		if (status == "succeeded") {
+		if (response.status == 200) {
 			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
-		} else if (status == "failed") {
-			alertService.showAlert("Error", error, "error", "OK", false);
+		} else {
+			alertService.showAlert("Error", response.message || error.message, "error", "OK", false);
 		}
 
 		await dispatch(setLoading(false));
-		console.log("guardar form", data);
 	}
 
 	const finishForm = async () => {
@@ -72,19 +71,19 @@ export default function FormCooperative() {
 
 		await dispatch(setLoading(true));
 
-		if (validationsInputsToFinish() > 0) {
-			showAlertsForInputsRequired();
-			alertService.showAlert("Error", "Verificar los campos requeridos", "error", "OK", false);
-			dispatch(setLoading(false))
-			return;
-		}
+		// if (validationsInputsToFinish() > 0) {
+		// 	showAlertsForInputsRequired();
+		// 	alertService.showAlert("Error", "Es necesario diligenciar los campos marcados como requeridos antes de finalizar la formulación del proyecto", "error", "OK", false);
+		// 	dispatch(setLoading(false))
+		// 	return;
+		// }
 
 		await dispatch(saveFormCooperativeApi(data));
 
-		if (status == "succeeded") {
+		if (response.status == 200) {
 			alertService.showAlert("Correcto", "¡Proyecto guardado correctamente!", "success", "OK", false);
-		} else if (status == "failed") {
-			alertService.showAlert("Error", error, "error", "OK", false);
+		} else {
+			alertService.showAlert("Error", response.message || error.message, "error", "OK", false);
 		}
 
 		await dispatch(setLoading(false))
@@ -173,7 +172,7 @@ export default function FormCooperative() {
 
 		// TAB OBJETIVO GENERAL
 
-		if (data.PROY_JUSTIFICACION == "") {
+		if (data.PROY_JUSTIFICACION_ANTECEDENTES == "") {
 			errorsCount++;
 		}
 

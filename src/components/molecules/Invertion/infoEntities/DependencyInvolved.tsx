@@ -35,7 +35,7 @@ const DependencyInvolved = () => {
 
         const newItem = [...listDependency, {
             INDEX: helper.getRandomInt(),
-            id: null,
+            id: helper.getRandomInt(),
             description: itemDescription
         }]
 

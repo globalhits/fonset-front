@@ -22,13 +22,11 @@ export const initialState: CategoryState = {
 
 export const fetchApiCategoriesSpecifies = createAsyncThunk('data/categories-specifies', async () => {
     const response = await categorySpecificService.getAll(); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 
 export const fetchApiCategoriesGenerals = createAsyncThunk('data/categories-generals', async () => {
     const response = await categoryGeneralService.getAll(); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 

@@ -4,6 +4,7 @@ import "./uploadFile.scss";
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { GeneralSelector, addDocuments } from '../../../redux/states/generals/general.slice';
 import helper from '../../../utils/helper';
+import alertService from '../../../services/generals/alert.service';
 
 
 const FileUploader = ({ }) => {
@@ -37,14 +38,11 @@ const FileUploader = ({ }) => {
 
 		if (validFiles.length === 0) {
 			// alert('Los archivos no cumplen con los requisitos (formato o tamaño).');
-
+			alertService.showAlert("Error", "Los archivos no cumplen con la extensión aceptada ('pdf', 'png', 'jpg', 'jpeg', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'txt')", "error", "OK");
 			return;
 		}
 
-		console.log("validFiles", validFiles);
-
 		let base64: any = await helper.blobToBase64(validFiles[0]);
-
 
 		const updatedFiles = validFiles.map((file: any) => ({
 			name: file.name,

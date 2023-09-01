@@ -22,13 +22,11 @@ export const initialState: ProgramState = {
 
 export const fetchApiPrograms = createAsyncThunk('data/programs', async () => {
     const response = await programService.getAll(); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 
 export const fetchApiLinePrograms = createAsyncThunk('data/lines-programs', async () => {
     const response = await lineProgramService.getAll(); // Llamar al servicio
-    console.log("response", response);
     return response;
 });
 

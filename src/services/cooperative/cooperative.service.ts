@@ -7,7 +7,7 @@ class CooperativeService {
 
     async save(request: RequestDto) {
         try {
-            const response = await fetch(`${this.urlApi}/project-international-cooperation`, {
+            const response = await fetch(`${this.urlApi}/proyecto-cooperacion`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

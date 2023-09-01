@@ -1,11 +1,11 @@
-import config from "../../config/config";
+// import config from "../../config/config";
 import { LIST_PROGRAMS } from "../../config/constants";
 
 class ProgramService {
 
-    private apiGenerals = config.apiGeneralHost;
+    // private apiGenerals = config.apiGeneralHost;
 
-    private pathListProgram = config.pathListProgram;
+    // private pathListProgram = config.pathListProgram;
 
     async getAll() {
         try {

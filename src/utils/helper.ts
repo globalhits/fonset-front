@@ -22,8 +22,6 @@ class Helper {
 
         const formattedDate = currentDate.toISOString().slice(0, 10);
 
-        console.log("formattedDate", formattedDate);
-
         return formattedDate;
     }
 
@@ -46,9 +44,6 @@ class Helper {
     b64toBlob(base64Data: string) {
         const contentType = base64Data.split(';')[0].split(':')[1];
         const byteCharacters = atob(base64Data.split(',')[1]);
-
-        console.log("contentType", contentType);
-        console.log("byteCharacters", byteCharacters);
 
         const byteArrays = [];
 

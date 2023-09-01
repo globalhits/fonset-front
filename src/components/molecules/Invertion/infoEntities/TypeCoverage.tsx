@@ -54,10 +54,6 @@ const TypeCoverage = () => {
 
     const addItem = async () => {
 
-        console.log("departamentSelected", departamentSelected);
-
-        console.log("municipalitySelected", municipalitySelected);
-
         if (departamentSelected.toString().trim() === "") {
             setError('El departamento no ha sido seleccionado.');
             return;
@@ -72,8 +68,6 @@ const TypeCoverage = () => {
 
         let findRow = listCoverage.filter((item: CoverageDto) => (parseInt(departamentSelected.trim()) == item.DEPARTAMENTO_ID && parseInt(municipalitySelected.trim()) == item.MUNICIPIO_ID));
 
-        console.log("find", findRow);
-
         if (findRow && findRow.length > 0) {
             setError("Ya se encuentra este departamento y municipio agragado.")
             return
@@ -81,6 +75,7 @@ const TypeCoverage = () => {
 
         const newItem = [...listCoverage, {
             INDEX: helper.getRandomInt(),
+            ID: helper.getRandomInt(),
             DEPARTAMENT_ID: parseInt(departamentSelected),
             NOMBRE_DEPARTAMENTO: departaments.find((item: any) => item.id == departamentSelected)?.name,
             MUNICIPIO_ID: parseInt(municipalitySelected),
