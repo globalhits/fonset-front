@@ -83,7 +83,7 @@ export default function FormInvertion() {
 
 		await dispatch(setTypeFormToSave("PGN"))
 
-		await dispatch(setLoading(true))
+		await dispatch(setLoading(true));
 
 		if (validationsInputsToFinish() > 0) {
 			showAlertsForInputsRequired();
